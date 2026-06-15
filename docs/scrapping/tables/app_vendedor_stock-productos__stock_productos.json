@@ -1,0 +1,136 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Código",
+      "Nombre",
+      "Unidad",
+      "Precio",
+      "Stock",
+      ""
+    ],
+    "rows": [
+      [
+        "",
+        "Código",
+        "Nombre",
+        "Unidad",
+        "Precio",
+        "Stock",
+        ""
+      ],
+      [
+        "",
+        "PRD210200014",
+        "PILAS PANASONIC AA BONIFICACION",
+        "Display",
+        "0.00",
+        "500.00",
+        ""
+      ],
+      [
+        "",
+        "PRD210200021",
+        "PILAS PANASONIC AA X 10PARES",
+        "Display",
+        "15.70",
+        "422.00",
+        ""
+      ],
+      [
+        "",
+        "PRD230600019",
+        "PILAS PANASONIC AA X 10PARES X 4DP",
+        "Display",
+        "60.70",
+        "500.00",
+        ""
+      ],
+      [
+        "",
+        "PRD221100050",
+        "PILAS PANASONIC AA X 10PARES X 8DP",
+        "Display",
+        "117.40",
+        "500.00",
+        ""
+      ],
+      [
+        "",
+        "PRD220800006",
+        "PILAS PANASONIC AAA BONIFICACION",
+        "Display",
+        "0.00",
+        "500.00",
+        ""
+      ],
+      [
+        "",
+        "PRD230400013",
+        "PILAS PANASONIC AAA X 20PARES X 2DP",
+        "Display",
+        "65.20",
+        "500.00",
+        ""
+      ],
+      [
+        "",
+        "PRD221100048",
+        "PILAS PANASONIC AAA X 20PARES X 4DP",
+        "Display",
+        "126.10",
+        "500.00",
+        ""
+      ],
+      [
+        "",
+        "PRD200900032",
+        "PILAS PANASONIC AAA X 20PARES",
+        "Display",
+        "33.70",
+        "469.00",
+        ""
+      ],
+      [
+        "",
+        "PRD230600069",
+        "PROMOCION TAKIS SURTIDO BIMBO X 56GR X 6UN X 8TIRA",
+        "Display",
+        "104.40",
+        "492.00",
+        ""
+      ],
+      [
+        "",
+        "PRD260300006",
+        "TAKIS BLUE BIMBO X 56GR X 6UN X TIRA",
+        "Display",
+        "13.50",
+        "488.00",
+        ""
+      ]
+    ],
+    "row_count": 11
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Código Nombre Unidad Precio Stock",
+      "PRD210200014 PILAS PANASONIC AA BONIFICACION Display 0.00 500.00",
+      "PRD210200021 PILAS PANASONIC AA X 10PARES Display 15.70 422.00",
+      "PRD230600019 PILAS PANASONIC AA X 10PARES X 4DP Display 60.70 500.00",
+      "PRD221100050 PILAS PANASONIC AA X 10PARES X 8DP Display 117.40 500.00",
+      "PRD220800006 PILAS PANASONIC AAA BONIFICACION Display 0.00 500.00",
+      "PRD230400013 PILAS PANASONIC AAA X 20PARES X 2DP Display 65.20 500.00",
+      "PRD221100048 PILAS PANASONIC AAA X 20PARES X 4DP Display 126.10 500.00",
+      "PRD200900032 PILAS PANASONIC AAA X 20PARES Display 33.70 469.00",
+      "PRD230600069 PROMOCION TAKIS SURTIDO BIMBO X 56GR X 6UN X 8TIRA Display 104.40 492.00",
+      "PRD260300006 TAKIS BLUE BIMBO X 56GR X 6UN X TIRA Display 13.50 488.00"
+    ],
+    "row_count": 11
+  }
+]

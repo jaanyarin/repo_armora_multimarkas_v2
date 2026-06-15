@@ -1,0 +1,43 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Codigo",
+      "SKU",
+      "Nombre",
+      "Habilitado",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Codigo",
+        "SKU",
+        "Nombre",
+        "Habilitado",
+        "Acciones"
+      ],
+      [
+        "",
+        "CJE201000001",
+        "PS1",
+        "PAQUETE DE GALLETA ADICIONAL",
+        "HABI",
+        ""
+      ]
+    ],
+    "row_count": 2
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Codigo SKU Nombre Habilitado Acciones",
+      "CJE201000001 PS1 PAQUETE DE GALLETA ADICIONAL HABI"
+    ],
+    "row_count": 2
+  }
+]

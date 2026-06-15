@@ -1,0 +1,109 @@
+{
+  "top_colors": [
+    {
+      "color": "rgba(255, 255, 255, 0.9)",
+      "count": 1287
+    },
+    {
+      "color": "rgb(0, 0, 0)",
+      "count": 848
+    },
+    {
+      "color": "rgba(0, 0, 0, 0.87)",
+      "count": 364
+    },
+    {
+      "color": "rgba(255, 255, 255, 0.7)",
+      "count": 357
+    },
+    {
+      "color": "rgb(255, 255, 255)",
+      "count": 110
+    },
+    {
+      "color": "rgb(27, 28, 29)",
+      "count": 27
+    },
+    {
+      "color": "rgba(34, 36, 38, 0.15)",
+      "count": 23
+    },
+    {
+      "color": "rgb(33, 186, 69)",
+      "count": 10
+    },
+    {
+      "color": "rgba(0, 0, 0, 0.85)",
+      "count": 9
+    },
+    {
+      "color": "rgba(34, 36, 38, 0.1)",
+      "count": 9
+    },
+    {
+      "color": "rgb(255, 105, 94)",
+      "count": 7
+    },
+    {
+      "color": "rgba(0, 0, 0, 0)",
+      "count": 6
+    },
+    {
+      "color": "rgb(219, 40, 40)",
+      "count": 6
+    },
+    {
+      "color": "rgb(249, 250, 251)",
+      "count": 6
+    },
+    {
+      "color": "rgb(243, 244, 245)",
+      "count": 5
+    },
+    {
+      "color": "rgb(212, 212, 213)",
+      "count": 5
+    },
+    {
+      "color": "rgba(191, 191, 191, 0.87)",
+      "count": 3
+    },
+    {
+      "color": "rgba(0, 0, 0, 0.6)",
+      "count": 3
+    },
+    {
+      "color": "rgb(57, 75, 97)",
+      "count": 2
+    },
+    {
+      "color": "rgb(233, 238, 245)",
+      "count": 2
+    },
+    {
+      "color": "rgba(0, 0, 0, 0.2)",
+      "count": 2
+    },
+    {
+      "color": "rgb(218, 218, 218)",
+      "count": 1
+    },
+    {
+      "color": "rgb(37, 41, 46)",
+      "count": 1
+    },
+    {
+      "color": "rgb(250, 250, 250)",
+      "count": 1
+    },
+    {
+      "color": "rgba(255, 255, 255, 0.1)",
+      "count": 1
+    },
+    {
+      "color": "rgb(224, 225, 226)",
+      "count": 1
+    }
+  ],
+  "css_variables": {}
+}

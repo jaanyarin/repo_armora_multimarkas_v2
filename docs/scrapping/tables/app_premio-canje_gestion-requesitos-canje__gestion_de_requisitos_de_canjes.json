@@ -1,0 +1,40 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Codigo",
+      "Nombre",
+      "Unidad Medida",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Codigo",
+        "Nombre",
+        "Unidad Medida",
+        "Acciones"
+      ],
+      [
+        "",
+        "CJR201000001",
+        "sobrecito de pimienta",
+        "number of international units",
+        ""
+      ]
+    ],
+    "row_count": 2
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Codigo Nombre Unidad Medida Acciones",
+      "CJR201000001 sobrecito de pimienta number of international units"
+    ],
+    "row_count": 2
+  }
+]

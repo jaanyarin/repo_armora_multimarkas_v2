@@ -1,0 +1,1592 @@
+<!DOCTYPE html><html lang="es-PE"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+            Crear Mapa Rutas
+        </title>
+        
+        <script src="/app/static/jquery/jquery-3.4.1.min.js"></script>
+        <script src="/app/static/jquery/jquery-serialize-object.min.js"></script>
+        <script src="/app/static/semantic/semantic-dyvent.min.js"></script>
+        <script src="/app/static/alert/ui-alert.js"></script>
+        <script src="/app/static/datatable/datatables.dyvent.min.js"></script>
+        <script src="/app/static/quicksearch/quicksearch.js"></script>
+        <script src="/app/static/multiselect/multiselect.js"></script>
+        <script src="/app/static/calendar/calendar.min.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="/app/static/semantic/semantic-dyvent.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/alert/ui-alert.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/datatable/datatables.dyvent.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/multiselect/multiselect.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/calendar/calendar.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/resources/css/page.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/tableflip/tableflip.css">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="/app/static/favicon/apple-touch-icon.png?v1">
+        <link rel="icon" type="image/png" sizes="32x32" href="/app/static/favicon/favicon-32x32.png?v1">
+        <link rel="icon" type="image/png" sizes="16x16" href="/app/static/favicon/favicon-16x16.png?v1">
+        <link rel="manifest" href="/app/static/favicon/site.webmanifest?v1">
+        <link rel="mask-icon" href="/app/static/favicon/safari-pinned-tab.svg?v1" color="#949494">
+        <meta name="msapplication-TileColor" content="#000000">
+        <meta name="theme-color" content="#000000">
+    <style> .ui.visible.left.sidebar ~ .fixed, .ui.visible.left.sidebar ~ .pusher {   -webkit-transform: translate3d(260px, 0, 0);           transform: translate3d(260px, 0, 0); }</style></head>
+    <body class="dimmable">
+        
+        <div class="ui top attached secondary menu flex-wrap">
+            <a class="item open-menu" id="bSidebar">
+                <img class="ui image image-menu" alt="Menu Principal" src="/app/general/loaded-resources/rest/home-image">
+            </a>
+            <div class="ui right secondary compact menu right-menu">
+                <div class="ui grid one column computer tablet only">
+                    <a class="item" href="/app/general/perfil-personal" data-tooltip="Perfil de Personal" data-position="bottom left">
+                        <i class="black big id badge link icon"></i>
+                    </a>
+                    <div class="item">
+                        <div class="user-info">
+                            <div>
+                                <strong>Personal:</strong> ALEJANDRO ANYARIN 
+                            </div>
+                            <div>
+                                <strong>Lista Precios:</strong> LISTA DE PRECIO M1P
+                            </div>
+                            <div>
+                                <strong>Almacen:</strong> BROCKER MESA 1
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="item" href="/app/home" data-tooltip="Pagina de Inicio" data-position="bottom center">
+                    <i class="black big home link icon"></i>
+                    <div class="ui grid one column computer only">
+                        <strong>Home</strong>
+                    </div>
+                </a>
+                <a class="item" href="/app/logout" data-tooltip="Cerrar Sesión" data-position="bottom right">
+                    <i class="black big sign out link icon"></i>
+                    <div class="ui grid one column computer only">
+                        <strong>Logout</strong>
+                    </div>
+                </a>
+            </div>
+            <div class="hide-desktop w-100">
+                <div class="flex-spacebetween-center">
+                    <div class="item">
+                        <div class="user-info">
+                            <div>
+                                <strong>Personal:</strong> ALEJANDRO ANYARIN 
+                            </div>
+                            <div>
+                                <strong>Lista Precios:</strong> LISTA DE PRECIO M1P
+                            </div>
+                            <div>
+                                <strong>Almacen:</strong> BROCKER MESA 1
+                            </div>
+                        </div>
+                    </div>
+                    <a class="item" href="/app/general/perfil-personal" data-tooltip="Perfil de Personal" data-position="bottom right">
+                        <i class="black big id badge link icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="ui attached segment pushable" id="pusher">
+            <div class="ui inverted vertical accordion sidebar menu left uncover visible" id="sidebar" style="">
+                <div class="item" id="item-search">
+                    <div class="ui icon input">
+                        <input type="text" placeholder="Búsqueda" id="menu-search">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large shopping bag icon"></i>
+                            <span>Compras</span>
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/compras/crear-compra">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Compra
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/compras/gestion-compras">
+                                        <i class="shopping bag icon"></i>
+                                        <div class="content">
+                                            Gestión de Compras
+                                        </div>
+                                    </a>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large shopping cart icon"></i>
+                            Proveedores
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/proveedores/crear-proveedor">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Proveedor
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/proveedores/gestion-proveedores">
+                                        <i class="shoppint cart icon"></i>
+                                        <div class="content">
+                                            Gestión de Proveedores
+                                        </div>
+                                    </a>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard list icon"></i>
+                            Preventas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/preventas/gestion-preventas">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Gestión Preventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/preventas/reportes-preventas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Preventas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard check icon"></i>
+                            Ventas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/ventas/crear-venta">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Venta Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/crear-venta-servicio">
+                                        <i class="dollar icon"></i>
+                                        <div class="content">
+                                            Crear Venta Servicios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/gestion-ventas">
+                                        <i class="clipboard check icon"></i>
+                                        <div class="content">
+                                            Gestión de Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/puntos-ventas">
+                                        <i class="map signs icon"></i>
+                                        <div class="content">
+                                            Puntos de Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/gestion-notas-pedido">
+                                        <i class="calendar alternate icon"></i>
+                                        <div class="content">
+                                            Gestión Notas Pedido
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/impresion-ventas">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresión de Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/entregas-parciales">
+                                        <i class="boxes icon"></i>
+                                        <div class="content">
+                                            Entregas Parciales
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/fileteo-automatico">
+                                        <i class="paragraph icon"></i>
+                                        <div class="content">
+                                            Fileteo Automatico
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/reportes-ventas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Ventas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large newspaper icon"></i>
+                            Notas de Credito
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/notas-credito/gestion-notas-credito">
+                                        <i class="newspaper icon"></i>
+                                        <div class="content">
+                                            Gestión Notas Credito
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/notas-credito/devoluciones-transportistas">
+                                        <i class="clipboard list icon"></i>
+                                        <div class="content">
+                                            Devolucion Transportista
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/notas-credito/impresion-notas-credito">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresión Notas Credito
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/notas-credito/reportes-notas-credito">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Notas Credito
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large file icon"></i>
+                            Informes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/informes/requerimientos">
+                                        <i class="tasks icon"></i>
+                                        <div class="content">
+                                            Informes de Requerimientos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/informes/liquidaciones">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Informes de Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/informes/almacenes">
+                                        <i class="warehouse icon"></i>
+                                        <div class="content">
+                                            Informes de Almacenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/informes/entregas-parciales">
+                                        <i class="boxes icon"></i>
+                                        <div class="content">
+                                            Entregas Parciales
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large retweet icon"></i>
+                            Cambios de Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/cambios-producto/crear-cambio-producto">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/asignar-entrega-cambios-producto">
+                                        <i class="calendar icon"></i>
+                                        <div class="content">
+                                            Asignar Fecha de Entrega
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/gestion-cambios-producto">
+                                        <i class="retweet icon"></i>
+                                        <div class="content">
+                                            Gestion Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/impresion-cambio-producto">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresion Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/crear-reporte-cambios-producto">
+                                        <i class="file alternate icon"></i>
+                                        <div class="content">
+                                            Crear Req/Liq Cambios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/gestion-reportes-cambios-producto">
+                                        <i class="folder open icon"></i>
+                                        <div class="content">
+                                            Gestion Req/Liq Cambios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/reportes-cambios-producto">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reporte Cambios Productos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large exchange icon"></i>
+                            Canjes de Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/canjes/crear-canje">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/asignar-entrega-canjes">
+                                        <i class="calendar icon"></i>
+                                        <div class="content">
+                                            Asignar Fecha de Entrega
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/gestion-canjes">
+                                        <i class="exchange icon"></i>
+                                        <div class="content">
+                                            Gestion Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/impresion-canjes">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresion Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/crear-reportes-canjes">
+                                        <i class="file alternate icon"></i>
+                                        <div class="content">
+                                            Crear Req/Liq Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/gestion-reportes-canjes">
+                                        <i class="retweet icon"></i>
+                                        <div class="content">
+                                            Gestion Req/Liq Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/reportes-canjes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Canjes
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large certificate icon"></i>
+                            Sunat
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/sunat/envios-sunat">
+                                        <i class="inbox icon"></i>
+                                        <div class="content">
+                                            Envios Pendientes Sunat
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/sunat/gestion-envios-sunat">
+                                        <i class="envelope icon"></i>
+                                        <div class="content">
+                                            Gestion Envios Sunat
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/sunat/reportes-envios-sunat">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Envios Sunat
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large copy icon"></i>
+                            Resumenes Diarios
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/resumen-diario/crear-resumen-diario">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Resumen
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/resumen-diario/gestion-resumenes-diarios">
+                                        <i class="copy icon"></i>
+                                        <div class="content">
+                                            Gestion de Resumenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/resumen-diario/reportes-resumenes-diarios">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Resumenes
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large calendar times icon"></i>
+                            Comunicacion de Baja
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/comunicacion-baja/crear-comunicacion-baja">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Baja
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comunicacion-baja/gestion-comunicaciones-baja">
+                                        <i class="calendar times icon"></i>
+                                        <div class="content">
+                                            Gestion de Bajas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comunicacion-baja/reportes-comunicaciones-baja">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Baja
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large tasks icon"></i>
+                            Requerimientos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/requerimientos/crear-requerimiento">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Requerimiento
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/requerimientos/gestion-requerimientos">
+                                        <i class="tasks icon"></i>
+                                        <div class="content">
+                                            Gestion Requerimientos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/requerimientos/reportes-requerimientos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Requerimientos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard icon"></i>
+                            Liquidaciones
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/liquidaciones/crear-liquidacion">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Liquidacion
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/liquidaciones/gestion-liquidaciones">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Gestion Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/liquidaciones/reportes-liquidaciones">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large users icon"></i>
+                            Personal
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/personal/crear-personal">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Personal
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/personal/gestion-personal">
+                                        <i class="users icon"></i>
+                                        <div class="content">
+                                            Gestion Personal
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/personal/reportes-personal">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Personal
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large binoculars icon"></i>
+                            <span>Mapas de Rutas</span>
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/mapas-rutas/crear-mapa-rutas">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Mapa de Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/mapas-rutas/gestion-mapas-rutas">
+                                        <i class="shopping bag icon"></i>
+                                        <div class="content">
+                                            Gestion de Mapas de Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/mapas-rutas/reportes-mapas-rutas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Mapas de Rutas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large address book icon"></i>
+                            Clientes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/clientes/crear-cliente">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Cliente
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/gestion-clientes">
+                                        <i class="address book icon"></i>
+                                        <div class="content">
+                                            Gestion Clientes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/habilitar-ventas-clientes">
+                                        <i class="clipboard check icon"></i>
+                                        <div class="content">
+                                            Habilitar Ventas Clientes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/cambio-dia-atencion">
+                                        <i class="calendar alternate icon"></i>
+                                        <div class="content">
+                                            Cambio dia Atencion
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/reportes-clientes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Clientes
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large map icon"></i>
+                            Zonas y Rutas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/zonas-rutas/gestion-zonas-rutas">
+                                        <i class="map icon"></i>
+                                        <div class="content">
+                                            Gestion Zonas y Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/zonas-rutas/habilitar-ventas-rutas">
+                                        <i class="clipboard check icon"></i>
+                                        <div class="content">
+                                            Habilitar Ventas en Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/zonas-rutas/reportes-zonas-rutas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Zonas y Rutas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large warehouse icon"></i>
+                            Almacenes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/almacenes/gestion-almacenes">
+                                        <i class="warehouse icon"></i>
+                                        <div class="content">
+                                            Gestion Almacenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/almacenes/reportes-almacenes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Almacenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/almacenes/inventario-stock">
+                                        <i class="indent icon"></i>
+                                        <div class="content">
+                                            Inventario de Stocks
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/almacenes/gestion-inventarios">
+                                        <i class="book icon"></i>
+                                        <div class="content">
+                                            Gestion de Inventarios
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large truck icon"></i>
+                            Unidades de Trans.
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/unidades-transporte/crear-unidad-transporte">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Unidad Trans.
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/unidades-transporte/gestion-unidades-transporte">
+                                        <i class="truck icon"></i>
+                                        <div class="content">
+                                            Gestion Unidades de Trans.
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/unidades-transporte/reportes-unidades-transporte">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Unidades de Trans.
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large gift icon"></i>
+                            Premios Canjes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/premio-canje/gestion-requesitos-canje">
+                                        <i class="tags icon"></i>
+                                        <div class="content">
+                                            Requisitos de Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/premio-canje/crear-premio-canje">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Premio Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/premio-canje/gestion-premios-canjes">
+                                        <i class="box icon"></i>
+                                        <div class="content">
+                                            Gestion Premio Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/premio-canje/reportes-premios-canjes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Premio Canje
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large box icon"></i>
+                            Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/productos/gestion-clases-subclases-productos">
+                                        <i class="tags icon"></i>
+                                        <div class="content">
+                                            Clases y Subclases
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/productos/crear-producto">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Producto
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/productos/gestion-productos">
+                                        <i class="box icon"></i>
+                                        <div class="content">
+                                            Gestion Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/productos/reportes-productos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Productos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large world icon"></i>
+                            Servicios
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/servicios/crear-servicio">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Servicio
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/servicios/gestion-servicios">
+                                        <i class="world icon"></i>
+                                        <div class="content">
+                                            Gestion Servicios
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large boxes icon"></i>
+                            Combos de Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/combos/crear-combo">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Combo
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/combos/gestion-combos">
+                                        <i class="boxes icon"></i>
+                                        <div class="content">
+                                            Gestion Combos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/combos/reportes-combos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Combos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large star icon"></i>
+                            Concursos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/concursos/crear-concurso">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Concurso
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/concursos/gestion-concursos">
+                                        <i class="star icon"></i>
+                                        <div class="content">
+                                            Gestion Concursos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/concursos/reportes-concursos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Concursos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large percent icon"></i>
+                            Comisiones
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/comisiones/crear-reporte-comisiones">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Reporte Comisiones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comisiones/gestion-comisiones">
+                                        <i class="percent icon"></i>
+                                        <div class="content">
+                                            Gestion Reporte Comisiones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comisiones/ajuste-comisiones">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Ajuste de Comisiones
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large globe icon"></i>
+                            Cobertura
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/cobertura/crear-reporte-cobertura">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Reporte Cobertura
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cobertura/gestion-coberturas">
+                                        <i class="globe icon"></i>
+                                        <div class="content">
+                                            Gestion Reporte Cobertura
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard icon"></i>
+                            Listas de Precios
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/lista-precios/crear-lista-precios">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Lista de Precios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/lista-precios/gestion-listas-precios">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Gestion Listas de Precios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/lista-precios/copiar-lista-precios">
+                                        <i class="copy icon"></i>
+                                        <div class="content">
+                                            Copiar Listas de Precios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/lista-precios/reportes-listas-precios">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Listas de Precios
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large user icon"></i>
+                            Vendedor
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/vendedor/crear-cliente">
+                                        <i class="user plus icon"></i>
+                                        <div class="content">
+                                            Crear Cliente
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/clientes">
+                                        <i class="address book icon"></i>
+                                        <div class="content">
+                                            Clientes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/crear-preventa">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Preventa
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/preventas">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Preventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/ventas">
+                                        <i class="dollar sign icon"></i>
+                                        <div class="content">
+                                            Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/crear-cambio-producto">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/cambios-producto">
+                                        <i class="retweet icon"></i>
+                                        <div class="content">
+                                            Cambios de Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/crear-canje">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/canjes">
+                                        <i class="exchange icon"></i>
+                                        <div class="content">
+                                            Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/stock-productos">
+                                        <i class="dolly flatbed icon"></i>
+                                        <div class="content">
+                                            Stock de Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/comisiones">
+                                        <i class="percent icon"></i>
+                                        <div class="content">
+                                            Comisiones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/concursos">
+                                        <i class="star icon"></i>
+                                        <div class="content">
+                                            Concursos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large cogs icon"></i>
+                            Configuracion
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-empresa">
+                                        <i class="cog icon"></i>
+                                        <div class="content">
+                                            Configuracion Empresa
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-impresion">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Configuracion Impresión
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-sunat">
+                                        <i class="certificate icon"></i>
+                                        <div class="content">
+                                            Configuracion Sunat
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-alertas">
+                                        <i class="bell icon"></i>
+                                        <div class="content">
+                                            Configuracion Alertas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large truck icon"></i>
+                            Transportistas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/transportistas/mis-devoluciones">
+                                        <i class="file alternate icon"></i>
+                                        <div class="content">
+                                            Mis Devoluciones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/transportistas/mis-requerimientos">
+                                        <i class="clipboard outline icon"></i>
+                                        <div class="content">
+                                            Mis Requerimientos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/transportistas/mis-liquidaciones">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Mis Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="item">
+                    <div class="title">
+                        <i class="large sitemap icon"></i>
+                        General
+                        <i class="large dropdown icon"></i>
+                    </div>
+                    <div class="content">
+                        <div class="ui inverted animated list">
+                            <a class="item" href="/app/general/perfil-personal">
+                                <i class="id badge icon"></i>
+                                <div class="content">
+                                    Perfil Personal
+                                </div>
+                            </a>
+                            <a class="item" href="/app/home">
+                                <i class="home icon"></i>
+                                <div class="content">
+                                    Home
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pusher">
+                <div class="ui basic segment">
+                    <div class="ui container">
+                        
+        <h2 class="ui block header flex-spacebetween-center">
+            Crear Mapa Rutas
+        </h2>
+        <div class="ui form" id="form-mapa-rutas">
+            <div class="required field">
+                <label>Nombre</label>
+                <input type="text" name="nombre" placeholder="Nombre del Mapa">
+            </div>
+            <div class="required field">
+                <label>Rutas de Ventas</label>
+                <select name="rutas" id="selectmultiple-rutas" multiple="multiple" style="position: absolute; left: -9999px;"><optgroup label="DISTRIBUIDORES">
+            <option value="5">10</option>
+            </optgroup><optgroup label="FILETEO">
+            <option value="227">01</option>
+            </optgroup><optgroup label="ICA A">
+            <option value="225">10</option>,<option value="104">20</option>,<option value="156">30</option>,<option value="119">40</option>,<option value="144">50</option>,<option value="118">60</option>
+            </optgroup><optgroup label="ICA B">
+            <option value="108">10</option>,<option value="140">20</option>,<option value="134">30</option>,<option value="163">40</option>,<option value="123">50</option>,<option value="164">60</option>
+            </optgroup><optgroup label="ICA C">
+            <option value="131">10</option>,<option value="157">20</option>,<option value="115">30</option>,<option value="112">40</option>,<option value="162">50</option>,<option value="98">60</option>
+            </optgroup><optgroup label="ICA CENTRO A">
+            <option value="18">40</option>,<option value="19">50</option>,<option value="20">60</option>
+            </optgroup><optgroup label="ICA CENTRO B">
+            <option value="8">10</option>,<option value="6">20</option>,<option value="14">30</option>,<option value="21">40</option>,<option value="22">50</option>,<option value="23">60</option>
+            </optgroup><optgroup label="ICA CENTRO C">
+            <option value="39">10</option>,<option value="40">20</option>,<option value="41">30</option>,<option value="42">40</option>,<option value="43">50</option>,<option value="44">60</option>
+            </optgroup><optgroup label="ICA CENTRO D">
+            <option value="45">10</option>,<option value="46">20</option>,<option value="47">30</option>,<option value="48">40</option>,<option value="49">50</option>,<option value="50">60</option>
+            </optgroup><optgroup label="ICA D">
+            <option value="222">10</option>,<option value="226">20</option>,<option value="121">30</option>,<option value="113">40</option>,<option value="117">50</option>,<option value="161">60</option>
+            </optgroup><optgroup label="ICA E">
+            <option value="221">10</option>,<option value="142">20</option>,<option value="155">30</option>,<option value="125">40</option>,<option value="152">50</option>,<option value="158">60</option>
+            </optgroup><optgroup label="ICA F">
+            <option value="132">10</option>,<option value="110">20</option>,<option value="109">30</option>,<option value="147">40</option>,<option value="105">50</option>,<option value="128">60</option>
+            </optgroup><optgroup label="ICA G">
+            <option value="102">10</option>,<option value="153">20</option>,<option value="148">30</option>,<option value="107">40</option>,<option value="111">50</option>,<option value="106">60</option>
+            </optgroup><optgroup label="ICA H">
+            <option value="126">10</option>,<option value="120">20</option>,<option value="103">30</option>,<option value="149">40</option>,<option value="129">50</option>,<option value="143">60</option>
+            </optgroup><optgroup label="ICA I">
+            <option value="96">10</option>,<option value="122">20</option>,<option value="139">30</option>,<option value="160">40</option>,<option value="99">50</option>,<option value="224">60</option>
+            </optgroup><optgroup label="ICA J">
+            <option value="114">10</option>,<option value="127">20</option>,<option value="133">30</option>,<option value="101">40</option>,<option value="223">50</option>,<option value="124">60</option>
+            </optgroup><optgroup label="ICA K">
+            <option value="138">10</option>,<option value="116">20</option>,<option value="100">30</option>,<option value="146">40</option>,<option value="135">50</option>,<option value="145">60</option>
+            </optgroup><optgroup label="ICA L">
+            <option value="233">10</option>,<option value="229">20</option>,<option value="230">30</option>,<option value="231">40</option>,<option value="232">50</option>,<option value="228">60</option>
+            </optgroup><optgroup label="ICA M">
+            <option value="239">10</option>,<option value="235">20</option>,<option value="236">30</option>,<option value="237">40</option>,<option value="250">50</option>,<option value="234">60</option>
+            </optgroup><optgroup label="ICA N">
+            <option value="245">10</option>,<option value="241">20</option>,<option value="242">30</option>,<option value="243">40</option>,<option value="244">50</option>,<option value="240">60</option>
+            </optgroup><optgroup label="ICA NORTE A">
+            <option value="78">10</option>,<option value="79">20</option>,<option value="80">30</option>,<option value="81">40</option>,<option value="82">50</option>,<option value="83">60</option>
+            </optgroup><optgroup label="ICA NORTE B">
+            <option value="72">10</option>,<option value="73">20</option>,<option value="74">30</option>,<option value="75">40</option>,<option value="76">50</option>,<option value="77">60</option>
+            </optgroup><optgroup label="ICA NORTE C">
+            <option value="84">10</option>,<option value="85">20</option>,<option value="89">30</option>,<option value="86">40</option>,<option value="87">50</option>,<option value="88">60</option>
+            </optgroup><optgroup label="ICA NORTE D">
+            <option value="90">10</option>,<option value="91">20</option>,<option value="92">30</option>,<option value="93">40</option>,<option value="94">50</option>,<option value="95">60</option>
+            </optgroup><optgroup label="ICA O">
+            <option value="251">10</option>,<option value="247">20</option>,<option value="249">30</option>,<option value="248">40</option>,<option value="238">50</option>,<option value="246">60</option>
+            </optgroup><optgroup label="ICA P">
+            <option value="258">10</option>,<option value="253">20</option>,<option value="254">30</option>,<option value="255">40</option>,<option value="257">50</option>,<option value="252">60</option>
+            </optgroup><optgroup label="ICA SUR A">
+            <option value="33">10</option>,<option value="34">20</option>,<option value="35">30</option>,<option value="36">40</option>,<option value="37">50</option>,<option value="38">60</option>
+            </optgroup><optgroup label="LA TINGUIÑA">
+            <option value="57">10</option>,<option value="58">20</option>,<option value="59">30</option>,<option value="60">40</option>,<option value="61">50</option>,<option value="62">60</option>
+            </optgroup><optgroup label="MARCONA">
+            <option value="174">10</option>,<option value="175">20</option>,<option value="176">30</option>,<option value="177">40</option>,<option value="178">50</option>,<option value="179">60</option>
+            </optgroup><optgroup label="MARSHMALLOW ANGEL">
+            <option value="202">10</option>,<option value="203">20</option>,<option value="204">30</option>,<option value="205">40</option>,<option value="206">50</option>,<option value="207">60</option>
+            </optgroup><optgroup label="MERCADOS A">
+            <option value="63">10</option>,<option value="169">20</option>,<option value="170">30</option>,<option value="171">40</option>,<option value="172">50</option>,<option value="173">60</option>
+            </optgroup><optgroup label="MERCADOS B">
+            <option value="190">10</option>,<option value="191">20</option>,<option value="192">30</option>,<option value="193">40</option>,<option value="194">50</option>,<option value="195">60</option>
+            </optgroup><optgroup label="MERCADOS C">
+            <option value="196">10</option>,<option value="197">20</option>,<option value="198">30</option>,<option value="199">40</option>,<option value="200">50</option>,<option value="201">60</option>
+            </optgroup><optgroup label="MERCADOS E">
+            <option value="208">10</option>,<option value="209">20</option>,<option value="212">30</option>,<option value="211">40</option>,<option value="214">50</option>,<option value="213">60</option>
+            </optgroup><optgroup label="MERCADOS F">
+            <option value="215">10</option>,<option value="216">20</option>,<option value="217">30</option>,<option value="218">40</option>,<option value="219">50</option>,<option value="220">60</option>
+            </optgroup><optgroup label="PALPA">
+            <option value="184">10</option>,<option value="185">20</option>,<option value="186">30</option>,<option value="187">40</option>,<option value="188">50</option>,<option value="189">60</option>
+            </optgroup><optgroup label="PARCONA A">
+            <option value="2">10</option>,<option value="10">20</option>,<option value="15">30</option>,<option value="24">40</option>,<option value="25">50</option>,<option value="26">60</option>
+            </optgroup><optgroup label="PARCONA B">
+            <option value="51">10</option>,<option value="52">20</option>,<option value="53">30</option>,<option value="54">40</option>,<option value="55">50</option>,<option value="56">60</option>
+            </optgroup><optgroup label="SUBTANJALLA">
+            <option value="3">10</option>,<option value="9">20</option>,<option value="16">30</option>,<option value="27">40</option>,<option value="28">50</option>,<option value="29">60</option>
+            </optgroup><optgroup label="TINGUIÑA">
+            <option value="4">10</option>,<option value="12">20</option>,<option value="17">30</option>,<option value="30">40</option>,<option value="31">50</option>,<option value="32">60</option>
+            </optgroup></select><div class="ms-container" id="ms-selectmultiple-rutas"><div class="ms-selectable"><ul class="ms-list" tabindex="-1"><li class="ms-optgroup-container" id="optgroup-selectable--1142425380"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>DISTRIBUIDORES</span></li><li class="ms-elem-selectable" id="53-selectable"><span>10</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable--136997630"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>FILETEO</span></li><li class="ms-elem-selectable" id="49655-selectable"><span>01</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476552"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA A</span></li><li class="ms-elem-selectable" id="49653-selectable"><span>10</span></li><li class="ms-elem-selectable" id="48629-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48786-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48665-selectable"><span>40</span></li><li class="ms-elem-selectable" id="48753-selectable"><span>50</span></li><li class="ms-elem-selectable" id="48664-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476553"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA B</span></li><li class="ms-elem-selectable" id="48633-selectable"><span>10</span></li><li class="ms-elem-selectable" id="48749-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48722-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48814-selectable"><span>40</span></li><li class="ms-elem-selectable" id="48690-selectable"><span>50</span></li><li class="ms-elem-selectable" id="48815-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476554"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA C</span></li><li class="ms-elem-selectable" id="48719-selectable"><span>10</span></li><li class="ms-elem-selectable" id="48787-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48661-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48658-selectable"><span>40</span></li><li class="ms-elem-selectable" id="48813-selectable"><span>50</span></li><li class="ms-elem-selectable" id="1823-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable--1265407393"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA CENTRO A</span></li><li class="ms-elem-selectable" id="1575-selectable"><span>40</span></li><li class="ms-elem-selectable" id="1576-selectable"><span>50</span></li><li class="ms-elem-selectable" id="1598-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable--1265407392"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA CENTRO B</span></li><li class="ms-elem-selectable" id="56-selectable"><span>10</span></li><li class="ms-elem-selectable" id="54-selectable"><span>20</span></li><li class="ms-elem-selectable" id="1571-selectable"><span>30</span></li><li class="ms-elem-selectable" id="1599-selectable"><span>40</span></li><li class="ms-elem-selectable" id="1600-selectable"><span>50</span></li><li class="ms-elem-selectable" id="1601-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable--1265407391"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA CENTRO C</span></li><li class="ms-elem-selectable" id="1638-selectable"><span>10</span></li><li class="ms-elem-selectable" id="1660-selectable"><span>20</span></li><li class="ms-elem-selectable" id="1661-selectable"><span>30</span></li><li class="ms-elem-selectable" id="1662-selectable"><span>40</span></li><li class="ms-elem-selectable" id="1663-selectable"><span>50</span></li><li class="ms-elem-selectable" id="1664-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable--1265407390"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA CENTRO D</span></li><li class="ms-elem-selectable" id="1665-selectable"><span>10</span></li><li class="ms-elem-selectable" id="1666-selectable"><span>20</span></li><li class="ms-elem-selectable" id="1667-selectable"><span>30</span></li><li class="ms-elem-selectable" id="1668-selectable"><span>40</span></li><li class="ms-elem-selectable" id="1669-selectable"><span>50</span></li><li class="ms-elem-selectable" id="1691-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476555"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA D</span></li><li class="ms-elem-selectable" id="49650-selectable"><span>10</span></li><li class="ms-elem-selectable" id="49654-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48688-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48659-selectable"><span>40</span></li><li class="ms-elem-selectable" id="48663-selectable"><span>50</span></li><li class="ms-elem-selectable" id="48812-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476556"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA E</span></li><li class="ms-elem-selectable" id="49649-selectable"><span>10</span></li><li class="ms-elem-selectable" id="48751-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48785-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48692-selectable"><span>40</span></li><li class="ms-elem-selectable" id="48782-selectable"><span>50</span></li><li class="ms-elem-selectable" id="48788-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476557"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA F</span></li><li class="ms-elem-selectable" id="48720-selectable"><span>10</span></li><li class="ms-elem-selectable" id="48656-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48634-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48756-selectable"><span>40</span></li><li class="ms-elem-selectable" id="48630-selectable"><span>50</span></li><li class="ms-elem-selectable" id="48695-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476558"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA G</span></li><li class="ms-elem-selectable" id="48627-selectable"><span>10</span></li><li class="ms-elem-selectable" id="48783-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48757-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48632-selectable"><span>40</span></li><li class="ms-elem-selectable" id="48657-selectable"><span>50</span></li><li class="ms-elem-selectable" id="48631-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476559"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA H</span></li><li class="ms-elem-selectable" id="48693-selectable"><span>10</span></li><li class="ms-elem-selectable" id="48687-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48628-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48758-selectable"><span>40</span></li><li class="ms-elem-selectable" id="48696-selectable"><span>50</span></li><li class="ms-elem-selectable" id="48752-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476560"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA I</span></li><li class="ms-elem-selectable" id="1821-selectable"><span>10</span></li><li class="ms-elem-selectable" id="48689-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48727-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48811-selectable"><span>40</span></li><li class="ms-elem-selectable" id="1824-selectable"><span>50</span></li><li class="ms-elem-selectable" id="49652-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476561"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA J</span></li><li class="ms-elem-selectable" id="48660-selectable"><span>10</span></li><li class="ms-elem-selectable" id="48694-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48721-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48626-selectable"><span>40</span></li><li class="ms-elem-selectable" id="49651-selectable"><span>50</span></li><li class="ms-elem-selectable" id="48691-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476562"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA K</span></li><li class="ms-elem-selectable" id="48726-selectable"><span>10</span></li><li class="ms-elem-selectable" id="48662-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48625-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48755-selectable"><span>40</span></li><li class="ms-elem-selectable" id="48723-selectable"><span>50</span></li><li class="ms-elem-selectable" id="48754-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476563"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA L</span></li><li class="ms-elem-selectable" id="49682-selectable"><span>10</span></li><li class="ms-elem-selectable" id="49657-selectable"><span>20</span></li><li class="ms-elem-selectable" id="49679-selectable"><span>30</span></li><li class="ms-elem-selectable" id="49680-selectable"><span>40</span></li><li class="ms-elem-selectable" id="49681-selectable"><span>50</span></li><li class="ms-elem-selectable" id="49656-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476564"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA M</span></li><li class="ms-elem-selectable" id="49688-selectable"><span>10</span></li><li class="ms-elem-selectable" id="49684-selectable"><span>20</span></li><li class="ms-elem-selectable" id="49685-selectable"><span>30</span></li><li class="ms-elem-selectable" id="49686-selectable"><span>40</span></li><li class="ms-elem-selectable" id="49741-selectable"><span>50</span></li><li class="ms-elem-selectable" id="49683-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476565"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA N</span></li><li class="ms-elem-selectable" id="49715-selectable"><span>10</span></li><li class="ms-elem-selectable" id="49711-selectable"><span>20</span></li><li class="ms-elem-selectable" id="49712-selectable"><span>30</span></li><li class="ms-elem-selectable" id="49713-selectable"><span>40</span></li><li class="ms-elem-selectable" id="49714-selectable"><span>50</span></li><li class="ms-elem-selectable" id="49710-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable--1349188662"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA NORTE A</span></li><li class="ms-elem-selectable" id="1761-selectable"><span>10</span></li><li class="ms-elem-selectable" id="1762-selectable"><span>20</span></li><li class="ms-elem-selectable" id="1784-selectable"><span>30</span></li><li class="ms-elem-selectable" id="1785-selectable"><span>40</span></li><li class="ms-elem-selectable" id="1786-selectable"><span>50</span></li><li class="ms-elem-selectable" id="1787-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable--1349188661"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA NORTE B</span></li><li class="ms-elem-selectable" id="1755-selectable"><span>10</span></li><li class="ms-elem-selectable" id="1756-selectable"><span>20</span></li><li class="ms-elem-selectable" id="1757-selectable"><span>30</span></li><li class="ms-elem-selectable" id="1758-selectable"><span>40</span></li><li class="ms-elem-selectable" id="1759-selectable"><span>50</span></li><li class="ms-elem-selectable" id="1760-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable--1349188660"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA NORTE C</span></li><li class="ms-elem-selectable" id="1788-selectable"><span>10</span></li><li class="ms-elem-selectable" id="1789-selectable"><span>20</span></li><li class="ms-elem-selectable" id="1793-selectable"><span>30</span></li><li class="ms-elem-selectable" id="1790-selectable"><span>40</span></li><li class="ms-elem-selectable" id="1791-selectable"><span>50</span></li><li class="ms-elem-selectable" id="1792-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable--1349188659"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA NORTE D</span></li><li class="ms-elem-selectable" id="1815-selectable"><span>10</span></li><li class="ms-elem-selectable" id="1816-selectable"><span>20</span></li><li class="ms-elem-selectable" id="1817-selectable"><span>30</span></li><li class="ms-elem-selectable" id="1818-selectable"><span>40</span></li><li class="ms-elem-selectable" id="1819-selectable"><span>50</span></li><li class="ms-elem-selectable" id="1820-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476566"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA O</span></li><li class="ms-elem-selectable" id="49742-selectable"><span>10</span></li><li class="ms-elem-selectable" id="49717-selectable"><span>20</span></li><li class="ms-elem-selectable" id="49719-selectable"><span>30</span></li><li class="ms-elem-selectable" id="49718-selectable"><span>40</span></li><li class="ms-elem-selectable" id="49687-selectable"><span>50</span></li><li class="ms-elem-selectable" id="49716-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-69476567"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA P</span></li><li class="ms-elem-selectable" id="49749-selectable"><span>10</span></li><li class="ms-elem-selectable" id="49744-selectable"><span>20</span></li><li class="ms-elem-selectable" id="49745-selectable"><span>30</span></li><li class="ms-elem-selectable" id="49746-selectable"><span>40</span></li><li class="ms-elem-selectable" id="49748-selectable"><span>50</span></li><li class="ms-elem-selectable" id="49743-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-557580120"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>ICA SUR A</span></li><li class="ms-elem-selectable" id="1632-selectable"><span>10</span></li><li class="ms-elem-selectable" id="1633-selectable"><span>20</span></li><li class="ms-elem-selectable" id="1634-selectable"><span>30</span></li><li class="ms-elem-selectable" id="1635-selectable"><span>40</span></li><li class="ms-elem-selectable" id="1636-selectable"><span>50</span></li><li class="ms-elem-selectable" id="1637-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-2009898333"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>LA TINGUIÑA</span></li><li class="ms-elem-selectable" id="1698-selectable"><span>10</span></li><li class="ms-elem-selectable" id="1699-selectable"><span>20</span></li><li class="ms-elem-selectable" id="1700-selectable"><span>30</span></li><li class="ms-elem-selectable" id="1722-selectable"><span>40</span></li><li class="ms-elem-selectable" id="1723-selectable"><span>50</span></li><li class="ms-elem-selectable" id="1724-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-1557004637"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>MARCONA</span></li><li class="ms-elem-selectable" id="48846-selectable"><span>10</span></li><li class="ms-elem-selectable" id="48847-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48848-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48849-selectable"><span>40</span></li><li class="ms-elem-selectable" id="48850-selectable"><span>50</span></li><li class="ms-elem-selectable" id="48851-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable--1931964080"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>MARSHMALLOW ANGEL</span></li><li class="ms-elem-selectable" id="49588-selectable"><span>10</span></li><li class="ms-elem-selectable" id="49589-selectable"><span>20</span></li><li class="ms-elem-selectable" id="49590-selectable"><span>30</span></li><li class="ms-elem-selectable" id="49591-selectable"><span>40</span></li><li class="ms-elem-selectable" id="49592-selectable"><span>50</span></li><li class="ms-elem-selectable" id="49593-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-28915377"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>MERCADOS A</span></li><li class="ms-elem-selectable" id="1725-selectable"><span>10</span></li><li class="ms-elem-selectable" id="48820-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48842-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48843-selectable"><span>40</span></li><li class="ms-elem-selectable" id="48844-selectable"><span>50</span></li><li class="ms-elem-selectable" id="48845-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-28915378"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>MERCADOS B</span></li><li class="ms-elem-selectable" id="48904-selectable"><span>10</span></li><li class="ms-elem-selectable" id="48905-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48906-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48907-selectable"><span>40</span></li><li class="ms-elem-selectable" id="48908-selectable"><span>50</span></li><li class="ms-elem-selectable" id="48909-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-28915379"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>MERCADOS C</span></li><li class="ms-elem-selectable" id="48910-selectable"><span>10</span></li><li class="ms-elem-selectable" id="48911-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48912-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48913-selectable"><span>40</span></li><li class="ms-elem-selectable" id="49586-selectable"><span>50</span></li><li class="ms-elem-selectable" id="49587-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-28915381"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>MERCADOS E</span></li><li class="ms-elem-selectable" id="49594-selectable"><span>10</span></li><li class="ms-elem-selectable" id="49595-selectable"><span>20</span></li><li class="ms-elem-selectable" id="49619-selectable"><span>30</span></li><li class="ms-elem-selectable" id="49618-selectable"><span>40</span></li><li class="ms-elem-selectable" id="49621-selectable"><span>50</span></li><li class="ms-elem-selectable" id="49620-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-28915382"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>MERCADOS F</span></li><li class="ms-elem-selectable" id="49622-selectable"><span>10</span></li><li class="ms-elem-selectable" id="49623-selectable"><span>20</span></li><li class="ms-elem-selectable" id="49624-selectable"><span>30</span></li><li class="ms-elem-selectable" id="49625-selectable"><span>40</span></li><li class="ms-elem-selectable" id="49626-selectable"><span>50</span></li><li class="ms-elem-selectable" id="49648-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-75893676"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>PALPA</span></li><li class="ms-elem-selectable" id="48877-selectable"><span>10</span></li><li class="ms-elem-selectable" id="48878-selectable"><span>20</span></li><li class="ms-elem-selectable" id="48879-selectable"><span>30</span></li><li class="ms-elem-selectable" id="48880-selectable"><span>40</span></li><li class="ms-elem-selectable" id="48881-selectable"><span>50</span></li><li class="ms-elem-selectable" id="48882-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-505442113"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>PARCONA A</span></li><li class="ms-elem-selectable" id="50-selectable"><span>10</span></li><li class="ms-elem-selectable" id="1567-selectable"><span>20</span></li><li class="ms-elem-selectable" id="1572-selectable"><span>30</span></li><li class="ms-elem-selectable" id="1602-selectable"><span>40</span></li><li class="ms-elem-selectable" id="1603-selectable"><span>50</span></li><li class="ms-elem-selectable" id="1604-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable-505442114"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>PARCONA B</span></li><li class="ms-elem-selectable" id="1692-selectable"><span>10</span></li><li class="ms-elem-selectable" id="1693-selectable"><span>20</span></li><li class="ms-elem-selectable" id="1694-selectable"><span>30</span></li><li class="ms-elem-selectable" id="1695-selectable"><span>40</span></li><li class="ms-elem-selectable" id="1696-selectable"><span>50</span></li><li class="ms-elem-selectable" id="1697-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable--1445960343"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>SUBTANJALLA</span></li><li class="ms-elem-selectable" id="51-selectable"><span>10</span></li><li class="ms-elem-selectable" id="57-selectable"><span>20</span></li><li class="ms-elem-selectable" id="1573-selectable"><span>30</span></li><li class="ms-elem-selectable" id="1605-selectable"><span>40</span></li><li class="ms-elem-selectable" id="1606-selectable"><span>50</span></li><li class="ms-elem-selectable" id="1607-selectable"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selectable--1263275246"><ul class="ms-optgroup"><li class="ms-optgroup-label"><span>TINGUIÑA</span></li><li class="ms-elem-selectable" id="52-selectable"><span>10</span></li><li class="ms-elem-selectable" id="1569-selectable"><span>20</span></li><li class="ms-elem-selectable" id="1574-selectable"><span>30</span></li><li class="ms-elem-selectable" id="1629-selectable"><span>40</span></li><li class="ms-elem-selectable" id="1630-selectable"><span>50</span></li><li class="ms-elem-selectable" id="1631-selectable"><span>60</span></li></ul></li></ul></div><div class="ms-selection"><ul class="ms-list" tabindex="-1"><li class="ms-optgroup-container" id="optgroup-selection--1142425380"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>DISTRIBUIDORES</span></li><li class="ms-elem-selection" id="53-selection" style="display: none;"><span>10</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection--136997630"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>FILETEO</span></li><li class="ms-elem-selection" id="49655-selection" style="display: none;"><span>01</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476552"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA A</span></li><li class="ms-elem-selection" id="49653-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="48629-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48786-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48665-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="48753-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="48664-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476553"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA B</span></li><li class="ms-elem-selection" id="48633-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="48749-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48722-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48814-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="48690-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="48815-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476554"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA C</span></li><li class="ms-elem-selection" id="48719-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="48787-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48661-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48658-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="48813-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="1823-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection--1265407393"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA CENTRO A</span></li><li class="ms-elem-selection" id="1575-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="1576-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="1598-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection--1265407392"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA CENTRO B</span></li><li class="ms-elem-selection" id="56-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="54-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="1571-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="1599-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="1600-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="1601-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection--1265407391"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA CENTRO C</span></li><li class="ms-elem-selection" id="1638-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="1660-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="1661-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="1662-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="1663-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="1664-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection--1265407390"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA CENTRO D</span></li><li class="ms-elem-selection" id="1665-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="1666-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="1667-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="1668-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="1669-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="1691-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476555"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA D</span></li><li class="ms-elem-selection" id="49650-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="49654-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48688-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48659-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="48663-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="48812-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476556"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA E</span></li><li class="ms-elem-selection" id="49649-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="48751-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48785-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48692-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="48782-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="48788-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476557"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA F</span></li><li class="ms-elem-selection" id="48720-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="48656-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48634-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48756-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="48630-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="48695-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476558"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA G</span></li><li class="ms-elem-selection" id="48627-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="48783-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48757-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48632-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="48657-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="48631-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476559"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA H</span></li><li class="ms-elem-selection" id="48693-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="48687-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48628-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48758-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="48696-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="48752-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476560"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA I</span></li><li class="ms-elem-selection" id="1821-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="48689-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48727-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48811-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="1824-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="49652-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476561"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA J</span></li><li class="ms-elem-selection" id="48660-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="48694-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48721-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48626-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="49651-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="48691-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476562"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA K</span></li><li class="ms-elem-selection" id="48726-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="48662-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48625-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48755-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="48723-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="48754-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476563"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA L</span></li><li class="ms-elem-selection" id="49682-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="49657-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="49679-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="49680-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="49681-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="49656-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476564"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA M</span></li><li class="ms-elem-selection" id="49688-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="49684-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="49685-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="49686-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="49741-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="49683-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476565"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA N</span></li><li class="ms-elem-selection" id="49715-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="49711-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="49712-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="49713-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="49714-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="49710-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection--1349188662"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA NORTE A</span></li><li class="ms-elem-selection" id="1761-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="1762-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="1784-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="1785-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="1786-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="1787-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection--1349188661"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA NORTE B</span></li><li class="ms-elem-selection" id="1755-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="1756-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="1757-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="1758-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="1759-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="1760-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection--1349188660"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA NORTE C</span></li><li class="ms-elem-selection" id="1788-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="1789-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="1793-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="1790-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="1791-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="1792-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection--1349188659"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA NORTE D</span></li><li class="ms-elem-selection" id="1815-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="1816-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="1817-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="1818-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="1819-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="1820-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476566"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA O</span></li><li class="ms-elem-selection" id="49742-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="49717-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="49719-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="49718-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="49687-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="49716-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-69476567"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA P</span></li><li class="ms-elem-selection" id="49749-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="49744-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="49745-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="49746-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="49748-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="49743-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-557580120"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>ICA SUR A</span></li><li class="ms-elem-selection" id="1632-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="1633-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="1634-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="1635-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="1636-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="1637-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-2009898333"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>LA TINGUIÑA</span></li><li class="ms-elem-selection" id="1698-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="1699-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="1700-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="1722-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="1723-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="1724-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-1557004637"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>MARCONA</span></li><li class="ms-elem-selection" id="48846-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="48847-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48848-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48849-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="48850-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="48851-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection--1931964080"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>MARSHMALLOW ANGEL</span></li><li class="ms-elem-selection" id="49588-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="49589-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="49590-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="49591-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="49592-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="49593-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-28915377"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>MERCADOS A</span></li><li class="ms-elem-selection" id="1725-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="48820-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48842-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48843-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="48844-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="48845-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-28915378"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>MERCADOS B</span></li><li class="ms-elem-selection" id="48904-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="48905-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48906-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48907-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="48908-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="48909-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-28915379"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>MERCADOS C</span></li><li class="ms-elem-selection" id="48910-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="48911-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48912-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48913-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="49586-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="49587-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-28915381"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>MERCADOS E</span></li><li class="ms-elem-selection" id="49594-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="49595-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="49619-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="49618-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="49621-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="49620-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-28915382"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>MERCADOS F</span></li><li class="ms-elem-selection" id="49622-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="49623-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="49624-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="49625-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="49626-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="49648-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-75893676"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>PALPA</span></li><li class="ms-elem-selection" id="48877-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="48878-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="48879-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="48880-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="48881-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="48882-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-505442113"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>PARCONA A</span></li><li class="ms-elem-selection" id="50-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="1567-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="1572-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="1602-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="1603-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="1604-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection-505442114"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>PARCONA B</span></li><li class="ms-elem-selection" id="1692-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="1693-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="1694-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="1695-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="1696-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="1697-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection--1445960343"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>SUBTANJALLA</span></li><li class="ms-elem-selection" id="51-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="57-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="1573-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="1605-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="1606-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="1607-selection" style="display: none;"><span>60</span></li></ul></li><li class="ms-optgroup-container" id="optgroup-selection--1263275246"><ul class="ms-optgroup"><li class="ms-optgroup-label" style="display: none;"><span>TINGUIÑA</span></li><li class="ms-elem-selection" id="52-selection" style="display: none;"><span>10</span></li><li class="ms-elem-selection" id="1569-selection" style="display: none;"><span>20</span></li><li class="ms-elem-selection" id="1574-selection" style="display: none;"><span>30</span></li><li class="ms-elem-selection" id="1629-selection" style="display: none;"><span>40</span></li><li class="ms-elem-selection" id="1630-selection" style="display: none;"><span>50</span></li><li class="ms-elem-selection" id="1631-selection" style="display: none;"><span>60</span></li></ul></li></ul></div></div>
+            </div>
+            <div class="two fields">
+                <div class="ten wide field"></div>
+                <div class="six wide field">
+                    <div id="button-create" class="ui fluid button-field positive button">
+                        Crear Mapa de Rutas
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui page dimmer" id="waitingModal">
+            <div class="content">
+                <div class="ui huge indeterminate text loader">
+                    <p id="waitingText">Cargando...</p>
+                </div>
+            </div>
+        </div>
+        <div id="uiAlert" class="ui-alert-content ui-alert-content-top-center"></div>
+    
+
+        
+        <script>
+            var path = '/app';
+            var lpre = 'LISTA DE PRECIO M1P';
+            var almc = 'BROCKER MESA 1';
+        </script>
+        <script>
+            var csrf = false;
+        </script>
+        <script src="/app/static/resources/js/page.js"></script>
+        <script src="/app/static/resources/js/clases.js"></script>
+        <script src="/app/static/resources/js/catalogo.js"></script>        
+        <script src="/app/resources/mapas-rutas/crear-mapa-rutas/index.js"></script>
+    
+</body></html>

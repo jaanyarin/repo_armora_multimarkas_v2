@@ -1,0 +1,22 @@
+[
+  {
+    "selector": "[class*='sidebar']",
+    "text": "Compras Proveedores Preventas Ventas Notas de Credito Informes Cambios de Productos Canjes de Productos Sunat Resumenes Diarios Comunicacion de Baja Requerimientos Liquidaciones Personal Mapas de Rutas Clientes Zonas y Rutas Almacenes Unidades de Trans. Premios Canjes Productos Servicios Combos de Productos Concursos Comisiones Cobertura Listas de Precios Vendedor Configuracion Transportistas General"
+  },
+  {
+    "selector": "[class*='menu']",
+    "text": "Personal: ALEJANDRO ANYARIN Lista Precios: LISTA DE PRECIO M1P Almacen: BROCKER MESA 1 Home Logout"
+  },
+  {
+    "selector": "[class*='menu']",
+    "text": "Personal: ALEJANDRO ANYARIN Lista Precios: LISTA DE PRECIO M1P Almacen: BROCKER MESA 1 Home Logout"
+  },
+  {
+    "selector": "[class*='menu']",
+    "text": "Compras Proveedores Preventas Ventas Notas de Credito Informes Cambios de Productos Canjes de Productos Sunat Resumenes Diarios Comunicacion de Baja Requerimientos Liquidaciones Personal Mapas de Rutas Clientes Zonas y Rutas Almacenes Unidades de Trans. Premios Canjes Productos Servicios Combos de Productos Concursos Comisiones Cobertura Listas de Precios Vendedor Configuracion Transportistas General"
+  },
+  {
+    "selector": "[class*='menu']",
+    "text": "LISTA DE PRECIO M1P"
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Código",
+      "Nombre",
+      "Cant Rutas",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Código",
+        "Nombre",
+        "Cant Rutas",
+        "Acciones"
+      ],
+      [
+        "",
+        "MAP210100005",
+        "MAPA ICA A",
+        "6",
+        ""
+      ],
+      [
+        "",
+        "MAP210100006",
+        "MAPA ICA B",
+        "6",
+        ""
+      ],
+      [
+        "",
+        "MAP210100007",
+        "MAPA ICA C",
+        "6",
+        ""
+      ],
+      [
+        "",
+        "MAP210100008",
+        "MAPA ICA D",
+        "6",
+        ""
+      ],
+      [
+        "",
+        "MAP210100009",
+        "MAPA ICA E",
+        "6",
+        ""
+      ],
+      [
+        "",
+        "MAP210100010",
+        "MAPA ICA F",
+        "6",
+        ""
+      ],
+      [
+        "",
+        "MAP210100011",
+        "MAPA ICA G",
+        "6",
+        ""
+      ],
+      [
+        "",
+        "MAP210100012",
+        "MAPA ICA H",
+        "6",
+        ""
+      ],
+      [
+        "",
+        "MAP210100013",
+        "MAPA ICA I",
+        "6",
+        ""
+      ],
+      [
+        "",
+        "MAP210100014",
+        "MAPA ICA J",
+        "6",
+        ""
+      ]
+    ],
+    "row_count": 11
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Código Nombre Cant Rutas Acciones",
+      "MAP210100005 MAPA ICA A 6",
+      "MAP210100006 MAPA ICA B 6",
+      "MAP210100007 MAPA ICA C 6",
+      "MAP210100008 MAPA ICA D 6",
+      "MAP210100009 MAPA ICA E 6",
+      "MAP210100010 MAPA ICA F 6",
+      "MAP210100011 MAPA ICA G 6",
+      "MAP210100012 MAPA ICA H 6",
+      "MAP210100013 MAPA ICA I 6",
+      "MAP210100014 MAPA ICA J 6"
+    ],
+    "row_count": 11
+  }
+]

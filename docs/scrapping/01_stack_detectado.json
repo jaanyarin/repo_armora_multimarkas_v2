@@ -1,0 +1,38 @@
+{
+  "url": "https://armorasac.com/app/",
+  "title": "Página Principal",
+  "detected": [
+    "jQuery"
+  ],
+  "scripts": [
+    "https://armorasac.com/app/static/jquery/jquery-3.4.1.min.js",
+    "https://armorasac.com/app/static/jquery/jquery-serialize-object.min.js",
+    "https://armorasac.com/app/static/semantic/semantic-dyvent.min.js",
+    "https://armorasac.com/app/static/alert/ui-alert.js",
+    "https://armorasac.com/app/static/datatable/datatables.dyvent.min.js",
+    "https://armorasac.com/app/static/quicksearch/quicksearch.js",
+    "https://armorasac.com/app/static/multiselect/multiselect.js",
+    "https://armorasac.com/app/static/calendar/calendar.min.js",
+    "https://armorasac.com/app/static/resources/js/page.js",
+    "https://armorasac.com/app/static/resources/js/clases.js",
+    "https://armorasac.com/app/static/resources/js/catalogo.js",
+    "https://armorasac.com/app/static/moment/moment-with-locales.js",
+    "https://armorasac.com/app/static/chartjs/chartjs.min.js",
+    "https://armorasac.com/app/resources/general/home/index.js"
+  ],
+  "stylesheets": [
+    "https://armorasac.com/app/static/semantic/semantic-dyvent.min.css",
+    "https://armorasac.com/app/static/alert/ui-alert.css",
+    "https://armorasac.com/app/static/datatable/datatables.dyvent.min.css",
+    "https://armorasac.com/app/static/multiselect/multiselect.min.css",
+    "https://armorasac.com/app/static/calendar/calendar.min.css",
+    "https://armorasac.com/app/static/resources/css/page.css",
+    "https://armorasac.com/app/static/tableflip/tableflip.css",
+    "https://armorasac.com/app/static/chartjs/chartjs.min.css"
+  ],
+  "meta": {
+    "viewport": "width=device-width, initial-scale=1",
+    "msapplication-TileColor": "#000000",
+    "theme-color": "#000000"
+  }
+}

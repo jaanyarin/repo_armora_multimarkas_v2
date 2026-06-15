@@ -1,0 +1,33 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Nombre",
+      "Comisión %",
+      ""
+    ],
+    "rows": [
+      [
+        "",
+        "Nombre",
+        "Comisión %",
+        ""
+      ],
+      [
+        "No hay datos disponibles"
+      ]
+    ],
+    "row_count": 2
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Nombre Comisión %"
+    ],
+    "row_count": 1
+  }
+]

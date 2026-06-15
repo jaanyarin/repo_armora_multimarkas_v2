@@ -1,0 +1,1771 @@
+<!DOCTYPE html><html lang="es-PE"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+            Crear Cliente
+        </title>
+        
+        <script src="/app/static/jquery/jquery-3.4.1.min.js"></script>
+        <script src="/app/static/jquery/jquery-serialize-object.min.js"></script>
+        <script src="/app/static/semantic/semantic-dyvent.min.js"></script>
+        <script src="/app/static/alert/ui-alert.js"></script>
+        <script src="/app/static/datatable/datatables.dyvent.min.js"></script>
+        <script src="/app/static/quicksearch/quicksearch.js"></script>
+        <script src="/app/static/multiselect/multiselect.js"></script>
+        <script src="/app/static/calendar/calendar.min.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="/app/static/semantic/semantic-dyvent.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/alert/ui-alert.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/datatable/datatables.dyvent.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/multiselect/multiselect.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/calendar/calendar.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/resources/css/page.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/tableflip/tableflip.css">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="/app/static/favicon/apple-touch-icon.png?v1">
+        <link rel="icon" type="image/png" sizes="32x32" href="/app/static/favicon/favicon-32x32.png?v1">
+        <link rel="icon" type="image/png" sizes="16x16" href="/app/static/favicon/favicon-16x16.png?v1">
+        <link rel="manifest" href="/app/static/favicon/site.webmanifest?v1">
+        <link rel="mask-icon" href="/app/static/favicon/safari-pinned-tab.svg?v1" color="#949494">
+        <meta name="msapplication-TileColor" content="#000000">
+        <meta name="theme-color" content="#000000">
+    <style> .ui.visible.left.sidebar ~ .fixed, .ui.visible.left.sidebar ~ .pusher {   -webkit-transform: translate3d(260px, 0, 0);           transform: translate3d(260px, 0, 0); }</style></head>
+    <body class="dimmable">
+        
+        <div class="ui top attached secondary menu flex-wrap">
+            <a class="item open-menu" id="bSidebar">
+                <img class="ui image image-menu" alt="Menu Principal" src="/app/general/loaded-resources/rest/home-image">
+            </a>
+            <div class="ui right secondary compact menu right-menu">
+                <div class="ui grid one column computer tablet only">
+                    <a class="item" href="/app/general/perfil-personal" data-tooltip="Perfil de Personal" data-position="bottom left">
+                        <i class="black big id badge link icon"></i>
+                    </a>
+                    <div class="item">
+                        <div class="user-info">
+                            <div>
+                                <strong>Personal:</strong> ALEJANDRO ANYARIN 
+                            </div>
+                            <div>
+                                <strong>Lista Precios:</strong> LISTA DE PRECIO M1P
+                            </div>
+                            <div>
+                                <strong>Almacen:</strong> BROCKER MESA 1
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="item" href="/app/home" data-tooltip="Pagina de Inicio" data-position="bottom center">
+                    <i class="black big home link icon"></i>
+                    <div class="ui grid one column computer only">
+                        <strong>Home</strong>
+                    </div>
+                </a>
+                <a class="item" href="/app/logout" data-tooltip="Cerrar Sesión" data-position="bottom right">
+                    <i class="black big sign out link icon"></i>
+                    <div class="ui grid one column computer only">
+                        <strong>Logout</strong>
+                    </div>
+                </a>
+            </div>
+            <div class="hide-desktop w-100">
+                <div class="flex-spacebetween-center">
+                    <div class="item">
+                        <div class="user-info">
+                            <div>
+                                <strong>Personal:</strong> ALEJANDRO ANYARIN 
+                            </div>
+                            <div>
+                                <strong>Lista Precios:</strong> LISTA DE PRECIO M1P
+                            </div>
+                            <div>
+                                <strong>Almacen:</strong> BROCKER MESA 1
+                            </div>
+                        </div>
+                    </div>
+                    <a class="item" href="/app/general/perfil-personal" data-tooltip="Perfil de Personal" data-position="bottom right">
+                        <i class="black big id badge link icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="ui attached segment pushable" id="pusher">
+            <div class="ui inverted vertical accordion sidebar menu left uncover visible" id="sidebar" style="">
+                <div class="item" id="item-search">
+                    <div class="ui icon input">
+                        <input type="text" placeholder="Búsqueda" id="menu-search">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large shopping bag icon"></i>
+                            <span>Compras</span>
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/compras/crear-compra">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Compra
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/compras/gestion-compras">
+                                        <i class="shopping bag icon"></i>
+                                        <div class="content">
+                                            Gestión de Compras
+                                        </div>
+                                    </a>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large shopping cart icon"></i>
+                            Proveedores
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/proveedores/crear-proveedor">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Proveedor
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/proveedores/gestion-proveedores">
+                                        <i class="shoppint cart icon"></i>
+                                        <div class="content">
+                                            Gestión de Proveedores
+                                        </div>
+                                    </a>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard list icon"></i>
+                            Preventas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/preventas/gestion-preventas">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Gestión Preventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/preventas/reportes-preventas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Preventas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard check icon"></i>
+                            Ventas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/ventas/crear-venta">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Venta Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/crear-venta-servicio">
+                                        <i class="dollar icon"></i>
+                                        <div class="content">
+                                            Crear Venta Servicios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/gestion-ventas">
+                                        <i class="clipboard check icon"></i>
+                                        <div class="content">
+                                            Gestión de Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/puntos-ventas">
+                                        <i class="map signs icon"></i>
+                                        <div class="content">
+                                            Puntos de Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/gestion-notas-pedido">
+                                        <i class="calendar alternate icon"></i>
+                                        <div class="content">
+                                            Gestión Notas Pedido
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/impresion-ventas">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresión de Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/entregas-parciales">
+                                        <i class="boxes icon"></i>
+                                        <div class="content">
+                                            Entregas Parciales
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/fileteo-automatico">
+                                        <i class="paragraph icon"></i>
+                                        <div class="content">
+                                            Fileteo Automatico
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/reportes-ventas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Ventas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large newspaper icon"></i>
+                            Notas de Credito
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/notas-credito/gestion-notas-credito">
+                                        <i class="newspaper icon"></i>
+                                        <div class="content">
+                                            Gestión Notas Credito
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/notas-credito/devoluciones-transportistas">
+                                        <i class="clipboard list icon"></i>
+                                        <div class="content">
+                                            Devolucion Transportista
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/notas-credito/impresion-notas-credito">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresión Notas Credito
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/notas-credito/reportes-notas-credito">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Notas Credito
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large file icon"></i>
+                            Informes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/informes/requerimientos">
+                                        <i class="tasks icon"></i>
+                                        <div class="content">
+                                            Informes de Requerimientos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/informes/liquidaciones">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Informes de Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/informes/almacenes">
+                                        <i class="warehouse icon"></i>
+                                        <div class="content">
+                                            Informes de Almacenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/informes/entregas-parciales">
+                                        <i class="boxes icon"></i>
+                                        <div class="content">
+                                            Entregas Parciales
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large retweet icon"></i>
+                            Cambios de Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/cambios-producto/crear-cambio-producto">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/asignar-entrega-cambios-producto">
+                                        <i class="calendar icon"></i>
+                                        <div class="content">
+                                            Asignar Fecha de Entrega
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/gestion-cambios-producto">
+                                        <i class="retweet icon"></i>
+                                        <div class="content">
+                                            Gestion Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/impresion-cambio-producto">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresion Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/crear-reporte-cambios-producto">
+                                        <i class="file alternate icon"></i>
+                                        <div class="content">
+                                            Crear Req/Liq Cambios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/gestion-reportes-cambios-producto">
+                                        <i class="folder open icon"></i>
+                                        <div class="content">
+                                            Gestion Req/Liq Cambios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/reportes-cambios-producto">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reporte Cambios Productos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large exchange icon"></i>
+                            Canjes de Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/canjes/crear-canje">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/asignar-entrega-canjes">
+                                        <i class="calendar icon"></i>
+                                        <div class="content">
+                                            Asignar Fecha de Entrega
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/gestion-canjes">
+                                        <i class="exchange icon"></i>
+                                        <div class="content">
+                                            Gestion Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/impresion-canjes">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresion Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/crear-reportes-canjes">
+                                        <i class="file alternate icon"></i>
+                                        <div class="content">
+                                            Crear Req/Liq Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/gestion-reportes-canjes">
+                                        <i class="retweet icon"></i>
+                                        <div class="content">
+                                            Gestion Req/Liq Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/reportes-canjes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Canjes
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large certificate icon"></i>
+                            Sunat
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/sunat/envios-sunat">
+                                        <i class="inbox icon"></i>
+                                        <div class="content">
+                                            Envios Pendientes Sunat
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/sunat/gestion-envios-sunat">
+                                        <i class="envelope icon"></i>
+                                        <div class="content">
+                                            Gestion Envios Sunat
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/sunat/reportes-envios-sunat">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Envios Sunat
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large copy icon"></i>
+                            Resumenes Diarios
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/resumen-diario/crear-resumen-diario">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Resumen
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/resumen-diario/gestion-resumenes-diarios">
+                                        <i class="copy icon"></i>
+                                        <div class="content">
+                                            Gestion de Resumenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/resumen-diario/reportes-resumenes-diarios">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Resumenes
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large calendar times icon"></i>
+                            Comunicacion de Baja
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/comunicacion-baja/crear-comunicacion-baja">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Baja
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comunicacion-baja/gestion-comunicaciones-baja">
+                                        <i class="calendar times icon"></i>
+                                        <div class="content">
+                                            Gestion de Bajas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comunicacion-baja/reportes-comunicaciones-baja">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Baja
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large tasks icon"></i>
+                            Requerimientos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/requerimientos/crear-requerimiento">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Requerimiento
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/requerimientos/gestion-requerimientos">
+                                        <i class="tasks icon"></i>
+                                        <div class="content">
+                                            Gestion Requerimientos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/requerimientos/reportes-requerimientos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Requerimientos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard icon"></i>
+                            Liquidaciones
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/liquidaciones/crear-liquidacion">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Liquidacion
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/liquidaciones/gestion-liquidaciones">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Gestion Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/liquidaciones/reportes-liquidaciones">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large users icon"></i>
+                            Personal
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/personal/crear-personal">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Personal
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/personal/gestion-personal">
+                                        <i class="users icon"></i>
+                                        <div class="content">
+                                            Gestion Personal
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/personal/reportes-personal">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Personal
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large binoculars icon"></i>
+                            <span>Mapas de Rutas</span>
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/mapas-rutas/crear-mapa-rutas">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Mapa de Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/mapas-rutas/gestion-mapas-rutas">
+                                        <i class="shopping bag icon"></i>
+                                        <div class="content">
+                                            Gestion de Mapas de Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/mapas-rutas/reportes-mapas-rutas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Mapas de Rutas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large address book icon"></i>
+                            Clientes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/clientes/crear-cliente">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Cliente
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/gestion-clientes">
+                                        <i class="address book icon"></i>
+                                        <div class="content">
+                                            Gestion Clientes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/habilitar-ventas-clientes">
+                                        <i class="clipboard check icon"></i>
+                                        <div class="content">
+                                            Habilitar Ventas Clientes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/cambio-dia-atencion">
+                                        <i class="calendar alternate icon"></i>
+                                        <div class="content">
+                                            Cambio dia Atencion
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/reportes-clientes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Clientes
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large map icon"></i>
+                            Zonas y Rutas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/zonas-rutas/gestion-zonas-rutas">
+                                        <i class="map icon"></i>
+                                        <div class="content">
+                                            Gestion Zonas y Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/zonas-rutas/habilitar-ventas-rutas">
+                                        <i class="clipboard check icon"></i>
+                                        <div class="content">
+                                            Habilitar Ventas en Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/zonas-rutas/reportes-zonas-rutas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Zonas y Rutas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large warehouse icon"></i>
+                            Almacenes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/almacenes/gestion-almacenes">
+                                        <i class="warehouse icon"></i>
+                                        <div class="content">
+                                            Gestion Almacenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/almacenes/reportes-almacenes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Almacenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/almacenes/inventario-stock">
+                                        <i class="indent icon"></i>
+                                        <div class="content">
+                                            Inventario de Stocks
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/almacenes/gestion-inventarios">
+                                        <i class="book icon"></i>
+                                        <div class="content">
+                                            Gestion de Inventarios
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large truck icon"></i>
+                            Unidades de Trans.
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/unidades-transporte/crear-unidad-transporte">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Unidad Trans.
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/unidades-transporte/gestion-unidades-transporte">
+                                        <i class="truck icon"></i>
+                                        <div class="content">
+                                            Gestion Unidades de Trans.
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/unidades-transporte/reportes-unidades-transporte">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Unidades de Trans.
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large gift icon"></i>
+                            Premios Canjes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/premio-canje/gestion-requesitos-canje">
+                                        <i class="tags icon"></i>
+                                        <div class="content">
+                                            Requisitos de Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/premio-canje/crear-premio-canje">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Premio Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/premio-canje/gestion-premios-canjes">
+                                        <i class="box icon"></i>
+                                        <div class="content">
+                                            Gestion Premio Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/premio-canje/reportes-premios-canjes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Premio Canje
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large box icon"></i>
+                            Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/productos/gestion-clases-subclases-productos">
+                                        <i class="tags icon"></i>
+                                        <div class="content">
+                                            Clases y Subclases
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/productos/crear-producto">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Producto
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/productos/gestion-productos">
+                                        <i class="box icon"></i>
+                                        <div class="content">
+                                            Gestion Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/productos/reportes-productos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Productos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large world icon"></i>
+                            Servicios
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/servicios/crear-servicio">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Servicio
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/servicios/gestion-servicios">
+                                        <i class="world icon"></i>
+                                        <div class="content">
+                                            Gestion Servicios
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large boxes icon"></i>
+                            Combos de Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/combos/crear-combo">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Combo
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/combos/gestion-combos">
+                                        <i class="boxes icon"></i>
+                                        <div class="content">
+                                            Gestion Combos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/combos/reportes-combos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Combos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large star icon"></i>
+                            Concursos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/concursos/crear-concurso">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Concurso
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/concursos/gestion-concursos">
+                                        <i class="star icon"></i>
+                                        <div class="content">
+                                            Gestion Concursos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/concursos/reportes-concursos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Concursos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large percent icon"></i>
+                            Comisiones
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/comisiones/crear-reporte-comisiones">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Reporte Comisiones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comisiones/gestion-comisiones">
+                                        <i class="percent icon"></i>
+                                        <div class="content">
+                                            Gestion Reporte Comisiones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comisiones/ajuste-comisiones">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Ajuste de Comisiones
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large globe icon"></i>
+                            Cobertura
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/cobertura/crear-reporte-cobertura">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Reporte Cobertura
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cobertura/gestion-coberturas">
+                                        <i class="globe icon"></i>
+                                        <div class="content">
+                                            Gestion Reporte Cobertura
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard icon"></i>
+                            Listas de Precios
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/lista-precios/crear-lista-precios">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Lista de Precios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/lista-precios/gestion-listas-precios">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Gestion Listas de Precios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/lista-precios/copiar-lista-precios">
+                                        <i class="copy icon"></i>
+                                        <div class="content">
+                                            Copiar Listas de Precios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/lista-precios/reportes-listas-precios">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Listas de Precios
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large user icon"></i>
+                            Vendedor
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/vendedor/crear-cliente">
+                                        <i class="user plus icon"></i>
+                                        <div class="content">
+                                            Crear Cliente
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/clientes">
+                                        <i class="address book icon"></i>
+                                        <div class="content">
+                                            Clientes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/crear-preventa">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Preventa
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/preventas">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Preventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/ventas">
+                                        <i class="dollar sign icon"></i>
+                                        <div class="content">
+                                            Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/crear-cambio-producto">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/cambios-producto">
+                                        <i class="retweet icon"></i>
+                                        <div class="content">
+                                            Cambios de Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/crear-canje">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/canjes">
+                                        <i class="exchange icon"></i>
+                                        <div class="content">
+                                            Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/stock-productos">
+                                        <i class="dolly flatbed icon"></i>
+                                        <div class="content">
+                                            Stock de Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/comisiones">
+                                        <i class="percent icon"></i>
+                                        <div class="content">
+                                            Comisiones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/concursos">
+                                        <i class="star icon"></i>
+                                        <div class="content">
+                                            Concursos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large cogs icon"></i>
+                            Configuracion
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-empresa">
+                                        <i class="cog icon"></i>
+                                        <div class="content">
+                                            Configuracion Empresa
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-impresion">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Configuracion Impresión
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-sunat">
+                                        <i class="certificate icon"></i>
+                                        <div class="content">
+                                            Configuracion Sunat
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-alertas">
+                                        <i class="bell icon"></i>
+                                        <div class="content">
+                                            Configuracion Alertas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large truck icon"></i>
+                            Transportistas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/transportistas/mis-devoluciones">
+                                        <i class="file alternate icon"></i>
+                                        <div class="content">
+                                            Mis Devoluciones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/transportistas/mis-requerimientos">
+                                        <i class="clipboard outline icon"></i>
+                                        <div class="content">
+                                            Mis Requerimientos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/transportistas/mis-liquidaciones">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Mis Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="item">
+                    <div class="title">
+                        <i class="large sitemap icon"></i>
+                        General
+                        <i class="large dropdown icon"></i>
+                    </div>
+                    <div class="content">
+                        <div class="ui inverted animated list">
+                            <a class="item" href="/app/general/perfil-personal">
+                                <i class="id badge icon"></i>
+                                <div class="content">
+                                    Perfil Personal
+                                </div>
+                            </a>
+                            <a class="item" href="/app/home">
+                                <i class="home icon"></i>
+                                <div class="content">
+                                    Home
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pusher">
+                <div class="ui basic segment">
+                    <div class="ui container">
+                        
+        <h2 class="ui top attached block flex-spacebetween-center header">
+            Cliente
+            <div class="ui toggle checkbox">
+                <input type="checkbox" name="public" id="checkbox-optional">
+                <label>Opcionales</label>
+            </div>
+        </h2>
+        <div class="ui no-padding attached segment">
+            <div class="ui two column padded stackable grid">
+                <div class="column selected">
+                    <div class="link flex-center" id="toggle-natural">
+                        <i class="large circle outline icon check"></i>
+                        <h4 class="ui center aligned no-margin header blue">
+                            <i class="user icon"></i>
+                            <div class="content">Persona
+                                <div class="sub header blue">Puede realizar boletas y facturas</div>
+                            </div>
+                        </h4>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="link flex-center" id="toggle-juridica">
+                        <i class="large circle outline icon"></i>
+                        <h5 class="ui center aligned no-margin header">
+                            <i class="building icon"></i>
+                            <div class="content">Empresa
+                                <div class="sub header">Sólo puede realizar facturas</div>
+                            </div>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui hidden divider"></div>
+        <div class="ui form" id="form-natural">
+            <div id="natural-required">
+                <div class="required field">
+                    <label>Nombre Completo</label>
+                    <input type="text" name="nombresApellidos" placeholder="Nombre Completo">
+                </div>
+
+                <div class="three fields">
+                    <div class="required field">
+                        <label>Zona</label>
+                        <div class="ui search selection dropdown"><select name="zona" id="natural-dropdown-zona"><option value="5">DISTRIBUIDORES</option><option value="36">FILETEO</option><option value="18">ICA A</option><option value="19">ICA B</option><option value="20">ICA C</option><option value="4">ICA CENTRO A</option><option value="6">ICA CENTRO B</option><option value="8">ICA CENTRO C</option><option value="9">ICA CENTRO D</option><option value="21">ICA D</option><option value="22">ICA E</option><option value="23">ICA F</option><option value="24">ICA G</option><option value="25">ICA H</option><option value="26">ICA I</option><option value="27">ICA J</option><option value="35">ICA K</option><option value="37">ICA L</option><option value="38">ICA M</option><option value="39">ICA N</option><option value="15">ICA NORTE A</option><option value="14">ICA NORTE B</option><option value="16">ICA NORTE C</option><option value="17">ICA NORTE D</option><option value="40">ICA O</option><option value="41">ICA P</option><option value="7">ICA SUR A</option><option value="11">LA TINGUIÑA</option><option value="28">MARCONA</option><option value="32">MARSHMALLOW ANGEL</option><option value="12">MERCADOS A</option><option value="30">MERCADOS B</option><option value="31">MERCADOS C</option><option value="33">MERCADOS E</option><option value="34">MERCADOS F</option><option value="29">PALPA</option><option value="2">PARCONA A</option><option value="10">PARCONA B</option><option value="3">SUBTANJALLA</option><option value="1">TINGUIÑA</option></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione una zona</div><div class="menu" tabindex="-1"><div class="item" data-value="5">DISTRIBUIDORES</div><div class="item" data-value="36">FILETEO</div><div class="item" data-value="18">ICA A</div><div class="item" data-value="19">ICA B</div><div class="item" data-value="20">ICA C</div><div class="item" data-value="4">ICA CENTRO A</div><div class="item" data-value="6">ICA CENTRO B</div><div class="item" data-value="8">ICA CENTRO C</div><div class="item" data-value="9">ICA CENTRO D</div><div class="item" data-value="21">ICA D</div><div class="item" data-value="22">ICA E</div><div class="item" data-value="23">ICA F</div><div class="item" data-value="24">ICA G</div><div class="item" data-value="25">ICA H</div><div class="item" data-value="26">ICA I</div><div class="item" data-value="27">ICA J</div><div class="item" data-value="35">ICA K</div><div class="item" data-value="37">ICA L</div><div class="item" data-value="38">ICA M</div><div class="item" data-value="39">ICA N</div><div class="item" data-value="15">ICA NORTE A</div><div class="item" data-value="14">ICA NORTE B</div><div class="item" data-value="16">ICA NORTE C</div><div class="item" data-value="17">ICA NORTE D</div><div class="item" data-value="40">ICA O</div><div class="item" data-value="41">ICA P</div><div class="item" data-value="7">ICA SUR A</div><div class="item" data-value="11">LA TINGUIÑA</div><div class="item" data-value="28">MARCONA</div><div class="item" data-value="32">MARSHMALLOW ANGEL</div><div class="item" data-value="12">MERCADOS A</div><div class="item" data-value="30">MERCADOS B</div><div class="item" data-value="31">MERCADOS C</div><div class="item" data-value="33">MERCADOS E</div><div class="item" data-value="34">MERCADOS F</div><div class="item" data-value="29">PALPA</div><div class="item" data-value="2">PARCONA A</div><div class="item" data-value="10">PARCONA B</div><div class="item" data-value="3">SUBTANJALLA</div><div class="item" data-value="1">TINGUIÑA</div></div></div>
+                    </div>
+                    <div class="required field">
+                        <label>Ruta</label>
+                        <div class="ui search selection dropdown"><select name="ruta" id="natural-dropdown-ruta">
+                            <option value="" selected="">Seleccione una ruta</option>
+                        </select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione una ruta</div><div class="menu" tabindex="-1"></div></div>
+                    </div>
+                    <div class="required field">
+                        <label>Secuencia</label>
+                        <input type="number" name="secuencia" placeholder="Secuencia">
+                    </div>
+                </div>
+                <div class="three fields">
+                    <div class="field">
+                        <label for="natural-dropdown-documentos">Documento</label>
+                        <div class="ui left labeled input">
+                            <div class="ui scrolling dropdown label" id="natural-dropdown-documentos" tabindex="0">
+                                <div class="text">DNI</div>
+                                <i class="dropdown icon"></i>
+                            <div class="menu" tabindex="-1"><div class="item" data-value="3">CEXT</div><div class="item" data-value="6">CDIP</div><div class="item active selected" data-value="2">DNI</div><div class="item" data-value="7">IRES</div><div class="item" data-value="1">NN</div><div class="item" data-value="9">TXTRIB</div><div class="item" data-value="5">PASS</div><div class="item" data-value="4">RUC</div><div class="item" data-value="10">TAM</div><div class="item" data-value="8">TXDOC</div></div></div>
+                            <input type="text" name="documentoNumero" placeholder="Número">
+                        </div>
+                    </div>
+                    <div class="required field">
+                        <label>Día de Atención</label>
+                        <div class="ui search selection dropdown"><select name="diaAtencion" id="natural-dropdown-dia"><option value="1">Lunes</option><option value="2">Martes</option><option value="3">Miercoles</option><option value="4">Jueves</option><option value="5">Viernes</option><option value="6">Sabado</option></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="text">Lunes</div><div class="menu" tabindex="-1"><div class="item active selected" data-value="1">Lunes</div><div class="item" data-value="2">Martes</div><div class="item" data-value="3">Miercoles</div><div class="item" data-value="4">Jueves</div><div class="item" data-value="5">Viernes</div><div class="item" data-value="6">Sabado</div></div></div>
+                    </div>
+                    <div class="required field">
+                        <label>Tipo de Negocio</label>
+                        <div class="ui search selection dropdown"><select name="clienteTipoNegocio" id="natural-dropdown-negocio"><option value="4">Auto Servicio</option><option value="6">Mayorista</option><option value="3">Minimarket</option><option value="7">Minimayorista</option><option value="1">Quiosco</option><option value="5">Restaurante</option><option value="2">Tienda</option></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione un negocio</div><div class="menu" tabindex="-1"><div class="item" data-value="4">Auto Servicio</div><div class="item" data-value="6">Mayorista</div><div class="item" data-value="3">Minimarket</div><div class="item" data-value="7">Minimayorista</div><div class="item" data-value="1">Quiosco</div><div class="item" data-value="5">Restaurante</div><div class="item" data-value="2">Tienda</div></div></div>
+                    </div>
+                </div>
+                <div class="required field">
+                    <label>Dirección</label>
+                    <input type="text" name="direccion" placeholder="Dirección">
+                </div>
+            </div>
+            <div id="natural-optional" style="display: none;">
+                <div class="two fields">
+                    <div class="eleven wide field">
+                        <label>Referencia</label>
+                        <input type="text" name="referencia" placeholder="Referencia">
+                    </div>
+                    <div class="five wide field">
+                        <label>País</label>
+                        <div class="ui search selection dropdown"><select name="pais" id="natural-dropdown-pais"><option value="3">Afganistán</option><option value="6">Albania</option><option value="55">Alemania</option><option value="1">Andorra</option><option value="9">Angola</option><option value="5">Anguila</option><option value="10">Antártida</option><option value="4">Antigua y Barbuda</option><option value="8">Antillas Neerlandesas</option><option value="189">Arabia Saudita</option><option value="60">Argel</option><option value="11">Argentina</option><option value="7">Armenia</option><option value="15">Aruba</option><option value="14">Australia</option><option value="13">Austria</option><option value="17">Azerbaiyán</option><option value="32">Bahamas</option><option value="24">Bahréin</option><option value="20">Bangladesh</option><option value="19">Barbados</option><option value="36">Belarús</option><option value="21">Bélgica</option><option value="37">Belice</option><option value="26">Benin</option><option value="28">Bermudas</option><option value="33">Bhután</option><option value="30">Bolivia</option><option value="18">Bosnia y Herzegovina</option><option value="35">Botsuana</option><option value="31">Brasil</option><option value="29">Brunéi</option><option value="23">Bulgaria</option><option value="22">Burkina Faso</option><option value="25">Burundi</option><option value="51">Cabo Verde</option><option value="115">Camboya</option><option value="46">Camerún</option><option value="38">Canadá</option><option value="209">Chad</option><option value="45">Chile</option><option value="47">China</option><option value="53">Chipre</option><option value="229">Ciudad del Vaticano</option><option value="48">Colombia</option><option value="117">Comoros</option><option value="41">Congo</option><option value="119">Corea del Norte</option><option value="120">Corea del Sur</option><option value="43">Costa de Marfil</option><option value="49">Costa Rica</option><option value="96">Croacia</option><option value="50">Cuba</option><option value="57">Dinamarca</option><option value="58">Domínica</option><option value="61">Ecuador</option><option value="63">Egipto</option><option value="205">El Salvador</option><option value="2">Emiratos Árabes Unidos</option><option value="65">Eritrea</option><option value="198">Eslovaquia</option><option value="196">Eslovenia</option><option value="66">España</option><option value="226">Estados Unidos de América</option><option value="62">Estonia</option><option value="67">Etiopía</option><option value="69">Fiji</option><option value="173">Filipinas</option><option value="68">Finlandia</option><option value="73">Francia</option><option value="74">Gabón</option><option value="83">Gambia</option><option value="77">Georgia</option><option value="88">Georgia del Sur e Islas Sandwich del Sur</option><option value="80">Ghana</option><option value="81">Gibraltar</option><option value="76">Granada</option><option value="87">Grecia</option><option value="82">Groenlandia</option><option value="85">Guadalupe</option><option value="90">Guam</option><option value="89">Guatemala</option><option value="92">Guayana</option><option value="78">Guayana Francesa</option><option value="79">Guernsey</option><option value="84">Guinea</option><option value="91">Guinea-Bissau</option><option value="86">Guinea Ecuatorial</option><option value="97">Haití</option><option value="95">Honduras</option><option value="93">Hong Kong</option><option value="98">Hungría</option><option value="103">India</option><option value="99">Indonesia</option><option value="105">Irak</option><option value="106">Irán</option><option value="100">Irlanda</option><option value="34">Isla Bouvet</option><option value="102">Isla de Man</option><option value="107">Islandia</option><option value="16">Islas Áland</option><option value="122">Islas Caimán</option><option value="52">Islas Christmas</option><option value="39">Islas Cocos</option><option value="44">Islas Cook</option><option value="72">Islas Faroe</option><option value="94">Islas Heard y McDonald</option><option value="70">Islas Malvinas</option><option value="140">Islas Marshall</option><option value="159">Islas Norkfolk</option><option value="181">Islas Palaos</option><option value="177">Islas Pitcairn</option><option value="190">Islas Solomón</option><option value="197">Islas Svalbard y Jan Mayen</option><option value="208">Islas Turcas y Caicos</option><option value="232">Islas Vírgenes Británicas</option><option value="233">Islas Vírgenes de los EEUU</option><option value="101">Israel</option><option value="108">Italia</option><option value="110">Jamaica</option><option value="112">Japón</option><option value="109">Jersey</option><option value="111">Jordania</option><option value="123">Kazajstán</option><option value="113">Kenia</option><option value="114">Kirguistán</option><option value="116">Kiribati</option><option value="121">Kuwait</option><option value="124">Laos</option><option value="130">Lesotho</option><option value="133">Letonia</option><option value="125">Líbano</option><option value="129">Liberia</option><option value="134">Libia</option><option value="127">Liechtenstein</option><option value="131">Lituania</option><option value="132">Luxemburgo</option><option value="145">Macao</option><option value="141">Macedonia</option><option value="139">Madagascar</option><option value="154">Malasia</option><option value="152">Malawi</option><option value="151">Maldivas</option><option value="142">Mali</option><option value="149">Malta</option><option value="135">Marruecos</option><option value="146">Martinica</option><option value="150">Mauricio</option><option value="147">Mauritania</option><option value="239">Mayotte</option><option value="153">México</option><option value="71">Micronesia</option><option value="137">Moldova</option><option value="136">Mónaco</option><option value="144">Mongolia</option><option value="138">Montenegro</option><option value="148">Montserrat</option><option value="155">Mozambique</option><option value="143">Myanmar</option><option value="156">Namibia</option><option value="165">Nauru</option><option value="164">Nepal</option><option value="161">Nicaragua</option><option value="158">Níger</option><option value="160">Nigeria</option><option value="166">Niue</option><option value="163">Noruega</option><option value="157">Nueva Caledonia</option><option value="167">Nueva Zelanda</option><option value="168">Omán</option><option value="162">Países Bajos</option><option value="174">Pakistán</option><option value="179">Palestina</option><option value="169">Panamá</option><option value="172">Papúa Nueva Guinea</option><option value="182">Paraguay</option><option value="170">Perú</option><option value="171">Polinesia Francesa</option><option value="175">Polonia</option><option value="180">Portugal</option><option value="178">Puerto Rico</option><option value="183">Qatar</option><option value="75">Reino Unido</option><option value="40">República Centro-Africana</option><option value="54">República Checa</option><option value="59">República Dominicana</option><option value="184">Reunión</option><option value="188">Ruanda</option><option value="185">Rumanía</option><option value="187">Rusia</option><option value="64">Sahara Occidental</option><option value="237">Samoa</option><option value="12">Samoa Americana</option><option value="27">San Bartolomé</option><option value="118">San Cristóbal y Nieves</option><option value="200">San Marino</option><option value="176">San Pedro y Miquelón</option><option value="230">San Vicente y las Granadinas</option><option value="195">Santa Elena</option><option value="126">Santa Lucía</option><option value="204">Santo Tomé y Príncipe</option><option value="201">Senegal</option><option value="186">Serbia y Montenegro</option><option value="191">Seychelles</option><option value="199">Sierra Leona</option><option value="194">Singapur</option><option value="206">Siria</option><option value="202">Somalia</option><option value="128">Sri Lanka</option><option value="207">Suazilandia</option><option value="240">Sudáfrica</option><option value="192">Sudán</option><option value="193">Suecia</option><option value="42">Suiza</option><option value="203">Surinam</option><option value="212">Tailandia</option><option value="223">Taiwán</option><option value="213">Tanzania</option><option value="214">Tayikistán</option><option value="104">Territorio Británico del Océano Índico</option><option value="210">Territorios Australes Franceses</option><option value="216">Timor-Leste</option><option value="211">Togo</option><option value="215">Tokelau</option><option value="219">Tonga</option><option value="221">Trinidad y Tobago</option><option value="218">Túnez</option><option value="217">Turkmenistán</option><option value="220">Turquía</option><option value="222">Tuvalu</option><option value="224">Ucrania</option><option value="225">Uganda</option><option value="227">Uruguay</option><option value="228">Uzbekistán</option><option value="235">Vanuatu</option><option value="231">Venezuela</option><option value="234">Vietnam</option><option value="236">Wallis y Futuna</option><option value="238">Yemen</option><option value="56">Yibuti</option></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="text">Perú</div><div class="menu" tabindex="-1"><div class="item" data-value="3">Afganistán</div><div class="item" data-value="6">Albania</div><div class="item" data-value="55">Alemania</div><div class="item" data-value="1">Andorra</div><div class="item" data-value="9">Angola</div><div class="item" data-value="5">Anguila</div><div class="item" data-value="10">Antártida</div><div class="item" data-value="4">Antigua y Barbuda</div><div class="item" data-value="8">Antillas Neerlandesas</div><div class="item" data-value="189">Arabia Saudita</div><div class="item" data-value="60">Argel</div><div class="item" data-value="11">Argentina</div><div class="item" data-value="7">Armenia</div><div class="item" data-value="15">Aruba</div><div class="item" data-value="14">Australia</div><div class="item" data-value="13">Austria</div><div class="item" data-value="17">Azerbaiyán</div><div class="item" data-value="32">Bahamas</div><div class="item" data-value="24">Bahréin</div><div class="item" data-value="20">Bangladesh</div><div class="item" data-value="19">Barbados</div><div class="item" data-value="36">Belarús</div><div class="item" data-value="21">Bélgica</div><div class="item" data-value="37">Belice</div><div class="item" data-value="26">Benin</div><div class="item" data-value="28">Bermudas</div><div class="item" data-value="33">Bhután</div><div class="item" data-value="30">Bolivia</div><div class="item" data-value="18">Bosnia y Herzegovina</div><div class="item" data-value="35">Botsuana</div><div class="item" data-value="31">Brasil</div><div class="item" data-value="29">Brunéi</div><div class="item" data-value="23">Bulgaria</div><div class="item" data-value="22">Burkina Faso</div><div class="item" data-value="25">Burundi</div><div class="item" data-value="51">Cabo Verde</div><div class="item" data-value="115">Camboya</div><div class="item" data-value="46">Camerún</div><div class="item" data-value="38">Canadá</div><div class="item" data-value="209">Chad</div><div class="item" data-value="45">Chile</div><div class="item" data-value="47">China</div><div class="item" data-value="53">Chipre</div><div class="item" data-value="229">Ciudad del Vaticano</div><div class="item" data-value="48">Colombia</div><div class="item" data-value="117">Comoros</div><div class="item" data-value="41">Congo</div><div class="item" data-value="119">Corea del Norte</div><div class="item" data-value="120">Corea del Sur</div><div class="item" data-value="43">Costa de Marfil</div><div class="item" data-value="49">Costa Rica</div><div class="item" data-value="96">Croacia</div><div class="item" data-value="50">Cuba</div><div class="item" data-value="57">Dinamarca</div><div class="item" data-value="58">Domínica</div><div class="item" data-value="61">Ecuador</div><div class="item" data-value="63">Egipto</div><div class="item" data-value="205">El Salvador</div><div class="item" data-value="2">Emiratos Árabes Unidos</div><div class="item" data-value="65">Eritrea</div><div class="item" data-value="198">Eslovaquia</div><div class="item" data-value="196">Eslovenia</div><div class="item" data-value="66">España</div><div class="item" data-value="226">Estados Unidos de América</div><div class="item" data-value="62">Estonia</div><div class="item" data-value="67">Etiopía</div><div class="item" data-value="69">Fiji</div><div class="item" data-value="173">Filipinas</div><div class="item" data-value="68">Finlandia</div><div class="item" data-value="73">Francia</div><div class="item" data-value="74">Gabón</div><div class="item" data-value="83">Gambia</div><div class="item" data-value="77">Georgia</div><div class="item" data-value="88">Georgia del Sur e Islas Sandwich del Sur</div><div class="item" data-value="80">Ghana</div><div class="item" data-value="81">Gibraltar</div><div class="item" data-value="76">Granada</div><div class="item" data-value="87">Grecia</div><div class="item" data-value="82">Groenlandia</div><div class="item" data-value="85">Guadalupe</div><div class="item" data-value="90">Guam</div><div class="item" data-value="89">Guatemala</div><div class="item" data-value="92">Guayana</div><div class="item" data-value="78">Guayana Francesa</div><div class="item" data-value="79">Guernsey</div><div class="item" data-value="84">Guinea</div><div class="item" data-value="91">Guinea-Bissau</div><div class="item" data-value="86">Guinea Ecuatorial</div><div class="item" data-value="97">Haití</div><div class="item" data-value="95">Honduras</div><div class="item" data-value="93">Hong Kong</div><div class="item" data-value="98">Hungría</div><div class="item" data-value="103">India</div><div class="item" data-value="99">Indonesia</div><div class="item" data-value="105">Irak</div><div class="item" data-value="106">Irán</div><div class="item" data-value="100">Irlanda</div><div class="item" data-value="34">Isla Bouvet</div><div class="item" data-value="102">Isla de Man</div><div class="item" data-value="107">Islandia</div><div class="item" data-value="16">Islas Áland</div><div class="item" data-value="122">Islas Caimán</div><div class="item" data-value="52">Islas Christmas</div><div class="item" data-value="39">Islas Cocos</div><div class="item" data-value="44">Islas Cook</div><div class="item" data-value="72">Islas Faroe</div><div class="item" data-value="94">Islas Heard y McDonald</div><div class="item" data-value="70">Islas Malvinas</div><div class="item" data-value="140">Islas Marshall</div><div class="item" data-value="159">Islas Norkfolk</div><div class="item" data-value="181">Islas Palaos</div><div class="item" data-value="177">Islas Pitcairn</div><div class="item" data-value="190">Islas Solomón</div><div class="item" data-value="197">Islas Svalbard y Jan Mayen</div><div class="item" data-value="208">Islas Turcas y Caicos</div><div class="item" data-value="232">Islas Vírgenes Británicas</div><div class="item" data-value="233">Islas Vírgenes de los EEUU</div><div class="item" data-value="101">Israel</div><div class="item" data-value="108">Italia</div><div class="item" data-value="110">Jamaica</div><div class="item" data-value="112">Japón</div><div class="item" data-value="109">Jersey</div><div class="item" data-value="111">Jordania</div><div class="item" data-value="123">Kazajstán</div><div class="item" data-value="113">Kenia</div><div class="item" data-value="114">Kirguistán</div><div class="item" data-value="116">Kiribati</div><div class="item" data-value="121">Kuwait</div><div class="item" data-value="124">Laos</div><div class="item" data-value="130">Lesotho</div><div class="item" data-value="133">Letonia</div><div class="item" data-value="125">Líbano</div><div class="item" data-value="129">Liberia</div><div class="item" data-value="134">Libia</div><div class="item" data-value="127">Liechtenstein</div><div class="item" data-value="131">Lituania</div><div class="item" data-value="132">Luxemburgo</div><div class="item" data-value="145">Macao</div><div class="item" data-value="141">Macedonia</div><div class="item" data-value="139">Madagascar</div><div class="item" data-value="154">Malasia</div><div class="item" data-value="152">Malawi</div><div class="item" data-value="151">Maldivas</div><div class="item" data-value="142">Mali</div><div class="item" data-value="149">Malta</div><div class="item" data-value="135">Marruecos</div><div class="item" data-value="146">Martinica</div><div class="item" data-value="150">Mauricio</div><div class="item" data-value="147">Mauritania</div><div class="item" data-value="239">Mayotte</div><div class="item" data-value="153">México</div><div class="item" data-value="71">Micronesia</div><div class="item" data-value="137">Moldova</div><div class="item" data-value="136">Mónaco</div><div class="item" data-value="144">Mongolia</div><div class="item" data-value="138">Montenegro</div><div class="item" data-value="148">Montserrat</div><div class="item" data-value="155">Mozambique</div><div class="item" data-value="143">Myanmar</div><div class="item" data-value="156">Namibia</div><div class="item" data-value="165">Nauru</div><div class="item" data-value="164">Nepal</div><div class="item" data-value="161">Nicaragua</div><div class="item" data-value="158">Níger</div><div class="item" data-value="160">Nigeria</div><div class="item" data-value="166">Niue</div><div class="item" data-value="163">Noruega</div><div class="item" data-value="157">Nueva Caledonia</div><div class="item" data-value="167">Nueva Zelanda</div><div class="item" data-value="168">Omán</div><div class="item" data-value="162">Países Bajos</div><div class="item" data-value="174">Pakistán</div><div class="item" data-value="179">Palestina</div><div class="item" data-value="169">Panamá</div><div class="item" data-value="172">Papúa Nueva Guinea</div><div class="item" data-value="182">Paraguay</div><div class="item active selected" data-value="170">Perú</div><div class="item" data-value="171">Polinesia Francesa</div><div class="item" data-value="175">Polonia</div><div class="item" data-value="180">Portugal</div><div class="item" data-value="178">Puerto Rico</div><div class="item" data-value="183">Qatar</div><div class="item" data-value="75">Reino Unido</div><div class="item" data-value="40">República Centro-Africana</div><div class="item" data-value="54">República Checa</div><div class="item" data-value="59">República Dominicana</div><div class="item" data-value="184">Reunión</div><div class="item" data-value="188">Ruanda</div><div class="item" data-value="185">Rumanía</div><div class="item" data-value="187">Rusia</div><div class="item" data-value="64">Sahara Occidental</div><div class="item" data-value="237">Samoa</div><div class="item" data-value="12">Samoa Americana</div><div class="item" data-value="27">San Bartolomé</div><div class="item" data-value="118">San Cristóbal y Nieves</div><div class="item" data-value="200">San Marino</div><div class="item" data-value="176">San Pedro y Miquelón</div><div class="item" data-value="230">San Vicente y las Granadinas</div><div class="item" data-value="195">Santa Elena</div><div class="item" data-value="126">Santa Lucía</div><div class="item" data-value="204">Santo Tomé y Príncipe</div><div class="item" data-value="201">Senegal</div><div class="item" data-value="186">Serbia y Montenegro</div><div class="item" data-value="191">Seychelles</div><div class="item" data-value="199">Sierra Leona</div><div class="item" data-value="194">Singapur</div><div class="item" data-value="206">Siria</div><div class="item" data-value="202">Somalia</div><div class="item" data-value="128">Sri Lanka</div><div class="item" data-value="207">Suazilandia</div><div class="item" data-value="240">Sudáfrica</div><div class="item" data-value="192">Sudán</div><div class="item" data-value="193">Suecia</div><div class="item" data-value="42">Suiza</div><div class="item" data-value="203">Surinam</div><div class="item" data-value="212">Tailandia</div><div class="item" data-value="223">Taiwán</div><div class="item" data-value="213">Tanzania</div><div class="item" data-value="214">Tayikistán</div><div class="item" data-value="104">Territorio Británico del Océano Índico</div><div class="item" data-value="210">Territorios Australes Franceses</div><div class="item" data-value="216">Timor-Leste</div><div class="item" data-value="211">Togo</div><div class="item" data-value="215">Tokelau</div><div class="item" data-value="219">Tonga</div><div class="item" data-value="221">Trinidad y Tobago</div><div class="item" data-value="218">Túnez</div><div class="item" data-value="217">Turkmenistán</div><div class="item" data-value="220">Turquía</div><div class="item" data-value="222">Tuvalu</div><div class="item" data-value="224">Ucrania</div><div class="item" data-value="225">Uganda</div><div class="item" data-value="227">Uruguay</div><div class="item" data-value="228">Uzbekistán</div><div class="item" data-value="235">Vanuatu</div><div class="item" data-value="231">Venezuela</div><div class="item" data-value="234">Vietnam</div><div class="item" data-value="236">Wallis y Futuna</div><div class="item" data-value="238">Yemen</div><div class="item" data-value="56">Yibuti</div></div></div>
+                    </div>
+                </div>
+                <div class="three fields">
+                    <div class="field">
+                        <label>Departamento</label>
+                        <div class="ui search selection dropdown"><select id="natural-dropdown-departamento"><option value="1">Amazonas</option><option value="2">Áncash</option><option value="3">Apurímac</option><option value="4">Arequipa</option><option value="5">Ayacucho</option><option value="6">Cajamarca</option><option value="7">Callao</option><option value="8">Cusco</option><option value="9">Huancavelica</option><option value="10">Huánuco</option><option value="11">Ica</option><option value="12">Junín</option><option value="13">La Libertad</option><option value="14">Lambayeque</option><option value="15">Lima</option><option value="16">Loreto</option><option value="17">Madre de Dios</option><option value="18">Moquegua</option><option value="19">Pasco</option><option value="20">Piura</option><option value="21">Puno</option><option value="22">San Martín</option><option value="23">Tacna</option><option value="24">Tumbes</option><option value="25">Ucayali</option></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione un departamento</div><div class="menu" tabindex="-1"><div class="item" data-value="1">Amazonas</div><div class="item" data-value="2">Áncash</div><div class="item" data-value="3">Apurímac</div><div class="item" data-value="4">Arequipa</div><div class="item" data-value="5">Ayacucho</div><div class="item" data-value="6">Cajamarca</div><div class="item" data-value="7">Callao</div><div class="item" data-value="8">Cusco</div><div class="item" data-value="9">Huancavelica</div><div class="item" data-value="10">Huánuco</div><div class="item" data-value="11">Ica</div><div class="item" data-value="12">Junín</div><div class="item" data-value="13">La Libertad</div><div class="item" data-value="14">Lambayeque</div><div class="item" data-value="15">Lima</div><div class="item" data-value="16">Loreto</div><div class="item" data-value="17">Madre de Dios</div><div class="item" data-value="18">Moquegua</div><div class="item" data-value="19">Pasco</div><div class="item" data-value="20">Piura</div><div class="item" data-value="21">Puno</div><div class="item" data-value="22">San Martín</div><div class="item" data-value="23">Tacna</div><div class="item" data-value="24">Tumbes</div><div class="item" data-value="25">Ucayali</div></div></div>
+                    </div>
+                    <div class="field">
+                        <label>Provincia</label>
+                        <div class="ui search selection dropdown"><select id="natural-dropdown-provincia">
+                            <option value="" selected="">Seleccione una provincia</option>
+                        </select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione una provincia</div><div class="menu" tabindex="-1"></div></div>
+                    </div>
+                    <div class="field">
+                        <label>Distrito</label>
+                        <div class="ui search selection dropdown"><select id="natural-dropdown-ubigeo" name="ubigeo">
+                            <option value="" selected="">Seleccione un distrito</option>
+                        </select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione un distrito</div><div class="menu" tabindex="-1"></div></div>
+                    </div>
+                </div>
+                <div class="three fields">
+                    <div class="field">
+                        <label>Sexo</label>
+                        <div class="ui search selection dropdown"><select name="sexo" id="natural-dropdown-sexo"><option value="1">Masculino</option><option value="2">Femenino</option><option value="3">Ambos</option><option value="4">Indeterminado</option></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione un sexo</div><div class="menu" tabindex="-1"><div class="item" data-value="1">Masculino</div><div class="item" data-value="2">Femenino</div><div class="item" data-value="3">Ambos</div><div class="item" data-value="4">Indeterminado</div></div></div>
+                    </div>
+                    <div class="field">
+                        <label>Estado Civil</label>
+                        <div class="ui search selection dropdown"><select name="estadoCivil" id="natural-dropdown-estado-civil"><option value="1">Soltero</option><option value="2">Casado</option><option value="3">Divorciado</option><option value="4">Viudo</option></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione un estado civil</div><div class="menu" tabindex="-1"><div class="item" data-value="1">Soltero</div><div class="item" data-value="2">Casado</div><div class="item" data-value="3">Divorciado</div><div class="item" data-value="4">Viudo</div></div></div>
+                    </div>
+                    <div class="field">
+                        <label>Fecha Nacimiento</label>
+                        <div class="ui calendar" id="calendar-fecha-nacimiento">
+                            <div class="ui input left icon"><div class="ui popup calendar"><table class="ui celled center aligned unstackable table seven column day"><thead><tr><th colspan="7"><span class="link">Junio 2026</span><span class="prev link"><i class="chevron left icon"></i></span><span class="next link"><i class="chevron right icon"></i></span></th></tr><tr><th>D</th><th>L</th><th>M</th><th>M</th><th>J</th><th>V</th><th>S</th></tr></thead><tbody><tr><td class="link adjacent disabled">31</td><td class="link">1</td><td class="link">2</td><td class="link">3</td><td class="link">4</td><td class="link">5</td><td class="link">6</td></tr><tr><td class="link">7</td><td class="link">8</td><td class="link">9</td><td class="link">10</td><td class="link today focus">11</td><td class="link">12</td><td class="link">13</td></tr><tr><td class="link">14</td><td class="link">15</td><td class="link">16</td><td class="link">17</td><td class="link">18</td><td class="link">19</td><td class="link">20</td></tr><tr><td class="link">21</td><td class="link">22</td><td class="link">23</td><td class="link">24</td><td class="link">25</td><td class="link">26</td><td class="link">27</td></tr><tr><td class="link">28</td><td class="link">29</td><td class="link">30</td><td class="link adjacent disabled">1</td><td class="link adjacent disabled">2</td><td class="link adjacent disabled">3</td><td class="link adjacent disabled">4</td></tr><tr><td class="link adjacent disabled">5</td><td class="link adjacent disabled">6</td><td class="link adjacent disabled">7</td><td class="link adjacent disabled">8</td><td class="link adjacent disabled">9</td><td class="link adjacent disabled">10</td><td class="link adjacent disabled">11</td></tr></tbody></table></div>
+                                <i class="calendar icon"></i>
+                                <input type="text" placeholder="Fecha de Nacimiento" name="fechaNacimiento">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="three fields">
+                    <div class="field">
+                        <label>Email</label>
+                        <input type="text" name="email" placeholder="Correo Electronico">
+                    </div>
+                    <div class="field">
+                        <label>Teléfono Fijo</label>
+                        <input type="text" name="telefonoFijo" placeholder="Teléfono Fijo">
+                    </div>
+                    <div class="field">
+                        <label>Teléfono Celular</label>
+                        <input type="text" name="telefonoCel" placeholder="Teléfono Celular">
+                    </div>
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="twelve wide field"></div>
+                <div class="four wide field">
+                    <div class="ui button-field fluid positive button" id="button-natural">Crear Cliente</div>
+                </div>
+            </div>
+        </div>
+        <div class="ui form" id="form-juridica" style="display: none;">
+            <div id="juridica-required">
+                <div class="required field">
+                    <label>Razón Social</label>
+                    <input type="text" name="razonSocial" placeholder="Razón Social">
+                </div>
+                <div class="three fields">
+                    <div class="required field">
+                        <label>Zona</label>
+                        <div class="ui search selection dropdown"><select name="zona" id="juridica-dropdown-zona"><option value="5">DISTRIBUIDORES</option><option value="36">FILETEO</option><option value="18">ICA A</option><option value="19">ICA B</option><option value="20">ICA C</option><option value="4">ICA CENTRO A</option><option value="6">ICA CENTRO B</option><option value="8">ICA CENTRO C</option><option value="9">ICA CENTRO D</option><option value="21">ICA D</option><option value="22">ICA E</option><option value="23">ICA F</option><option value="24">ICA G</option><option value="25">ICA H</option><option value="26">ICA I</option><option value="27">ICA J</option><option value="35">ICA K</option><option value="37">ICA L</option><option value="38">ICA M</option><option value="39">ICA N</option><option value="15">ICA NORTE A</option><option value="14">ICA NORTE B</option><option value="16">ICA NORTE C</option><option value="17">ICA NORTE D</option><option value="40">ICA O</option><option value="41">ICA P</option><option value="7">ICA SUR A</option><option value="11">LA TINGUIÑA</option><option value="28">MARCONA</option><option value="32">MARSHMALLOW ANGEL</option><option value="12">MERCADOS A</option><option value="30">MERCADOS B</option><option value="31">MERCADOS C</option><option value="33">MERCADOS E</option><option value="34">MERCADOS F</option><option value="29">PALPA</option><option value="2">PARCONA A</option><option value="10">PARCONA B</option><option value="3">SUBTANJALLA</option><option value="1">TINGUIÑA</option></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione una zona</div><div class="menu" tabindex="-1"><div class="item" data-value="5">DISTRIBUIDORES</div><div class="item" data-value="36">FILETEO</div><div class="item" data-value="18">ICA A</div><div class="item" data-value="19">ICA B</div><div class="item" data-value="20">ICA C</div><div class="item" data-value="4">ICA CENTRO A</div><div class="item" data-value="6">ICA CENTRO B</div><div class="item" data-value="8">ICA CENTRO C</div><div class="item" data-value="9">ICA CENTRO D</div><div class="item" data-value="21">ICA D</div><div class="item" data-value="22">ICA E</div><div class="item" data-value="23">ICA F</div><div class="item" data-value="24">ICA G</div><div class="item" data-value="25">ICA H</div><div class="item" data-value="26">ICA I</div><div class="item" data-value="27">ICA J</div><div class="item" data-value="35">ICA K</div><div class="item" data-value="37">ICA L</div><div class="item" data-value="38">ICA M</div><div class="item" data-value="39">ICA N</div><div class="item" data-value="15">ICA NORTE A</div><div class="item" data-value="14">ICA NORTE B</div><div class="item" data-value="16">ICA NORTE C</div><div class="item" data-value="17">ICA NORTE D</div><div class="item" data-value="40">ICA O</div><div class="item" data-value="41">ICA P</div><div class="item" data-value="7">ICA SUR A</div><div class="item" data-value="11">LA TINGUIÑA</div><div class="item" data-value="28">MARCONA</div><div class="item" data-value="32">MARSHMALLOW ANGEL</div><div class="item" data-value="12">MERCADOS A</div><div class="item" data-value="30">MERCADOS B</div><div class="item" data-value="31">MERCADOS C</div><div class="item" data-value="33">MERCADOS E</div><div class="item" data-value="34">MERCADOS F</div><div class="item" data-value="29">PALPA</div><div class="item" data-value="2">PARCONA A</div><div class="item" data-value="10">PARCONA B</div><div class="item" data-value="3">SUBTANJALLA</div><div class="item" data-value="1">TINGUIÑA</div></div></div>
+                    </div>
+                    <div class="required field">
+                        <label>Ruta</label>
+                        <div class="ui search selection dropdown"><select name="ruta" id="juridica-dropdown-ruta">
+                            <option value="" selected="">Seleccione una ruta</option>
+                        </select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione una ruta</div><div class="menu" tabindex="-1"></div></div>
+                    </div>
+                    <div class="required field">
+                        <label>Secuencia</label>
+                        <input type="number" name="secuencia" placeholder="Secuencia">
+                    </div>
+                </div>
+                <div class="three fields">
+                    <div class="required field">
+                        <label for="juridica-dropdown-documentos">Documento</label>
+                        <div class="ui left labeled input">
+                            <div class="ui scrolling dropdown label" id="juridica-dropdown-documentos" tabindex="0">
+                                <div class="text">RUC</div>
+                                <i class="dropdown icon"></i>
+                            <div class="menu" tabindex="-1"><div class="item" data-value="3">CEXT</div><div class="item" data-value="6">CDIP</div><div class="item" data-value="2">DNI</div><div class="item" data-value="7">IRES</div><div class="item" data-value="1">NN</div><div class="item" data-value="9">TXTRIB</div><div class="item" data-value="5">PASS</div><div class="item active selected" data-value="4">RUC</div><div class="item" data-value="10">TAM</div><div class="item" data-value="8">TXDOC</div></div></div>
+                            <input type="text" name="documentoNumero" placeholder="Número">
+                        </div>
+                    </div>
+                    <div class="required field">
+                        <label>Dia de Atención</label>
+                        <div class="ui search selection dropdown"><select name="diaAtencion" id="juridica-dropdown-dia"><option value="1">Lunes</option><option value="2">Martes</option><option value="3">Miercoles</option><option value="4">Jueves</option><option value="5">Viernes</option><option value="6">Sabado</option></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="text">Lunes</div><div class="menu" tabindex="-1"><div class="item active selected" data-value="1">Lunes</div><div class="item" data-value="2">Martes</div><div class="item" data-value="3">Miercoles</div><div class="item" data-value="4">Jueves</div><div class="item" data-value="5">Viernes</div><div class="item" data-value="6">Sabado</div></div></div>
+                    </div>
+                    <div class="required field">
+                        <label>Tipo de Negocio</label>
+                        <div class="ui search selection dropdown"><select name="clienteTipoNegocio" id="juridica-dropdown-negocio"><option value="4">Auto Servicio</option><option value="6">Mayorista</option><option value="3">Minimarket</option><option value="7">Minimayorista</option><option value="1">Quiosco</option><option value="5">Restaurante</option><option value="2">Tienda</option></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione un negocio</div><div class="menu" tabindex="-1"><div class="item" data-value="4">Auto Servicio</div><div class="item" data-value="6">Mayorista</div><div class="item" data-value="3">Minimarket</div><div class="item" data-value="7">Minimayorista</div><div class="item" data-value="1">Quiosco</div><div class="item" data-value="5">Restaurante</div><div class="item" data-value="2">Tienda</div></div></div>
+                    </div>
+                </div>
+                <div class="required field">
+                    <label>Dirección</label>
+                    <input type="text" name="direccion" placeholder="Dirección">
+                </div>
+            </div>
+            <div id="juridica-optional" style="display: none;">
+                <div class="two fields">
+                    <div class="eleven wide field">
+                        <label>Referencia</label>
+                        <input type="text" name="referencia" placeholder="Referencia">
+                    </div>
+                    <div class="five wide field">
+                        <label>País</label>
+                        <div class="ui search selection dropdown"><select name="pais" id="juridica-dropdown-pais"><option value="3">Afganistán</option><option value="6">Albania</option><option value="55">Alemania</option><option value="1">Andorra</option><option value="9">Angola</option><option value="5">Anguila</option><option value="10">Antártida</option><option value="4">Antigua y Barbuda</option><option value="8">Antillas Neerlandesas</option><option value="189">Arabia Saudita</option><option value="60">Argel</option><option value="11">Argentina</option><option value="7">Armenia</option><option value="15">Aruba</option><option value="14">Australia</option><option value="13">Austria</option><option value="17">Azerbaiyán</option><option value="32">Bahamas</option><option value="24">Bahréin</option><option value="20">Bangladesh</option><option value="19">Barbados</option><option value="36">Belarús</option><option value="21">Bélgica</option><option value="37">Belice</option><option value="26">Benin</option><option value="28">Bermudas</option><option value="33">Bhután</option><option value="30">Bolivia</option><option value="18">Bosnia y Herzegovina</option><option value="35">Botsuana</option><option value="31">Brasil</option><option value="29">Brunéi</option><option value="23">Bulgaria</option><option value="22">Burkina Faso</option><option value="25">Burundi</option><option value="51">Cabo Verde</option><option value="115">Camboya</option><option value="46">Camerún</option><option value="38">Canadá</option><option value="209">Chad</option><option value="45">Chile</option><option value="47">China</option><option value="53">Chipre</option><option value="229">Ciudad del Vaticano</option><option value="48">Colombia</option><option value="117">Comoros</option><option value="41">Congo</option><option value="119">Corea del Norte</option><option value="120">Corea del Sur</option><option value="43">Costa de Marfil</option><option value="49">Costa Rica</option><option value="96">Croacia</option><option value="50">Cuba</option><option value="57">Dinamarca</option><option value="58">Domínica</option><option value="61">Ecuador</option><option value="63">Egipto</option><option value="205">El Salvador</option><option value="2">Emiratos Árabes Unidos</option><option value="65">Eritrea</option><option value="198">Eslovaquia</option><option value="196">Eslovenia</option><option value="66">España</option><option value="226">Estados Unidos de América</option><option value="62">Estonia</option><option value="67">Etiopía</option><option value="69">Fiji</option><option value="173">Filipinas</option><option value="68">Finlandia</option><option value="73">Francia</option><option value="74">Gabón</option><option value="83">Gambia</option><option value="77">Georgia</option><option value="88">Georgia del Sur e Islas Sandwich del Sur</option><option value="80">Ghana</option><option value="81">Gibraltar</option><option value="76">Granada</option><option value="87">Grecia</option><option value="82">Groenlandia</option><option value="85">Guadalupe</option><option value="90">Guam</option><option value="89">Guatemala</option><option value="92">Guayana</option><option value="78">Guayana Francesa</option><option value="79">Guernsey</option><option value="84">Guinea</option><option value="91">Guinea-Bissau</option><option value="86">Guinea Ecuatorial</option><option value="97">Haití</option><option value="95">Honduras</option><option value="93">Hong Kong</option><option value="98">Hungría</option><option value="103">India</option><option value="99">Indonesia</option><option value="105">Irak</option><option value="106">Irán</option><option value="100">Irlanda</option><option value="34">Isla Bouvet</option><option value="102">Isla de Man</option><option value="107">Islandia</option><option value="16">Islas Áland</option><option value="122">Islas Caimán</option><option value="52">Islas Christmas</option><option value="39">Islas Cocos</option><option value="44">Islas Cook</option><option value="72">Islas Faroe</option><option value="94">Islas Heard y McDonald</option><option value="70">Islas Malvinas</option><option value="140">Islas Marshall</option><option value="159">Islas Norkfolk</option><option value="181">Islas Palaos</option><option value="177">Islas Pitcairn</option><option value="190">Islas Solomón</option><option value="197">Islas Svalbard y Jan Mayen</option><option value="208">Islas Turcas y Caicos</option><option value="232">Islas Vírgenes Británicas</option><option value="233">Islas Vírgenes de los EEUU</option><option value="101">Israel</option><option value="108">Italia</option><option value="110">Jamaica</option><option value="112">Japón</option><option value="109">Jersey</option><option value="111">Jordania</option><option value="123">Kazajstán</option><option value="113">Kenia</option><option value="114">Kirguistán</option><option value="116">Kiribati</option><option value="121">Kuwait</option><option value="124">Laos</option><option value="130">Lesotho</option><option value="133">Letonia</option><option value="125">Líbano</option><option value="129">Liberia</option><option value="134">Libia</option><option value="127">Liechtenstein</option><option value="131">Lituania</option><option value="132">Luxemburgo</option><option value="145">Macao</option><option value="141">Macedonia</option><option value="139">Madagascar</option><option value="154">Malasia</option><option value="152">Malawi</option><option value="151">Maldivas</option><option value="142">Mali</option><option value="149">Malta</option><option value="135">Marruecos</option><option value="146">Martinica</option><option value="150">Mauricio</option><option value="147">Mauritania</option><option value="239">Mayotte</option><option value="153">México</option><option value="71">Micronesia</option><option value="137">Moldova</option><option value="136">Mónaco</option><option value="144">Mongolia</option><option value="138">Montenegro</option><option value="148">Montserrat</option><option value="155">Mozambique</option><option value="143">Myanmar</option><option value="156">Namibia</option><option value="165">Nauru</option><option value="164">Nepal</option><option value="161">Nicaragua</option><option value="158">Níger</option><option value="160">Nigeria</option><option value="166">Niue</option><option value="163">Noruega</option><option value="157">Nueva Caledonia</option><option value="167">Nueva Zelanda</option><option value="168">Omán</option><option value="162">Países Bajos</option><option value="174">Pakistán</option><option value="179">Palestina</option><option value="169">Panamá</option><option value="172">Papúa Nueva Guinea</option><option value="182">Paraguay</option><option value="170">Perú</option><option value="171">Polinesia Francesa</option><option value="175">Polonia</option><option value="180">Portugal</option><option value="178">Puerto Rico</option><option value="183">Qatar</option><option value="75">Reino Unido</option><option value="40">República Centro-Africana</option><option value="54">República Checa</option><option value="59">República Dominicana</option><option value="184">Reunión</option><option value="188">Ruanda</option><option value="185">Rumanía</option><option value="187">Rusia</option><option value="64">Sahara Occidental</option><option value="237">Samoa</option><option value="12">Samoa Americana</option><option value="27">San Bartolomé</option><option value="118">San Cristóbal y Nieves</option><option value="200">San Marino</option><option value="176">San Pedro y Miquelón</option><option value="230">San Vicente y las Granadinas</option><option value="195">Santa Elena</option><option value="126">Santa Lucía</option><option value="204">Santo Tomé y Príncipe</option><option value="201">Senegal</option><option value="186">Serbia y Montenegro</option><option value="191">Seychelles</option><option value="199">Sierra Leona</option><option value="194">Singapur</option><option value="206">Siria</option><option value="202">Somalia</option><option value="128">Sri Lanka</option><option value="207">Suazilandia</option><option value="240">Sudáfrica</option><option value="192">Sudán</option><option value="193">Suecia</option><option value="42">Suiza</option><option value="203">Surinam</option><option value="212">Tailandia</option><option value="223">Taiwán</option><option value="213">Tanzania</option><option value="214">Tayikistán</option><option value="104">Territorio Británico del Océano Índico</option><option value="210">Territorios Australes Franceses</option><option value="216">Timor-Leste</option><option value="211">Togo</option><option value="215">Tokelau</option><option value="219">Tonga</option><option value="221">Trinidad y Tobago</option><option value="218">Túnez</option><option value="217">Turkmenistán</option><option value="220">Turquía</option><option value="222">Tuvalu</option><option value="224">Ucrania</option><option value="225">Uganda</option><option value="227">Uruguay</option><option value="228">Uzbekistán</option><option value="235">Vanuatu</option><option value="231">Venezuela</option><option value="234">Vietnam</option><option value="236">Wallis y Futuna</option><option value="238">Yemen</option><option value="56">Yibuti</option></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="text">Perú</div><div class="menu" tabindex="-1"><div class="item" data-value="3">Afganistán</div><div class="item" data-value="6">Albania</div><div class="item" data-value="55">Alemania</div><div class="item" data-value="1">Andorra</div><div class="item" data-value="9">Angola</div><div class="item" data-value="5">Anguila</div><div class="item" data-value="10">Antártida</div><div class="item" data-value="4">Antigua y Barbuda</div><div class="item" data-value="8">Antillas Neerlandesas</div><div class="item" data-value="189">Arabia Saudita</div><div class="item" data-value="60">Argel</div><div class="item" data-value="11">Argentina</div><div class="item" data-value="7">Armenia</div><div class="item" data-value="15">Aruba</div><div class="item" data-value="14">Australia</div><div class="item" data-value="13">Austria</div><div class="item" data-value="17">Azerbaiyán</div><div class="item" data-value="32">Bahamas</div><div class="item" data-value="24">Bahréin</div><div class="item" data-value="20">Bangladesh</div><div class="item" data-value="19">Barbados</div><div class="item" data-value="36">Belarús</div><div class="item" data-value="21">Bélgica</div><div class="item" data-value="37">Belice</div><div class="item" data-value="26">Benin</div><div class="item" data-value="28">Bermudas</div><div class="item" data-value="33">Bhután</div><div class="item" data-value="30">Bolivia</div><div class="item" data-value="18">Bosnia y Herzegovina</div><div class="item" data-value="35">Botsuana</div><div class="item" data-value="31">Brasil</div><div class="item" data-value="29">Brunéi</div><div class="item" data-value="23">Bulgaria</div><div class="item" data-value="22">Burkina Faso</div><div class="item" data-value="25">Burundi</div><div class="item" data-value="51">Cabo Verde</div><div class="item" data-value="115">Camboya</div><div class="item" data-value="46">Camerún</div><div class="item" data-value="38">Canadá</div><div class="item" data-value="209">Chad</div><div class="item" data-value="45">Chile</div><div class="item" data-value="47">China</div><div class="item" data-value="53">Chipre</div><div class="item" data-value="229">Ciudad del Vaticano</div><div class="item" data-value="48">Colombia</div><div class="item" data-value="117">Comoros</div><div class="item" data-value="41">Congo</div><div class="item" data-value="119">Corea del Norte</div><div class="item" data-value="120">Corea del Sur</div><div class="item" data-value="43">Costa de Marfil</div><div class="item" data-value="49">Costa Rica</div><div class="item" data-value="96">Croacia</div><div class="item" data-value="50">Cuba</div><div class="item" data-value="57">Dinamarca</div><div class="item" data-value="58">Domínica</div><div class="item" data-value="61">Ecuador</div><div class="item" data-value="63">Egipto</div><div class="item" data-value="205">El Salvador</div><div class="item" data-value="2">Emiratos Árabes Unidos</div><div class="item" data-value="65">Eritrea</div><div class="item" data-value="198">Eslovaquia</div><div class="item" data-value="196">Eslovenia</div><div class="item" data-value="66">España</div><div class="item" data-value="226">Estados Unidos de América</div><div class="item" data-value="62">Estonia</div><div class="item" data-value="67">Etiopía</div><div class="item" data-value="69">Fiji</div><div class="item" data-value="173">Filipinas</div><div class="item" data-value="68">Finlandia</div><div class="item" data-value="73">Francia</div><div class="item" data-value="74">Gabón</div><div class="item" data-value="83">Gambia</div><div class="item" data-value="77">Georgia</div><div class="item" data-value="88">Georgia del Sur e Islas Sandwich del Sur</div><div class="item" data-value="80">Ghana</div><div class="item" data-value="81">Gibraltar</div><div class="item" data-value="76">Granada</div><div class="item" data-value="87">Grecia</div><div class="item" data-value="82">Groenlandia</div><div class="item" data-value="85">Guadalupe</div><div class="item" data-value="90">Guam</div><div class="item" data-value="89">Guatemala</div><div class="item" data-value="92">Guayana</div><div class="item" data-value="78">Guayana Francesa</div><div class="item" data-value="79">Guernsey</div><div class="item" data-value="84">Guinea</div><div class="item" data-value="91">Guinea-Bissau</div><div class="item" data-value="86">Guinea Ecuatorial</div><div class="item" data-value="97">Haití</div><div class="item" data-value="95">Honduras</div><div class="item" data-value="93">Hong Kong</div><div class="item" data-value="98">Hungría</div><div class="item" data-value="103">India</div><div class="item" data-value="99">Indonesia</div><div class="item" data-value="105">Irak</div><div class="item" data-value="106">Irán</div><div class="item" data-value="100">Irlanda</div><div class="item" data-value="34">Isla Bouvet</div><div class="item" data-value="102">Isla de Man</div><div class="item" data-value="107">Islandia</div><div class="item" data-value="16">Islas Áland</div><div class="item" data-value="122">Islas Caimán</div><div class="item" data-value="52">Islas Christmas</div><div class="item" data-value="39">Islas Cocos</div><div class="item" data-value="44">Islas Cook</div><div class="item" data-value="72">Islas Faroe</div><div class="item" data-value="94">Islas Heard y McDonald</div><div class="item" data-value="70">Islas Malvinas</div><div class="item" data-value="140">Islas Marshall</div><div class="item" data-value="159">Islas Norkfolk</div><div class="item" data-value="181">Islas Palaos</div><div class="item" data-value="177">Islas Pitcairn</div><div class="item" data-value="190">Islas Solomón</div><div class="item" data-value="197">Islas Svalbard y Jan Mayen</div><div class="item" data-value="208">Islas Turcas y Caicos</div><div class="item" data-value="232">Islas Vírgenes Británicas</div><div class="item" data-value="233">Islas Vírgenes de los EEUU</div><div class="item" data-value="101">Israel</div><div class="item" data-value="108">Italia</div><div class="item" data-value="110">Jamaica</div><div class="item" data-value="112">Japón</div><div class="item" data-value="109">Jersey</div><div class="item" data-value="111">Jordania</div><div class="item" data-value="123">Kazajstán</div><div class="item" data-value="113">Kenia</div><div class="item" data-value="114">Kirguistán</div><div class="item" data-value="116">Kiribati</div><div class="item" data-value="121">Kuwait</div><div class="item" data-value="124">Laos</div><div class="item" data-value="130">Lesotho</div><div class="item" data-value="133">Letonia</div><div class="item" data-value="125">Líbano</div><div class="item" data-value="129">Liberia</div><div class="item" data-value="134">Libia</div><div class="item" data-value="127">Liechtenstein</div><div class="item" data-value="131">Lituania</div><div class="item" data-value="132">Luxemburgo</div><div class="item" data-value="145">Macao</div><div class="item" data-value="141">Macedonia</div><div class="item" data-value="139">Madagascar</div><div class="item" data-value="154">Malasia</div><div class="item" data-value="152">Malawi</div><div class="item" data-value="151">Maldivas</div><div class="item" data-value="142">Mali</div><div class="item" data-value="149">Malta</div><div class="item" data-value="135">Marruecos</div><div class="item" data-value="146">Martinica</div><div class="item" data-value="150">Mauricio</div><div class="item" data-value="147">Mauritania</div><div class="item" data-value="239">Mayotte</div><div class="item" data-value="153">México</div><div class="item" data-value="71">Micronesia</div><div class="item" data-value="137">Moldova</div><div class="item" data-value="136">Mónaco</div><div class="item" data-value="144">Mongolia</div><div class="item" data-value="138">Montenegro</div><div class="item" data-value="148">Montserrat</div><div class="item" data-value="155">Mozambique</div><div class="item" data-value="143">Myanmar</div><div class="item" data-value="156">Namibia</div><div class="item" data-value="165">Nauru</div><div class="item" data-value="164">Nepal</div><div class="item" data-value="161">Nicaragua</div><div class="item" data-value="158">Níger</div><div class="item" data-value="160">Nigeria</div><div class="item" data-value="166">Niue</div><div class="item" data-value="163">Noruega</div><div class="item" data-value="157">Nueva Caledonia</div><div class="item" data-value="167">Nueva Zelanda</div><div class="item" data-value="168">Omán</div><div class="item" data-value="162">Países Bajos</div><div class="item" data-value="174">Pakistán</div><div class="item" data-value="179">Palestina</div><div class="item" data-value="169">Panamá</div><div class="item" data-value="172">Papúa Nueva Guinea</div><div class="item" data-value="182">Paraguay</div><div class="item active selected" data-value="170">Perú</div><div class="item" data-value="171">Polinesia Francesa</div><div class="item" data-value="175">Polonia</div><div class="item" data-value="180">Portugal</div><div class="item" data-value="178">Puerto Rico</div><div class="item" data-value="183">Qatar</div><div class="item" data-value="75">Reino Unido</div><div class="item" data-value="40">República Centro-Africana</div><div class="item" data-value="54">República Checa</div><div class="item" data-value="59">República Dominicana</div><div class="item" data-value="184">Reunión</div><div class="item" data-value="188">Ruanda</div><div class="item" data-value="185">Rumanía</div><div class="item" data-value="187">Rusia</div><div class="item" data-value="64">Sahara Occidental</div><div class="item" data-value="237">Samoa</div><div class="item" data-value="12">Samoa Americana</div><div class="item" data-value="27">San Bartolomé</div><div class="item" data-value="118">San Cristóbal y Nieves</div><div class="item" data-value="200">San Marino</div><div class="item" data-value="176">San Pedro y Miquelón</div><div class="item" data-value="230">San Vicente y las Granadinas</div><div class="item" data-value="195">Santa Elena</div><div class="item" data-value="126">Santa Lucía</div><div class="item" data-value="204">Santo Tomé y Príncipe</div><div class="item" data-value="201">Senegal</div><div class="item" data-value="186">Serbia y Montenegro</div><div class="item" data-value="191">Seychelles</div><div class="item" data-value="199">Sierra Leona</div><div class="item" data-value="194">Singapur</div><div class="item" data-value="206">Siria</div><div class="item" data-value="202">Somalia</div><div class="item" data-value="128">Sri Lanka</div><div class="item" data-value="207">Suazilandia</div><div class="item" data-value="240">Sudáfrica</div><div class="item" data-value="192">Sudán</div><div class="item" data-value="193">Suecia</div><div class="item" data-value="42">Suiza</div><div class="item" data-value="203">Surinam</div><div class="item" data-value="212">Tailandia</div><div class="item" data-value="223">Taiwán</div><div class="item" data-value="213">Tanzania</div><div class="item" data-value="214">Tayikistán</div><div class="item" data-value="104">Territorio Británico del Océano Índico</div><div class="item" data-value="210">Territorios Australes Franceses</div><div class="item" data-value="216">Timor-Leste</div><div class="item" data-value="211">Togo</div><div class="item" data-value="215">Tokelau</div><div class="item" data-value="219">Tonga</div><div class="item" data-value="221">Trinidad y Tobago</div><div class="item" data-value="218">Túnez</div><div class="item" data-value="217">Turkmenistán</div><div class="item" data-value="220">Turquía</div><div class="item" data-value="222">Tuvalu</div><div class="item" data-value="224">Ucrania</div><div class="item" data-value="225">Uganda</div><div class="item" data-value="227">Uruguay</div><div class="item" data-value="228">Uzbekistán</div><div class="item" data-value="235">Vanuatu</div><div class="item" data-value="231">Venezuela</div><div class="item" data-value="234">Vietnam</div><div class="item" data-value="236">Wallis y Futuna</div><div class="item" data-value="238">Yemen</div><div class="item" data-value="56">Yibuti</div></div></div>
+                    </div>
+                </div>
+                <div class="three fields">
+                    <div class="field">
+                        <label>Departamento</label>
+                        <div class="ui search selection dropdown"><select id="juridica-dropdown-departamento"><option value="1">Amazonas</option><option value="2">Áncash</option><option value="3">Apurímac</option><option value="4">Arequipa</option><option value="5">Ayacucho</option><option value="6">Cajamarca</option><option value="7">Callao</option><option value="8">Cusco</option><option value="9">Huancavelica</option><option value="10">Huánuco</option><option value="11">Ica</option><option value="12">Junín</option><option value="13">La Libertad</option><option value="14">Lambayeque</option><option value="15">Lima</option><option value="16">Loreto</option><option value="17">Madre de Dios</option><option value="18">Moquegua</option><option value="19">Pasco</option><option value="20">Piura</option><option value="21">Puno</option><option value="22">San Martín</option><option value="23">Tacna</option><option value="24">Tumbes</option><option value="25">Ucayali</option></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione un departamento</div><div class="menu" tabindex="-1"><div class="item" data-value="1">Amazonas</div><div class="item" data-value="2">Áncash</div><div class="item" data-value="3">Apurímac</div><div class="item" data-value="4">Arequipa</div><div class="item" data-value="5">Ayacucho</div><div class="item" data-value="6">Cajamarca</div><div class="item" data-value="7">Callao</div><div class="item" data-value="8">Cusco</div><div class="item" data-value="9">Huancavelica</div><div class="item" data-value="10">Huánuco</div><div class="item" data-value="11">Ica</div><div class="item" data-value="12">Junín</div><div class="item" data-value="13">La Libertad</div><div class="item" data-value="14">Lambayeque</div><div class="item" data-value="15">Lima</div><div class="item" data-value="16">Loreto</div><div class="item" data-value="17">Madre de Dios</div><div class="item" data-value="18">Moquegua</div><div class="item" data-value="19">Pasco</div><div class="item" data-value="20">Piura</div><div class="item" data-value="21">Puno</div><div class="item" data-value="22">San Martín</div><div class="item" data-value="23">Tacna</div><div class="item" data-value="24">Tumbes</div><div class="item" data-value="25">Ucayali</div></div></div>
+                    </div>
+                    <div class="field">
+                        <label>Provincia</label>
+                        <div class="ui search selection dropdown"><select id="juridica-dropdown-provincia">
+                            <option value="" selected="">Seleccione una provincia</option>
+                        </select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione una provincia</div><div class="menu" tabindex="-1"></div></div>
+                    </div>
+                    <div class="field">
+                        <label>Distrito</label>
+                        <div class="ui search selection dropdown"><select id="juridica-dropdown-ubigeo" name="ubigeo">
+                            <option value="" selected="">Seleccione un distrito</option>
+                        </select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione un distrito</div><div class="menu" tabindex="-1"></div></div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Nombre Comercial</label>
+                    <input type="text" name="nombreComercial" placeholder="Nombre Comercial">
+                </div>
+                <div class="three fields">
+                    <div class="field">
+                        <label>Email</label>
+                        <input type="text" name="email" placeholder="Correo Electrónico">
+                    </div>
+                    <div class="field">
+                        <label>Teléfono Fijo</label>
+                        <input type="text" name="telefonoFijo" placeholder="Teléfono Fijo">
+                    </div>
+                    <div class="field">
+                        <label>Teléfono Celular</label>
+                        <input type="text" name="telefonoCel" placeholder="Teléfono Celular">
+                    </div>
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="twelve wide field"></div>
+                <div class="four wide field">
+                    <div class="ui button-field fluid positive button" id="button-juridica" style="display: none;">Crear Cliente</div>
+                </div>
+            </div>
+        </div>
+        
+        
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui page dimmer transition hidden" id="waitingModal">
+            <div class="content">
+                <div class="ui huge indeterminate text loader">
+                    <p id="waitingText">Cargando resultados</p>
+                </div>
+            </div>
+        </div>
+        <div id="uiAlert" class="ui-alert-content ui-alert-content-top-center"></div>
+    
+
+        
+        <script>
+            var path = '/app';
+            var lpre = 'LISTA DE PRECIO M1P';
+            var almc = 'BROCKER MESA 1';
+        </script>
+        <script>
+            var csrf = false;
+        </script>
+        <script src="/app/static/resources/js/page.js"></script>
+        <script src="/app/static/resources/js/clases.js"></script>
+        <script src="/app/static/resources/js/catalogo.js"></script>        
+        <script src="/app/resources/clientes/crear-cliente/index.js"></script><div class="ui dimmer modals page"><div class="ui mini modal" id="modal-dni">
+    <i class="close icon"></i>
+    <div class="header">
+        Documento ya registrado
+    </div>
+    <div class="content" id="content-dni">
+        
+    </div>
+    <div class="actions">
+        <div class="ui button cancel">Cancelar</div>
+        <div class="ui button green ok">Crear Cliente</div>
+    </div>
+</div><div class="ui mini modal" id="modal-ruc">
+    <i class="close icon"></i>
+    <div class="header">
+        Documento ya registrado
+    </div>
+    <div class="content" id="content-ruc">
+        
+    </div>
+    <div class="actions">
+        <div class="ui button cancel">Cancelar</div>
+        <div class="ui button green ok">Crear Cliente</div>
+    </div>
+</div></div>
+    
+</body></html>

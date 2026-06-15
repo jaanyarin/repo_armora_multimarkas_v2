@@ -1,0 +1,186 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Nombre",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Nombre",
+        "Acciones"
+      ],
+      [
+        "",
+        "DISTRIBUIDORES",
+        ""
+      ],
+      [
+        "",
+        "FILETEO",
+        ""
+      ],
+      [
+        "",
+        "ICA A",
+        ""
+      ],
+      [
+        "",
+        "ICA B",
+        ""
+      ],
+      [
+        "",
+        "ICA C",
+        ""
+      ],
+      [
+        "",
+        "ICA CENTRO A",
+        ""
+      ],
+      [
+        "",
+        "ICA CENTRO B",
+        ""
+      ],
+      [
+        "",
+        "ICA CENTRO C",
+        ""
+      ],
+      [
+        "",
+        "ICA CENTRO D",
+        ""
+      ],
+      [
+        "",
+        "ICA D",
+        ""
+      ]
+    ],
+    "row_count": 11
+  },
+  {
+    "type": "html_table",
+    "index": 1,
+    "headers": [
+      "",
+      "Zona",
+      "Nombre",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Zona",
+        "Nombre",
+        "Acciones"
+      ],
+      [
+        "",
+        "DISTRIBUIDORES",
+        "10",
+        ""
+      ],
+      [
+        "",
+        "FILETEO",
+        "01",
+        ""
+      ],
+      [
+        "",
+        "ICA A",
+        "10",
+        ""
+      ],
+      [
+        "",
+        "ICA A",
+        "20",
+        ""
+      ],
+      [
+        "",
+        "ICA A",
+        "30",
+        ""
+      ],
+      [
+        "",
+        "ICA A",
+        "40",
+        ""
+      ],
+      [
+        "",
+        "ICA A",
+        "50",
+        ""
+      ],
+      [
+        "",
+        "ICA A",
+        "60",
+        ""
+      ],
+      [
+        "",
+        "ICA B",
+        "10",
+        ""
+      ],
+      [
+        "",
+        "ICA B",
+        "20",
+        ""
+      ]
+    ],
+    "row_count": 11
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Nombre Acciones",
+      "DISTRIBUIDORES",
+      "FILETEO",
+      "ICA A",
+      "ICA B",
+      "ICA C",
+      "ICA CENTRO A",
+      "ICA CENTRO B",
+      "ICA CENTRO C",
+      "ICA CENTRO D",
+      "ICA D"
+    ],
+    "row_count": 11
+  },
+  {
+    "type": "aria_grid",
+    "index": 1,
+    "headers": [],
+    "rows_text": [
+      "Zona Nombre Acciones",
+      "DISTRIBUIDORES 10",
+      "FILETEO 01",
+      "ICA A 10",
+      "ICA A 20",
+      "ICA A 30",
+      "ICA A 40",
+      "ICA A 50",
+      "ICA A 60",
+      "ICA B 10",
+      "ICA B 20"
+    ],
+    "row_count": 11
+  }
+]

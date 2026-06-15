@@ -1,0 +1,43 @@
+# OS
+Thumbs.db
+.DS_Store
+*.swp
+*.swo
+
+# IDE
+.idea/
+.vscode/
+*.iml
+.vs/
+
+# Node
+node_modules/
+.next/
+npm-debug.log*
+
+# Flutter
+*.apk
+*.aab
+*.ipa
+build/
+.flutter-plugins
+.packages
+.dart_tool/
+
+# Quarkus / Java
+target/
+*.class
+*.jar
+*.war
+*.log
+
+# Env
+.env
+.env.local
+
+# Python
+__pycache__/
+*.pyc
+
+# ZIP
+*.zip

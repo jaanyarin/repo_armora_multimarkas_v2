@@ -1,0 +1,22 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "Producto",
+      "Cantidad",
+      ""
+    ],
+    "rows": [
+      [
+        "Producto",
+        "Cantidad",
+        ""
+      ],
+      [
+        "Sin datos"
+      ]
+    ],
+    "row_count": 2
+  }
+]

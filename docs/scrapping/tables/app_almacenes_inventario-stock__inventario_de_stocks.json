@@ -1,0 +1,64 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Código",
+      "Nombre",
+      "Estado",
+      ""
+    ],
+    "rows": [
+      [
+        "",
+        "Código",
+        "Nombre",
+        "Estado",
+        ""
+      ],
+      [
+        "",
+        "ALM200900001",
+        "BROCKER MESA 1",
+        "CON PREVENTAS",
+        ""
+      ],
+      [
+        "",
+        "ALM241100001",
+        "BROCKER MESA 2",
+        "SIN PREVENTAS",
+        ""
+      ],
+      [
+        "",
+        "ALM210900001",
+        "FALTANTE INVENTARIOS",
+        "SIN PREVENTAS",
+        ""
+      ],
+      [
+        "",
+        "ALM210400001",
+        "PRODUCTOS EN MAL ESTADO",
+        "SIN PREVENTAS",
+        ""
+      ]
+    ],
+    "row_count": 5
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Código Nombre Estado",
+      "ALM200900001 BROCKER MESA 1 CON PREVENTAS",
+      "ALM241100001 BROCKER MESA 2 SIN PREVENTAS",
+      "ALM210900001 FALTANTE INVENTARIOS SIN PREVENTAS",
+      "ALM210400001 PRODUCTOS EN MAL ESTADO SIN PREVENTAS"
+    ],
+    "row_count": 5
+  }
+]

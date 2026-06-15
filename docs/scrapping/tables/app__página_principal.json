@@ -1,0 +1,23 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "Producto",
+      "Precio",
+      "Maximo",
+      "Cantidad",
+      "Subtotal"
+    ],
+    "rows": [
+      [
+        "Producto",
+        "Precio",
+        "Maximo",
+        "Cantidad",
+        "Subtotal"
+      ]
+    ],
+    "row_count": 1
+  }
+]

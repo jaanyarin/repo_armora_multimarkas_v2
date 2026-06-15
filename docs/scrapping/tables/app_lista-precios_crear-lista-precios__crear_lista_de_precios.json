@@ -1,0 +1,41 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Producto",
+      "V. Uni.",
+      "V. ISC",
+      "V. IGV",
+      "Precio",
+      "Visible",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Producto",
+        "V. Uni.",
+        "V. ISC",
+        "V. IGV",
+        "Precio",
+        "Visible",
+        "Acciones"
+      ],
+      [
+        "No hay datos disponibles"
+      ]
+    ],
+    "row_count": 2
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Producto V. Uni. V. ISC V. IGV Precio Visible Acciones"
+    ],
+    "row_count": 1
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Fecha Emisión",
+      "Boletas",
+      "Facturas",
+      "NC Boletas",
+      "NC Facturas",
+      "NCA Boletas",
+      "NCA Facturas",
+      "Resumenes PROCESO",
+      "Anulaciones PROCESO",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Fecha Emisión",
+        "Boletas",
+        "Facturas",
+        "NC Boletas",
+        "NC Facturas",
+        "NCA Boletas",
+        "NCA Facturas",
+        "Resumenes PROCESO",
+        "Anulaciones PROCESO",
+        "Acciones"
+      ],
+      [
+        "No hay datos disponibles"
+      ]
+    ],
+    "row_count": 2
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Fecha Emisión Boletas Facturas NC Boletas NC Facturas NCA Boletas NCA Facturas Resumenes PROCESO Anulaciones PROCESO Acciones"
+    ],
+    "row_count": 1
+  }
+]

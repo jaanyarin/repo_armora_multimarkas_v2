@@ -1,0 +1,64 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Código",
+      "Nombre",
+      "Alerta Stock",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Código",
+        "Nombre",
+        "Alerta Stock",
+        "Acciones"
+      ],
+      [
+        "",
+        "ALM200900001",
+        "BROCKER MESA 1",
+        "HABILITADO",
+        ""
+      ],
+      [
+        "",
+        "ALM241100001",
+        "BROCKER MESA 2",
+        "HABILITADO",
+        ""
+      ],
+      [
+        "",
+        "ALM210900001",
+        "FALTANTE INVENTARIOS",
+        "HABILITADO",
+        ""
+      ],
+      [
+        "",
+        "ALM210400001",
+        "PRODUCTOS EN MAL ESTADO",
+        "HABILITADO",
+        ""
+      ]
+    ],
+    "row_count": 5
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Código Nombre Alerta Stock Acciones",
+      "ALM200900001 BROCKER MESA 1 HABILITADO",
+      "ALM241100001 BROCKER MESA 2 HABILITADO",
+      "ALM210900001 FALTANTE INVENTARIOS HABILITADO",
+      "ALM210400001 PRODUCTOS EN MAL ESTADO HABILITADO"
+    ],
+    "row_count": 5
+  }
+]

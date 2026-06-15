@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="es-PE"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ARMORA</title>
+        
+        <script src="/app/static/jquery/jquery-3.4.1.min.js"></script>
+        <script src="/app/static/jquery/jquery-serialize-object.min.js"></script>
+        <script src="/app/static/semantic/semantic-dyvent.min.js"></script>
+        <script src="/app/static/alert/ui-alert.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="/app/static/semantic/semantic-dyvent.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/alert/ui-alert.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/resources/css/blank.css">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="/app/static/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/app/static/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/app/static/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/app/static/favicon/site.webmanifest">
+        <link rel="mask-icon" href="/app/static/favicon/safari-pinned-tab.svg" color="#c4951a">
+        <meta name="msapplication-TileColor" content="#c4951a">
+        <meta name="theme-color" content="#ffffff">
+    </head>
+    <body>
+        
+        
+        <div class="ui middle aligned centered grid container">
+            <div class="sixteen wide mobile nine wide tablet column six wide computer column">
+                <div class="ui raised segment">
+
+                    <img class="ui centered image image-login" src="/app/general/loaded-resources/rest/login-image">
+                    <br>
+                    <form class="ui large form" method="post" action="/app/login-check">
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input id="username" name="username" type="text" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="Usuario" autofocus="autofocus">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input id="password" name="password" type="password" autocorrect="off" spellcheck="false" placeholder="Contraseña">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui checkbox">
+                                <input type="checkbox" id="remember-me" name="remember-me" value="true">
+                                <label>Recordar mi Usuario</label>
+                            </div>
+                        </div>
+                        <button class="ui big fluid button" type="submit">Ingresar</button>
+                    </form>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    
+    
+        
+        <script> var path = '/app';</script>
+        <script> var csrf = false;</script>
+        <script src="/app/static/resources/js/blank.js"></script>
+        <script src="/app/static/resources/js/clases.js"></script>
+        <script src="/app/static/resources/js/catalogo.js"></script>
+        <link rel="stylesheet" type="text/css" href="/app/resources/general/login/index.css">
+        <script>
+            const isHttps = false;
+        </script>
+        <script src="/app/resources/general/login/index.js"></script>
+    
+</body></html>

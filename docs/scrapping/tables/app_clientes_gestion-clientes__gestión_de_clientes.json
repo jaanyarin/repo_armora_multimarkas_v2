@@ -1,0 +1,43 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Código",
+      "Cliente",
+      "Ruta",
+      "Sec",
+      "Documento",
+      "Día",
+      "Atención",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Código",
+        "Cliente",
+        "Ruta",
+        "Sec",
+        "Documento",
+        "Día",
+        "Atención",
+        "Acciones"
+      ],
+      [
+        "No hay datos disponibles"
+      ]
+    ],
+    "row_count": 2
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Código Cliente Ruta Sec Documento Día Atención Acciones"
+    ],
+    "row_count": 1
+  }
+]

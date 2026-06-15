@@ -1,0 +1,14 @@
+[
+  {
+    "index": 0,
+    "headers": [
+      "Producto",
+      "Precio",
+      "Maximo",
+      "Cantidad",
+      "Subtotal"
+    ],
+    "row_count_visible": 1,
+    "rows": []
+  }
+]

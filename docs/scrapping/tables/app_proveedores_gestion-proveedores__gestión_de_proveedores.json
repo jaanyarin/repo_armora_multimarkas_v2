@@ -1,0 +1,112 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Codigo",
+      "Proveedor",
+      "Documento",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Codigo",
+        "Proveedor",
+        "Documento",
+        "Acciones"
+      ],
+      [
+        "",
+        "PRV200900001",
+        "PROVEEDOR GENERICO",
+        "",
+        ""
+      ],
+      [
+        "",
+        "PRV201000001",
+        "DE LA CRUZ ACHAMISO JOSÉ LUIS",
+        "RUC: 10215449578",
+        ""
+      ],
+      [
+        "",
+        "PRV201000002",
+        "DISTRIBUIDORA SAN MARTIN DE PORRAS S.R.L.",
+        "RUC: 20409972021",
+        ""
+      ],
+      [
+        "",
+        "PRV201000003",
+        "FAST EFICITY E.I.R.L",
+        "RUC: 20605160957",
+        ""
+      ],
+      [
+        "",
+        "PRV201100001",
+        "COMPAÑIA PESQUERA SER SUR E.I.R.L.",
+        "RUC: 20600439678",
+        ""
+      ],
+      [
+        "",
+        "PRV201100002",
+        "PANADERIA SAN JORGE S.A.",
+        "RUC: 20100093830",
+        ""
+      ],
+      [
+        "",
+        "PRV201200001",
+        "DISTRIBUIDORA FERESS E.I.R.L.",
+        "RUC: 20481508534",
+        ""
+      ],
+      [
+        "",
+        "PRV210200001",
+        "GRUPO CALA S.A.C.",
+        "RUC: 20600819195",
+        ""
+      ],
+      [
+        "",
+        "PRV210200002",
+        "COMPAÑIA MOLINERA DEL CENTRO S.A.",
+        "RUC: 20137117712",
+        ""
+      ],
+      [
+        "",
+        "PRV210400001",
+        "PAPELERA REYES S.A.C.",
+        "RUC: 20506392234",
+        ""
+      ]
+    ],
+    "row_count": 11
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Codigo Proveedor Documento Acciones",
+      "PRV200900001 PROVEEDOR GENERICO",
+      "PRV201000001 DE LA CRUZ ACHAMISO JOSÉ LUIS RUC: 10215449578",
+      "PRV201000002 DISTRIBUIDORA SAN MARTIN DE PORRAS S.R.L. RUC: 20409972021",
+      "PRV201000003 FAST EFICITY E.I.R.L RUC: 20605160957",
+      "PRV201100001 COMPAÑIA PESQUERA SER SUR E.I.R.L. RUC: 20600439678",
+      "PRV201100002 PANADERIA SAN JORGE S.A. RUC: 20100093830",
+      "PRV201200001 DISTRIBUIDORA FERESS E.I.R.L. RUC: 20481508534",
+      "PRV210200001 GRUPO CALA S.A.C. RUC: 20600819195",
+      "PRV210200002 COMPAÑIA MOLINERA DEL CENTRO S.A. RUC: 20137117712",
+      "PRV210400001 PAPELERA REYES S.A.C. RUC: 20506392234"
+    ],
+    "row_count": 11
+  }
+]

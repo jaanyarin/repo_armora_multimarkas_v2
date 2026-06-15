@@ -1,0 +1,79 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Codigo",
+      "Lista",
+      "Moneda",
+      "N. Productos",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Codigo",
+        "Lista",
+        "Moneda",
+        "N. Productos",
+        "Acciones"
+      ],
+      [
+        "",
+        "LIP250200001",
+        "LISTA DE PRECIO M1F",
+        "Soles",
+        "561",
+        ""
+      ],
+      [
+        "",
+        "LIP250100001",
+        "LISTA DE PRECIO M1P",
+        "Soles",
+        "1296",
+        ""
+      ],
+      [
+        "",
+        "LIP240700001",
+        "LISTA DE PRECIOS MESA 1P",
+        "Soles",
+        "475",
+        ""
+      ],
+      [
+        "",
+        "LIP241000001",
+        "LISTA DE PRECIOS MESA 2",
+        "Soles",
+        "56",
+        ""
+      ],
+      [
+        "",
+        "LIP241000002",
+        "LISTA DE PRECIOS MESA 3",
+        "Soles",
+        "360",
+        ""
+      ]
+    ],
+    "row_count": 6
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Codigo Lista Moneda N. Productos Acciones",
+      "LIP250200001 LISTA DE PRECIO M1F Soles 561",
+      "LIP250100001 LISTA DE PRECIO M1P Soles 1296",
+      "LIP240700001 LISTA DE PRECIOS MESA 1P Soles 475",
+      "LIP241000001 LISTA DE PRECIOS MESA 2 Soles 56",
+      "LIP241000002 LISTA DE PRECIOS MESA 3 Soles 360"
+    ],
+    "row_count": 6
+  }
+]

@@ -1,0 +1,722 @@
+[
+  {
+    "title": "Home",
+    "url": "https://armorasac.com/app/",
+    "endpoint": "/app/",
+    "source": "base"
+  },
+  {
+    "title": "https://armorasac.com/app/general/perfil-personal",
+    "url": "https://armorasac.com/app/general/perfil-personal",
+    "endpoint": "/app/general/perfil-personal",
+    "source": "initial dom"
+  },
+  {
+    "title": "Home",
+    "url": "https://armorasac.com/app/home",
+    "endpoint": "/app/home",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Compra",
+    "url": "https://armorasac.com/app/compras/crear-compra",
+    "endpoint": "/app/compras/crear-compra",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestión de Compras",
+    "url": "https://armorasac.com/app/compras/gestion-compras",
+    "endpoint": "/app/compras/gestion-compras",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Proveedor",
+    "url": "https://armorasac.com/app/proveedores/crear-proveedor",
+    "endpoint": "/app/proveedores/crear-proveedor",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestión de Proveedores",
+    "url": "https://armorasac.com/app/proveedores/gestion-proveedores",
+    "endpoint": "/app/proveedores/gestion-proveedores",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestión Preventas",
+    "url": "https://armorasac.com/app/preventas/gestion-preventas",
+    "endpoint": "/app/preventas/gestion-preventas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Preventas",
+    "url": "https://armorasac.com/app/preventas/reportes-preventas",
+    "endpoint": "/app/preventas/reportes-preventas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Venta Productos",
+    "url": "https://armorasac.com/app/ventas/crear-venta",
+    "endpoint": "/app/ventas/crear-venta",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Venta Servicios",
+    "url": "https://armorasac.com/app/ventas/crear-venta-servicio",
+    "endpoint": "/app/ventas/crear-venta-servicio",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestión de Ventas",
+    "url": "https://armorasac.com/app/ventas/gestion-ventas",
+    "endpoint": "/app/ventas/gestion-ventas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Puntos de Ventas",
+    "url": "https://armorasac.com/app/ventas/puntos-ventas",
+    "endpoint": "/app/ventas/puntos-ventas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestión Notas Pedido",
+    "url": "https://armorasac.com/app/ventas/gestion-notas-pedido",
+    "endpoint": "/app/ventas/gestion-notas-pedido",
+    "source": "initial dom"
+  },
+  {
+    "title": "Impresión de Ventas",
+    "url": "https://armorasac.com/app/ventas/impresion-ventas",
+    "endpoint": "/app/ventas/impresion-ventas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Entregas Parciales",
+    "url": "https://armorasac.com/app/ventas/entregas-parciales",
+    "endpoint": "/app/ventas/entregas-parciales",
+    "source": "initial dom"
+  },
+  {
+    "title": "Fileteo Automatico",
+    "url": "https://armorasac.com/app/ventas/fileteo-automatico",
+    "endpoint": "/app/ventas/fileteo-automatico",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes de Ventas",
+    "url": "https://armorasac.com/app/ventas/reportes-ventas",
+    "endpoint": "/app/ventas/reportes-ventas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestión Notas Credito",
+    "url": "https://armorasac.com/app/notas-credito/gestion-notas-credito",
+    "endpoint": "/app/notas-credito/gestion-notas-credito",
+    "source": "initial dom"
+  },
+  {
+    "title": "Devolucion Transportista",
+    "url": "https://armorasac.com/app/notas-credito/devoluciones-transportistas",
+    "endpoint": "/app/notas-credito/devoluciones-transportistas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Impresión Notas Credito",
+    "url": "https://armorasac.com/app/notas-credito/impresion-notas-credito",
+    "endpoint": "/app/notas-credito/impresion-notas-credito",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Notas Credito",
+    "url": "https://armorasac.com/app/notas-credito/reportes-notas-credito",
+    "endpoint": "/app/notas-credito/reportes-notas-credito",
+    "source": "initial dom"
+  },
+  {
+    "title": "Informes de Requerimientos",
+    "url": "https://armorasac.com/app/informes/requerimientos",
+    "endpoint": "/app/informes/requerimientos",
+    "source": "initial dom"
+  },
+  {
+    "title": "Informes de Liquidaciones",
+    "url": "https://armorasac.com/app/informes/liquidaciones",
+    "endpoint": "/app/informes/liquidaciones",
+    "source": "initial dom"
+  },
+  {
+    "title": "Informes de Almacenes",
+    "url": "https://armorasac.com/app/informes/almacenes",
+    "endpoint": "/app/informes/almacenes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Entregas Parciales",
+    "url": "https://armorasac.com/app/informes/entregas-parciales",
+    "endpoint": "/app/informes/entregas-parciales",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Cambio Productos",
+    "url": "https://armorasac.com/app/cambios-producto/crear-cambio-producto",
+    "endpoint": "/app/cambios-producto/crear-cambio-producto",
+    "source": "initial dom"
+  },
+  {
+    "title": "Asignar Fecha de Entrega",
+    "url": "https://armorasac.com/app/cambios-producto/asignar-entrega-cambios-producto",
+    "endpoint": "/app/cambios-producto/asignar-entrega-cambios-producto",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Cambio Productos",
+    "url": "https://armorasac.com/app/cambios-producto/gestion-cambios-producto",
+    "endpoint": "/app/cambios-producto/gestion-cambios-producto",
+    "source": "initial dom"
+  },
+  {
+    "title": "Impresion Cambio Productos",
+    "url": "https://armorasac.com/app/cambios-producto/impresion-cambio-producto",
+    "endpoint": "/app/cambios-producto/impresion-cambio-producto",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Req/Liq Cambios",
+    "url": "https://armorasac.com/app/cambios-producto/crear-reporte-cambios-producto",
+    "endpoint": "/app/cambios-producto/crear-reporte-cambios-producto",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Req/Liq Cambios",
+    "url": "https://armorasac.com/app/cambios-producto/gestion-reportes-cambios-producto",
+    "endpoint": "/app/cambios-producto/gestion-reportes-cambios-producto",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reporte Cambios Productos",
+    "url": "https://armorasac.com/app/cambios-producto/reportes-cambios-producto",
+    "endpoint": "/app/cambios-producto/reportes-cambios-producto",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Canje",
+    "url": "https://armorasac.com/app/canjes/crear-canje",
+    "endpoint": "/app/canjes/crear-canje",
+    "source": "initial dom"
+  },
+  {
+    "title": "Asignar Fecha de Entrega",
+    "url": "https://armorasac.com/app/canjes/asignar-entrega-canjes",
+    "endpoint": "/app/canjes/asignar-entrega-canjes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Canjes",
+    "url": "https://armorasac.com/app/canjes/gestion-canjes",
+    "endpoint": "/app/canjes/gestion-canjes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Impresion Canjes",
+    "url": "https://armorasac.com/app/canjes/impresion-canjes",
+    "endpoint": "/app/canjes/impresion-canjes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Req/Liq Canjes",
+    "url": "https://armorasac.com/app/canjes/crear-reportes-canjes",
+    "endpoint": "/app/canjes/crear-reportes-canjes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Req/Liq Canjes",
+    "url": "https://armorasac.com/app/canjes/gestion-reportes-canjes",
+    "endpoint": "/app/canjes/gestion-reportes-canjes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Canjes",
+    "url": "https://armorasac.com/app/canjes/reportes-canjes",
+    "endpoint": "/app/canjes/reportes-canjes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Envios Pendientes Sunat",
+    "url": "https://armorasac.com/app/sunat/envios-sunat",
+    "endpoint": "/app/sunat/envios-sunat",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Envios Sunat",
+    "url": "https://armorasac.com/app/sunat/gestion-envios-sunat",
+    "endpoint": "/app/sunat/gestion-envios-sunat",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Envios Sunat",
+    "url": "https://armorasac.com/app/sunat/reportes-envios-sunat",
+    "endpoint": "/app/sunat/reportes-envios-sunat",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Resumen",
+    "url": "https://armorasac.com/app/resumen-diario/crear-resumen-diario",
+    "endpoint": "/app/resumen-diario/crear-resumen-diario",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion de Resumenes",
+    "url": "https://armorasac.com/app/resumen-diario/gestion-resumenes-diarios",
+    "endpoint": "/app/resumen-diario/gestion-resumenes-diarios",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes de Resumenes",
+    "url": "https://armorasac.com/app/resumen-diario/reportes-resumenes-diarios",
+    "endpoint": "/app/resumen-diario/reportes-resumenes-diarios",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Baja",
+    "url": "https://armorasac.com/app/comunicacion-baja/crear-comunicacion-baja",
+    "endpoint": "/app/comunicacion-baja/crear-comunicacion-baja",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion de Bajas",
+    "url": "https://armorasac.com/app/comunicacion-baja/gestion-comunicaciones-baja",
+    "endpoint": "/app/comunicacion-baja/gestion-comunicaciones-baja",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes de Baja",
+    "url": "https://armorasac.com/app/comunicacion-baja/reportes-comunicaciones-baja",
+    "endpoint": "/app/comunicacion-baja/reportes-comunicaciones-baja",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Requerimiento",
+    "url": "https://armorasac.com/app/requerimientos/crear-requerimiento",
+    "endpoint": "/app/requerimientos/crear-requerimiento",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Requerimientos",
+    "url": "https://armorasac.com/app/requerimientos/gestion-requerimientos",
+    "endpoint": "/app/requerimientos/gestion-requerimientos",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Requerimientos",
+    "url": "https://armorasac.com/app/requerimientos/reportes-requerimientos",
+    "endpoint": "/app/requerimientos/reportes-requerimientos",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Liquidacion",
+    "url": "https://armorasac.com/app/liquidaciones/crear-liquidacion",
+    "endpoint": "/app/liquidaciones/crear-liquidacion",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Liquidaciones",
+    "url": "https://armorasac.com/app/liquidaciones/gestion-liquidaciones",
+    "endpoint": "/app/liquidaciones/gestion-liquidaciones",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Liquidaciones",
+    "url": "https://armorasac.com/app/liquidaciones/reportes-liquidaciones",
+    "endpoint": "/app/liquidaciones/reportes-liquidaciones",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Personal",
+    "url": "https://armorasac.com/app/personal/crear-personal",
+    "endpoint": "/app/personal/crear-personal",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Personal",
+    "url": "https://armorasac.com/app/personal/gestion-personal",
+    "endpoint": "/app/personal/gestion-personal",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Personal",
+    "url": "https://armorasac.com/app/personal/reportes-personal",
+    "endpoint": "/app/personal/reportes-personal",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Mapa de Rutas",
+    "url": "https://armorasac.com/app/mapas-rutas/crear-mapa-rutas",
+    "endpoint": "/app/mapas-rutas/crear-mapa-rutas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion de Mapas de Rutas",
+    "url": "https://armorasac.com/app/mapas-rutas/gestion-mapas-rutas",
+    "endpoint": "/app/mapas-rutas/gestion-mapas-rutas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes de Mapas de Rutas",
+    "url": "https://armorasac.com/app/mapas-rutas/reportes-mapas-rutas",
+    "endpoint": "/app/mapas-rutas/reportes-mapas-rutas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Cliente",
+    "url": "https://armorasac.com/app/clientes/crear-cliente",
+    "endpoint": "/app/clientes/crear-cliente",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Clientes",
+    "url": "https://armorasac.com/app/clientes/gestion-clientes",
+    "endpoint": "/app/clientes/gestion-clientes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Habilitar Ventas Clientes",
+    "url": "https://armorasac.com/app/clientes/habilitar-ventas-clientes",
+    "endpoint": "/app/clientes/habilitar-ventas-clientes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Cambio dia Atencion",
+    "url": "https://armorasac.com/app/clientes/cambio-dia-atencion",
+    "endpoint": "/app/clientes/cambio-dia-atencion",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Clientes",
+    "url": "https://armorasac.com/app/clientes/reportes-clientes",
+    "endpoint": "/app/clientes/reportes-clientes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Zonas y Rutas",
+    "url": "https://armorasac.com/app/zonas-rutas/gestion-zonas-rutas",
+    "endpoint": "/app/zonas-rutas/gestion-zonas-rutas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Habilitar Ventas en Rutas",
+    "url": "https://armorasac.com/app/zonas-rutas/habilitar-ventas-rutas",
+    "endpoint": "/app/zonas-rutas/habilitar-ventas-rutas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Zonas y Rutas",
+    "url": "https://armorasac.com/app/zonas-rutas/reportes-zonas-rutas",
+    "endpoint": "/app/zonas-rutas/reportes-zonas-rutas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Almacenes",
+    "url": "https://armorasac.com/app/almacenes/gestion-almacenes",
+    "endpoint": "/app/almacenes/gestion-almacenes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Almacenes",
+    "url": "https://armorasac.com/app/almacenes/reportes-almacenes",
+    "endpoint": "/app/almacenes/reportes-almacenes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Inventario de Stocks",
+    "url": "https://armorasac.com/app/almacenes/inventario-stock",
+    "endpoint": "/app/almacenes/inventario-stock",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion de Inventarios",
+    "url": "https://armorasac.com/app/almacenes/gestion-inventarios",
+    "endpoint": "/app/almacenes/gestion-inventarios",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Unidad Trans.",
+    "url": "https://armorasac.com/app/unidades-transporte/crear-unidad-transporte",
+    "endpoint": "/app/unidades-transporte/crear-unidad-transporte",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Unidades de Trans.",
+    "url": "https://armorasac.com/app/unidades-transporte/gestion-unidades-transporte",
+    "endpoint": "/app/unidades-transporte/gestion-unidades-transporte",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Unidades de Trans.",
+    "url": "https://armorasac.com/app/unidades-transporte/reportes-unidades-transporte",
+    "endpoint": "/app/unidades-transporte/reportes-unidades-transporte",
+    "source": "initial dom"
+  },
+  {
+    "title": "Requisitos de Canjes",
+    "url": "https://armorasac.com/app/premio-canje/gestion-requesitos-canje",
+    "endpoint": "/app/premio-canje/gestion-requesitos-canje",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Premio Canje",
+    "url": "https://armorasac.com/app/premio-canje/crear-premio-canje",
+    "endpoint": "/app/premio-canje/crear-premio-canje",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Premio Canje",
+    "url": "https://armorasac.com/app/premio-canje/gestion-premios-canjes",
+    "endpoint": "/app/premio-canje/gestion-premios-canjes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Premio Canje",
+    "url": "https://armorasac.com/app/premio-canje/reportes-premios-canjes",
+    "endpoint": "/app/premio-canje/reportes-premios-canjes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Clases y Subclases",
+    "url": "https://armorasac.com/app/productos/gestion-clases-subclases-productos",
+    "endpoint": "/app/productos/gestion-clases-subclases-productos",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Producto",
+    "url": "https://armorasac.com/app/productos/crear-producto",
+    "endpoint": "/app/productos/crear-producto",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Productos",
+    "url": "https://armorasac.com/app/productos/gestion-productos",
+    "endpoint": "/app/productos/gestion-productos",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Productos",
+    "url": "https://armorasac.com/app/productos/reportes-productos",
+    "endpoint": "/app/productos/reportes-productos",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Servicio",
+    "url": "https://armorasac.com/app/servicios/crear-servicio",
+    "endpoint": "/app/servicios/crear-servicio",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Servicios",
+    "url": "https://armorasac.com/app/servicios/gestion-servicios",
+    "endpoint": "/app/servicios/gestion-servicios",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Combo",
+    "url": "https://armorasac.com/app/combos/crear-combo",
+    "endpoint": "/app/combos/crear-combo",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Combos",
+    "url": "https://armorasac.com/app/combos/gestion-combos",
+    "endpoint": "/app/combos/gestion-combos",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Combos",
+    "url": "https://armorasac.com/app/combos/reportes-combos",
+    "endpoint": "/app/combos/reportes-combos",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Concurso",
+    "url": "https://armorasac.com/app/concursos/crear-concurso",
+    "endpoint": "/app/concursos/crear-concurso",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Concursos",
+    "url": "https://armorasac.com/app/concursos/gestion-concursos",
+    "endpoint": "/app/concursos/gestion-concursos",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Concursos",
+    "url": "https://armorasac.com/app/concursos/reportes-concursos",
+    "endpoint": "/app/concursos/reportes-concursos",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Reporte Comisiones",
+    "url": "https://armorasac.com/app/comisiones/crear-reporte-comisiones",
+    "endpoint": "/app/comisiones/crear-reporte-comisiones",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Reporte Comisiones",
+    "url": "https://armorasac.com/app/comisiones/gestion-comisiones",
+    "endpoint": "/app/comisiones/gestion-comisiones",
+    "source": "initial dom"
+  },
+  {
+    "title": "Ajuste de Comisiones",
+    "url": "https://armorasac.com/app/comisiones/ajuste-comisiones",
+    "endpoint": "/app/comisiones/ajuste-comisiones",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Reporte Cobertura",
+    "url": "https://armorasac.com/app/cobertura/crear-reporte-cobertura",
+    "endpoint": "/app/cobertura/crear-reporte-cobertura",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Reporte Cobertura",
+    "url": "https://armorasac.com/app/cobertura/gestion-coberturas",
+    "endpoint": "/app/cobertura/gestion-coberturas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Lista de Precios",
+    "url": "https://armorasac.com/app/lista-precios/crear-lista-precios",
+    "endpoint": "/app/lista-precios/crear-lista-precios",
+    "source": "initial dom"
+  },
+  {
+    "title": "Gestion Listas de Precios",
+    "url": "https://armorasac.com/app/lista-precios/gestion-listas-precios",
+    "endpoint": "/app/lista-precios/gestion-listas-precios",
+    "source": "initial dom"
+  },
+  {
+    "title": "Copiar Listas de Precios",
+    "url": "https://armorasac.com/app/lista-precios/copiar-lista-precios",
+    "endpoint": "/app/lista-precios/copiar-lista-precios",
+    "source": "initial dom"
+  },
+  {
+    "title": "Reportes Listas de Precios",
+    "url": "https://armorasac.com/app/lista-precios/reportes-listas-precios",
+    "endpoint": "/app/lista-precios/reportes-listas-precios",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Cliente",
+    "url": "https://armorasac.com/app/vendedor/crear-cliente",
+    "endpoint": "/app/vendedor/crear-cliente",
+    "source": "initial dom"
+  },
+  {
+    "title": "Clientes",
+    "url": "https://armorasac.com/app/vendedor/clientes",
+    "endpoint": "/app/vendedor/clientes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Preventa",
+    "url": "https://armorasac.com/app/vendedor/crear-preventa",
+    "endpoint": "/app/vendedor/crear-preventa",
+    "source": "initial dom"
+  },
+  {
+    "title": "Preventas",
+    "url": "https://armorasac.com/app/vendedor/preventas",
+    "endpoint": "/app/vendedor/preventas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Ventas",
+    "url": "https://armorasac.com/app/vendedor/ventas",
+    "endpoint": "/app/vendedor/ventas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Cambio Productos",
+    "url": "https://armorasac.com/app/vendedor/crear-cambio-producto",
+    "endpoint": "/app/vendedor/crear-cambio-producto",
+    "source": "initial dom"
+  },
+  {
+    "title": "Cambios de Productos",
+    "url": "https://armorasac.com/app/vendedor/cambios-producto",
+    "endpoint": "/app/vendedor/cambios-producto",
+    "source": "initial dom"
+  },
+  {
+    "title": "Crear Canje",
+    "url": "https://armorasac.com/app/vendedor/crear-canje",
+    "endpoint": "/app/vendedor/crear-canje",
+    "source": "initial dom"
+  },
+  {
+    "title": "Canjes",
+    "url": "https://armorasac.com/app/vendedor/canjes",
+    "endpoint": "/app/vendedor/canjes",
+    "source": "initial dom"
+  },
+  {
+    "title": "Stock de Productos",
+    "url": "https://armorasac.com/app/vendedor/stock-productos",
+    "endpoint": "/app/vendedor/stock-productos",
+    "source": "initial dom"
+  },
+  {
+    "title": "Comisiones",
+    "url": "https://armorasac.com/app/vendedor/comisiones",
+    "endpoint": "/app/vendedor/comisiones",
+    "source": "initial dom"
+  },
+  {
+    "title": "Concursos",
+    "url": "https://armorasac.com/app/vendedor/concursos",
+    "endpoint": "/app/vendedor/concursos",
+    "source": "initial dom"
+  },
+  {
+    "title": "Configuracion Empresa",
+    "url": "https://armorasac.com/app/configuracion/configuracion-empresa",
+    "endpoint": "/app/configuracion/configuracion-empresa",
+    "source": "initial dom"
+  },
+  {
+    "title": "Configuracion Impresión",
+    "url": "https://armorasac.com/app/configuracion/configuracion-impresion",
+    "endpoint": "/app/configuracion/configuracion-impresion",
+    "source": "initial dom"
+  },
+  {
+    "title": "Configuracion Sunat",
+    "url": "https://armorasac.com/app/configuracion/configuracion-sunat",
+    "endpoint": "/app/configuracion/configuracion-sunat",
+    "source": "initial dom"
+  },
+  {
+    "title": "Configuracion Alertas",
+    "url": "https://armorasac.com/app/configuracion/configuracion-alertas",
+    "endpoint": "/app/configuracion/configuracion-alertas",
+    "source": "initial dom"
+  },
+  {
+    "title": "Mis Devoluciones",
+    "url": "https://armorasac.com/app/transportistas/mis-devoluciones",
+    "endpoint": "/app/transportistas/mis-devoluciones",
+    "source": "initial dom"
+  },
+  {
+    "title": "Mis Requerimientos",
+    "url": "https://armorasac.com/app/transportistas/mis-requerimientos",
+    "endpoint": "/app/transportistas/mis-requerimientos",
+    "source": "initial dom"
+  },
+  {
+    "title": "Mis Liquidaciones",
+    "url": "https://armorasac.com/app/transportistas/mis-liquidaciones",
+    "endpoint": "/app/transportistas/mis-liquidaciones",
+    "source": "initial dom"
+  }
+]

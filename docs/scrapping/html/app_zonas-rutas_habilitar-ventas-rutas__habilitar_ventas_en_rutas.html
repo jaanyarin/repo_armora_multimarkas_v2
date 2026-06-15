@@ -1,0 +1,3203 @@
+<!DOCTYPE html><html lang="es-PE"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+            Habilitar Ventas en Rutas
+        </title>
+        
+        <script src="/app/static/jquery/jquery-3.4.1.min.js"></script>
+        <script src="/app/static/jquery/jquery-serialize-object.min.js"></script>
+        <script src="/app/static/semantic/semantic-dyvent.min.js"></script>
+        <script src="/app/static/alert/ui-alert.js"></script>
+        <script src="/app/static/datatable/datatables.dyvent.min.js"></script>
+        <script src="/app/static/quicksearch/quicksearch.js"></script>
+        <script src="/app/static/multiselect/multiselect.js"></script>
+        <script src="/app/static/calendar/calendar.min.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="/app/static/semantic/semantic-dyvent.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/alert/ui-alert.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/datatable/datatables.dyvent.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/multiselect/multiselect.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/calendar/calendar.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/resources/css/page.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/tableflip/tableflip.css">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="/app/static/favicon/apple-touch-icon.png?v1">
+        <link rel="icon" type="image/png" sizes="32x32" href="/app/static/favicon/favicon-32x32.png?v1">
+        <link rel="icon" type="image/png" sizes="16x16" href="/app/static/favicon/favicon-16x16.png?v1">
+        <link rel="manifest" href="/app/static/favicon/site.webmanifest?v1">
+        <link rel="mask-icon" href="/app/static/favicon/safari-pinned-tab.svg?v1" color="#949494">
+        <meta name="msapplication-TileColor" content="#000000">
+        <meta name="theme-color" content="#000000">
+    <style> .ui.visible.left.sidebar ~ .fixed, .ui.visible.left.sidebar ~ .pusher {   -webkit-transform: translate3d(260px, 0, 0);           transform: translate3d(260px, 0, 0); }</style></head>
+    <body class="dimmable">
+        
+        <div class="ui top attached secondary menu flex-wrap">
+            <a class="item open-menu" id="bSidebar">
+                <img class="ui image image-menu" alt="Menu Principal" src="/app/general/loaded-resources/rest/home-image">
+            </a>
+            <div class="ui right secondary compact menu right-menu">
+                <div class="ui grid one column computer tablet only">
+                    <a class="item" href="/app/general/perfil-personal" data-tooltip="Perfil de Personal" data-position="bottom left">
+                        <i class="black big id badge link icon"></i>
+                    </a>
+                    <div class="item">
+                        <div class="user-info">
+                            <div>
+                                <strong>Personal:</strong> ALEJANDRO ANYARIN 
+                            </div>
+                            <div>
+                                <strong>Lista Precios:</strong> LISTA DE PRECIO M1P
+                            </div>
+                            <div>
+                                <strong>Almacen:</strong> BROCKER MESA 1
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="item" href="/app/home" data-tooltip="Pagina de Inicio" data-position="bottom center">
+                    <i class="black big home link icon"></i>
+                    <div class="ui grid one column computer only">
+                        <strong>Home</strong>
+                    </div>
+                </a>
+                <a class="item" href="/app/logout" data-tooltip="Cerrar Sesión" data-position="bottom right">
+                    <i class="black big sign out link icon"></i>
+                    <div class="ui grid one column computer only">
+                        <strong>Logout</strong>
+                    </div>
+                </a>
+            </div>
+            <div class="hide-desktop w-100">
+                <div class="flex-spacebetween-center">
+                    <div class="item">
+                        <div class="user-info">
+                            <div>
+                                <strong>Personal:</strong> ALEJANDRO ANYARIN 
+                            </div>
+                            <div>
+                                <strong>Lista Precios:</strong> LISTA DE PRECIO M1P
+                            </div>
+                            <div>
+                                <strong>Almacen:</strong> BROCKER MESA 1
+                            </div>
+                        </div>
+                    </div>
+                    <a class="item" href="/app/general/perfil-personal" data-tooltip="Perfil de Personal" data-position="bottom right">
+                        <i class="black big id badge link icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="ui attached segment pushable" id="pusher">
+            <div class="ui inverted vertical accordion sidebar menu left uncover visible" id="sidebar" style="">
+                <div class="item" id="item-search">
+                    <div class="ui icon input">
+                        <input type="text" placeholder="Búsqueda" id="menu-search">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large shopping bag icon"></i>
+                            <span>Compras</span>
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/compras/crear-compra">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Compra
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/compras/gestion-compras">
+                                        <i class="shopping bag icon"></i>
+                                        <div class="content">
+                                            Gestión de Compras
+                                        </div>
+                                    </a>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large shopping cart icon"></i>
+                            Proveedores
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/proveedores/crear-proveedor">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Proveedor
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/proveedores/gestion-proveedores">
+                                        <i class="shoppint cart icon"></i>
+                                        <div class="content">
+                                            Gestión de Proveedores
+                                        </div>
+                                    </a>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard list icon"></i>
+                            Preventas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/preventas/gestion-preventas">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Gestión Preventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/preventas/reportes-preventas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Preventas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard check icon"></i>
+                            Ventas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/ventas/crear-venta">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Venta Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/crear-venta-servicio">
+                                        <i class="dollar icon"></i>
+                                        <div class="content">
+                                            Crear Venta Servicios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/gestion-ventas">
+                                        <i class="clipboard check icon"></i>
+                                        <div class="content">
+                                            Gestión de Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/puntos-ventas">
+                                        <i class="map signs icon"></i>
+                                        <div class="content">
+                                            Puntos de Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/gestion-notas-pedido">
+                                        <i class="calendar alternate icon"></i>
+                                        <div class="content">
+                                            Gestión Notas Pedido
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/impresion-ventas">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresión de Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/entregas-parciales">
+                                        <i class="boxes icon"></i>
+                                        <div class="content">
+                                            Entregas Parciales
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/fileteo-automatico">
+                                        <i class="paragraph icon"></i>
+                                        <div class="content">
+                                            Fileteo Automatico
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/reportes-ventas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Ventas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large newspaper icon"></i>
+                            Notas de Credito
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/notas-credito/gestion-notas-credito">
+                                        <i class="newspaper icon"></i>
+                                        <div class="content">
+                                            Gestión Notas Credito
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/notas-credito/devoluciones-transportistas">
+                                        <i class="clipboard list icon"></i>
+                                        <div class="content">
+                                            Devolucion Transportista
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/notas-credito/impresion-notas-credito">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresión Notas Credito
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/notas-credito/reportes-notas-credito">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Notas Credito
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large file icon"></i>
+                            Informes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/informes/requerimientos">
+                                        <i class="tasks icon"></i>
+                                        <div class="content">
+                                            Informes de Requerimientos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/informes/liquidaciones">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Informes de Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/informes/almacenes">
+                                        <i class="warehouse icon"></i>
+                                        <div class="content">
+                                            Informes de Almacenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/informes/entregas-parciales">
+                                        <i class="boxes icon"></i>
+                                        <div class="content">
+                                            Entregas Parciales
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large retweet icon"></i>
+                            Cambios de Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/cambios-producto/crear-cambio-producto">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/asignar-entrega-cambios-producto">
+                                        <i class="calendar icon"></i>
+                                        <div class="content">
+                                            Asignar Fecha de Entrega
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/gestion-cambios-producto">
+                                        <i class="retweet icon"></i>
+                                        <div class="content">
+                                            Gestion Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/impresion-cambio-producto">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresion Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/crear-reporte-cambios-producto">
+                                        <i class="file alternate icon"></i>
+                                        <div class="content">
+                                            Crear Req/Liq Cambios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/gestion-reportes-cambios-producto">
+                                        <i class="folder open icon"></i>
+                                        <div class="content">
+                                            Gestion Req/Liq Cambios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/reportes-cambios-producto">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reporte Cambios Productos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large exchange icon"></i>
+                            Canjes de Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/canjes/crear-canje">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/asignar-entrega-canjes">
+                                        <i class="calendar icon"></i>
+                                        <div class="content">
+                                            Asignar Fecha de Entrega
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/gestion-canjes">
+                                        <i class="exchange icon"></i>
+                                        <div class="content">
+                                            Gestion Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/impresion-canjes">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresion Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/crear-reportes-canjes">
+                                        <i class="file alternate icon"></i>
+                                        <div class="content">
+                                            Crear Req/Liq Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/gestion-reportes-canjes">
+                                        <i class="retweet icon"></i>
+                                        <div class="content">
+                                            Gestion Req/Liq Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/reportes-canjes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Canjes
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large certificate icon"></i>
+                            Sunat
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/sunat/envios-sunat">
+                                        <i class="inbox icon"></i>
+                                        <div class="content">
+                                            Envios Pendientes Sunat
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/sunat/gestion-envios-sunat">
+                                        <i class="envelope icon"></i>
+                                        <div class="content">
+                                            Gestion Envios Sunat
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/sunat/reportes-envios-sunat">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Envios Sunat
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large copy icon"></i>
+                            Resumenes Diarios
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/resumen-diario/crear-resumen-diario">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Resumen
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/resumen-diario/gestion-resumenes-diarios">
+                                        <i class="copy icon"></i>
+                                        <div class="content">
+                                            Gestion de Resumenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/resumen-diario/reportes-resumenes-diarios">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Resumenes
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large calendar times icon"></i>
+                            Comunicacion de Baja
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/comunicacion-baja/crear-comunicacion-baja">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Baja
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comunicacion-baja/gestion-comunicaciones-baja">
+                                        <i class="calendar times icon"></i>
+                                        <div class="content">
+                                            Gestion de Bajas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comunicacion-baja/reportes-comunicaciones-baja">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Baja
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large tasks icon"></i>
+                            Requerimientos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/requerimientos/crear-requerimiento">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Requerimiento
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/requerimientos/gestion-requerimientos">
+                                        <i class="tasks icon"></i>
+                                        <div class="content">
+                                            Gestion Requerimientos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/requerimientos/reportes-requerimientos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Requerimientos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard icon"></i>
+                            Liquidaciones
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/liquidaciones/crear-liquidacion">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Liquidacion
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/liquidaciones/gestion-liquidaciones">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Gestion Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/liquidaciones/reportes-liquidaciones">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large users icon"></i>
+                            Personal
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/personal/crear-personal">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Personal
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/personal/gestion-personal">
+                                        <i class="users icon"></i>
+                                        <div class="content">
+                                            Gestion Personal
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/personal/reportes-personal">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Personal
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large binoculars icon"></i>
+                            <span>Mapas de Rutas</span>
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/mapas-rutas/crear-mapa-rutas">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Mapa de Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/mapas-rutas/gestion-mapas-rutas">
+                                        <i class="shopping bag icon"></i>
+                                        <div class="content">
+                                            Gestion de Mapas de Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/mapas-rutas/reportes-mapas-rutas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Mapas de Rutas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large address book icon"></i>
+                            Clientes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/clientes/crear-cliente">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Cliente
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/gestion-clientes">
+                                        <i class="address book icon"></i>
+                                        <div class="content">
+                                            Gestion Clientes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/habilitar-ventas-clientes">
+                                        <i class="clipboard check icon"></i>
+                                        <div class="content">
+                                            Habilitar Ventas Clientes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/cambio-dia-atencion">
+                                        <i class="calendar alternate icon"></i>
+                                        <div class="content">
+                                            Cambio dia Atencion
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/reportes-clientes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Clientes
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large map icon"></i>
+                            Zonas y Rutas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/zonas-rutas/gestion-zonas-rutas">
+                                        <i class="map icon"></i>
+                                        <div class="content">
+                                            Gestion Zonas y Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/zonas-rutas/habilitar-ventas-rutas">
+                                        <i class="clipboard check icon"></i>
+                                        <div class="content">
+                                            Habilitar Ventas en Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/zonas-rutas/reportes-zonas-rutas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Zonas y Rutas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large warehouse icon"></i>
+                            Almacenes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/almacenes/gestion-almacenes">
+                                        <i class="warehouse icon"></i>
+                                        <div class="content">
+                                            Gestion Almacenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/almacenes/reportes-almacenes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Almacenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/almacenes/inventario-stock">
+                                        <i class="indent icon"></i>
+                                        <div class="content">
+                                            Inventario de Stocks
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/almacenes/gestion-inventarios">
+                                        <i class="book icon"></i>
+                                        <div class="content">
+                                            Gestion de Inventarios
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large truck icon"></i>
+                            Unidades de Trans.
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/unidades-transporte/crear-unidad-transporte">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Unidad Trans.
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/unidades-transporte/gestion-unidades-transporte">
+                                        <i class="truck icon"></i>
+                                        <div class="content">
+                                            Gestion Unidades de Trans.
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/unidades-transporte/reportes-unidades-transporte">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Unidades de Trans.
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large gift icon"></i>
+                            Premios Canjes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/premio-canje/gestion-requesitos-canje">
+                                        <i class="tags icon"></i>
+                                        <div class="content">
+                                            Requisitos de Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/premio-canje/crear-premio-canje">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Premio Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/premio-canje/gestion-premios-canjes">
+                                        <i class="box icon"></i>
+                                        <div class="content">
+                                            Gestion Premio Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/premio-canje/reportes-premios-canjes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Premio Canje
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large box icon"></i>
+                            Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/productos/gestion-clases-subclases-productos">
+                                        <i class="tags icon"></i>
+                                        <div class="content">
+                                            Clases y Subclases
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/productos/crear-producto">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Producto
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/productos/gestion-productos">
+                                        <i class="box icon"></i>
+                                        <div class="content">
+                                            Gestion Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/productos/reportes-productos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Productos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large world icon"></i>
+                            Servicios
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/servicios/crear-servicio">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Servicio
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/servicios/gestion-servicios">
+                                        <i class="world icon"></i>
+                                        <div class="content">
+                                            Gestion Servicios
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large boxes icon"></i>
+                            Combos de Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/combos/crear-combo">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Combo
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/combos/gestion-combos">
+                                        <i class="boxes icon"></i>
+                                        <div class="content">
+                                            Gestion Combos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/combos/reportes-combos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Combos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large star icon"></i>
+                            Concursos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/concursos/crear-concurso">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Concurso
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/concursos/gestion-concursos">
+                                        <i class="star icon"></i>
+                                        <div class="content">
+                                            Gestion Concursos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/concursos/reportes-concursos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Concursos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large percent icon"></i>
+                            Comisiones
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/comisiones/crear-reporte-comisiones">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Reporte Comisiones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comisiones/gestion-comisiones">
+                                        <i class="percent icon"></i>
+                                        <div class="content">
+                                            Gestion Reporte Comisiones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comisiones/ajuste-comisiones">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Ajuste de Comisiones
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large globe icon"></i>
+                            Cobertura
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/cobertura/crear-reporte-cobertura">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Reporte Cobertura
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cobertura/gestion-coberturas">
+                                        <i class="globe icon"></i>
+                                        <div class="content">
+                                            Gestion Reporte Cobertura
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard icon"></i>
+                            Listas de Precios
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/lista-precios/crear-lista-precios">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Lista de Precios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/lista-precios/gestion-listas-precios">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Gestion Listas de Precios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/lista-precios/copiar-lista-precios">
+                                        <i class="copy icon"></i>
+                                        <div class="content">
+                                            Copiar Listas de Precios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/lista-precios/reportes-listas-precios">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Listas de Precios
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large user icon"></i>
+                            Vendedor
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/vendedor/crear-cliente">
+                                        <i class="user plus icon"></i>
+                                        <div class="content">
+                                            Crear Cliente
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/clientes">
+                                        <i class="address book icon"></i>
+                                        <div class="content">
+                                            Clientes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/crear-preventa">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Preventa
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/preventas">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Preventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/ventas">
+                                        <i class="dollar sign icon"></i>
+                                        <div class="content">
+                                            Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/crear-cambio-producto">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/cambios-producto">
+                                        <i class="retweet icon"></i>
+                                        <div class="content">
+                                            Cambios de Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/crear-canje">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/canjes">
+                                        <i class="exchange icon"></i>
+                                        <div class="content">
+                                            Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/stock-productos">
+                                        <i class="dolly flatbed icon"></i>
+                                        <div class="content">
+                                            Stock de Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/comisiones">
+                                        <i class="percent icon"></i>
+                                        <div class="content">
+                                            Comisiones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/concursos">
+                                        <i class="star icon"></i>
+                                        <div class="content">
+                                            Concursos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large cogs icon"></i>
+                            Configuracion
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-empresa">
+                                        <i class="cog icon"></i>
+                                        <div class="content">
+                                            Configuracion Empresa
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-impresion">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Configuracion Impresión
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-sunat">
+                                        <i class="certificate icon"></i>
+                                        <div class="content">
+                                            Configuracion Sunat
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-alertas">
+                                        <i class="bell icon"></i>
+                                        <div class="content">
+                                            Configuracion Alertas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large truck icon"></i>
+                            Transportistas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/transportistas/mis-devoluciones">
+                                        <i class="file alternate icon"></i>
+                                        <div class="content">
+                                            Mis Devoluciones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/transportistas/mis-requerimientos">
+                                        <i class="clipboard outline icon"></i>
+                                        <div class="content">
+                                            Mis Requerimientos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/transportistas/mis-liquidaciones">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Mis Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="item">
+                    <div class="title">
+                        <i class="large sitemap icon"></i>
+                        General
+                        <i class="large dropdown icon"></i>
+                    </div>
+                    <div class="content">
+                        <div class="ui inverted animated list">
+                            <a class="item" href="/app/general/perfil-personal">
+                                <i class="id badge icon"></i>
+                                <div class="content">
+                                    Perfil Personal
+                                </div>
+                            </a>
+                            <a class="item" href="/app/home">
+                                <i class="home icon"></i>
+                                <div class="content">
+                                    Home
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pusher">
+                <div class="ui basic segment">
+                    <div class="ui container">
+                        
+        <h2 class="ui block header">
+            Habilitar Ventas
+        </h2>
+        <div class="ui stackable grid">
+            <div class="twelve wide column">
+                <div class="ui icon fluid input">
+                    <input type="text" placeholder="Busqueda..." id="busqueda">
+                    <i class="search icon"></i>
+                </div>
+            </div>
+            <div class="four wide column">
+                <div class="ui fluid positive button" id="button-save">Guardar Cambios</div>
+            </div>
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui centered stackable four column grid" id="card-rutas"><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="DISTRIBUIDORES">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>DISTRIBUIDORES</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="5" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="FILETEO">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>FILETEO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="227" data-state="false" tabindex="0" class="hidden">
+                        <label>01</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA A">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA A</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="225" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="104" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="156" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="119" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="144" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="118" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA B">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA B</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="108" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="140" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="134" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="163" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="123" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="164" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA C">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA C</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="131" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="157" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="115" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="112" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="162" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="98" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA CENTRO A">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA CENTRO A</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="18" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="19" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="20" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA CENTRO B">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA CENTRO B</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="8" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="6" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="14" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="21" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="22" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="23" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA CENTRO C">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA CENTRO C</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="39" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="40" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="41" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="42" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="43" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="44" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA CENTRO D">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA CENTRO D</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="45" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="46" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="47" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="48" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="49" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="50" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA D">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA D</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="222" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="226" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="121" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="113" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="117" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="161" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA E">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA E</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="221" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="142" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="155" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="125" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="152" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="158" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA F">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA F</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="132" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="110" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="109" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="147" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="105" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="128" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA G">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA G</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="102" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="153" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="148" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="107" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="111" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="106" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA H">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA H</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="126" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="120" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="103" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="149" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="129" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="143" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA I">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA I</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="96" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="122" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="139" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="160" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="99" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="224" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA J">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA J</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="114" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="127" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="133" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="101" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="223" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="124" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA K">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA K</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="138" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="116" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="100" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="146" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="135" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="145" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA L">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA L</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="233" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="229" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="230" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="231" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="232" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="228" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA M">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA M</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="239" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="235" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="236" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="237" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="250" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="234" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA N">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA N</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="245" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="241" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="242" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="243" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="244" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="240" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA NORTE A">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA NORTE A</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="78" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="79" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="80" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="81" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="82" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="83" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA NORTE B">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA NORTE B</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="72" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="73" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="74" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="75" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="76" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="77" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA NORTE C">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA NORTE C</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="84" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="85" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="89" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="86" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="87" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="88" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA NORTE D">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA NORTE D</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="90" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="91" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="92" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="93" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="94" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="95" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA O">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA O</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="251" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="247" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="249" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="248" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="238" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="246" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA P">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA P</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="258" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="253" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="254" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="255" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="257" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="252" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="ICA SUR A">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>ICA SUR A</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="33" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="34" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="35" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="36" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="37" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="38" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="LA TINGUIÑA">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>LA TINGUIÑA</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="57" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="58" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="59" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="60" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="61" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="62" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="MARCONA">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>MARCONA</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="174" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="175" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="176" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="177" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="178" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="179" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="MARSHMALLOW ANGEL">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>MARSHMALLOW ANGEL</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="202" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="203" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="204" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="205" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="206" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="207" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="MERCADOS A">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>MERCADOS A</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="63" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="169" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="170" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="171" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="172" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="173" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="MERCADOS B">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>MERCADOS B</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="190" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="191" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="192" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="193" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="194" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="195" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="MERCADOS C">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>MERCADOS C</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="196" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="197" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="198" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="199" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="200" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="201" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="MERCADOS E">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>MERCADOS E</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="208" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="209" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="212" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="211" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="214" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="213" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="MERCADOS F">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>MERCADOS F</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="215" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="216" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="217" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="218" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="219" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="220" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="PALPA">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>PALPA</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="184" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="185" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="186" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="187" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="188" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="189" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="PARCONA A">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>PARCONA A</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="2" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="10" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="15" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="24" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="25" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="26" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="PARCONA B">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>PARCONA B</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="51" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="52" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="53" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="54" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="55" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="56" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="SUBTANJALLA">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>SUBTANJALLA</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="3" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="9" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="16" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="27" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="28" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="29" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div><div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
+                            <div class="ui master checkbox" data-nombre="TINGUIÑA">
+                                <input type="checkbox" name="zona" tabindex="0" class="hidden">
+                                <label>TINGUIÑA</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content zonas">
+                        <div class="ui link list list-zona"><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="4" data-state="false" tabindex="0" class="hidden">
+                        <label>10</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="12" data-state="false" tabindex="0" class="hidden">
+                        <label>20</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="17" data-state="false" tabindex="0" class="hidden">
+                        <label>30</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="30" data-state="false" tabindex="0" class="hidden">
+                        <label>40</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="31" data-state="false" tabindex="0" class="hidden">
+                        <label>50</label>
+                    </div>
+                </a><a class="item">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="public" value="32" data-state="false" tabindex="0" class="hidden">
+                        <label>60</label>
+                    </div>
+                </a></div>
+                    </div>
+                </div>
+            </div></div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui page dimmer transition hidden" id="waitingModal">
+            <div class="content">
+                <div class="ui huge indeterminate text loader">
+                    <p id="waitingText">Cargando resultados</p>
+                </div>
+            </div>
+        </div>
+        <div id="uiAlert" class="ui-alert-content ui-alert-content-top-center"></div>
+    
+
+        
+        <script>
+            var path = '/app';
+            var lpre = 'LISTA DE PRECIO M1P';
+            var almc = 'BROCKER MESA 1';
+        </script>
+        <script>
+            var csrf = false;
+        </script>
+        <script src="/app/static/resources/js/page.js"></script>
+        <script src="/app/static/resources/js/clases.js"></script>
+        <script src="/app/static/resources/js/catalogo.js"></script>        
+        <link rel="stylesheet" type="text/css" href="/app/resources/zonas-rutas/habilitar-ventas-rutas/index.css">
+        <script src="/app/resources/zonas-rutas/habilitar-ventas-rutas/index.js"></script>
+    
+</body></html>

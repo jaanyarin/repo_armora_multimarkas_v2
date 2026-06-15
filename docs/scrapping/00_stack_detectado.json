@@ -1,0 +1,13 @@
+{
+  "frontend_detectado": [],
+  "librerias_posibles": [],
+  "api_domains_detectados": [
+    "armorasac.com",
+    "fonts.googleapis.com",
+    "fonts.gstatic.com"
+  ],
+  "notas": [
+    "Server header detectado: ESF",
+    "Server header detectado: sffe"
+  ]
+}

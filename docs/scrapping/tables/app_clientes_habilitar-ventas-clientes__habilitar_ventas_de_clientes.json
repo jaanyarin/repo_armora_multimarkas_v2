@@ -1,0 +1,41 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "Días de la Semana",
+      ""
+    ],
+    "rows": [
+      [
+        "Días de la Semana",
+        ""
+      ],
+      [
+        "Lunes",
+        ""
+      ],
+      [
+        "Martes",
+        ""
+      ],
+      [
+        "Miercoles",
+        ""
+      ],
+      [
+        "Jueves",
+        ""
+      ],
+      [
+        "Viernes",
+        ""
+      ],
+      [
+        "Sabado",
+        ""
+      ]
+    ],
+    "row_count": 7
+  }
+]

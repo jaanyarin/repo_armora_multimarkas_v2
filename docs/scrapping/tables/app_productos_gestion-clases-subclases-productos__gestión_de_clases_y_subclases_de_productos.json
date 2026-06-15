@@ -1,0 +1,222 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Orden",
+      "Nombre",
+      "Licor",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Orden",
+        "Nombre",
+        "Licor",
+        "Acciones"
+      ],
+      [
+        "",
+        "1",
+        "PANASONIC",
+        "NO LICOR",
+        ""
+      ],
+      [
+        "",
+        "2",
+        "GRUPO BIMBO",
+        "NO LICOR",
+        ""
+      ],
+      [
+        "",
+        "3",
+        "MI FARMA",
+        "NO LICOR",
+        ""
+      ],
+      [
+        "",
+        "4",
+        "RADIANTE",
+        "NO LICOR",
+        ""
+      ],
+      [
+        "",
+        "5",
+        "COCK BRAND",
+        "NO LICOR",
+        ""
+      ],
+      [
+        "",
+        "6",
+        "LABOCER",
+        "NO LICOR",
+        ""
+      ],
+      [
+        "",
+        "7",
+        "FOPESA",
+        "NO LICOR",
+        ""
+      ],
+      [
+        "",
+        "8",
+        "INKACROPS",
+        "NO LICOR",
+        ""
+      ],
+      [
+        "",
+        "9",
+        "QUALA",
+        "NO LICOR",
+        ""
+      ],
+      [
+        "",
+        "10",
+        "GRUPO HUANCARUNA",
+        "NO LICOR",
+        ""
+      ]
+    ],
+    "row_count": 11
+  },
+  {
+    "type": "html_table",
+    "index": 1,
+    "headers": [
+      "",
+      "Orden",
+      "Clase",
+      "Nombre",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Orden",
+        "Clase",
+        "Nombre",
+        "Acciones"
+      ],
+      [
+        "",
+        "18",
+        "PANASONIC",
+        "BATERIAS/PILAS PANASONIC",
+        ""
+      ],
+      [
+        "",
+        "47",
+        "GRUPO BIMBO",
+        "SNAKS TAKIS",
+        ""
+      ],
+      [
+        "",
+        "207",
+        "MI FARMA",
+        "HENO DE PRAVIA",
+        ""
+      ],
+      [
+        "",
+        "37",
+        "RADIANTE",
+        "VELA RADIANTE",
+        ""
+      ],
+      [
+        "",
+        "22",
+        "COCK BRAND",
+        "INCECTICIDA ESPIRAL",
+        ""
+      ],
+      [
+        "",
+        "26",
+        "COCK BRAND",
+        "INSECTITICIDA SPRAY",
+        ""
+      ],
+      [
+        "",
+        "59",
+        "LABOCER",
+        "CHICLE BUZZY",
+        ""
+      ],
+      [
+        "",
+        "29",
+        "FOPESA",
+        "FOSFORO INTI",
+        ""
+      ],
+      [
+        "",
+        "135",
+        "INKACROPS",
+        "PAPAS INKACHIPS",
+        ""
+      ],
+      [
+        "",
+        "158",
+        "INKACROPS",
+        "CHIFLES INKACHIPS",
+        ""
+      ]
+    ],
+    "row_count": 11
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Orden Nombre Licor Acciones",
+      "1 PANASONIC NO LICOR",
+      "2 GRUPO BIMBO NO LICOR",
+      "3 MI FARMA NO LICOR",
+      "4 RADIANTE NO LICOR",
+      "5 COCK BRAND NO LICOR",
+      "6 LABOCER NO LICOR",
+      "7 FOPESA NO LICOR",
+      "8 INKACROPS NO LICOR",
+      "9 QUALA NO LICOR",
+      "10 GRUPO HUANCARUNA NO LICOR"
+    ],
+    "row_count": 11
+  },
+  {
+    "type": "aria_grid",
+    "index": 1,
+    "headers": [],
+    "rows_text": [
+      "Orden Clase Nombre Acciones",
+      "18 PANASONIC BATERIAS/PILAS PANASONIC",
+      "47 GRUPO BIMBO SNAKS TAKIS",
+      "207 MI FARMA HENO DE PRAVIA",
+      "37 RADIANTE VELA RADIANTE",
+      "22 COCK BRAND INCECTICIDA ESPIRAL",
+      "26 COCK BRAND INSECTITICIDA SPRAY",
+      "59 LABOCER CHICLE BUZZY",
+      "29 FOPESA FOSFORO INTI",
+      "135 INKACROPS PAPAS INKACHIPS",
+      "158 INKACROPS CHIFLES INKACHIPS"
+    ],
+    "row_count": 11
+  }
+]

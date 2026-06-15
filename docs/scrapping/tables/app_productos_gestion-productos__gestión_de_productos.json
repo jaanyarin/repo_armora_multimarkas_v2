@@ -1,0 +1,148 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Codigo",
+      "SKU",
+      "Clase",
+      "Subclase",
+      "Nombre",
+      "Visible",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Codigo",
+        "SKU",
+        "Clase",
+        "Subclase",
+        "Nombre",
+        "Visible",
+        "Acciones"
+      ],
+      [
+        "",
+        "PRD210200014",
+        "132",
+        "PANASONIC",
+        "BATERIAS/PILAS PANASONIC",
+        "PILAS PANASONIC AA BONIFICACION",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "PRD210200021",
+        "131",
+        "PANASONIC",
+        "BATERIAS/PILAS PANASONIC",
+        "PILAS PANASONIC AA X 10PARES",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "PRD230600019",
+        "816",
+        "PANASONIC",
+        "BATERIAS/PILAS PANASONIC",
+        "PILAS PANASONIC AA X 10PARES X 4DP",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "PRD221100050",
+        "601",
+        "PANASONIC",
+        "BATERIAS/PILAS PANASONIC",
+        "PILAS PANASONIC AA X 10PARES X 8DP",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "PRD220800006",
+        "494",
+        "PANASONIC",
+        "BATERIAS/PILAS PANASONIC",
+        "PILAS PANASONIC AAA BONIFICACION",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "PRD230400013",
+        "765",
+        "PANASONIC",
+        "BATERIAS/PILAS PANASONIC",
+        "PILAS PANASONIC AAA X 20PARES X 2DP",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "PRD221100048",
+        "599",
+        "PANASONIC",
+        "BATERIAS/PILAS PANASONIC",
+        "PILAS PANASONIC AAA X 20PARES X 4DP",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "PRD200900032",
+        "25",
+        "PANASONIC",
+        "BATERIAS/PILAS PANASONIC",
+        "PILAS PANASONIC AAA X 20PARES",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "PRD230600069",
+        "866",
+        "GRUPO BIMBO",
+        "SNAKS TAKIS",
+        "PROMOCION TAKIS SURTIDO BIMBO X 56GR X 6UN X 8TIRA",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "PRD260300006",
+        "1266",
+        "GRUPO BIMBO",
+        "SNAKS TAKIS",
+        "TAKIS BLUE BIMBO X 56GR X 6UN X TIRA",
+        "COMER",
+        ""
+      ]
+    ],
+    "row_count": 11
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Codigo SKU Clase Subclase Nombre Visible Acciones",
+      "PRD210200014 132 PANASONIC BATERIAS/PILAS PANASONIC PILAS PANASONIC AA BONIFICACION COMER",
+      "PRD210200021 131 PANASONIC BATERIAS/PILAS PANASONIC PILAS PANASONIC AA X 10PARES COMER",
+      "PRD230600019 816 PANASONIC BATERIAS/PILAS PANASONIC PILAS PANASONIC AA X 10PARES X 4DP COMER",
+      "PRD221100050 601 PANASONIC BATERIAS/PILAS PANASONIC PILAS PANASONIC AA X 10PARES X 8DP COMER",
+      "PRD220800006 494 PANASONIC BATERIAS/PILAS PANASONIC PILAS PANASONIC AAA BONIFICACION COMER",
+      "PRD230400013 765 PANASONIC BATERIAS/PILAS PANASONIC PILAS PANASONIC AAA X 20PARES X 2DP COMER",
+      "PRD221100048 599 PANASONIC BATERIAS/PILAS PANASONIC PILAS PANASONIC AAA X 20PARES X 4DP COMER",
+      "PRD200900032 25 PANASONIC BATERIAS/PILAS PANASONIC PILAS PANASONIC AAA X 20PARES COMER",
+      "PRD230600069 866 GRUPO BIMBO SNAKS TAKIS PROMOCION TAKIS SURTIDO BIMBO X 56GR X 6UN X 8TIRA COMER",
+      "PRD260300006 1266 GRUPO BIMBO SNAKS TAKIS TAKIS BLUE BIMBO X 56GR X 6UN X TIRA COMER"
+    ],
+    "row_count": 11
+  }
+]

@@ -1,0 +1,1564 @@
+<!DOCTYPE html><html lang="es-PE"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+            Crear Servicio
+        </title>
+        
+        <script src="/app/static/jquery/jquery-3.4.1.min.js"></script>
+        <script src="/app/static/jquery/jquery-serialize-object.min.js"></script>
+        <script src="/app/static/semantic/semantic-dyvent.min.js"></script>
+        <script src="/app/static/alert/ui-alert.js"></script>
+        <script src="/app/static/datatable/datatables.dyvent.min.js"></script>
+        <script src="/app/static/quicksearch/quicksearch.js"></script>
+        <script src="/app/static/multiselect/multiselect.js"></script>
+        <script src="/app/static/calendar/calendar.min.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="/app/static/semantic/semantic-dyvent.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/alert/ui-alert.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/datatable/datatables.dyvent.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/multiselect/multiselect.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/calendar/calendar.min.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/resources/css/page.css">
+        <link rel="stylesheet" type="text/css" href="/app/static/tableflip/tableflip.css">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="/app/static/favicon/apple-touch-icon.png?v1">
+        <link rel="icon" type="image/png" sizes="32x32" href="/app/static/favicon/favicon-32x32.png?v1">
+        <link rel="icon" type="image/png" sizes="16x16" href="/app/static/favicon/favicon-16x16.png?v1">
+        <link rel="manifest" href="/app/static/favicon/site.webmanifest?v1">
+        <link rel="mask-icon" href="/app/static/favicon/safari-pinned-tab.svg?v1" color="#949494">
+        <meta name="msapplication-TileColor" content="#000000">
+        <meta name="theme-color" content="#000000">
+    <style> .ui.visible.left.sidebar ~ .fixed, .ui.visible.left.sidebar ~ .pusher {   -webkit-transform: translate3d(260px, 0, 0);           transform: translate3d(260px, 0, 0); }</style></head>
+    <body class="dimmable">
+        
+        <div class="ui top attached secondary menu flex-wrap">
+            <a class="item open-menu" id="bSidebar">
+                <img class="ui image image-menu" alt="Menu Principal" src="/app/general/loaded-resources/rest/home-image">
+            </a>
+            <div class="ui right secondary compact menu right-menu">
+                <div class="ui grid one column computer tablet only">
+                    <a class="item" href="/app/general/perfil-personal" data-tooltip="Perfil de Personal" data-position="bottom left">
+                        <i class="black big id badge link icon"></i>
+                    </a>
+                    <div class="item">
+                        <div class="user-info">
+                            <div>
+                                <strong>Personal:</strong> ALEJANDRO ANYARIN 
+                            </div>
+                            <div>
+                                <strong>Lista Precios:</strong> LISTA DE PRECIO M1P
+                            </div>
+                            <div>
+                                <strong>Almacen:</strong> BROCKER MESA 1
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="item" href="/app/home" data-tooltip="Pagina de Inicio" data-position="bottom center">
+                    <i class="black big home link icon"></i>
+                    <div class="ui grid one column computer only">
+                        <strong>Home</strong>
+                    </div>
+                </a>
+                <a class="item" href="/app/logout" data-tooltip="Cerrar Sesión" data-position="bottom right">
+                    <i class="black big sign out link icon"></i>
+                    <div class="ui grid one column computer only">
+                        <strong>Logout</strong>
+                    </div>
+                </a>
+            </div>
+            <div class="hide-desktop w-100">
+                <div class="flex-spacebetween-center">
+                    <div class="item">
+                        <div class="user-info">
+                            <div>
+                                <strong>Personal:</strong> ALEJANDRO ANYARIN 
+                            </div>
+                            <div>
+                                <strong>Lista Precios:</strong> LISTA DE PRECIO M1P
+                            </div>
+                            <div>
+                                <strong>Almacen:</strong> BROCKER MESA 1
+                            </div>
+                        </div>
+                    </div>
+                    <a class="item" href="/app/general/perfil-personal" data-tooltip="Perfil de Personal" data-position="bottom right">
+                        <i class="black big id badge link icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="ui attached segment pushable" id="pusher">
+            <div class="ui inverted vertical accordion sidebar menu left uncover visible" id="sidebar" style="">
+                <div class="item" id="item-search">
+                    <div class="ui icon input">
+                        <input type="text" placeholder="Búsqueda" id="menu-search">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large shopping bag icon"></i>
+                            <span>Compras</span>
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/compras/crear-compra">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Compra
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/compras/gestion-compras">
+                                        <i class="shopping bag icon"></i>
+                                        <div class="content">
+                                            Gestión de Compras
+                                        </div>
+                                    </a>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large shopping cart icon"></i>
+                            Proveedores
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/proveedores/crear-proveedor">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Proveedor
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/proveedores/gestion-proveedores">
+                                        <i class="shoppint cart icon"></i>
+                                        <div class="content">
+                                            Gestión de Proveedores
+                                        </div>
+                                    </a>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard list icon"></i>
+                            Preventas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/preventas/gestion-preventas">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Gestión Preventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/preventas/reportes-preventas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Preventas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard check icon"></i>
+                            Ventas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/ventas/crear-venta">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Venta Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/crear-venta-servicio">
+                                        <i class="dollar icon"></i>
+                                        <div class="content">
+                                            Crear Venta Servicios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/gestion-ventas">
+                                        <i class="clipboard check icon"></i>
+                                        <div class="content">
+                                            Gestión de Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/puntos-ventas">
+                                        <i class="map signs icon"></i>
+                                        <div class="content">
+                                            Puntos de Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/gestion-notas-pedido">
+                                        <i class="calendar alternate icon"></i>
+                                        <div class="content">
+                                            Gestión Notas Pedido
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/impresion-ventas">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresión de Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/entregas-parciales">
+                                        <i class="boxes icon"></i>
+                                        <div class="content">
+                                            Entregas Parciales
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/fileteo-automatico">
+                                        <i class="paragraph icon"></i>
+                                        <div class="content">
+                                            Fileteo Automatico
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/ventas/reportes-ventas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Ventas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large newspaper icon"></i>
+                            Notas de Credito
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/notas-credito/gestion-notas-credito">
+                                        <i class="newspaper icon"></i>
+                                        <div class="content">
+                                            Gestión Notas Credito
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/notas-credito/devoluciones-transportistas">
+                                        <i class="clipboard list icon"></i>
+                                        <div class="content">
+                                            Devolucion Transportista
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/notas-credito/impresion-notas-credito">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresión Notas Credito
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/notas-credito/reportes-notas-credito">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Notas Credito
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large file icon"></i>
+                            Informes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/informes/requerimientos">
+                                        <i class="tasks icon"></i>
+                                        <div class="content">
+                                            Informes de Requerimientos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/informes/liquidaciones">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Informes de Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/informes/almacenes">
+                                        <i class="warehouse icon"></i>
+                                        <div class="content">
+                                            Informes de Almacenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/informes/entregas-parciales">
+                                        <i class="boxes icon"></i>
+                                        <div class="content">
+                                            Entregas Parciales
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large retweet icon"></i>
+                            Cambios de Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/cambios-producto/crear-cambio-producto">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/asignar-entrega-cambios-producto">
+                                        <i class="calendar icon"></i>
+                                        <div class="content">
+                                            Asignar Fecha de Entrega
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/gestion-cambios-producto">
+                                        <i class="retweet icon"></i>
+                                        <div class="content">
+                                            Gestion Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/impresion-cambio-producto">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresion Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/crear-reporte-cambios-producto">
+                                        <i class="file alternate icon"></i>
+                                        <div class="content">
+                                            Crear Req/Liq Cambios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/gestion-reportes-cambios-producto">
+                                        <i class="folder open icon"></i>
+                                        <div class="content">
+                                            Gestion Req/Liq Cambios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cambios-producto/reportes-cambios-producto">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reporte Cambios Productos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large exchange icon"></i>
+                            Canjes de Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/canjes/crear-canje">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/asignar-entrega-canjes">
+                                        <i class="calendar icon"></i>
+                                        <div class="content">
+                                            Asignar Fecha de Entrega
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/gestion-canjes">
+                                        <i class="exchange icon"></i>
+                                        <div class="content">
+                                            Gestion Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/impresion-canjes">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Impresion Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/crear-reportes-canjes">
+                                        <i class="file alternate icon"></i>
+                                        <div class="content">
+                                            Crear Req/Liq Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/gestion-reportes-canjes">
+                                        <i class="retweet icon"></i>
+                                        <div class="content">
+                                            Gestion Req/Liq Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/canjes/reportes-canjes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Canjes
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large certificate icon"></i>
+                            Sunat
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/sunat/envios-sunat">
+                                        <i class="inbox icon"></i>
+                                        <div class="content">
+                                            Envios Pendientes Sunat
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/sunat/gestion-envios-sunat">
+                                        <i class="envelope icon"></i>
+                                        <div class="content">
+                                            Gestion Envios Sunat
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/sunat/reportes-envios-sunat">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Envios Sunat
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large copy icon"></i>
+                            Resumenes Diarios
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/resumen-diario/crear-resumen-diario">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Resumen
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/resumen-diario/gestion-resumenes-diarios">
+                                        <i class="copy icon"></i>
+                                        <div class="content">
+                                            Gestion de Resumenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/resumen-diario/reportes-resumenes-diarios">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Resumenes
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large calendar times icon"></i>
+                            Comunicacion de Baja
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/comunicacion-baja/crear-comunicacion-baja">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Baja
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comunicacion-baja/gestion-comunicaciones-baja">
+                                        <i class="calendar times icon"></i>
+                                        <div class="content">
+                                            Gestion de Bajas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comunicacion-baja/reportes-comunicaciones-baja">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Baja
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large tasks icon"></i>
+                            Requerimientos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/requerimientos/crear-requerimiento">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Requerimiento
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/requerimientos/gestion-requerimientos">
+                                        <i class="tasks icon"></i>
+                                        <div class="content">
+                                            Gestion Requerimientos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/requerimientos/reportes-requerimientos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Requerimientos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard icon"></i>
+                            Liquidaciones
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/liquidaciones/crear-liquidacion">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Liquidacion
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/liquidaciones/gestion-liquidaciones">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Gestion Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/liquidaciones/reportes-liquidaciones">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large users icon"></i>
+                            Personal
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/personal/crear-personal">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Personal
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/personal/gestion-personal">
+                                        <i class="users icon"></i>
+                                        <div class="content">
+                                            Gestion Personal
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/personal/reportes-personal">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Personal
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large binoculars icon"></i>
+                            <span>Mapas de Rutas</span>
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/mapas-rutas/crear-mapa-rutas">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Mapa de Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/mapas-rutas/gestion-mapas-rutas">
+                                        <i class="shopping bag icon"></i>
+                                        <div class="content">
+                                            Gestion de Mapas de Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/mapas-rutas/reportes-mapas-rutas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes de Mapas de Rutas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large address book icon"></i>
+                            Clientes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/clientes/crear-cliente">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Cliente
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/gestion-clientes">
+                                        <i class="address book icon"></i>
+                                        <div class="content">
+                                            Gestion Clientes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/habilitar-ventas-clientes">
+                                        <i class="clipboard check icon"></i>
+                                        <div class="content">
+                                            Habilitar Ventas Clientes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/cambio-dia-atencion">
+                                        <i class="calendar alternate icon"></i>
+                                        <div class="content">
+                                            Cambio dia Atencion
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/clientes/reportes-clientes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Clientes
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large map icon"></i>
+                            Zonas y Rutas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/zonas-rutas/gestion-zonas-rutas">
+                                        <i class="map icon"></i>
+                                        <div class="content">
+                                            Gestion Zonas y Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/zonas-rutas/habilitar-ventas-rutas">
+                                        <i class="clipboard check icon"></i>
+                                        <div class="content">
+                                            Habilitar Ventas en Rutas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/zonas-rutas/reportes-zonas-rutas">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Zonas y Rutas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large warehouse icon"></i>
+                            Almacenes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/almacenes/gestion-almacenes">
+                                        <i class="warehouse icon"></i>
+                                        <div class="content">
+                                            Gestion Almacenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/almacenes/reportes-almacenes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Almacenes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/almacenes/inventario-stock">
+                                        <i class="indent icon"></i>
+                                        <div class="content">
+                                            Inventario de Stocks
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/almacenes/gestion-inventarios">
+                                        <i class="book icon"></i>
+                                        <div class="content">
+                                            Gestion de Inventarios
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large truck icon"></i>
+                            Unidades de Trans.
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/unidades-transporte/crear-unidad-transporte">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Unidad Trans.
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/unidades-transporte/gestion-unidades-transporte">
+                                        <i class="truck icon"></i>
+                                        <div class="content">
+                                            Gestion Unidades de Trans.
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/unidades-transporte/reportes-unidades-transporte">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Unidades de Trans.
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large gift icon"></i>
+                            Premios Canjes
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/premio-canje/gestion-requesitos-canje">
+                                        <i class="tags icon"></i>
+                                        <div class="content">
+                                            Requisitos de Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/premio-canje/crear-premio-canje">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Premio Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/premio-canje/gestion-premios-canjes">
+                                        <i class="box icon"></i>
+                                        <div class="content">
+                                            Gestion Premio Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/premio-canje/reportes-premios-canjes">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Premio Canje
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large box icon"></i>
+                            Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/productos/gestion-clases-subclases-productos">
+                                        <i class="tags icon"></i>
+                                        <div class="content">
+                                            Clases y Subclases
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/productos/crear-producto">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Producto
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/productos/gestion-productos">
+                                        <i class="box icon"></i>
+                                        <div class="content">
+                                            Gestion Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/productos/reportes-productos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Productos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large world icon"></i>
+                            Servicios
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/servicios/crear-servicio">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Servicio
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/servicios/gestion-servicios">
+                                        <i class="world icon"></i>
+                                        <div class="content">
+                                            Gestion Servicios
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large boxes icon"></i>
+                            Combos de Productos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/combos/crear-combo">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Combo
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/combos/gestion-combos">
+                                        <i class="boxes icon"></i>
+                                        <div class="content">
+                                            Gestion Combos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/combos/reportes-combos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Combos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large star icon"></i>
+                            Concursos
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/concursos/crear-concurso">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Concurso
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/concursos/gestion-concursos">
+                                        <i class="star icon"></i>
+                                        <div class="content">
+                                            Gestion Concursos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/concursos/reportes-concursos">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Concursos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large percent icon"></i>
+                            Comisiones
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/comisiones/crear-reporte-comisiones">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Reporte Comisiones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comisiones/gestion-comisiones">
+                                        <i class="percent icon"></i>
+                                        <div class="content">
+                                            Gestion Reporte Comisiones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/comisiones/ajuste-comisiones">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Ajuste de Comisiones
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large globe icon"></i>
+                            Cobertura
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/cobertura/crear-reporte-cobertura">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Reporte Cobertura
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/cobertura/gestion-coberturas">
+                                        <i class="globe icon"></i>
+                                        <div class="content">
+                                            Gestion Reporte Cobertura
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large clipboard icon"></i>
+                            Listas de Precios
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/lista-precios/crear-lista-precios">
+                                        <i class="plus icon"></i>
+                                        <div class="content">
+                                            Crear Lista de Precios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/lista-precios/gestion-listas-precios">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Gestion Listas de Precios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/lista-precios/copiar-lista-precios">
+                                        <i class="copy icon"></i>
+                                        <div class="content">
+                                            Copiar Listas de Precios
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/lista-precios/reportes-listas-precios">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            Reportes Listas de Precios
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large user icon"></i>
+                            Vendedor
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/vendedor/crear-cliente">
+                                        <i class="user plus icon"></i>
+                                        <div class="content">
+                                            Crear Cliente
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/clientes">
+                                        <i class="address book icon"></i>
+                                        <div class="content">
+                                            Clientes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/crear-preventa">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Preventa
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/preventas">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Preventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/ventas">
+                                        <i class="dollar sign icon"></i>
+                                        <div class="content">
+                                            Ventas
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/crear-cambio-producto">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Cambio Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/cambios-producto">
+                                        <i class="retweet icon"></i>
+                                        <div class="content">
+                                            Cambios de Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/crear-canje">
+                                        <i class="add icon"></i>
+                                        <div class="content">
+                                            Crear Canje
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/canjes">
+                                        <i class="exchange icon"></i>
+                                        <div class="content">
+                                            Canjes
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/stock-productos">
+                                        <i class="dolly flatbed icon"></i>
+                                        <div class="content">
+                                            Stock de Productos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/comisiones">
+                                        <i class="percent icon"></i>
+                                        <div class="content">
+                                            Comisiones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/vendedor/concursos">
+                                        <i class="star icon"></i>
+                                        <div class="content">
+                                            Concursos
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large cogs icon"></i>
+                            Configuracion
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-empresa">
+                                        <i class="cog icon"></i>
+                                        <div class="content">
+                                            Configuracion Empresa
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-impresion">
+                                        <i class="print icon"></i>
+                                        <div class="content">
+                                            Configuracion Impresión
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-sunat">
+                                        <i class="certificate icon"></i>
+                                        <div class="content">
+                                            Configuracion Sunat
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/configuracion/configuracion-alertas">
+                                        <i class="bell icon"></i>
+                                        <div class="content">
+                                            Configuracion Alertas
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="item">
+                        <div class="title">
+                            <i class="large truck icon"></i>
+                            Transportistas
+                            <i class="large dropdown icon"></i>
+                        </div>
+                        <div class="content">
+                            <div class="ui inverted animated list">
+                                
+                                    <a class="item" href="/app/transportistas/mis-devoluciones">
+                                        <i class="file alternate icon"></i>
+                                        <div class="content">
+                                            Mis Devoluciones
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/transportistas/mis-requerimientos">
+                                        <i class="clipboard outline icon"></i>
+                                        <div class="content">
+                                            Mis Requerimientos
+                                        </div>
+                                    </a>
+                                
+                                
+                                    <a class="item" href="/app/transportistas/mis-liquidaciones">
+                                        <i class="clipboard icon"></i>
+                                        <div class="content">
+                                            Mis Liquidaciones
+                                        </div>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="item">
+                    <div class="title">
+                        <i class="large sitemap icon"></i>
+                        General
+                        <i class="large dropdown icon"></i>
+                    </div>
+                    <div class="content">
+                        <div class="ui inverted animated list">
+                            <a class="item" href="/app/general/perfil-personal">
+                                <i class="id badge icon"></i>
+                                <div class="content">
+                                    Perfil Personal
+                                </div>
+                            </a>
+                            <a class="item" href="/app/home">
+                                <i class="home icon"></i>
+                                <div class="content">
+                                    Home
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pusher">
+                <div class="ui basic segment">
+                    <div class="ui container">
+                        
+        <h2 class="ui block header">
+            Crear Servicio
+        </h2>
+
+        <div class="ui form" id="form-create">
+            <div class="three fields">
+                <div class="required five wide field">
+                    <label>Clase</label>
+                    <div class="ui search selection dropdown"><select name="clase" id="dropdown-clase"><option value="1">PANASONIC</option><option value="2">GRUPO BIMBO</option><option value="3">MI FARMA</option><option value="4">RADIANTE</option><option value="5">COCK BRAND</option><option value="6">LABOCER</option><option value="7">FOPESA</option><option value="8">INKACROPS</option><option value="9">QUALA</option><option value="10">GRUPO HUANCARUNA</option><option value="11"> SAN JORGE</option><option value="12">INDUPSA</option><option value="13">SIBARITA</option><option value="14">EDGEWELL PERSONAL CARE</option><option value="46">ENVASADORA MAJES</option><option value="47">SUPERALIMENTOS</option><option value="15">DELYCORP</option><option value="48">ALICORP</option><option value="49">ISM</option><option value="50">VALLE ICA</option><option value="51">COLGATE</option><option value="52">CONFITECA</option><option value="53">ACONCAGUA</option><option value="54">COCA-COLA</option><option value="55">JOHNSON &amp; JOHNSON</option><option value="56">SUPER GLUE</option><option value="58">ARCOR</option><option value="59">PEPSICO</option><option value="60">PROCTER &amp; GAMBLE (P&amp;G)</option><option value="61">QUIMPAC</option><option value="62">IMPERIAL BRANDS</option><option value="63">PROTISA</option><option value="64">MONDELEZ</option><option value="65">UNILEVER</option><option value="66">LIVINI</option><option value="67">ALSOL</option><option value="68">GOLOPERU</option><option value="69">ALIMENTOS CIELO S.A.C.</option><option value="70">ANDINA ALIMENTOS</option><option value="71">DISTRIBUIDORA JANDY</option><option value="72">PAPELERA REYES</option><option value="117">INCASUR</option><option value="75">SODA LIMON</option><option value="77">LUCKY STRIKE </option><option value="78">MOLINOS RIO DE LA PLATA S.A.</option><option value="79">HONG HUA</option><option value="80">2 CERRITOS</option><option value="82">NESTLE</option><option value="83">AJE</option><option value="84">HENKEL</option><option value="85">WINTER´S</option><option value="89">ZUKO</option><option value="90">MOLITALIA</option><option value="91">BUCKY</option><option value="92">NOSOTRAS</option><option value="93">AJI-NO-MOTO</option><option value="94">GLORIA</option><option value="97">HERBI</option><option value="99">KIKKO</option><option value="100">AREQUEPAY</option><option value="101">COLOMBINA</option><option value="102"> FAGY PERU</option><option value="103">MEDIFARMA </option><option value="104">BAHIA</option><option value="105">CLASICO</option><option value="106">P.A.N.</option><option value="107">IQUEÑITA</option><option value="108">YICHANG &amp; CIA</option><option value="109">SOFTYS</option><option value="110">KIMBERLY-CLARK</option><option value="111">DON MAXIMO</option><option value="112">EL ROJITO</option><option value="113">GRUPO FALABELA</option><option value="114">MEGAPLAST</option><option value="115">BACKUS</option><option value="118">SOMELE</option><option value="119">POMALCA</option><option value="120">BORANI</option></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione una clase</div><div class="menu" tabindex="-1"><div class="item" data-value="1">PANASONIC</div><div class="item" data-value="2">GRUPO BIMBO</div><div class="item" data-value="3">MI FARMA</div><div class="item" data-value="4">RADIANTE</div><div class="item" data-value="5">COCK BRAND</div><div class="item" data-value="6">LABOCER</div><div class="item" data-value="7">FOPESA</div><div class="item" data-value="8">INKACROPS</div><div class="item" data-value="9">QUALA</div><div class="item" data-value="10">GRUPO HUANCARUNA</div><div class="item" data-value="11"> SAN JORGE</div><div class="item" data-value="12">INDUPSA</div><div class="item" data-value="13">SIBARITA</div><div class="item" data-value="14">EDGEWELL PERSONAL CARE</div><div class="item" data-value="46">ENVASADORA MAJES</div><div class="item" data-value="47">SUPERALIMENTOS</div><div class="item" data-value="15">DELYCORP</div><div class="item" data-value="48">ALICORP</div><div class="item" data-value="49">ISM</div><div class="item" data-value="50">VALLE ICA</div><div class="item" data-value="51">COLGATE</div><div class="item" data-value="52">CONFITECA</div><div class="item" data-value="53">ACONCAGUA</div><div class="item" data-value="54">COCA-COLA</div><div class="item" data-value="55">JOHNSON &amp; JOHNSON</div><div class="item" data-value="56">SUPER GLUE</div><div class="item" data-value="58">ARCOR</div><div class="item" data-value="59">PEPSICO</div><div class="item" data-value="60">PROCTER &amp; GAMBLE (P&amp;G)</div><div class="item" data-value="61">QUIMPAC</div><div class="item" data-value="62">IMPERIAL BRANDS</div><div class="item" data-value="63">PROTISA</div><div class="item" data-value="64">MONDELEZ</div><div class="item" data-value="65">UNILEVER</div><div class="item" data-value="66">LIVINI</div><div class="item" data-value="67">ALSOL</div><div class="item" data-value="68">GOLOPERU</div><div class="item" data-value="69">ALIMENTOS CIELO S.A.C.</div><div class="item" data-value="70">ANDINA ALIMENTOS</div><div class="item" data-value="71">DISTRIBUIDORA JANDY</div><div class="item" data-value="72">PAPELERA REYES</div><div class="item" data-value="117">INCASUR</div><div class="item" data-value="75">SODA LIMON</div><div class="item" data-value="77">LUCKY STRIKE </div><div class="item" data-value="78">MOLINOS RIO DE LA PLATA S.A.</div><div class="item" data-value="79">HONG HUA</div><div class="item" data-value="80">2 CERRITOS</div><div class="item" data-value="82">NESTLE</div><div class="item" data-value="83">AJE</div><div class="item" data-value="84">HENKEL</div><div class="item" data-value="85">WINTER´S</div><div class="item" data-value="89">ZUKO</div><div class="item" data-value="90">MOLITALIA</div><div class="item" data-value="91">BUCKY</div><div class="item" data-value="92">NOSOTRAS</div><div class="item" data-value="93">AJI-NO-MOTO</div><div class="item" data-value="94">GLORIA</div><div class="item" data-value="97">HERBI</div><div class="item" data-value="99">KIKKO</div><div class="item" data-value="100">AREQUEPAY</div><div class="item" data-value="101">COLOMBINA</div><div class="item" data-value="102"> FAGY PERU</div><div class="item" data-value="103">MEDIFARMA </div><div class="item" data-value="104">BAHIA</div><div class="item" data-value="105">CLASICO</div><div class="item" data-value="106">P.A.N.</div><div class="item" data-value="107">IQUEÑITA</div><div class="item" data-value="108">YICHANG &amp; CIA</div><div class="item" data-value="109">SOFTYS</div><div class="item" data-value="110">KIMBERLY-CLARK</div><div class="item" data-value="111">DON MAXIMO</div><div class="item" data-value="112">EL ROJITO</div><div class="item" data-value="113">GRUPO FALABELA</div><div class="item" data-value="114">MEGAPLAST</div><div class="item" data-value="115">BACKUS</div><div class="item" data-value="118">SOMELE</div><div class="item" data-value="119">POMALCA</div><div class="item" data-value="120">BORANI</div></div></div>
+                </div>
+                <div class="required five wide field">
+                    <label>Subclase</label>
+                    <div class="ui search selection dropdown"><select name="subclase" id="dropdown-subclase"></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione una subclase</div><div class="menu" tabindex="-1"></div></div>
+                </div>
+                <div class="required six wide field">
+                    <label>Orden Reporte</label>
+                    <input type="text" name="ordenReporte" placeholder="Orden Reporte" value="1">
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="required five wide field">
+                    <label>SKU</label>
+                    <input type="text" name="sku" placeholder="stock-keeping unit">
+                </div>
+                <div class="required eleven wide field">
+                    <label>Nombre</label>
+                    <input type="text" name="nombre" placeholder="Nombre">
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="required field">
+                    <label>Segmento Sunat</label>
+                    <div class="ui search selection dropdown"><select name="segmentoSunat" id="dropdown-segmento-sunat"><option value="29">Alimentos, Bebidas y Tabaco </option><option value="31">Artículos Domésticos, Suministros y Productos Electrónicos de Consumo </option><option value="19">Componentes y Equipos para Distribución y Sistemas de Acondicionamiento</option><option value="16">Componentes y Suministros de Manufactura</option><option value="17">Componentes y Suministros Electrónicos</option><option value="15">Componentes y Suministros para Estructuras, Edificación, Construcción y Obras Civiles</option><option value="18">Componentes, Accesorios y Suministros de Sistemas Eléctricos e Iluminación</option><option value="22">Difusión de Tecnologías de Información y Telecomunicaciones</option><option value="21">Equipo Médico, Accesorios y Suministros</option><option value="26">Equipos de Limpieza y Suministros</option><option value="23">Equipos de Oficina, Accesorios y Suministros</option><option value="25">Equipos y Suministros de Defensa, Orden Publico, Proteccion, Vigilancia y Seguridad</option><option value="20">Equipos y Suministros de Laboratorio, de Medición, de Observación y de Pruebas</option><option value="24">Equipos y Suministros para Impresión, Fotografia y Audiovisuales</option><option value="28">Equipos, Suministros y Accesorios para Deportes y Recreación</option><option value="14">Herramientas y Maquinaria General</option><option value="36">Instrumentos Musicales, Juegos, Juguetes, Artes, Artesanías y Equipo educativo, Materiales, Accesorios y Suministros</option><option value="7">Maquinaria y Accesorios de Minería y Perforación de Pozos</option><option value="8">Maquinaria y Accesorios para Agricultura, Pesca, Silvicultura y Fauna</option><option value="9">Maquinaria y Accesorios para Construcción y Edificación</option><option value="13">Maquinaria y Accesorios para Generación y Distribución de Energía</option><option value="10">Maquinaria y Accesorios para Manufactura y Procesamiento Industrial</option><option value="11">Maquinaria, Accesorios y Suministros para Manejo, Acondicionamiento y Almacenamiento de Materiales</option><option value="27">Maquinaria, Equipo y Suministros para la Industria de Servicios</option><option value="2">Material Mineral, Textil y  Vegetal y Animal No Comestible</option><option value="3">Material Químico incluyendo Bioquímicos y Materiales de Gas</option><option value="1">Material Vivo Vegetal y Animal, Accesorios y Suministros</option><option value="6">Materiales Combustibles, Aditivos para Combustibles, Lubricantes y Anticorrosivos</option><option value="4">Materiales de Resina, Colofonia, Caucho, Espuma, Película y Elastómericos</option><option value="5">Materiales y Productos de Papel</option><option value="30">Medicamentos y Productos Farmacéuticos</option><option value="35">Muebles, Mobiliario y Decoración</option><option value="55">Organizaciones y Clubes</option><option value="33">Productos para Relojería, Joyería y Piedras Preciosas</option><option value="34">Publicaciones Impresas, Publicaciones Electrónicas y Accesorios</option><option value="32">Ropa, Maletas y Productos de Aseo Personal</option><option value="45">Servicios Basados en Ingeniería, Investigación y Tecnología</option><option value="37">Servicios de Contratacion Agrícola, Pesquera, Forestal y de Fauna</option><option value="53">Servicios de Defensa Nacional, Orden Publico, Seguridad y Vigilancia</option><option value="39">Servicios de Edificación, Construcción de Instalaciones y Mantenimiento</option><option value="44">Servicios de Gestión, Servicios Profesionales de Empresa y Servicios Administrativos</option><option value="41">Servicios de Limpieza, Descontaminación y Tratamiento de Residuos</option><option value="38">Servicios de Minería, Petróleo y Gas</option><option value="40">Servicios de Producción Industrial y Manufactura</option><option value="49">Servicios de Salud</option><option value="43">Servicios de Transporte, Almacenaje y Correo</option><option value="51">Servicios de Viajes, Alimentación, Alojamiento y Entretenimiento</option><option value="46">Servicios Editoriales, de Diseño, de Artes Graficas y Bellas Artes</option><option value="50">Servicios Educativos y de Formación</option><option value="48">Servicios Financieros y de Seguros</option><option value="42">Servicios Medioambientales</option><option value="52">Servicios Personales y Domésticos</option><option value="54">Servicios Políticos y de Asuntos Cívicos</option><option value="47">Servicios Públicos y Servicios Relacionados con el Sector Público</option><option value="56">Terrenos, Edificios, Estructuras y Vías</option><option value="12">Vehículos Comerciales, Militares y Particulares, Accesorios y Componentes</option></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione una unidad</div><div class="menu" tabindex="-1"><div class="item" data-value="29">Alimentos, Bebidas y Tabaco </div><div class="item" data-value="31">Artículos Domésticos, Suministros y Productos Electrónicos de Consumo </div><div class="item" data-value="19">Componentes y Equipos para Distribución y Sistemas de Acondicionamiento</div><div class="item" data-value="16">Componentes y Suministros de Manufactura</div><div class="item" data-value="17">Componentes y Suministros Electrónicos</div><div class="item" data-value="15">Componentes y Suministros para Estructuras, Edificación, Construcción y Obras Civiles</div><div class="item" data-value="18">Componentes, Accesorios y Suministros de Sistemas Eléctricos e Iluminación</div><div class="item" data-value="22">Difusión de Tecnologías de Información y Telecomunicaciones</div><div class="item" data-value="21">Equipo Médico, Accesorios y Suministros</div><div class="item" data-value="26">Equipos de Limpieza y Suministros</div><div class="item" data-value="23">Equipos de Oficina, Accesorios y Suministros</div><div class="item" data-value="25">Equipos y Suministros de Defensa, Orden Publico, Proteccion, Vigilancia y Seguridad</div><div class="item" data-value="20">Equipos y Suministros de Laboratorio, de Medición, de Observación y de Pruebas</div><div class="item" data-value="24">Equipos y Suministros para Impresión, Fotografia y Audiovisuales</div><div class="item" data-value="28">Equipos, Suministros y Accesorios para Deportes y Recreación</div><div class="item" data-value="14">Herramientas y Maquinaria General</div><div class="item" data-value="36">Instrumentos Musicales, Juegos, Juguetes, Artes, Artesanías y Equipo educativo, Materiales, Accesorios y Suministros</div><div class="item" data-value="7">Maquinaria y Accesorios de Minería y Perforación de Pozos</div><div class="item" data-value="8">Maquinaria y Accesorios para Agricultura, Pesca, Silvicultura y Fauna</div><div class="item" data-value="9">Maquinaria y Accesorios para Construcción y Edificación</div><div class="item" data-value="13">Maquinaria y Accesorios para Generación y Distribución de Energía</div><div class="item" data-value="10">Maquinaria y Accesorios para Manufactura y Procesamiento Industrial</div><div class="item" data-value="11">Maquinaria, Accesorios y Suministros para Manejo, Acondicionamiento y Almacenamiento de Materiales</div><div class="item" data-value="27">Maquinaria, Equipo y Suministros para la Industria de Servicios</div><div class="item" data-value="2">Material Mineral, Textil y  Vegetal y Animal No Comestible</div><div class="item" data-value="3">Material Químico incluyendo Bioquímicos y Materiales de Gas</div><div class="item" data-value="1">Material Vivo Vegetal y Animal, Accesorios y Suministros</div><div class="item" data-value="6">Materiales Combustibles, Aditivos para Combustibles, Lubricantes y Anticorrosivos</div><div class="item" data-value="4">Materiales de Resina, Colofonia, Caucho, Espuma, Película y Elastómericos</div><div class="item" data-value="5">Materiales y Productos de Papel</div><div class="item" data-value="30">Medicamentos y Productos Farmacéuticos</div><div class="item" data-value="35">Muebles, Mobiliario y Decoración</div><div class="item" data-value="55">Organizaciones y Clubes</div><div class="item" data-value="33">Productos para Relojería, Joyería y Piedras Preciosas</div><div class="item" data-value="34">Publicaciones Impresas, Publicaciones Electrónicas y Accesorios</div><div class="item" data-value="32">Ropa, Maletas y Productos de Aseo Personal</div><div class="item" data-value="45">Servicios Basados en Ingeniería, Investigación y Tecnología</div><div class="item" data-value="37">Servicios de Contratacion Agrícola, Pesquera, Forestal y de Fauna</div><div class="item" data-value="53">Servicios de Defensa Nacional, Orden Publico, Seguridad y Vigilancia</div><div class="item" data-value="39">Servicios de Edificación, Construcción de Instalaciones y Mantenimiento</div><div class="item" data-value="44">Servicios de Gestión, Servicios Profesionales de Empresa y Servicios Administrativos</div><div class="item" data-value="41">Servicios de Limpieza, Descontaminación y Tratamiento de Residuos</div><div class="item" data-value="38">Servicios de Minería, Petróleo y Gas</div><div class="item" data-value="40">Servicios de Producción Industrial y Manufactura</div><div class="item" data-value="49">Servicios de Salud</div><div class="item" data-value="43">Servicios de Transporte, Almacenaje y Correo</div><div class="item" data-value="51">Servicios de Viajes, Alimentación, Alojamiento y Entretenimiento</div><div class="item" data-value="46">Servicios Editoriales, de Diseño, de Artes Graficas y Bellas Artes</div><div class="item" data-value="50">Servicios Educativos y de Formación</div><div class="item" data-value="48">Servicios Financieros y de Seguros</div><div class="item" data-value="42">Servicios Medioambientales</div><div class="item" data-value="52">Servicios Personales y Domésticos</div><div class="item" data-value="54">Servicios Políticos y de Asuntos Cívicos</div><div class="item" data-value="47">Servicios Públicos y Servicios Relacionados con el Sector Público</div><div class="item" data-value="56">Terrenos, Edificios, Estructuras y Vías</div><div class="item" data-value="12">Vehículos Comerciales, Militares y Particulares, Accesorios y Componentes</div></div></div>
+                </div>
+                <div class="required field">
+                    <label>Familia Sunat</label>
+                    <div class="ui search selection dropdown"><select name="familiaSunat" id="dropdown-familia-sunat"></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione una unidad</div><div class="menu" tabindex="-1"></div></div>
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="required field">
+                    <label>Clase Sunat</label>
+                    <div class="ui search selection dropdown"><select name="claseSunat" id="dropdown-clase-sunat"></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione una unidad</div><div class="menu" tabindex="-1"></div></div>
+                </div>
+                <div class="required field">
+                    <label><a href="/app/general/loaded-resources/rest/download-clasificacion-bienes-excel" target="_Blank">Clasificacion Sunat</a></label>
+                    <div class="ui search selection dropdown"><select name="clasificacionSunat" id="dropdown-clasificacion-sunat"></select><i class="dropdown icon"></i><input class="search" autocomplete="off" tabindex="0"><div class="default text">Seleccione una unidad</div><div class="menu" tabindex="-1"></div></div>
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="twelve wide required field">
+                    <label>Afeccion IGV</label>
+                    <div class="ui fluid selection dropdown" tabindex="0"><select name="tipoAfeccionIgv" id="dropdown-igv"><option value="9">Exonerado - Operación Onerosa</option><option value="10">Exonerado – Transferencia Gratuita</option><option value="1">Gravado - Operación Onerosa</option><option value="6">Gravado – Bonificaciones</option><option value="8">Gravado – IVAP</option><option value="4">Gravado – Retiro</option><option value="3">Gravado – Retiro por donación</option><option value="7">Gravado – Retiro por entrega a trabajadores</option><option value="2">Gravado – Retiro por premio</option><option value="5">Gravado – Retiro por publicidad</option><option value="11">Inafecto - Operación Onerosa</option><option value="15">Inafecto - Retiro por Convenio Colectivo</option><option value="17">Inafecto - Retiro por publicidad</option><option value="13">Inafecto – Retiro</option><option value="12">Inafecto – Retiro por Bonificación</option><option value="14">Inafecto – Retiro por Muestras Médicas</option><option value="16">Inafecto – Retiro por premio</option></select><i class="dropdown icon"></i><div class="text">Gravado - Operación Onerosa</div><div class="menu" tabindex="-1"><div class="item" data-value="9">Exonerado - Operación Onerosa</div><div class="item" data-value="10">Exonerado – Transferencia Gratuita</div><div class="item active selected" data-value="1">Gravado - Operación Onerosa</div><div class="item" data-value="6">Gravado – Bonificaciones</div><div class="item" data-value="8">Gravado – IVAP</div><div class="item" data-value="4">Gravado – Retiro</div><div class="item" data-value="3">Gravado – Retiro por donación</div><div class="item" data-value="7">Gravado – Retiro por entrega a trabajadores</div><div class="item" data-value="2">Gravado – Retiro por premio</div><div class="item" data-value="5">Gravado – Retiro por publicidad</div><div class="item" data-value="11">Inafecto - Operación Onerosa</div><div class="item" data-value="15">Inafecto - Retiro por Convenio Colectivo</div><div class="item" data-value="17">Inafecto - Retiro por publicidad</div><div class="item" data-value="13">Inafecto – Retiro</div><div class="item" data-value="12">Inafecto – Retiro por Bonificación</div><div class="item" data-value="14">Inafecto – Retiro por Muestras Médicas</div><div class="item" data-value="16">Inafecto – Retiro por premio</div></div></div>
+                </div>
+                <div class="four wide field flex-center">
+                    <div class="ui button-field checkbox checked" id="checkbox-comerciable">
+                        <input type="checkbox" name="comerciable" tabindex="0" class="hidden">
+                        <label>Comerciable</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui two column stackable grid" style="margin-top: 10px">
+            <div class="twelve wide column"></div>
+            <div class="four wide column">
+                <div class="ui fluid positive button" id="button-create">Crear Servicio</div>
+            </div>
+        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui page dimmer" id="waitingModal">
+            <div class="content">
+                <div class="ui huge indeterminate text loader">
+                    <p id="waitingText">Cargando...</p>
+                </div>
+            </div>
+        </div>
+        <div id="uiAlert" class="ui-alert-content ui-alert-content-top-center"></div>
+    
+
+        
+        <script>
+            var path = '/app';
+            var lpre = 'LISTA DE PRECIO M1P';
+            var almc = 'BROCKER MESA 1';
+        </script>
+        <script>
+            var csrf = false;
+        </script>
+        <script src="/app/static/resources/js/page.js"></script>
+        <script src="/app/static/resources/js/clases.js"></script>
+        <script src="/app/static/resources/js/catalogo.js"></script>        
+        <script src="/app/resources/servicios/crear-servicio/index.js"></script>
+    
+</body></html>

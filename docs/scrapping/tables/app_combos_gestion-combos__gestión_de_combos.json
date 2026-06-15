@@ -1,0 +1,124 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Codigo",
+      "SKU",
+      "Nombre",
+      "Comerciable",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Codigo",
+        "SKU",
+        "Nombre",
+        "Comerciable",
+        "Acciones"
+      ],
+      [
+        "",
+        "CBO200900008",
+        "C8",
+        "PROMOCION 20PACK KIWIFRESH SURTIDO 400ml X 12UN + GRATIS 1PACK MAS",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "CBO201000002",
+        "C3",
+        "PROMOCION 8BOL GALLETAS ANIMALITOS SAN JORGE 60 GR X 20 BOL + GRATIS 1BOL ANIMALITOS X 1KG",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "CBO201000004",
+        "C4",
+        "PROMOCION 2CJ OBSESION COSTA 252GR X12UND X 9DP + GRATIS 1DP MAS",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "CBO201000025",
+        "C90",
+        "PROMOCION 4CJ VINAGRE DEL FIRME SURTIDO 1100ml DOY PACK X 12UN + GRATIS 5DOY PACK MAS",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "CBO201000013",
+        "C11",
+        "PROMOCION 18DP HALLS CARAMELOS BARRA SURTIDOS X 12UN + GRATIS 1DP MAS",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "CBO201000032",
+        "C10",
+        "PROMOCION 1CJ FILETE DE ATUN SAN JORGE 140GR X 48UN + GRATIS 3UN MAS",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "CBO201000035",
+        "C7",
+        "PROMOCION 3CJ GLACITAS GALLETAS SURTIDA X 192 GR. X 8PACK + GRATIS 2PACK MAS",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "CBO201000034",
+        "C27",
+        "PROMOCION 5PACK GASEOSA PEPSI COLA BOTELLA 750ML X 12UN JUMBO + GRATIS 6BOT MAS",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "CBO201000019",
+        "C20",
+        "PROMOCION 15PACK PAÑALES HUGGIES ACTIVE SEC XG X 44UN + GRATIS 1PACK MAS",
+        "COMER",
+        ""
+      ],
+      [
+        "",
+        "CBO201000016",
+        "C14",
+        "PROMOCION 15PCK PAÑALES HUGGIES ACTIVE SEC XXG X 44UN + GRATIS 1PACK MAS",
+        "COMER",
+        ""
+      ]
+    ],
+    "row_count": 11
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Codigo SKU Nombre Comerciable Acciones",
+      "CBO200900008 C8 PROMOCION 20PACK KIWIFRESH SURTIDO 400ml X 12UN + GRATIS 1PACK MAS COMER",
+      "CBO201000002 C3 PROMOCION 8BOL GALLETAS ANIMALITOS SAN JORGE 60 GR X 20 BOL + GRATIS 1BOL ANIMALITOS X 1KG COMER",
+      "CBO201000004 C4 PROMOCION 2CJ OBSESION COSTA 252GR X12UND X 9DP + GRATIS 1DP MAS COMER",
+      "CBO201000025 C90 PROMOCION 4CJ VINAGRE DEL FIRME SURTIDO 1100ml DOY PACK X 12UN + GRATIS 5DOY PACK MAS COMER",
+      "CBO201000013 C11 PROMOCION 18DP HALLS CARAMELOS BARRA SURTIDOS X 12UN + GRATIS 1DP MAS COMER",
+      "CBO201000032 C10 PROMOCION 1CJ FILETE DE ATUN SAN JORGE 140GR X 48UN + GRATIS 3UN MAS COMER",
+      "CBO201000035 C7 PROMOCION 3CJ GLACITAS GALLETAS SURTIDA X 192 GR. X 8PACK + GRATIS 2PACK MAS COMER",
+      "CBO201000034 C27 PROMOCION 5PACK GASEOSA PEPSI COLA BOTELLA 750ML X 12UN JUMBO + GRATIS 6BOT MAS COMER",
+      "CBO201000019 C20 PROMOCION 15PACK PAÑALES HUGGIES ACTIVE SEC XG X 44UN + GRATIS 1PACK MAS COMER",
+      "CBO201000016 C14 PROMOCION 15PCK PAÑALES HUGGIES ACTIVE SEC XXG X 44UN + GRATIS 1PACK MAS COMER"
+    ],
+    "row_count": 11
+  }
+]

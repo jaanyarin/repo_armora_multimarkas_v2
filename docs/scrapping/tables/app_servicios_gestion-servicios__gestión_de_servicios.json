@@ -1,0 +1,41 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Codigo",
+      "SKU",
+      "Clase",
+      "Subclase",
+      "Nombre",
+      "Visible",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Codigo",
+        "SKU",
+        "Clase",
+        "Subclase",
+        "Nombre",
+        "Visible",
+        "Acciones"
+      ],
+      [
+        "No hay datos disponibles"
+      ]
+    ],
+    "row_count": 2
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Codigo SKU Clase Subclase Nombre Visible Acciones"
+    ],
+    "row_count": 1
+  }
+]

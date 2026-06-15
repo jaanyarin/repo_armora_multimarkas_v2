@@ -1,0 +1,42 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "Requisito",
+      "Cantidad",
+      ""
+    ],
+    "rows": [
+      [
+        "Requisito",
+        "Cantidad",
+        ""
+      ],
+      [
+        "Sin datos"
+      ]
+    ],
+    "row_count": 2
+  },
+  {
+    "type": "html_table",
+    "index": 1,
+    "headers": [
+      "Producto",
+      "Cantidad",
+      ""
+    ],
+    "rows": [
+      [
+        "Producto",
+        "Cantidad",
+        ""
+      ],
+      [
+        "Sin datos"
+      ]
+    ],
+    "row_count": 2
+  }
+]

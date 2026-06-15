@@ -1,0 +1,45 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "Almacen",
+      "Stock Minimo",
+      "Stock Maximo",
+      "Alertas Stock"
+    ],
+    "rows": [
+      [
+        "Almacen",
+        "Stock Minimo",
+        "Stock Maximo",
+        "Alertas Stock"
+      ],
+      [
+        "BROCKER MESA 1",
+        "",
+        "",
+        "Habilitado"
+      ],
+      [
+        "BROCKER MESA 2",
+        "",
+        "",
+        "Habilitado"
+      ],
+      [
+        "FALTANTE INVENTARIOS",
+        "",
+        "",
+        "Habilitado"
+      ],
+      [
+        "PRODUCTOS EN MAL ESTADO",
+        "",
+        "",
+        "Habilitado"
+      ]
+    ],
+    "row_count": 5
+  }
+]

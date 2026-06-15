@@ -1,0 +1,56 @@
+[
+  {
+    "type": "html_table",
+    "index": 0,
+    "headers": [
+      "",
+      "Placa",
+      "Modelo",
+      "Marca",
+      "Acciones"
+    ],
+    "rows": [
+      [
+        "",
+        "Placa",
+        "Modelo",
+        "Marca",
+        "Acciones"
+      ],
+      [
+        "",
+        "BEZ-933",
+        "ZB5023XXYADB3F",
+        "T-KING",
+        ""
+      ],
+      [
+        "",
+        "C9E730",
+        "FIORINO",
+        "FIAT",
+        ""
+      ],
+      [
+        "",
+        "F4U741",
+        "SY1033DFH4",
+        "JINBEI",
+        ""
+      ]
+    ],
+    "row_count": 4
+  },
+  {
+    "type": "aria_grid",
+    "index": 0,
+    "headers": [],
+    "rows_text": [
+      "Placa Modelo Marca Acciones",
+      "BEZ-933 ZB5023XXYADB3F T-KING",
+      "C9E730 FIORINO FIAT",
+      "F4U741 SY1033DFH4 JINBEI"
+    ],
+    "row_count": 4
+  }
+]
