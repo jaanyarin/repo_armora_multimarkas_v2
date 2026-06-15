@@ -1,4 +1,4 @@
-{
+﻿{
   "$schema": "https://opencode.ai/config.json",
   "defaultAgent": "armora-architect",
   "instructions": [
@@ -17,9 +17,11 @@
     "docs/sdd/12_revision_respuestas_validacion.md",
     "docs/sdd/13_cronograma_quarkus_gantt.md",
     "docs/sdd/15_stack_mobile_flutter_dart.md",
+    "docs/sdd/16_plan_ejecucion_fase_1_fundacion_tecnica.md",
     "agentes/docs/ai/00_agent_orchestration.md",
     "agentes/docs/ai/01_context_map.md",
-    "agentes/docs/ai/02_handoff_protocol.md"
+    "agentes/docs/ai/02_handoff_protocol.md",
+    "agentes/docs/ai/03_workflow_automatico_sincrono.md"
   ],
   "agent": {
     "armora-architect": {
@@ -103,7 +105,7 @@
       }
     },
     "armora-mobile-flutter": {
-      "description": "Mobile Flutter/Dart para apps cliente (catalogo/carrito/pedidos) y proveedor (stock/lector código de barras/reportes).",
+      "description": "Mobile Flutter/Dart para apps cliente (catalogo/carrito/pedidos) y proveedor (stock/lector cÃ³digo de barras/reportes).",
       "mode": "all",
       "prompt": "{file:./agentes/perfiles/09_especialista_mobile_flutter.md}",
       "permission": {
@@ -149,3 +151,5 @@
     }
   }
 }
+
+

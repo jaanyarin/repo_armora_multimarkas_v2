@@ -1,7 +1,7 @@
 # Nuevo proyecto ARMORA - Documentacion SDD
 
 Fecha: 2026-06-13  
-Base analizada: scraping local de `https://armorasac.com/app/` en `docs/scrapping/`
+Base analizada: scraping local de `https://armorasac.com/app/` en `_docs_scrapping_gpt`
 
 ## Objetivo
 
@@ -26,7 +26,8 @@ Definir la documentacion inicial para construir un nuevo sistema basado en la es
 11. `11_stack_alternativo_backend_quarkus.md`: variante tecnica usando Quarkus como backend.
 12. `12_revision_respuestas_validacion.md`: comentarios sobre respuestas de validacion y decisiones recomendadas.
 13. `13_cronograma_quarkus_gantt.md`: estimacion de tiempos, tabla por tarea y Gantt tomando Quarkus como backend principal.
-15. `15_stack_mobile_flutter_dart.md`: decision mobile final usando Flutter + Dart para las apps cliente y proveedor.
+14. `15_stack_mobile_flutter_dart.md`: decision mobile final usando Flutter + Dart para las apps cliente y proveedor.
+15. `16_plan_ejecucion_fase_1_fundacion_tecnica.md`: plan operativo para iniciar construccion de Fase 1.
 
 
 ## Decision tecnica vigente
@@ -55,14 +56,15 @@ En esta documentacion SDD significa Spec-Driven Development: primero se document
 
 ## Fuentes usadas
 
-- `docs/scrapping/00_resumen_general.md`
-- `docs/scrapping/01_stack_detectado.json`
-- `docs/scrapping/02_mapa_sitio.json`
-- `docs/scrapping/03_apis_detectadas.json`
-- `docs/scrapping/endpoints/**`
+- `_docs_scrapping_gpt/00_resumen_general.md`
+- `_docs_scrapping_gpt/01_stack_detectado.json`
+- `_docs_scrapping_gpt/02_mapa_sitio.json`
+- `_docs_scrapping_gpt/03_apis_detectadas.json`
+- `_docs_scrapping_gpt/endpoints/**`
 - Documentacion oficial consultada para stack recomendado:
   - Next.js docs: https://nextjs.org/docs
   - Flutter docs: https://docs.flutter.dev/
   - Dart docs: https://dart.dev/guides
+  - Next.js docs: https://nextjs.org/docs
   - PostgreSQL docs: https://www.postgresql.org/docs/current/
   - Quarkus docs: https://quarkus.io/guides/

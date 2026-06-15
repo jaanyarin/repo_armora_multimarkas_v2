@@ -1,10 +1,8 @@
-# Perfiles de agentes - ARMORA SDD
+﻿# Perfiles de agentes - ARMORA SDD
 
-Esta carpeta contiene perfiles de agentes para el proyecto ARMORA SDD.
+Esta carpeta contiene los perfiles y documentos de coordinacion para que los agentes trabajen sobre ARMORA Multimarkas v2 con enfoque SDD.
 
 ## Decision tecnica vigente
-
-La decision tecnica vigente del proyecto es:
 
 - Admin web: Next.js + React + TypeScript.
 - Mobile cliente: Flutter + Dart.
@@ -16,58 +14,65 @@ La decision tecnica vigente del proyecto es:
 - Despliegue: servidor fisico con Docker, Nginx/Caddy, HTTPS, backups y monitoreo.
 - Arquitectura: monolito modular backend, API-first, mobile-ready y documentacion SDD viva.
 
-## Agentes creados
+## Agentes configurados
 
-1. `01_desarrollador_arquitecto.md`: perfil senior/staff/principal para arquitectura full stack con backend Quarkus, admin Next.js y mobile Flutter.
-2. `02_disenador_ui_ux.md`: perfil senior para UI/UX web y mobile, Material Design 3, Flutter Material, Tailwind CSS y sistema de componentes.
-3. `03_analista_funcional_product_owner.md`: perfil para alcance, historias, reglas de negocio y criterios de aceptacion.
-4. `04_backend_quarkus_specialist.md`: perfil especialista en backend Quarkus, APIs, transacciones y seguridad backend.
-5. `05_database_data_architect.md`: perfil especialista en PostgreSQL, modelo de datos, integridad, migraciones y backups.
-6. `06_qa_test_engineer.md`: perfil QA para pruebas unitarias, integracion, E2E, contratos y regresion.
-7. `07_devops_infra_engineer.md`: perfil DevOps para servidor fisico, Docker, HTTPS, backups, monitoreo y despliegue.
-8. `08_frontend_web_specialist.md`: perfil frontend Next.js para admin web.
-9. `09_mobile_specialist.md`: perfil mobile Flutter/Dart para apps cliente y proveedor.
-10. `10_security_engineer.md`: perfil de seguridad aplicativa, secretos, permisos y hardening.
-11. `11_integration_engineer.md`: perfil de integraciones SUNAT, pagos, webhooks y ERP futuro.
-12. `12_documentation_sdd_manager.md`: perfil para mantener documentacion SDD, ADRs y trazabilidad.
-13. `13_project_delivery_manager.md`: perfil para coordinacion, cronograma, dependencias, riesgos y entregas.
+Los agentes activos estan definidos en `opencode.json`:
 
-## Archivos de automatizacion para agentes
+1. `armora-architect`: arquitectura, coordinacion tecnica y ruteo multidominio.
+2. `armora-ui-ux`: UI/UX para admin web y apps Flutter.
+3. `armora-product-owner`: alcance, reglas de negocio, historias y criterios de aceptacion.
+4. `armora-backend-quarkus`: APIs REST, Quarkus, OpenAPI, transacciones y reglas servidor.
+5. `armora-database`: PostgreSQL, modelo de datos, migraciones, indices y backups.
+6. `armora-qa`: pruebas unitarias, integracion, contratos, E2E, regresion y release.
+7. `armora-devops`: Docker, servidor fisico, HTTPS, backups, monitoreo y despliegue.
+8. `armora-frontend-web`: admin web Next.js, React, TypeScript, Tailwind y consumo API.
+9. `armora-mobile-flutter`: apps Flutter cliente/proveedor.
+10. `armora-security`: secretos, RBAC, permisos, hardening, OWASP y revision de seguridad.
+11. `armora-integrations`: SUNAT, pagos, webhooks y ERP futuro.
+12. `armora-sdd-manager`: documentacion SDD, ADRs, glosario y trazabilidad.
+13. `armora-delivery`: cronograma, dependencias, riesgos, releases y coordinacion.
 
-Ademas de los perfiles, esta entrega incluye:
+## Documentos de coordinacion
 
-- `AGENTS.md`: reglas raiz para agentes de codigo en VS Code, Codex, opencode u otros.
-- `opencode.json`: configuracion de proyecto para opencode, con instrucciones y agentes por rol.
-- `.github/copilot-instructions.md`: instrucciones compatibles con asistentes de VS Code/GitHub Copilot.
-- `.vscode/settings.json`: recomendaciones basicas de workspace.
-- `.opencode/skills/armora-sdd/SKILL.md`: skill para trabajar con SDD.
+- `AGENTS.md`: reglas raiz del repositorio.
+- `opencode.json`: configuracion de agentes e instrucciones cargadas.
+- `agentes/docs/ai/00_agent_orchestration.md`: matriz de coordinacion entre agentes.
+- `agentes/docs/ai/01_context_map.md`: documentos que debe leer cada agente.
+- `agentes/docs/ai/02_handoff_protocol.md`: protocolo de handoff entre agentes.
+- `agentes/docs/ai/03_workflow_automatico_sincrono.md`: workflow maestro para trabajo automatico y sincrono.
+- `docs/ai_workflow/00_tablero_agentes.md`: tablero operativo de tareas, estados y dependencias.
+- `.opencode/skills/armora-sdd/SKILL.md`: skill para coherencia SDD.
 - `.opencode/skills/armora-agent-routing/SKILL.md`: skill para elegir agente/rol segun tarea.
-- `docs/ai/00_agent_orchestration.md`: matriz de coordinacion entre agentes.
-- `docs/ai/01_context_map.md`: mapa de documentos que debe leer cada agente.
-- `docs/ai/02_handoff_protocol.md`: protocolo de handoff entre agentes.
 
 ## Uso recomendado
 
-Cada agente debe usarse como guia de comportamiento, responsabilidades, criterios tecnicos y limites de decision para las tareas del proyecto.
+Cada tarea debe iniciar con:
 
-Los agentes deben operar alineados con la documentacion SDD actualizada:
+1. Lectura de `AGENTS.md`.
+2. Revision del documento SDD aplicable en `docs/sdd/`.
+3. Seleccion del agente lider segun `agentes/docs/ai/00_agent_orchestration.md`.
+4. Registro o actualizacion en `docs/ai_workflow/00_tablero_agentes.md`.
+5. Ejecucion segun `agentes/docs/ai/03_workflow_automatico_sincrono.md`.
+6. Cierre con handoff segun `agentes/docs/ai/02_handoff_protocol.md`.
 
-- `00_indice.md`
-- `01_diagnostico_stack_actual.md`
-- `02_stack_recomendado.md`
-- `03_sdd_contexto_glosario.md`
-- `04_sdd_requerimientos.md`
-- `05_sdd_arquitectura.md`
-- `06_sdd_modelo_datos_inicial.md`
-- `07_sdd_api_contratos.md`
-- `08_sdd_roadmap_mvp.md`
-- `09_preguntas_validacion.md`
-- `10_despliegue_conexion_servidor.md`
-- `11_stack_alternativo_backend_quarkus.md`
-- `12_revision_respuestas_validacion.md`
-- `13_cronograma_quarkus_gantt.md`
+## Documentos SDD base
 
-- `15_stack_mobile_flutter_dart.md`
+- `docs/sdd/00_indice.md`
+- `docs/sdd/01_diagnostico_stack_actual.md`
+- `docs/sdd/02_stack_recomendado.md`
+- `docs/sdd/03_sdd_contexto_glosario.md`
+- `docs/sdd/04_sdd_requerimientos.md`
+- `docs/sdd/05_sdd_arquitectura.md`
+- `docs/sdd/06_sdd_modelo_datos_inicial.md`
+- `docs/sdd/07_sdd_api_contratos.md`
+- `docs/sdd/08_sdd_roadmap_mvp.md`
+- `docs/sdd/09_preguntas_validacion.md`
+- `docs/sdd/10_despliegue_conexion_servidor.md`
+- `docs/sdd/11_stack_alternativo_backend_quarkus.md`
+- `docs/sdd/12_revision_respuestas_validacion.md`
+- `docs/sdd/13_cronograma_quarkus_gantt.md`
+- `docs/sdd/15_stack_mobile_flutter_dart.md`
+- `docs/sdd/16_plan_ejecucion_fase_1_fundacion_tecnica.md`
 
 ## Politica transversal obligatoria
 
