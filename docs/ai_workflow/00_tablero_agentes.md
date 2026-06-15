@@ -36,12 +36,19 @@ Este tablero debe actualizarse cada vez que una tarea cambie de estado o requier
 | F1-002 | Definir convenciones de configuracion y secretos | lista | `armora-security` | `armora-devops`, `armora-backend-quarkus` | F1-001 | `.env.example` sin secretos reales y politica de configuracion definida | `docs/ai_workflow/F1-002_convenciones_configuracion_secretos.md` |
 | F1-003 | Preparar Docker Compose local | lista | `armora-devops` | `armora-security`, `armora-backend-quarkus` | F1-001, F1-002 | PostgreSQL y Redis definidos para entorno local sin exponer secretos reales | `docs/ai_workflow/F1-003_docker_compose_local.md` |
 | F1-004 | Crear base backend Quarkus | lista | `armora-backend-quarkus` | `armora-database`, `armora-security`, `armora-qa` | F1-002, F1-003 | Health, version, OpenAPI y configuracion por entorno disponibles | `docs/ai_workflow/F1-004_base_backend_quarkus.md` |
-| F1-005 | Crear migracion inicial PostgreSQL | pendiente | `armora-database` | `armora-backend-quarkus`, `armora-qa` | F1-004 | Flyway operativo con migracion inicial trazable | Pendiente |
-| F1-006 | Crear base admin web Next.js | pendiente | `armora-frontend-web` | `armora-ui-ux`, `armora-backend-quarkus`, `armora-qa` | F1-004 | App web base consume configuracion de API sin URLs secretas hardcodeadas | Pendiente |
-| F1-007 | Crear base mobile cliente Flutter | pendiente | `armora-mobile-flutter` | `armora-ui-ux`, `armora-backend-quarkus`, `armora-security`, `armora-qa` | F1-004 | App cliente base con configuracion por ambiente y sin datos fake productivos | Pendiente |
-| F1-008 | Crear base mobile proveedor Flutter | pendiente | `armora-mobile-flutter` | `armora-ui-ux`, `armora-backend-quarkus`, `armora-security`, `armora-qa` | F1-004 | App proveedor base con configuracion por ambiente y sin datos fake productivos | Pendiente |
-| F1-009 | Definir pruebas minimas de Fase 1 | pendiente | `armora-qa` | `armora-backend-quarkus`, `armora-frontend-web`, `armora-mobile-flutter`, `armora-devops` | F1-004, F1-006, F1-007, F1-008 | Checklist de build, health, contrato y smoke documentado | Pendiente |
-| F1-010 | Documentar ADR inicial de arquitectura | pendiente | `armora-sdd-manager` | `armora-architect` | F1-001 | ADR registra decisiones de monorepo, Quarkus, Next.js, Flutter, PostgreSQL, Redis y OpenAPI | Pendiente |
+| F1-005 | Crear migracion inicial PostgreSQL | lista | `armora-database` | `armora-backend-quarkus`, `armora-qa` | F1-004 | Flyway operativo con migracion inicial trazable | `docs/ai_workflow/F1-005_migracion_inicial_flyway.md` |
+| F1-006 | Crear base admin web Next.js | lista | `armora-frontend-web` | `armora-ui-ux`, `armora-backend-quarkus`, `armora-qa` | F1-004 | App web base consume configuracion de API sin URLs secretas hardcodeadas | `docs/ai_workflow/F1-006_base_admin_web_nextjs.md` |
+| F1-007 | Crear base mobile cliente Flutter | lista | `armora-mobile-flutter` | `armora-ui-ux`, `armora-backend-quarkus`, `armora-security`, `armora-qa` | F1-004 | App cliente base con configuracion por ambiente y sin datos fake productivos | `docs/ai_workflow/F1-007_base_mobile_cliente_flutter.md` |
+| F1-008 | Crear base mobile proveedor Flutter | lista | `armora-mobile-flutter` | `armora-ui-ux`, `armora-backend-quarkus`, `armora-security`, `armora-qa` | F1-004 | App proveedor base con configuracion por ambiente y sin datos fake productivos | `docs/ai_workflow/F1-008_base_mobile_proveedor_flutter.md` |
+| F1-009 | Definir pruebas minimas de Fase 1 | lista | `armora-qa` | `armora-backend-quarkus`, `armora-frontend-web`, `armora-mobile-flutter`, `armora-devops` | F1-004, F1-006, F1-007, F1-008 | Checklist de build, health, contrato y smoke documentado | `docs/ai_workflow/F1-009_pruebas_minimas_fase_1.md` |
+| F1-010 | Documentar ADR inicial de arquitectura | lista | `armora-sdd-manager` | `armora-architect` | F1-001 | ADR registra decisiones de monorepo, Quarkus, Next.js, Flutter, PostgreSQL, Redis y OpenAPI | `docs/ai_workflow/F1-010_adr_inicial_arquitectura.md` |
+
+## Fase 2 - Autenticacion y seguridad
+
+| ID | Tarea | Estado | Agente lider | Agentes de apoyo | Depende de | Criterio de aceptacion | Handoff |
+|---|---|---|---|---|---|---|---|
+| F2-001 | Implementar auth backend con JWT | lista | `armora-backend-quarkus` | `armora-security`, `armora-qa`, `armora-database` | F1-005, F1-009 | POST /auth/login retorna JWT; GET /auth/me retorna usuario autenticado; seed admin funcional; tests pasan | `docs/ai_workflow/F2-001_auth_backend_jwt.md` |
+| F2-002 | CRUD usuarios, roles y permisos | pendiente | `armora-backend-quarkus` | `armora-database`, `armora-security`, `armora-qa`, `armora-frontend-web` | F2-001 | Endpoints CRUD para usuarios, roles y permisos con validacion RBAC | Pendiente |
 
 ## Plantilla de nueva tarea
 
@@ -85,6 +92,7 @@ Riesgos abiertos:
 Validaciones pendientes:
 Siguiente agente recomendado:
 ```
+
 
 
 

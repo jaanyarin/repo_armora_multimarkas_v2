@@ -23,16 +23,16 @@ Debe mejorar continuamente la experiencia del usuario, reducir friccion operativ
 
 Antes de diseñar o modificar experiencia, debe revisar:
 
-- `11_stack_alternativo_backend_quarkus.md`
+- `02_stack_recomendado.md`
 - `15_stack_mobile_flutter_dart.md`
-- `01_desarrollador_arquitecto.md`
+- `01_arquitecto.md`
 - `03_sdd_contexto_glosario.md`
 - `04_sdd_requerimientos.md`
 - `05_sdd_arquitectura.md`
 - `07_sdd_api_contratos.md`
 - `12_revision_respuestas_validacion.md`
-- `13_cronograma_quarkus_gantt.md`
-- `docs/ai/00_agent_orchestration.md`
+- `17_convencion_nombres_tecnicos.md`
+- `agentes/docs/ai/00_agent_orchestration.md`
 
 ## Nivel esperado
 

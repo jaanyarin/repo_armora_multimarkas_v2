@@ -18,12 +18,17 @@ Esta fase no debe construir aun todos los modulos de negocio. Debe dejar un esqu
 
 ## Estado del repositorio actual
 
-El repositorio actual contiene principalmente documentacion:
+El repositorio actual contiene la base del monorepo con:
 
-- `_docs_scrapping_gpt`: artefactos del scraping del sistema actual.
-- `_docs_nuevo_proyecto_sdd`: documentacion SDD, arquitectura, stack, cronograma y agentes.
-
-No existe todavia una estructura de codigo del nuevo sistema. Por tanto, la primera accion de construccion debe ser crear el monorepo base.
+- `docs/sdd/`, `docs/adr/`, `docs/ai_workflow/`: documentacion SDD, ADR y tablero de agentes.
+- `docs/scrapping/`: artefactos del scraping del sistema actual.
+- `agentes/`: perfiles y reglas de orquestacion de agentes.
+- `backend/api-quarkus/`: backend Quarkus con migracion Flyway V1 aplicada.
+- `frontend_web/`: admin web Next.js con layout, login y dashboard.
+- `mobile_cliente/`, `mobile_proveedor/`: bases Flutter con login y health check.
+- `packages/`, `infra/`: paquetes compartidos e infraestructura.
+- `docker-compose.yml`: PostgreSQL y Redis locales.
+- `.env.example`: variables de entorno sin secretos reales.
 
 ## Decisiones vigentes
 
@@ -62,44 +67,47 @@ Segun `08_sdd_roadmap_mvp.md`, Fase 1 debe entregar:
 ## Agentes responsables
 
 | Frente | Agente principal | Agentes de soporte |
-|---|---|---|
-| Direccion tecnica | `01_desarrollador_arquitecto.md` | `13_project_delivery_manager.md` |
-| Backend Quarkus | `04_backend_quarkus_specialist.md` | `05_database_data_architect.md`, `10_security_engineer.md` |
-| Admin web | `08_frontend_web_specialist.md` | `02_disenador_ui_ux.md`, `10_security_engineer.md` |
-| Mobile Flutter | `09_mobile_specialist.md` | `02_disenador_ui_ux.md`, `10_security_engineer.md` |
-| DevOps | `07_devops_infra_engineer.md` | `10_security_engineer.md` |
-| QA | `06_qa_test_engineer.md` | `12_documentation_sdd_manager.md` |
-| Documentacion | `12_documentation_sdd_manager.md` | todos |
+|---|---|---|---|
+| Direccion tecnica | `01_arquitecto.md` | `13_gestor_entrega_proyecto.md` |
+| Backend Quarkus | `04_especialista_backend_quarkus.md` | `05_arquitecto_base_datos.md`, `10_ingeniero_seguridad.md` |
+| Admin web | `08_especialista_frontend_web.md` | `02_disenador_ui_ux.md`, `10_ingeniero_seguridad.md` |
+| Mobile Flutter | `09_especialista_mobile_flutter.md` | `02_disenador_ui_ux.md`, `10_ingeniero_seguridad.md` |
+| DevOps | `07_ingeniero_devops.md` | `10_ingeniero_seguridad.md` |
+| QA | `06_ingeniero_qa.md` | `12_gestor_documentacion_sdd.md` |
+| Documentacion | `12_gestor_documentacion_sdd.md` | todos |
 
 ## Estructura inicial propuesta
 
 ```text
-armora/
-  apps/
+/
+  backend/
     api-quarkus/
-    admin-web/
-    mobile-cliente/
-    mobile-proveedor/
+  frontend_web/
+  mobile_cliente/
+  mobile_proveedor/
   packages/
+    config/
     contracts/
     mobile-core/
-    ui-web/
   infra/
     docker/
-    nginx/
-    scripts/
   docs/
+    sdd/
     adr/
-    api/
-    runbooks/
-  .github/
-    workflows/
+    ai_workflow/
+    scrapping/
+  agentes/
+    docs/ai/
+    perfiles/
+  seguridad/
   .env.example
   docker-compose.yml
+  opencode.json
+  AGENTS.md
   README.md
 ```
 
-Nota: el repositorio actual puede convertirse en raiz del nuevo monorepo o puede mantenerse como repo documental y crear un repositorio nuevo de codigo. Recomendacion: crear un nuevo monorepo `armora-platform` y copiar la documentacion SDD como `docs/sdd`.
+Nota: se decidio usar el repositorio actual como monorepo raiz, con estructura `backend/api-quarkus/`, `frontend_web/`, `mobile_cliente/`, `mobile_proveedor/` en vez de `apps/`. Agentes de IA y documentacion conviven en la raiz junto al codigo.
 
 ## Tareas tecnicas Fase 1
 
@@ -126,7 +134,7 @@ Entregables:
 
 Criterios de aceptacion:
 
-- Existe estructura `apps/`, `packages/`, `infra/`, `docs/`.
+- Existe estructura `backend/`, `frontend_web/`, `mobile_cliente/`, `mobile_proveedor/`, `packages/`, `infra/`, `docs/`.
 - No hay credenciales reales.
 - Existe guia de setup local.
 
@@ -249,7 +257,7 @@ Contenido:
 
 Minimo:
 
-- Tabla/entidad inicial `users`.
+- Tabla/entidad inicial `usuarios` (fisica, espanol).
 - Seed admin solo para dev, con password por variable o generada.
 - Endpoint login inicialmente preparado, aunque RBAC completo sea Fase 2.
 

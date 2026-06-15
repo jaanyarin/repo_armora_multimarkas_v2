@@ -1,4 +1,4 @@
-﻿# Backend API Quarkus - ARMORA
+# Backend API Quarkus - ARMORA
 
 ## Objetivo
 
@@ -14,7 +14,7 @@ Incluye:
 - Swagger UI en `/q/swagger-ui`.
 - Configuracion PostgreSQL por variables de entorno.
 - Redis por variables de entorno.
-- Flyway preparado, sin migrar al arranque todavia.
+- Flyway configurado con migracion inicial `V1__init_foundation_schema.sql` validada contra PostgreSQL real. Migracion desactivada por defecto (`migrate-at-start=false`) para no alterar DB accidentalmente en tests normales. Forzar con `-Dquarkus.flyway.migrate-at-start=true` para validar localmente.
 - JWT/OIDC preparado por configuracion, sin secretos hardcodeados.
 
 ## Requisito local actual
@@ -45,9 +45,38 @@ mvn quarkus:dev
 - `GET /q/openapi`
 - `GET /q/swagger-ui`
 
+## Convencion de nombres
+
+Todo identificador fisico persistente (tablas, columnas, enums, funciones, migraciones) usa espanol y `snake_case` segun `docs/sdd/17_convencion_nombres_tecnicos.md`. Ejemplo: `usuarios`, `empresas`, `clave_hash`, `creado_en`, `tipo_usuario`.
+
 ## Seguridad
 
 - No colocar credenciales reales en `application.properties`.
 - No usar secretos en codigo fuente.
 - Usar variables de entorno o rutas `*_SECRET_PATH`.
 - No loguear tokens, passwords ni payloads sensibles.
+## Validar migraciones Flyway con PostgreSQL local
+
+Levantar PostgreSQL en puerto alternativo si `5432` no esta disponible:
+
+```powershell
+$env:POSTGRES_DB='armora'
+$env:POSTGRES_USER='armora_user'
+$env:POSTGRES_PASSWORD='armora_local_dev_password'
+$env:POSTGRES_PORT='55432'
+docker compose up -d --force-recreate postgres
+```
+
+Ejecutar tests forzando Flyway contra PostgreSQL local:
+
+```powershell
+mvn test `
+  "-Dquarkus.flyway.migrate-at-start=true" `
+  "-Dquarkus.flyway.clean-at-start=true" `
+  "-Dquarkus.flyway.validate-on-migrate=true" `
+  "-Dquarkus.datasource.jdbc.url=jdbc:postgresql://localhost:55432/armora" `
+  "-Dquarkus.datasource.username=armora_user" `
+  "-Dquarkus.datasource.password=armora_local_dev_password"
+```
+
+El password anterior es solo ejemplo local y no debe versionarse en archivos `.env` reales.

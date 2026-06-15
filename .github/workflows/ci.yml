@@ -1,0 +1,104 @@
+name: ARMORA CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+env:
+  APP_ENV: ci
+  TEST_DATABASE_URL: jdbc:postgresql://localhost:5432/armora_test
+  TEST_DATABASE_USERNAME: armora_test
+  TEST_DATABASE_PASSWORD: armora_test_pass
+
+jobs:
+  backend:
+    name: Backend Quarkus
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: armora_test
+          POSTGRES_USER: armora_test
+          POSTGRES_PASSWORD: armora_test_pass
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: temurin
+          cache: maven
+      - run: mvn test
+        working-directory: backend/api-quarkus
+
+  frontend-web:
+    name: Admin Web Next.js
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend_web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend_web/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - run: npm run lint
+
+  mobile-cliente:
+    name: Mobile Cliente Flutter
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile_cliente
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.29
+          channel: stable
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+
+  mobile-proveedor:
+    name: Mobile Proveedor Flutter
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile_proveedor
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.29
+          channel: stable
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+
+  secrets-check:
+    name: Secrets detection
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: repo
+          scan-ref: .
+          format: table
+          exit-code: 1
+          hide-progress: true
+          severity: CRITICAL,HIGH

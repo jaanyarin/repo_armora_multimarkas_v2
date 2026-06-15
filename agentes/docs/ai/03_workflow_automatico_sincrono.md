@@ -1,4 +1,4 @@
-﻿# Workflow automatico y sincrono de agentes - ARMORA
+# Workflow automatico y sincrono de agentes - ARMORA
 
 ## Objetivo
 
@@ -101,6 +101,7 @@ El agente lider cambia el estado a `en_analisis` y revisa:
 Si la tarea toca Fase 1, tambien debe revisar:
 
 - `docs/sdd/16_plan_ejecucion_fase_1_fundacion_tecnica.md`.
+- `docs/sdd/17_convencion_nombres_tecnicos.md` si toca base de datos, migraciones o artefactos persistentes.
 
 ### 3. Preparacion de contrato o diseno
 
@@ -123,6 +124,7 @@ Reglas:
 - No introducir secretos ni credenciales.
 - No cambiar contrato publico sin actualizar OpenAPI y avisar a consumidores.
 - No cambiar modelo sin migracion y revision de Database.
+- No crear identificadores fisicos persistentes en ingles; usar espanol `snake_case` segun `docs/sdd/17_convencion_nombres_tecnicos.md`.
 
 ### 5. Revision cruzada
 

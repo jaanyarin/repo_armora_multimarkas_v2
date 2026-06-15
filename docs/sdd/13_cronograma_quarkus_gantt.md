@@ -1,4 +1,6 @@
-# Cronograma de desarrollo - Backend Quarkus
+# [SUPERSEDED] Cronograma de desarrollo - Backend Quarkus
+
+> Este cronograma fue la estimacion inicial. Para el seguimiento real de Fase 1, usar `docs/ai_workflow/00_tablero_agentes.md` y `docs/sdd/16_plan_ejecucion_fase_1_fundacion_tecnica.md`.
 
 ## Base de estimacion
 

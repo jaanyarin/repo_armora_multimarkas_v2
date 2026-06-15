@@ -20,6 +20,8 @@ Garantizar que toda implementacion, decision tecnica y cambio propuesto respete 
 - `docs/sdd/02_stack_recomendado.md` - stack tecnologico
 - `docs/sdd/08_sdd_roadmap_mvp.md` - fases y alcance MVP
 - `docs/sdd/15_stack_mobile_flutter_dart.md` - decision mobile
+- `docs/sdd/17_convencion_nombres_tecnicos.md` - convencion de nombres fisicos en espanol
+- `docs/adr/ADR-001-inicial-arquitectura.md` - ADR de stack y arquitectura
 
 ## Reglas de coherencia
 

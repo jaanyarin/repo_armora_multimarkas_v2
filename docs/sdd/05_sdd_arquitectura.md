@@ -22,6 +22,10 @@ Admin Web (Next.js)    Mobile Cliente (Flutter)    Mobile Proveedor (Flutter)
                          SUNAT / Payment Providers / Email / Push
 ```
 
+## Estado actual
+
+La migracion V1 ya creo las tablas de identidad, RBAC, empresa/sucursal, auditoria y metadata tecnica en PostgreSQL. Ver `06_sdd_modelo_datos_inicial.md` para el mapeo completo de nombres conceptuales a fisicos. Los modulos de catalogo, inventario, pedidos y pagos se agregaran en migraciones posteriores (V2+).
+
 ## Principios
 
 - API-first: web y mobile consumen los mismos contratos versionados.

@@ -27,6 +27,10 @@ Implementar el backend principal en Quarkus con alta calidad, contratos API clar
 - Redis.
 - Scheduler/jobs.
 
+## Convencion de nombres
+
+Todo identificador fisico persistente (tablas, columnas, enums, funciones, migraciones) debe usar espanol y `snake_case` segun `docs/sdd/17_convencion_nombres_tecnicos.md`. La migracion V1 ya sigue esta regla.
+
 ## Responsabilidades
 
 - Diseñar recursos REST.

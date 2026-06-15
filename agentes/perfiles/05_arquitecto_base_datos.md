@@ -14,6 +14,10 @@ Diseñar, proteger y optimizar el modelo de datos PostgreSQL del sistema ARMORA,
 
 > Ver politica de seguridad centralizada en `seguridad/politica_transversal.md`.
 
+## Convencion obligatoria
+
+Todo identificador fisico persistente (tablas, columnas, enums, funciones, migraciones) debe usar espanol y `snake_case` segun `docs/sdd/17_convencion_nombres_tecnicos.md`. Esta regla aplica a todas las migraciones y artefactos persistentes del proyecto.
+
 ## Responsabilidades
 
 - Diseñar modelo relacional.

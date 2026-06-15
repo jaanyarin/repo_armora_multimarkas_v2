@@ -17,7 +17,7 @@
 
 Leer:
 
-- `01_desarrollador_arquitecto.md`
+- `01_arquitecto.md`
 - `05_sdd_arquitectura.md`
 - `06_sdd_modelo_datos_inicial.md`
 - `07_sdd_api_contratos.md`
@@ -28,7 +28,7 @@ Leer:
 
 Leer:
 
-- `03_analista_funcional_product_owner.md`
+- `03_analista_funcional.md`
 - `04_sdd_requerimientos.md`
 - `09_preguntas_validacion.md`
 - `12_revision_respuestas_validacion.md`
@@ -47,36 +47,36 @@ Leer:
 
 Leer:
 
-- `04_backend_quarkus_specialist.md`
+- `04_especialista_backend_quarkus.md`
 - `05_sdd_arquitectura.md`
 - `06_sdd_modelo_datos_inicial.md`
 - `07_sdd_api_contratos.md`
-- `10_security_engineer.md`
+- `10_ingeniero_seguridad.md`
 
 ### Mobile Flutter
 
 Leer:
 
-- `09_mobile_specialist.md`
+- `09_especialista_mobile_flutter.md`
 - `15_stack_mobile_flutter_dart.md`
 - `07_sdd_api_contratos.md`
 - `02_disenador_ui_ux.md`
-- `10_security_engineer.md`
+- `10_ingeniero_seguridad.md`
 
 ### Frontend Web
 
 Leer:
 
-- `08_frontend_web_specialist.md`
+- `08_especialista_frontend_web.md`
 - `07_sdd_api_contratos.md`
 - `02_disenador_ui_ux.md`
-- `10_security_engineer.md`
+- `10_ingeniero_seguridad.md`
 
 ### QA
 
 Leer:
 
-- `06_qa_test_engineer.md`
+- `06_ingeniero_qa.md`
 - `04_sdd_requerimientos.md`
 - `07_sdd_api_contratos.md`
 - `08_sdd_roadmap_mvp.md`
@@ -85,22 +85,22 @@ Leer:
 
 Leer:
 
-- `07_devops_infra_engineer.md`
+- `07_ingeniero_devops.md`
 - `10_despliegue_conexion_servidor.md`
-- `10_security_engineer.md`
+- `10_ingeniero_seguridad.md`
 
 ### Integraciones
 
 Leer:
 
-- `11_integration_engineer.md`
+- `11_ingeniero_integraciones.md`
 - `04_sdd_requerimientos.md`
 - `07_sdd_api_contratos.md`
-- `10_security_engineer.md`
+- `10_ingeniero_seguridad.md`
 
 ### SDD Manager
 
 Leer:
 
-- `12_documentation_sdd_manager.md`
+- `12_gestor_documentacion_sdd.md`
 - todos los documentos SDD afectados por el cambio.

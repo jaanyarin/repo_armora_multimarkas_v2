@@ -38,13 +38,15 @@ Criterio de salida:
 
 ## Fase 1 - Fundacion tecnica
 
+Nota: El cronograma detallado de Fase 1 esta en `16_plan_ejecucion_fase_1_fundacion_tecnica.md` y las tareas se controlan en `docs/ai_workflow/00_tablero_agentes.md`.
+
 Objetivo:
 
 - Crear monorepo, API Quarkus, admin web y bases Flutter.
 
 Entregables:
 
-- Monorepo con apps `api-quarkus`, `admin-web`, `mobile-cliente`, `mobile-proveedor`.
+- Monorepo con `backend/api-quarkus/`, `frontend_web/`, `mobile_cliente/`, `mobile_proveedor/`.
 - Docker local con PostgreSQL y Redis.
 - Quarkus base: REST, OpenAPI, health checks, migraciones.
 - Next.js base: layout, login, rutas protegidas.

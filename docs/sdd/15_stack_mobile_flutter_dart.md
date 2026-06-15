@@ -91,7 +91,7 @@ Aunque una app unica podria ocultar pantallas segun permisos, no se recomienda p
 ## Arquitectura mobile sugerida
 
 ```text
-mobile-cliente/
+mobile_cliente/
   lib/
     app/
     core/
@@ -111,7 +111,7 @@ mobile-cliente/
       payments/
       notifications/
 
-mobile-proveedor/
+mobile_proveedor/
   lib/
     app/
     core/

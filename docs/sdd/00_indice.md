@@ -28,6 +28,15 @@ Definir la documentacion inicial para construir un nuevo sistema basado en la es
 13. `13_cronograma_quarkus_gantt.md`: estimacion de tiempos, tabla por tarea y Gantt tomando Quarkus como backend principal.
 14. `15_stack_mobile_flutter_dart.md`: decision mobile final usando Flutter + Dart para las apps cliente y proveedor.
 15. `16_plan_ejecucion_fase_1_fundacion_tecnica.md`: plan operativo para iniciar construccion de Fase 1.
+16. `17_convencion_nombres_tecnicos.md`: convencion obligatoria de nombres fisicos en espanol para DB, migraciones y artefactos tecnicos persistentes.
+
+## Tablero operativo
+
+El avance de las tareas de Fase 1 se controla en `docs/ai_workflow/00_tablero_agentes.md`. Cada tarea completada tiene su handoff documentado en `docs/ai_workflow/F1-*.md`.
+
+## Registro de decisiones tecnicas (ADR)
+
+- `docs/adr/ADR-001-inicial-arquitectura.md`: stack tecnologico, estructura de monorepo, convencion de nombres y politica de seguridad.
 
 
 ## Decision tecnica vigente
@@ -56,11 +65,8 @@ En esta documentacion SDD significa Spec-Driven Development: primero se document
 
 ## Fuentes usadas
 
-- `_docs_scrapping_gpt/00_resumen_general.md`
-- `_docs_scrapping_gpt/01_stack_detectado.json`
-- `_docs_scrapping_gpt/02_mapa_sitio.json`
-- `_docs_scrapping_gpt/03_apis_detectadas.json`
-- `_docs_scrapping_gpt/endpoints/**`
+- `docs/scrapping/00_resumen_general.md` (extraido del scraping)
+- `docs/scrapping/endpoints/**` (endpoints detectados)
 - Documentacion oficial consultada para stack recomendado:
   - Next.js docs: https://nextjs.org/docs
   - Flutter docs: https://docs.flutter.dev/

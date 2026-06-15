@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "https://opencode.ai/config.json",
   "defaultAgent": "armora-architect",
   "instructions": [
@@ -18,6 +18,9 @@
     "docs/sdd/13_cronograma_quarkus_gantt.md",
     "docs/sdd/15_stack_mobile_flutter_dart.md",
     "docs/sdd/16_plan_ejecucion_fase_1_fundacion_tecnica.md",
+    "docs/sdd/17_convencion_nombres_tecnicos.md",
+    "docs/adr/ADR-001-inicial-arquitectura.md",
+    "docs/ai_workflow/00_tablero_agentes.md",
     "agentes/docs/ai/00_agent_orchestration.md",
     "agentes/docs/ai/01_context_map.md",
     "agentes/docs/ai/02_handoff_protocol.md",

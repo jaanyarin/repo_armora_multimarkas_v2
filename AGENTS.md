@@ -1,4 +1,4 @@
-﻿# AGENTS.md - ARMORA Multimarkas v2
+# AGENTS.md - ARMORA Multimarkas v2
 
 ## Estado del repositorio
 
@@ -11,10 +11,10 @@ Estructura principal esperada:
 - `docs/ai_workflow/`: tablero operativo para coordinacion automatica de agentes.
 - `agentes/perfiles/`: perfiles especializados de agentes.
 - `agentes/docs/ai/`: reglas de orquestacion, contexto, handoff y workflow sincronico.
-- `backend/`: base prevista para backend Quarkus.
-- `frontend_web/`: base prevista para admin web Next.js.
-- `mobile_cliente/`: base prevista para app Flutter de clientes.
-- `mobile_proveedor/`: base prevista para app Flutter de proveedores.
+- `backend/`: backend Quarkus con migracion Flyway V1.
+- `frontend_web/`: admin web Next.js con login y dashboard.
+- `mobile_cliente/`: app Flutter de clientes con login y health check.
+- `mobile_proveedor/`: app Flutter de proveedores con login y health check.
 - `packages/`: paquetes compartidos o contratos generados.
 - `seguridad/`: documentacion o artefactos de seguridad.
 

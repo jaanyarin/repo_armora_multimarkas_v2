@@ -1,6 +1,31 @@
 # SDD - Modelo de datos inicial
 
-Este modelo es conceptual. Debe convertirse a Prisma schema despues de validar reglas de negocio.
+Este modelo es conceptual y puede conservar nombres heredados o equivalentes en ingles cuando provienen del analisis inicial.
+
+Decision vigente: toda implementacion fisica debe usar nombres en espanol y `snake_case`, segun `17_convencion_nombres_tecnicos.md`. Esto aplica a tablas, columnas, enums, indices, constraints, funciones, procedimientos, triggers y migraciones.
+
+## Mapeo conceptual a fisico (V1 migration)
+
+| Concepto (ingles) | Tabla fisica | Estado |
+|---|---|---|
+| User | `usuarios` | Creada en V1 |
+| Company | `empresas` | Creada en V1 |
+| Branch | `sucursales` | Creada en V1 |
+| Role | `roles` | Creada en V1 |
+| Permission | `permisos` | Creada en V1 |
+| UserRole | `usuarios_roles` | Creada en V1 |
+| RolePermission | `roles_permisos` | Creada en V1 |
+| AccessScope | `alcances_acceso` | Creada en V1 |
+| AuditLog | `registros_auditoria` | Creada en V1 |
+| PlatformMetadata | `metadatos_plataforma` | Creada en V1 |
+
+Enums creados: `tipo_usuario` (ADMINISTRADOR, OPERADOR, CLIENTE, PROVEEDOR), `estado_registro` (ACTIVO, INACTIVO, BLOQUEADO), `tipo_alcance_acceso`.
+
+Funcion creada: `asignar_actualizado_en()` para actualizacion automatica de `actualizado_en`.
+
+Columnas normalizadas: `creado_en`, `actualizado_en`, `clave_hash`.
+
+> Nota: No editar V1 luego de compartida. Nuevas tablas deben entrar por migraciones incrementales (V2, V3, ...).
 
 ## Identidad y permisos
 

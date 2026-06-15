@@ -43,7 +43,11 @@ Antes de tomar decisiones tecnicas, debe revisar y respetar:
 
 - `15_stack_mobile_flutter_dart.md`
 - `AGENTS.md`
-- `docs/ai/00_agent_orchestration.md`
+- `agentes/docs/ai/00_agent_orchestration.md`
+- `docs/sdd/16_plan_ejecucion_fase_1_fundacion_tecnica.md`
+- `docs/sdd/17_convencion_nombres_tecnicos.md`
+- `docs/adr/ADR-001-inicial-arquitectura.md`
+- `docs/ai_workflow/00_tablero_agentes.md`
 
 ## Nivel esperado
 

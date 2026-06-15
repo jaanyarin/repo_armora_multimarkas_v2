@@ -65,5 +65,7 @@ Los documentos de diseño están en `docs/sdd/` e incluyen arquitectura, modelo 
 - Mutaciones críticas auditan: stock, pedidos, pagos, ventas, SUNAT.
 - Contrato único: web y mobile consumen la misma API.
 - BD y Redis no se exponen a internet.
-- Decisiones técnicas se registran como ADR en `docs/sdd/`.
+- Decisiones técnicas se registran como ADR en `docs/adr/`.
+- Los identificadores fisicos persistentes usan espanol y `snake_case` segun `docs/sdd/17_convencion_nombres_tecnicos.md`.
+- La coordinacion entre agentes sigue `AGENTS.md`, `agentes/docs/ai/` y el tablero en `docs/ai_workflow/00_tablero_agentes.md`.
 - Este README se actualiza conforme evoluciona el proyecto.

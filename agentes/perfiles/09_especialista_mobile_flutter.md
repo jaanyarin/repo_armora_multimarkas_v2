@@ -36,9 +36,10 @@ Antes de implementar debe revisar:
 - `07_sdd_api_contratos.md`
 - `04_sdd_requerimientos.md`
 - `12_revision_respuestas_validacion.md`
-- `01_desarrollador_arquitecto.md`
+- `01_arquitecto.md`
 - `02_disenador_ui_ux.md`
-- `10_security_engineer.md`
+- `10_ingeniero_seguridad.md`
+- `17_convencion_nombres_tecnicos.md`
 
 ## Responsabilidades
 
@@ -85,9 +86,8 @@ Antes de implementar debe revisar:
 Estructura recomendada por app o por paquete compartido:
 
 ```text
-apps/
-  mobile_cliente/
-  mobile_proveedor/
+mobile_cliente/
+mobile_proveedor/
 packages/
   armora_api_client/
   armora_design_system/
