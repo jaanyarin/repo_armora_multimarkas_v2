@@ -6,50 +6,36 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
+import Divider from '@mui/material/Divider';
 import Toolbar from '@mui/material/Toolbar';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SearchIcon from '@mui/icons-material/Search';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import NewspaperIcon from '@mui/icons-material/Newspaper';
-import DescriptionIcon from '@mui/icons-material/Description';
-import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
-import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
-import VerifiedIcon from '@mui/icons-material/Verified';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import ReceiptIcon from '@mui/icons-material/Receipt';
-import PeopleIcon from '@mui/icons-material/People';
-import MapIcon from '@mui/icons-material/Map';
-import WarehouseIcon from '@mui/icons-material/Warehouse';
+import Inventory2Icon from '@mui/icons-material/Inventory2';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
-import InventoryIcon from '@mui/icons-material/Inventory';
-import RoomServiceIcon from '@mui/icons-material/RoomService';
-import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
+import WarehouseIcon from '@mui/icons-material/Warehouse';
+import PeopleIcon from '@mui/icons-material/People';
+import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
+import AssignmentReturnIcon from '@mui/icons-material/AssignmentReturn';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import PercentIcon from '@mui/icons-material/Percent';
-import PublicIcon from '@mui/icons-material/Public';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import PersonIcon from '@mui/icons-material/Person';
+import MapIcon from '@mui/icons-material/Map';
+import DescriptionIcon from '@mui/icons-material/Description';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import BadgeIcon from '@mui/icons-material/Badge';
+import GroupIcon from '@mui/icons-material/Group';
 import SettingsIcon from '@mui/icons-material/Settings';
-import LocalShippingTwoToneIcon from '@mui/icons-material/LocalShippingTwoTone';
-import AccountTreeIcon from '@mui/icons-material/AccountTree';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import { colors } from '../../tokens/colors';
 
-const DRAWER_WIDTH = 260;
+const DRAWER_WIDTH = 270;
 
 interface NavItem {
   label: string;
-  icon: React.ReactNode;
   path: string;
 }
 
@@ -59,315 +45,180 @@ interface NavCategory {
   children: NavItem[];
 }
 
+const sidebarIconSx = { minWidth: 40, color: colors.primary[500] };
+
+const ICON_SIZE = { fontSize: 20 };
+
 const sidebarCategories: NavCategory[] = [
   {
-    label: 'Dashboard',
-    icon: <DashboardIcon />,
-    children: [{ label: 'Panel Principal', icon: <DashboardIcon />, path: '/dashboard' }],
-  },
-  {
-    label: 'Compras',
-    icon: <ShoppingBagIcon />,
+    label: 'Productos y Servicios',
+    icon: <Inventory2Icon sx={ICON_SIZE} />,
     children: [
-      { label: 'Crear Compra', icon: <ShoppingBagIcon />, path: '#' },
-      { label: 'Gestión de Compras', icon: <ShoppingBagIcon />, path: '#' },
+      { label: 'Clases y Subclases', path: '#' },
+      { label: 'Crear Producto', path: '#' },
+      { label: 'Gestion Productos', path: '#' },
+      { label: 'Crear Servicio', path: '#' },
+      { label: 'Gestion Servicios', path: '#' },
+      { label: 'Crear Combo', path: '#' },
+      { label: 'Gestion Combos', path: '#' },
+      { label: 'Crear Lista de Precios', path: '#' },
+      { label: 'Gestion Listas de Precios', path: '#' },
+      { label: 'Reportes Productos', path: '#' },
     ],
   },
   {
-    label: 'Proveedores',
-    icon: <ShoppingCartIcon />,
+    label: 'Compras y Proveedores',
+    icon: <LocalShippingIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Crear Proveedor', icon: <ShoppingCartIcon />, path: '#' },
-      { label: 'Gestión de Proveedores', icon: <ShoppingCartIcon />, path: '#' },
+      { label: 'Crear Compra', path: '#' },
+      { label: 'Gestión de Compras', path: '#' },
+      { label: 'Crear Proveedor', path: '#' },
+      { label: 'Gestión de Proveedores', path: '#' },
     ],
   },
   {
-    label: 'Preventas',
-    icon: <AssignmentIcon />,
+    label: 'Almacenes e Inventario',
+    icon: <WarehouseIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Gestión Preventas', icon: <AssignmentIcon />, path: '#' },
-      { label: 'Reportes Preventas', icon: <AssignmentIcon />, path: '#' },
+      { label: 'Gestion Almacenes', path: '#' },
+      { label: 'Inventario de Stocks', path: '#' },
+      { label: 'Gestion de Inventarios', path: '#' },
+      { label: 'Crear Unidad Trans.', path: '#' },
+      { label: 'Gestion Unidades de Trans.', path: '#' },
+      { label: 'Transportistas', path: '#' },
+    ],
+  },
+  {
+    label: 'Clientes y Preventas',
+    icon: <PeopleIcon sx={ICON_SIZE} />,
+    children: [
+      { label: 'Crear Cliente', path: '#' },
+      { label: 'Gestion Clientes', path: '#' },
+      { label: 'Habilitar Ventas Clientes', path: '#' },
+      { label: 'Gestión Preventas', path: '#' },
+      { label: 'Reportes Preventas', path: '#' },
     ],
   },
   {
     label: 'Ventas',
-    icon: <TaskAltIcon />,
+    icon: <PointOfSaleIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Crear Venta Productos', icon: <TaskAltIcon />, path: '#' },
-      { label: 'Crear Venta Servicios', icon: <TaskAltIcon />, path: '#' },
-      { label: 'Gestión de Ventas', icon: <TaskAltIcon />, path: '#' },
-      { label: 'Puntos de Ventas', icon: <TaskAltIcon />, path: '#' },
-      { label: 'Gestión Notas Pedido', icon: <TaskAltIcon />, path: '#' },
-      { label: 'Impresión de Ventas', icon: <TaskAltIcon />, path: '#' },
-      { label: 'Entregas Parciales', icon: <TaskAltIcon />, path: '#' },
-      { label: 'Fileteo Automatico', icon: <TaskAltIcon />, path: '#' },
-      { label: 'Reportes de Ventas', icon: <TaskAltIcon />, path: '#' },
+      { label: 'Crear Venta Productos', path: '#' },
+      { label: 'Crear Venta Servicios', path: '#' },
+      { label: 'Gestión de Ventas', path: '#' },
+      { label: 'Puntos de Ventas', path: '#' },
+      { label: 'Gestión Notas Pedido', path: '#' },
+      { label: 'Impresión de Ventas', path: '#' },
+      { label: 'Entregas Parciales', path: '#' },
+      { label: 'Fileteo Automatico', path: '#' },
+      { label: 'Reportes de Ventas', path: '#' },
     ],
   },
   {
-    label: 'Notas de Credito',
-    icon: <NewspaperIcon />,
+    label: 'Postventa y Ajustes',
+    icon: <AssignmentReturnIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Gestión Notas Credito', icon: <NewspaperIcon />, path: '#' },
-      { label: 'Devolucion Transportista', icon: <NewspaperIcon />, path: '#' },
-      { label: 'Impresión Notas Credito', icon: <NewspaperIcon />, path: '#' },
-      { label: 'Reportes Notas Credito', icon: <NewspaperIcon />, path: '#' },
+      { label: 'Gestión Notas Credito', path: '#' },
+      { label: 'Devolucion Transportista', path: '#' },
+      { label: 'Impresión Notas Credito', path: '#' },
+      { label: 'Crear Cambio Productos', path: '#' },
+      { label: 'Gestion Cambio Productos', path: '#' },
+      { label: 'Crear Canje', path: '#' },
+      { label: 'Gestion Canjes', path: '#' },
+      { label: 'Ajuste de Comisiones', path: '#' },
     ],
   },
   {
-    label: 'Informes',
-    icon: <DescriptionIcon />,
+    label: 'Premios y Concursos',
+    icon: <EmojiEventsIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Informes de Requerimientos', icon: <DescriptionIcon />, path: '#' },
-      { label: 'Informes de Liquidaciones', icon: <DescriptionIcon />, path: '#' },
-      { label: 'Informes de Almacenes', icon: <DescriptionIcon />, path: '#' },
-      { label: 'Entregas Parciales', icon: <DescriptionIcon />, path: '#' },
+      { label: 'Requisitos de Canjes', path: '#' },
+      { label: 'Crear Premio Canje', path: '#' },
+      { label: 'Gestion Premio Canje', path: '#' },
+      { label: 'Crear Concurso', path: '#' },
+      { label: 'Gestion Concursos', path: '#' },
     ],
   },
   {
-    label: 'Cambios de Productos',
-    icon: <SwapHorizIcon />,
+    label: 'Distribución, Zonas y Rutas',
+    icon: <MapIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Crear Cambio Productos', icon: <SwapHorizIcon />, path: '#' },
-      { label: 'Asignar Fecha de Entrega', icon: <SwapHorizIcon />, path: '#' },
-      { label: 'Gestion Cambio Productos', icon: <SwapHorizIcon />, path: '#' },
-      { label: 'Impresion Cambio Productos', icon: <SwapHorizIcon />, path: '#' },
-      { label: 'Crear Req/Liq Cambios', icon: <SwapHorizIcon />, path: '#' },
-      { label: 'Gestion Req/Liq Cambios', icon: <SwapHorizIcon />, path: '#' },
-      { label: 'Reporte Cambios Productos', icon: <SwapHorizIcon />, path: '#' },
+      { label: 'Gestion Zonas y Rutas', path: '#' },
+      { label: 'Habilitar Ventas en Rutas', path: '#' },
+      { label: 'Crear Mapa de Rutas', path: '#' },
+      { label: 'Gestion de Mapas de Rutas', path: '#' },
+      { label: 'Cambio dia Atencion', path: '#' },
     ],
   },
   {
-    label: 'Canjes de Productos',
-    icon: <CompareArrowsIcon />,
+    label: 'SUNAT y Documentos Electrónicos',
+    icon: <DescriptionIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Crear Canje', icon: <CompareArrowsIcon />, path: '#' },
-      { label: 'Asignar Fecha de Entrega', icon: <CompareArrowsIcon />, path: '#' },
-      { label: 'Gestion Canjes', icon: <CompareArrowsIcon />, path: '#' },
-      { label: 'Impresion Canjes', icon: <CompareArrowsIcon />, path: '#' },
-      { label: 'Crear Req/Liq Canjes', icon: <CompareArrowsIcon />, path: '#' },
-      { label: 'Gestion Req/Liq Canjes', icon: <CompareArrowsIcon />, path: '#' },
-      { label: 'Reportes Canjes', icon: <CompareArrowsIcon />, path: '#' },
+      { label: 'Envios Pendientes Sunat', path: '#' },
+      { label: 'Gestion Envios Sunat', path: '#' },
+      { label: 'Crear Resumen', path: '#' },
+      { label: 'Gestion de Resumenes', path: '#' },
+      { label: 'Crear Baja', path: '#' },
+      { label: 'Gestion de Bajas', path: '#' },
     ],
   },
   {
-    label: 'Sunat',
-    icon: <VerifiedIcon />,
+    label: 'Requerimientos y Liquidaciones',
+    icon: <FactCheckIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Envios Pendientes Sunat', icon: <VerifiedIcon />, path: '#' },
-      { label: 'Gestion Envios Sunat', icon: <VerifiedIcon />, path: '#' },
-      { label: 'Reportes Envios Sunat', icon: <VerifiedIcon />, path: '#' },
+      { label: 'Crear Requerimiento', path: '#' },
+      { label: 'Gestion Requerimientos', path: '#' },
+      { label: 'Crear Liquidacion', path: '#' },
+      { label: 'Gestion Liquidaciones', path: '#' },
     ],
   },
   {
-    label: 'Resumenes Diarios',
-    icon: <ContentCopyIcon />,
+    label: 'Reportes e Informes',
+    icon: <BarChartIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Crear Resumen', icon: <ContentCopyIcon />, path: '#' },
-      { label: 'Gestion de Resumenes', icon: <ContentCopyIcon />, path: '#' },
-      { label: 'Reportes de Resumenes', icon: <ContentCopyIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Comunicacion de Baja',
-    icon: <CalendarTodayIcon />,
-    children: [
-      { label: 'Crear Baja', icon: <CalendarTodayIcon />, path: '#' },
-      { label: 'Gestion de Bajas', icon: <CalendarTodayIcon />, path: '#' },
-      { label: 'Reportes de Baja', icon: <CalendarTodayIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Requerimientos',
-    icon: <AssignmentIcon />,
-    children: [
-      { label: 'Crear Requerimiento', icon: <AssignmentIcon />, path: '#' },
-      { label: 'Gestion Requerimientos', icon: <AssignmentIcon />, path: '#' },
-      { label: 'Reportes Requerimientos', icon: <AssignmentIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Liquidaciones',
-    icon: <ReceiptIcon />,
-    children: [
-      { label: 'Crear Liquidacion', icon: <ReceiptIcon />, path: '#' },
-      { label: 'Gestion Liquidaciones', icon: <ReceiptIcon />, path: '#' },
-      { label: 'Reportes Liquidaciones', icon: <ReceiptIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Personal',
-    icon: <PeopleIcon />,
-    children: [
-      { label: 'Crear Personal', icon: <PeopleIcon />, path: '#' },
-      { label: 'Gestion Personal', icon: <PeopleIcon />, path: '#' },
-      { label: 'Reportes Personal', icon: <PeopleIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Mapas de Rutas',
-    icon: <MapIcon />,
-    children: [
-      { label: 'Crear Mapa de Rutas', icon: <MapIcon />, path: '#' },
-      { label: 'Gestion de Mapas de Rutas', icon: <MapIcon />, path: '#' },
-      { label: 'Reportes de Mapas de Rutas', icon: <MapIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Clientes',
-    icon: <PeopleIcon />,
-    children: [
-      { label: 'Crear Cliente', icon: <PeopleIcon />, path: '#' },
-      { label: 'Gestion Clientes', icon: <PeopleIcon />, path: '#' },
-      { label: 'Habilitar Ventas Clientes', icon: <PeopleIcon />, path: '#' },
-      { label: 'Cambio dia Atencion', icon: <PeopleIcon />, path: '#' },
-      { label: 'Reportes Clientes', icon: <PeopleIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Zonas y Rutas',
-    icon: <MapIcon />,
-    children: [
-      { label: 'Gestion Zonas y Rutas', icon: <MapIcon />, path: '#' },
-      { label: 'Habilitar Ventas en Rutas', icon: <MapIcon />, path: '#' },
-      { label: 'Reportes Zonas y Rutas', icon: <MapIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Almacenes',
-    icon: <WarehouseIcon />,
-    children: [
-      { label: 'Gestion Almacenes', icon: <WarehouseIcon />, path: '#' },
-      { label: 'Reportes Almacenes', icon: <WarehouseIcon />, path: '#' },
-      { label: 'Inventario de Stocks', icon: <WarehouseIcon />, path: '#' },
-      { label: 'Gestion de Inventarios', icon: <WarehouseIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Unidades de Trans.',
-    icon: <LocalShippingIcon />,
-    children: [
-      { label: 'Crear Unidad Trans.', icon: <LocalShippingIcon />, path: '#' },
-      { label: 'Gestion Unidades de Trans.', icon: <LocalShippingIcon />, path: '#' },
-      { label: 'Reportes Unidades de Trans.', icon: <LocalShippingIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Premios Canjes',
-    icon: <CardGiftcardIcon />,
-    children: [
-      { label: 'Requisitos de Canjes', icon: <CardGiftcardIcon />, path: '#' },
-      { label: 'Crear Premio Canje', icon: <CardGiftcardIcon />, path: '#' },
-      { label: 'Gestion Premio Canje', icon: <CardGiftcardIcon />, path: '#' },
-      { label: 'Reportes Premio Canje', icon: <CardGiftcardIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Productos',
-    icon: <InventoryIcon />,
-    children: [
-      { label: 'Clases y Subclases', icon: <InventoryIcon />, path: '#' },
-      { label: 'Crear Producto', icon: <InventoryIcon />, path: '#' },
-      { label: 'Gestion Productos', icon: <InventoryIcon />, path: '#' },
-      { label: 'Reportes Productos', icon: <InventoryIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Servicios',
-    icon: <RoomServiceIcon />,
-    children: [
-      { label: 'Crear Servicio', icon: <RoomServiceIcon />, path: '#' },
-      { label: 'Gestion Servicios', icon: <RoomServiceIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Combos de Productos',
-    icon: <AllInclusiveIcon />,
-    children: [
-      { label: 'Crear Combo', icon: <AllInclusiveIcon />, path: '#' },
-      { label: 'Gestion Combos', icon: <AllInclusiveIcon />, path: '#' },
-      { label: 'Reportes Combos', icon: <AllInclusiveIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Concursos',
-    icon: <EmojiEventsIcon />,
-    children: [
-      { label: 'Crear Concurso', icon: <EmojiEventsIcon />, path: '#' },
-      { label: 'Gestion Concursos', icon: <EmojiEventsIcon />, path: '#' },
-      { label: 'Reportes Concursos', icon: <EmojiEventsIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Comisiones',
-    icon: <PercentIcon />,
-    children: [
-      { label: 'Crear Reporte Comisiones', icon: <PercentIcon />, path: '#' },
-      { label: 'Gestion Reporte Comisiones', icon: <PercentIcon />, path: '#' },
-      { label: 'Ajuste de Comisiones', icon: <PercentIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Cobertura',
-    icon: <PublicIcon />,
-    children: [
-      { label: 'Crear Reporte Cobertura', icon: <PublicIcon />, path: '#' },
-      { label: 'Gestion Reporte Cobertura', icon: <PublicIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'Listas de Precios',
-    icon: <AttachMoneyIcon />,
-    children: [
-      { label: 'Crear Lista de Precios', icon: <AttachMoneyIcon />, path: '#' },
-      { label: 'Gestion Listas de Precios', icon: <AttachMoneyIcon />, path: '#' },
-      { label: 'Copiar Listas de Precios', icon: <AttachMoneyIcon />, path: '#' },
-      { label: 'Reportes Listas de Precios', icon: <AttachMoneyIcon />, path: '#' },
+      { label: 'Informes de Requerimientos', path: '#' },
+      { label: 'Informes de Liquidaciones', path: '#' },
+      { label: 'Informes de Almacenes', path: '#' },
+      { label: 'Entregas Parciales', path: '#' },
+      { label: 'Crear Reporte Cobertura', path: '#' },
+      { label: 'Gestion Reporte Cobertura', path: '#' },
     ],
   },
   {
     label: 'Vendedor',
-    icon: <PersonIcon />,
+    icon: <BadgeIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Crear Cliente', icon: <PersonIcon />, path: '#' },
-      { label: 'Clientes', icon: <PersonIcon />, path: '#' },
-      { label: 'Crear Preventa', icon: <PersonIcon />, path: '#' },
-      { label: 'Preventas', icon: <PersonIcon />, path: '#' },
-      { label: 'Ventas', icon: <PersonIcon />, path: '#' },
-      { label: 'Crear Cambio Productos', icon: <PersonIcon />, path: '#' },
-      { label: 'Cambios de Productos', icon: <PersonIcon />, path: '#' },
-      { label: 'Crear Canje', icon: <PersonIcon />, path: '#' },
-      { label: 'Canjes', icon: <PersonIcon />, path: '#' },
-      { label: 'Stock de Productos', icon: <PersonIcon />, path: '#' },
-      { label: 'Comisiones', icon: <PersonIcon />, path: '#' },
-      { label: 'Concursos', icon: <PersonIcon />, path: '#' },
+      { label: 'Crear Cliente', path: '#' },
+      { label: 'Clientes', path: '#' },
+      { label: 'Crear Preventa', path: '#' },
+      { label: 'Preventas', path: '#' },
+      { label: 'Ventas', path: '#' },
+      { label: 'Crear Cambio Productos', path: '#' },
+      { label: 'Cambios de Productos', path: '#' },
+      { label: 'Crear Canje', path: '#' },
+      { label: 'Canjes', path: '#' },
+      { label: 'Stock de Productos', path: '#' },
+      { label: 'Comisiones', path: '#' },
+      { label: 'Concursos', path: '#' },
     ],
   },
   {
-    label: 'Configuracion',
-    icon: <SettingsIcon />,
+    label: 'Personal',
+    icon: <GroupIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Configuracion Empresa', icon: <SettingsIcon />, path: '#' },
-      { label: 'Configuracion Impresión', icon: <SettingsIcon />, path: '#' },
-      { label: 'Configuracion Sunat', icon: <SettingsIcon />, path: '#' },
-      { label: 'Configuracion Alertas', icon: <SettingsIcon />, path: '#' },
+      { label: 'Crear Personal', path: '#' },
+      { label: 'Gestion Personal', path: '#' },
     ],
   },
   {
-    label: 'Transportistas',
-    icon: <LocalShippingTwoToneIcon />,
+    label: 'Configuración',
+    icon: <SettingsIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Mis Devoluciones', icon: <LocalShippingTwoToneIcon />, path: '#' },
-      { label: 'Mis Requerimientos', icon: <LocalShippingTwoToneIcon />, path: '#' },
-      { label: 'Mis Liquidaciones', icon: <LocalShippingTwoToneIcon />, path: '#' },
-    ],
-  },
-  {
-    label: 'General',
-    icon: <AccountTreeIcon />,
-    children: [
-      { label: 'Perfil Personal', icon: <AccountTreeIcon />, path: '#' },
-      { label: 'Home', icon: <AccountTreeIcon />, path: '/dashboard' },
+      { label: 'Configuracion Empresa', path: '#' },
+      { label: 'Configuracion Impresión', path: '#' },
+      { label: 'Configuracion Sunat', path: '#' },
+      { label: 'Configuracion Alertas', path: '#' },
+      { label: 'Perfil Personal', path: '#' },
     ],
   },
 ];
@@ -395,8 +246,20 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
   const [search, setSearch] = useState('');
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
 
+  const isSearching = search.trim().length > 0;
+
   const toggleCategory = (label: string) => {
-    setOpenCategories((prev) => ({ ...prev, [label]: !prev[label] }));
+    if (isSearching) return;
+    setOpenCategories((prev) => {
+      const isOpen = prev[label];
+      if (isOpen) return {};
+      return { [label]: true };
+    });
+  };
+
+  const handleClear = () => {
+    setSearch('');
+    setOpenCategories({});
   };
 
   const filtered = sidebarCategories.filter(
@@ -407,11 +270,21 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
 
   const content = (
     <Box>
+      {/* Logo */}
       <Toolbar>
-        <Typography variant="h6" sx={{ fontWeight: 800, color: colors.primary[800], letterSpacing: 1 }}>
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: 800,
+            color: colors.primary[800],
+            letterSpacing: 1,
+          }}
+        >
           ARMORA
         </Typography>
       </Toolbar>
+
+      {/* Search */}
       <Box sx={{ px: 1.5, pb: 1 }}>
         <TextField
           size="small"
@@ -421,9 +294,18 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <SearchIcon fontSize="small" />
+                <SearchIcon fontSize="small" sx={{ color: colors.neutral.textMuted }} />
               </InputAdornment>
             ),
+            endAdornment: search ? (
+              <InputAdornment position="end">
+                <IconButton size="small" onClick={handleClear} sx={{ p: 0.3 }}>
+                  <Typography sx={{ fontSize: 16, lineHeight: 1, color: colors.neutral.textMuted }}>
+                    ✕
+                  </Typography>
+                </IconButton>
+              </InputAdornment>
+            ) : null,
           }}
           sx={{
             '& .MuiOutlinedInput-root': {
@@ -434,22 +316,32 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
           }}
         />
       </Box>
+
+      {/* Nav */}
       <List sx={{ px: 1, pb: 4 }} dense>
         {filtered.map((cat) => {
-          const isOpen = openCategories[cat.label] ?? (cat.label === 'Dashboard');
+          const isOpen = isSearching ? true : (openCategories[cat.label] ?? false);
           return (
-            <Box key={cat.label} sx={{ mb: 0.5 }}>
+            <Box key={cat.label}>
+              {/* Categoria principal */}
               <ListItemButton
                 onClick={() => toggleCategory(cat.label)}
-                sx={{ borderRadius: 2, py: 0.5 }}
+                sx={{
+                  borderRadius: 2,
+                  py: 0.5,
+                  color: colors.neutral.text,
+                  '&:hover': {
+                    backgroundColor: colors.primary[50],
+                  },
+                }}
               >
-                <ListItemIcon sx={{ minWidth: 36, color: colors.primary[700] }}>
+                <ListItemIcon sx={sidebarIconSx}>
                   {cat.icon}
                 </ListItemIcon>
                 <ListItemText
                   primary={cat.label}
                   sx={{
-                    '& .MuiListItemText-primary': { fontSize: 13.5, fontWeight: 600 },
+                    '& .MuiListItemText-primary': { fontSize: 13.5, fontWeight: 600, color: colors.neutral.text },
                   }}
                 />
                 {isOpen ? (
@@ -458,6 +350,8 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
                   <ExpandMore fontSize="small" sx={{ color: colors.neutral.textMuted }} />
                 )}
               </ListItemButton>
+
+              {/* Hijos */}
               <Collapse in={isOpen} timeout="auto" unmountOnExit>
                 <List dense disablePadding>
                   {cat.children.map((child) => (
@@ -469,22 +363,25 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
                         py: 0.3,
                         borderRadius: 2,
                         mx: 0.5,
+                        '&:hover': {
+                          backgroundColor: colors.primary[50],
+                        },
                         '&.Mui-selected': {
                           backgroundColor: colors.primary[100],
                           color: colors.primary[700],
-                          '&:hover': { backgroundColor: colors.primary[200] },
+                          '&:hover': {
+                            backgroundColor: colors.primary[200],
+                          },
                         },
                       }}
                     >
-                      <ListItemIcon sx={{ minWidth: 28, color: colors.neutral.textMuted }}>
-                        {child.icon}
-                      </ListItemIcon>
                       <ListItemText
                         primary={child.label}
                         sx={{
                           '& .MuiListItemText-primary': {
                             fontSize: 12.5,
                             fontWeight: activePath === child.path ? 700 : 400,
+                            color: activePath === child.path ? colors.primary[700] : colors.neutral.text,
                           },
                         }}
                       />
@@ -492,6 +389,8 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
                   ))}
                 </List>
               </Collapse>
+
+              <Divider sx={{ borderColor: colors.neutral.border, my: 0.3 }} />
             </Box>
           );
         })}

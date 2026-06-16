@@ -17,9 +17,9 @@ class HealthResourceTest {
                 .when().get("/api/v1/health")
                 .then()
                 .statusCode(200)
-                .body("status", equalTo("UP"))
-                .body("service", equalTo("armora-api"))
-                .body("environment", equalTo("test"))
-                .body("timestamp", notNullValue());
+                .body("data.status", equalTo("UP"))
+                .body("data.service", equalTo("armora-api"))
+                .body("data.environment", equalTo("test"))
+                .body("data.timestamp", notNullValue());
     }
 }

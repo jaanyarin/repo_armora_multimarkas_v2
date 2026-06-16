@@ -1,4 +1,4 @@
-﻿# OS
+# OS
 Thumbs.db
 .DS_Store
 *.swp
@@ -51,4 +51,5 @@ secrets/
 *.jks
 *.p12
 *.pfx
-
+*.pem
+!publickey.pem

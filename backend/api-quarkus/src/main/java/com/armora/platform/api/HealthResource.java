@@ -21,7 +21,7 @@ public class HealthResource {
 
     @GET
     @Operation(summary = "Health check publico de la API")
-    public HealthResponse health() {
-        return new HealthResponse("UP", "armora-api", environment, OffsetDateTime.now());
+    public ResponseWrapper<HealthResponse> health() {
+        return ResponseWrapper.ok(new HealthResponse("UP", "armora-api", environment, OffsetDateTime.now()));
     }
 }

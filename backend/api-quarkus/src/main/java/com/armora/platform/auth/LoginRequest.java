@@ -1,10 +1,9 @@
 package com.armora.platform.auth;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public record LoginRequest(
-        @NotBlank @Email String correo,
+        @NotBlank String identificador,
         @NotBlank String clave
 ) {
 }

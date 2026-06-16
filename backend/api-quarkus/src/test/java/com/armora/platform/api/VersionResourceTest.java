@@ -16,8 +16,8 @@ class VersionResourceTest {
                 .when().get("/api/v1/version")
                 .then()
                 .statusCode(200)
-                .body("service", equalTo("armora-api"))
-                .body("apiVersion", equalTo("v1"))
-                .body("environment", equalTo("test"));
+                .body("data.service", equalTo("armora-api"))
+                .body("data.apiVersion", equalTo("v1"))
+                .body("data.environment", equalTo("test"));
     }
 }

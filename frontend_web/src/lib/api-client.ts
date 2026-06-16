@@ -1,9 +1,20 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8085/api/v1';
+﻿const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8885/api/v1';
 
-async function request<T>(
-  endpoint: string,
-  options?: RequestInit
-): Promise<T> {
+interface ApiEnvelope<T> {
+  data?: T;
+  meta?: { requestId: string };
+  errors?: Array<{ code: string; message: string; field?: string }>;
+}
+
+function hasApiEnvelope<T>(body: unknown): body is ApiEnvelope<T> {
+  return Boolean(
+    body &&
+      typeof body === 'object' &&
+      ('data' in body || 'meta' in body || 'errors' in body)
+  );
+}
+
+async function request<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const url = `${API_BASE}${endpoint}`;
   const res = await fetch(url, {
     headers: {
@@ -13,14 +24,28 @@ async function request<T>(
     ...options,
   });
 
-  const body = await res.json();
-
-  if (!res.ok) {
-    const msg = body?.error || `Error ${res.status}`;
-    throw new Error(msg);
+  let body: unknown;
+  try {
+    body = await res.json();
+  } catch {
+    if (!res.ok) {
+      throw new Error(`Error ${res.status}: el servidor no devolvio JSON`);
+    }
+    throw new Error('Respuesta inesperada del servidor');
   }
 
-  return body;
+  if (!res.ok) {
+    if (hasApiEnvelope<T>(body) && body.errors && body.errors.length > 0) {
+      throw new Error(body.errors[0].message);
+    }
+    throw new Error(`Error ${res.status}`);
+  }
+
+  if (hasApiEnvelope<T>(body) && 'data' in body) {
+    return body.data as T;
+  }
+
+  return body as T;
 }
 
 export const api = {

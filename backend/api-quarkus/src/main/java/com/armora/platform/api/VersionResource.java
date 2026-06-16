@@ -22,7 +22,7 @@ public class VersionResource {
 
     @GET
     @Operation(summary = "Version de la API")
-    public VersionResponse version() {
-        return new VersionResponse("armora-api", version, "v1", environment);
+    public ResponseWrapper<VersionResponse> version() {
+        return ResponseWrapper.ok(new VersionResponse("armora-api", version, "v1", environment));
     }
 }

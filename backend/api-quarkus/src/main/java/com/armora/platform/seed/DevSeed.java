@@ -24,18 +24,25 @@ public class DevSeed {
     @ConfigProperty(name = "app.environment", defaultValue = "local")
     String environment;
 
-    @ConfigProperty(name = "seed.admin.password", defaultValue = "admin")
+    @ConfigProperty(name = "seed.admin.username", defaultValue = "aanyarin")
+    String adminUsername;
+
+    @ConfigProperty(name = "seed.admin.password", defaultValue = "aanyarin")
     String adminPassword;
 
     void onStart(@Observes StartupEvent ev) {
         if (!"local".equals(environment) && !"dev".equals(environment) && !"test".equals(environment)) {
             return;
         }
+        if (adminPassword == null || adminPassword.isBlank() || "__disabled__".equals(adminPassword)) {
+            return;
+        }
+        String adminEmail = adminUsername + "@armora.local";
         try (Connection conn = dataSource.getConnection()) {
-            String adminEmail = "admin@armora.local";
             try (PreparedStatement ps = conn.prepareStatement(
-                    "SELECT id FROM usuarios WHERE correo = ?")) {
+                    "SELECT id FROM usuarios WHERE correo = ? OR usuario = ?")) {
                 ps.setString(1, adminEmail);
+                ps.setString(2, adminUsername);
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
                         return;
@@ -45,7 +52,7 @@ public class DevSeed {
             String hash = BCrypt.hashpw(adminPassword, BCrypt.gensalt());
             try (PreparedStatement ps = conn.prepareStatement(
                     "INSERT INTO usuarios (usuario, correo, clave_hash, tipo, estado) VALUES (?, ?, ?, 'ADMINISTRADOR', 'ACTIVO')")) {
-                ps.setString(1, "admin");
+                ps.setString(1, adminUsername);
                 ps.setString(2, adminEmail);
                 ps.setString(3, hash);
                 ps.executeUpdate();

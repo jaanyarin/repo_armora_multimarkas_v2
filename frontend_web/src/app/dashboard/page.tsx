@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useState } from 'react';
 import {
@@ -43,6 +43,11 @@ const chartData = [
 export default function DashboardPage() {
   const [health, setHealth] = useState<string>('...');
   const [listaPrecios, setListaPrecios] = useState('Todas');
+  const [chartReady, setChartReady] = useState(false);
+
+  useEffect(() => {
+    setChartReady(true);
+  }, []);
 
   useEffect(() => {
     api
@@ -108,23 +113,25 @@ export default function DashboardPage() {
             ))}
           </Grid>
 
-          <Box sx={{ height: 300 }}>
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" fontSize={12} />
-                <YAxis fontSize={12} />
-                <Tooltip />
-                <Bar dataKey="ventas" fill={colors.primary[500]} name="Ventas" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="devoluciones" fill="#d32f2f" name="Devoluciones" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+          <Box sx={{ height: 300, minWidth: 0 }}>
+            {chartReady ? (
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={chartData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" fontSize={12} />
+                  <YAxis fontSize={12} />
+                  <Tooltip />
+                  <Bar dataKey="ventas" fill={colors.primary[500]} name="Ventas" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="devoluciones" fill="#d32f2f" name="Devoluciones" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            ) : null}
           </Box>
         </Paper>
 
         <Paper sx={{ p: 3, mb: 3 }}>
           <Typography variant="h6" sx={{ mb: 2, fontWeight: 700 }}>
-            Gestión Transportista
+            Gestion Transportista
           </Typography>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -180,7 +187,7 @@ export default function DashboardPage() {
             <Grid item xs={12} sm={6}>
               <input
                 type="number"
-                placeholder="Número"
+                placeholder="Numero"
                 style={{
                   width: '100%',
                   padding: '8px 12px',
@@ -229,3 +236,4 @@ export default function DashboardPage() {
     </AppLayout>
   );
 }
+

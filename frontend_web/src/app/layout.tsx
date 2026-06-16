@@ -6,8 +6,8 @@ import { webTheme } from '@/design-system/web/theme';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'ARMORA',
-  description: 'ARMORA Multimarkas v2 - Admin Web',
+  title: 'Armora Multimarkas',
+  description: 'Armora Multimarkas v2 - Admin Web',
 };
 
 export default function RootLayout({
