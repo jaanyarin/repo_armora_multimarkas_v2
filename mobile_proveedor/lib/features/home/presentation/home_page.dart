@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/network/api_client.dart';
+import 'package:armora_mobile_core/core/design/status.dart';
 
 class HomePage extends StatefulWidget {
   final ApiClient apiClient;
@@ -27,17 +28,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final statusType = _healthStatus == 'UP' ? StatusType.operativo : StatusType.critico;
     return Scaffold(
       appBar: AppBar(title: const Text('ARMORA Proveedor')),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.store, size: 64),
+            const Icon(Icons.store, size: 64, color: Color(0xFF335296)),
             const SizedBox(height: 16),
             Text('Bienvenido', style: Theme.of(context).textTheme.headlineSmall),
             const SizedBox(height: 8),
-            Text('API health: $_healthStatus'),
+            StatusBadge(status: statusType),
           ],
         ),
       ),

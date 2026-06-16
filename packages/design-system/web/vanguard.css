@@ -1,0 +1,42 @@
+:root {
+  --v-primary-50: #f4f6fb;
+  --v-primary-100: #e8ebf6;
+  --v-primary-200: #cbd5ec;
+  --v-primary-300: #9db2dc;
+  --v-primary-400: #6889c8;
+  --v-primary-500: #456ab2;
+  --v-primary-600: #335296;
+  --v-primary-700: #2b4279;
+  --v-primary-800: #273a65;
+  --v-primary-900: #253355;
+  --v-primary-950: #030407;
+
+  --v-success: #16a34a;
+  --v-warning: #f59e0b;
+  --v-danger: #dc2626;
+  --v-info: #2563eb;
+
+  --v-bg-success: #dcfce7;
+  --v-bg-warning: #fef3c7;
+  --v-bg-danger: #fee2e2;
+  --v-bg-info: #dbeafe;
+
+  --v-bg: #f4f6fb;
+  --v-surface: #ffffff;
+  --v-surface-alt: #e8ebf6;
+  --v-border: #cbd5ec;
+  --v-text: #030407;
+  --v-text-strong: #253355;
+  --v-text-muted: #64748b;
+  --v-disabled: #cbd5e1;
+
+  --v-font: Calibri, 'Segoe UI', Arial, sans-serif;
+  --v-radius-sm: 6px;
+  --v-radius-md: 10px;
+  --v-radius-lg: 14px;
+  --v-radius-xl: 20px;
+  --v-radius-full: 999px;
+  --v-shadow-sm: 0 1px 2px rgba(3, 4, 7, 0.06);
+  --v-shadow-md: 0 8px 24px rgba(3, 4, 7, 0.08);
+  --v-shadow-lg: 0 20px 45px rgba(3, 4, 7, 0.12);
+}

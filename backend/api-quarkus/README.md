@@ -31,12 +31,27 @@ mvn test
 
 ## Ejecutar en desarrollo
 
-Crear `.env.local` desde `.env.example` y definir valores locales no productivos.
+El proyecto usa `.env` en la raiz del repositorio para variables de entorno. Copiar desde `.env.example` y ajustar.
+
+Puerto PostgreSQL: `5434` (puerto local 5432 suele estar ocupado por otra instalacion).
 
 ```powershell
-docker compose --env-file ..\..\.env.local up -d postgres redis
+# Desde la raiz del proyecto
+docker compose up -d
+
+# Luego desde backend/api-quarkus
+$env:DATABASE_URL="jdbc:postgresql://localhost:5434/armora"
+$env:DATABASE_USERNAME="armora_user"
+$env:DATABASE_PASSWORD="<tu-password>"
 mvn quarkus:dev
 ```
+
+O con propiedades Maven:
+```powershell
+mvn quarkus:dev -Dquarkus.datasource.jdbc.url=jdbc:postgresql://localhost:5434/armora
+```
+
+## Ejecutar pruebas
 
 ## Endpoints base
 

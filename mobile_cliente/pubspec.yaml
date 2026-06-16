@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   http: ^1.2.0
   flutter_secure_storage: ^9.2.0
+  armora_mobile_core:
+    path: ../packages/mobile-core
 
 dev_dependencies:
   flutter_test:

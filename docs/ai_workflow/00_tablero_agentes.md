@@ -49,6 +49,8 @@ Este tablero debe actualizarse cada vez que una tarea cambie de estado o requier
 |---|---|---|---|---|---|---|---|
 | F2-001 | Implementar auth backend con JWT | lista | `armora-backend-quarkus` | `armora-security`, `armora-qa`, `armora-database` | F1-005, F1-009 | POST /auth/login retorna JWT; GET /auth/me retorna usuario autenticado; seed admin funcional; tests pasan | `docs/ai_workflow/F2-001_auth_backend_jwt.md` |
 | F2-002 | CRUD usuarios, roles y permisos | pendiente | `armora-backend-quarkus` | `armora-database`, `armora-security`, `armora-qa`, `armora-frontend-web` | F2-001 | Endpoints CRUD para usuarios, roles y permisos con validacion RBAC | Pendiente |
+| F2-003 | UI Design System - tokens, componentes y theme | lista | `armora-ui-ux` | `armora-frontend-web`, `armora-mobile-flutter`, `armora-sdd-manager` | F1-006, F1-007, F1-008 | Paleta Vanguard, tipografia Calibri, tokens, StatusBadge, StatusSemaforo, AppLayout implementados en web y mobile | `docs/ai_workflow/F2-003_ui_design_system.md` |
+| F2-004 | Configurar .env local con PostgreSQL Docker | lista | `armora-devops` | `armora-backend-quarkus`, `armora-security` | F1-003 | `.env` con POSTGRES_PASSWORD, puerto 5434, conexion verificada | Pendiente |
 
 ## Plantilla de nueva tarea
 
