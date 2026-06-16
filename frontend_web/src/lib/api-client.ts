@@ -1,4 +1,4 @@
-﻿const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8885/api/v1';
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8885/api/v1';
 
 interface ApiEnvelope<T> {
   data?: T;
@@ -14,11 +14,19 @@ function hasApiEnvelope<T>(body: unknown): body is ApiEnvelope<T> {
   );
 }
 
+function getAuthHeaders(): Record<string, string> {
+  if (typeof window === 'undefined') return {};
+  const token = localStorage.getItem('armora_token');
+  if (!token) return {};
+  return { Authorization: `Bearer ${token}` };
+}
+
 async function request<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const url = `${API_BASE}${endpoint}`;
   const res = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
+      ...getAuthHeaders(),
       ...options?.headers,
     },
     ...options,
@@ -50,11 +58,18 @@ async function request<T>(endpoint: string, options?: RequestInit): Promise<T> {
 
 export const api = {
   get: <T>(endpoint: string) => request<T>(endpoint),
-  post: <T>(endpoint: string, body: unknown) =>
+  post: <T>(endpoint: string, data: unknown) =>
     request<T>(endpoint, {
       method: 'POST',
-      body: JSON.stringify(body),
+      body: JSON.stringify(data),
     }),
+  put: <T>(endpoint: string, data: unknown) =>
+    request<T>(endpoint, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    }),
+  delete: <T>(endpoint: string) =>
+    request<T>(endpoint, { method: 'DELETE' }),
   health: () => api.get<{ status: string }>('/health'),
   version: () => api.get<{ version: string }>('/version'),
 };

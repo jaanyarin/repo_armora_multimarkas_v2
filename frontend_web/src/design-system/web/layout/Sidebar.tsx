@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -206,8 +207,8 @@ const sidebarCategories: NavCategory[] = [
     label: 'Personal',
     icon: <GroupIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Crear Personal', path: '#' },
-      { label: 'Gestion Personal', path: '#' },
+      { label: 'Crear Personal', path: '/personal/crear' },
+      { label: 'Gestion Personal', path: '/personal' },
     ],
   },
   {
@@ -242,6 +243,7 @@ function useIsMobile() {
 }
 
 export default function Sidebar({ open = true, onClose, activePath = '/dashboard' }: SidebarProps) {
+  const router = useRouter();
   const isMobile = useIsMobile();
   const [search, setSearch] = useState('');
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
@@ -358,6 +360,12 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
                     <ListItemButton
                       key={child.label}
                       selected={activePath === child.path}
+                      onClick={() => {
+                        if (child.path !== '#') {
+                          router.push(child.path);
+                          if (isMobile && onClose) onClose();
+                        }
+                      }}
                       sx={{
                         pl: 5,
                         py: 0.3,
