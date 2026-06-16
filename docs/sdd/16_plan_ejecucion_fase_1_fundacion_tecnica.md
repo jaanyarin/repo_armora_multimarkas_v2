@@ -323,7 +323,7 @@ REDIS_HOST=redis
 REDIS_PORT=6379
 JWT_ISSUER=armora-local
 JWT_SECRET_PATH=/run/secrets/jwt_secret
-ADMIN_WEB_PUBLIC_API_URL=http://localhost:8080/api/v1
+ADMIN_WEB_PUBLIC_API_URL=http://localhost:8085/api/v1
 ```
 
 Regla: `.env.example` puede contener placeholders, no secretos reales.

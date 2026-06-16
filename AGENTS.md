@@ -9,7 +9,7 @@ Estructura principal esperada:
 - `docs/sdd/`: especificaciones SDD, arquitectura, contratos, cronograma y plan de Fase 1.
 - `docs/scrapping/`: evidencia y documentacion extraida del sistema heredado.
 - `docs/ai_workflow/`: tablero operativo para coordinacion automatica de agentes.
-- `agentes/perfiles/`: perfiles especializados de agentes.
+- `agentes/perfiles/`: perfiles especializados de agentes (DEPRECATED — migrados a `.opencode/skills/armora-*/`).
 - `agentes/docs/ai/`: reglas de orquestacion, contexto, handoff y workflow sincronico.
 - `backend/`: backend Quarkus con migracion Flyway V1.
 - `frontend_web/`: admin web Next.js con login y dashboard.
@@ -87,6 +87,16 @@ Todo agente debe seguir:
 - `agentes/docs/ai/03_workflow_automatico_sincrono.md` para flujo automatico, estados, bloqueos y sincronizacion.
 - `docs/ai_workflow/00_tablero_agentes.md` como tablero operativo.
 
+## Comandos personalizados
+
+Al recibir **"sincroniza gh"** o **"sincroniza github"**, ejecutar:
+
+1. `git add -A` (todos los archivos, incluyendo untracked)
+2. `git commit -m "feat: <descripcion de cambios>"` (mensaje descriptivo del conjunto de cambios)
+3. `git push -u origin master`
+
+No preguntar confirmacion ni detalle del mensaje. Inferir el mensaje del contexto de las cambios.
+
 Reglas de coordinacion:
 
 - Cambio funcional: Product Owner.
@@ -122,7 +132,7 @@ Bloquear o pedir validacion si:
 
 ## Donde profundizar
 
-- `agentes/perfiles/`: perfiles de agentes con roles, responsabilidades y reglas tecnicas.
+- `agentes/perfiles/`: perfiles de agentes con roles, responsabilidades y reglas tecnicas (DEPRECATED — migrados a `.opencode/skills/armora-*/`).
 - `agentes/docs/ai/00_agent_orchestration.md`: matriz de coordinacion.
 - `agentes/docs/ai/01_context_map.md`: mapa de documentos por agente.
 - `agentes/docs/ai/02_handoff_protocol.md`: protocolo de handoff.

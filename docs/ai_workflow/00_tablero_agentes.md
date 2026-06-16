@@ -50,7 +50,9 @@ Este tablero debe actualizarse cada vez que una tarea cambie de estado o requier
 | F2-001 | Implementar auth backend con JWT | lista | `armora-backend-quarkus` | `armora-security`, `armora-qa`, `armora-database` | F1-005, F1-009 | POST /auth/login retorna JWT; GET /auth/me retorna usuario autenticado; seed admin funcional; tests pasan | `docs/ai_workflow/F2-001_auth_backend_jwt.md` |
 | F2-002 | CRUD usuarios, roles y permisos | pendiente | `armora-backend-quarkus` | `armora-database`, `armora-security`, `armora-qa`, `armora-frontend-web` | F2-001 | Endpoints CRUD para usuarios, roles y permisos con validacion RBAC | Pendiente |
 | F2-003 | UI Design System - tokens, componentes y theme | lista | `armora-ui-ux` | `armora-frontend-web`, `armora-mobile-flutter`, `armora-sdd-manager` | F1-006, F1-007, F1-008 | Paleta Vanguard, tipografia Calibri, tokens, StatusBadge, StatusSemaforo, AppLayout implementados en web y mobile | `docs/ai_workflow/F2-003_ui_design_system.md` |
-| F2-004 | Configurar .env local con PostgreSQL Docker | lista | `armora-devops` | `armora-backend-quarkus`, `armora-security` | F1-003 | `.env` con POSTGRES_PASSWORD, puerto 5434, conexion verificada | Pendiente |
+| F2-004 | Configurar .env local con PostgreSQL Docker | lista | `armora-devops` | `armora-backend-quarkus`, `armora-security` | F1-003 | `.env` con POSTGRES_PASSWORD, puerto 5434, conexion verificada | `docs/ai_workflow/F2-004_config_env_docker.md` |
+| F2-005 | Fix login: CORS + seed admin + Flyway migrate-at-start | lista | `armora-backend-quarkus` | `armora-security`, `armora-qa` | F2-001, F2-004 | CORS habilitado, seed admin@armora.local/admin funcional, flyway corre antes del seed | `docs/ai_workflow/F2-005_fix_login_cors_seed_flyway.md` |
+| F2-006 | Dashboard components: Sidebar, Topbar y dashboard | lista | `armora-frontend-web` | `armora-ui-ux`, `armora-backend-quarkus`, `armora-qa` | F2-003 | Sidebar con 32 categorias, Topbar con info usuario, dashboard con grafico, health check, build pasa | `docs/ai_workflow/F2-006_dashboard_components.md` |
 
 ## Plantilla de nueva tarea
 

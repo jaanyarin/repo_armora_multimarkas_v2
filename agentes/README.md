@@ -43,6 +43,7 @@ Los agentes activos estan definidos en `opencode.json`:
 - `docs/ai_workflow/00_tablero_agentes.md`: tablero operativo de tareas, estados y dependencias.
 - `.opencode/skills/armora-sdd/SKILL.md`: skill para coherencia SDD.
 - `.opencode/skills/armora-agent-routing/SKILL.md`: skill para elegir agente/rol segun tarea.
+- `.opencode/skills/armora-*/SKILL.md`: 13 skills de agente que se cargan automaticamente segun la tarea.
 
 ## Uso recomendado
 
@@ -50,7 +51,7 @@ Cada tarea debe iniciar con:
 
 1. Lectura de `AGENTS.md`.
 2. Revision del documento SDD aplicable en `docs/sdd/`.
-3. Seleccion del agente lider segun `agentes/docs/ai/00_agent_orchestration.md`.
+3. Seleccion del agente lider segun `agentes/docs/ai/00_agent_orchestration.md` (los skills ARMORA se cargan automaticamente segun la tarea desde `.opencode/skills/armora-*/`).
 4. Registro o actualizacion en `docs/ai_workflow/00_tablero_agentes.md`.
 5. Ejecucion segun `agentes/docs/ai/03_workflow_automatico_sincrono.md`.
 6. Cierre con handoff segun `agentes/docs/ai/02_handoff_protocol.md`.

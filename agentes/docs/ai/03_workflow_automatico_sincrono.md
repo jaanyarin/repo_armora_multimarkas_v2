@@ -4,7 +4,7 @@
 
 Definir como deben trabajar los agentes ARMORA cuando una tarea requiere coordinacion entre perfiles, evitando cambios aislados, contradicciones con SDD, perdida de trazabilidad o implementaciones por prueba y error.
 
-Este protocolo aplica a todos los agentes definidos en `opencode.json` y a todos los perfiles ubicados en `agentes/perfiles/`.
+Este protocolo aplica a todos los agentes definidos en `opencode.json` y a todos los skills ARMORA ubicados en `.opencode/skills/armora-*/`.
 
 ## Principios obligatorios
 

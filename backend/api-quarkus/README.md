@@ -43,7 +43,7 @@ docker compose up -d
 $env:DATABASE_URL="jdbc:postgresql://localhost:5434/armora"
 $env:DATABASE_USERNAME="armora_user"
 $env:DATABASE_PASSWORD="<tu-password>"
-mvn quarkus:dev
+mvn quarkus:dev -Dquarkus.http.port=8085
 ```
 
 O con propiedades Maven:

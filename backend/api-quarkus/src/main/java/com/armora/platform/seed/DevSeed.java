@@ -24,7 +24,7 @@ public class DevSeed {
     @ConfigProperty(name = "app.environment", defaultValue = "local")
     String environment;
 
-    @ConfigProperty(name = "seed.admin.password", defaultValue = "admin123")
+    @ConfigProperty(name = "seed.admin.password", defaultValue = "admin")
     String adminPassword;
 
     void onStart(@Observes StartupEvent ev) {
@@ -32,7 +32,7 @@ public class DevSeed {
             return;
         }
         try (Connection conn = dataSource.getConnection()) {
-            String adminEmail = "admin@armora.dev";
+            String adminEmail = "admin@armora.local";
             try (PreparedStatement ps = conn.prepareStatement(
                     "SELECT id FROM usuarios WHERE correo = ?")) {
                 ps.setString(1, adminEmail);

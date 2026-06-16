@@ -76,7 +76,7 @@ Route (app)                              Size     First Load JS
 
 | Riesgo | Impacto | Mitigacion |
 |---|---|---|
-| API base URL hardcodeada si falta variable de entorno | Cae a localhost | Tiene fallback a localhost:8080 |
+| API base URL hardcodeada si falta variable de entorno | Cae a localhost | Tiene fallback a localhost:8085 |
 | Sin testing automatizado aun | No se detectan regresiones | F1-009 debe agregar tests de build y smoke |
 
 ## Handoff

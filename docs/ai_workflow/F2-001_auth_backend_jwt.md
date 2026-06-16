@@ -14,7 +14,7 @@
 - `docs/sdd/16_plan_ejecucion_fase_1_fundacion_tecnica.md`
 - `agentes/docs/ai/02_handoff_protocol.md`
 - `docs/ai_workflow/00_tablero_agentes.md`
-- `agentes/perfiles/04_especialista_backend_quarkus.md`
+- `.opencode/skills/armora-backend-quarkus/SKILL.md`
 - `docs/sdd/06_sdd_modelo_datos_inicial.md`
 
 ## Archivos modificados

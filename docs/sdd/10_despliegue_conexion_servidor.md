@@ -143,8 +143,8 @@ Solo el reverse proxy debe exponer internet:
 
 Puertos internos:
 
-- `3000`: Next.js admin.
-- `4000`: Quarkus API.
+- `5775`: Next.js admin.
+- `8085`: Quarkus API.
 - `5432`: PostgreSQL, solo red interna.
 - `6379`: Redis, solo red interna.
 - `9000/9001`: MinIO, solo interno o restringido.

@@ -1,158 +1,239 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "defaultAgent": "armora-architect",
-  "instructions": [
-    "AGENTS.md",
-    "agentes/README.md",
-    "docs/sdd/00_indice.md",
-    "docs/sdd/02_stack_recomendado.md",
-    "docs/sdd/03_sdd_contexto_glosario.md",
-    "docs/sdd/04_sdd_requerimientos.md",
-    "docs/sdd/05_sdd_arquitectura.md",
-    "docs/sdd/06_sdd_modelo_datos_inicial.md",
-    "docs/sdd/07_sdd_api_contratos.md",
-    "docs/sdd/08_sdd_roadmap_mvp.md",
-    "docs/sdd/10_despliegue_conexion_servidor.md",
-    "docs/sdd/11_stack_alternativo_backend_quarkus.md",
-    "docs/sdd/12_revision_respuestas_validacion.md",
-    "docs/sdd/13_cronograma_quarkus_gantt.md",
-    "docs/sdd/15_stack_mobile_flutter_dart.md",
-    "docs/sdd/16_plan_ejecucion_fase_1_fundacion_tecnica.md",
-    "docs/sdd/17_convencion_nombres_tecnicos.md",
-    "docs/adr/ADR-001-inicial-arquitectura.md",
-    "docs/ai_workflow/00_tablero_agentes.md",
-    "agentes/docs/ai/00_agent_orchestration.md",
-    "agentes/docs/ai/01_context_map.md",
-    "agentes/docs/ai/02_handoff_protocol.md",
-    "agentes/docs/ai/03_workflow_automatico_sincrono.md"
-  ],
-  "agent": {
-    "armora-architect": {
-      "description": "Arquitecto senior - orquestador por defecto. Coordina arquitectura ARMORA, rutea tareas a otros agentes segun su perfil y supervisa coherencia SDD.",
-      "mode": "all",
-      "prompt": "{file:./agentes/perfiles/01_arquitecto.md}",
-      "permission": {
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "list": "allow",
-        "edit": "allow",
-        "bash": "ask",
-        "websearch": "ask",
-        "webfetch": "ask",
-        "task": "allow",
-        "skill": "allow"
-      }
-    },
-    "armora-product-owner": {
-      "description": "Analista funcional/Product Owner para reglas de negocio, alcance, historias y criterios de aceptacion.",
-      "mode": "all",
-      "prompt": "{file:./agentes/perfiles/03_analista_funcional.md}",
-      "permission": {
-        "read": "allow", "grep": "allow", "glob": "allow", "list": "allow",
-        "edit": "ask", "bash": "deny", "websearch": "ask", "webfetch": "ask", "skill": "allow"
-      }
-    },
-    "armora-ui-ux": {
-      "description": "Disenador UI/UX para admin Next.js y apps Flutter cliente/proveedor. Material Design 3, Tailwind, sistema de componentes.",
-      "mode": "all",
-      "prompt": "{file:./agentes/perfiles/02_disenador_ui_ux.md}",
-      "permission": {
-        "read": "allow", "grep": "allow", "glob": "allow", "list": "allow",
-        "edit": "ask", "bash": "deny", "websearch": "ask", "webfetch": "ask", "skill": "allow"
-      }
-    },
-    "armora-backend-quarkus": {
-      "description": "Especialista backend Quarkus para APIs REST, transacciones, seguridad, OpenAPI y reglas de negocio del lado servidor.",
-      "mode": "all",
-      "prompt": "{file:./agentes/perfiles/04_especialista_backend_quarkus.md}",
-      "permission": {
-        "read": "allow", "grep": "allow", "glob": "allow", "list": "allow",
-        "edit": "ask", "bash": "ask", "websearch": "ask", "webfetch": "ask", "skill": "allow"
-      }
-    },
-    "armora-database": {
-      "description": "Arquitecto de datos PostgreSQL para modelo, migraciones Flyway, integridad referencial, indices y backups.",
-      "mode": "all",
-      "prompt": "{file:./agentes/perfiles/05_arquitecto_base_datos.md}",
-      "permission": {
-        "read": "allow", "grep": "allow", "glob": "allow", "list": "allow",
-        "edit": "ask", "bash": "ask", "websearch": "ask", "webfetch": "ask", "skill": "allow"
-      }
-    },
-    "armora-qa": {
-      "description": "QA/Test Engineer para unitarias, integracion, contrato OpenAPI, E2E web/mobile, regresion y release.",
-      "mode": "all",
-      "prompt": "{file:./agentes/perfiles/06_ingeniero_qa.md}",
-      "permission": {
-        "read": "allow", "grep": "allow", "glob": "allow", "list": "allow",
-        "edit": "ask", "bash": "ask", "websearch": "ask", "webfetch": "ask", "skill": "allow"
-      }
-    },
-    "armora-devops": {
-      "description": "DevOps/Infra para servidor fisico, Docker Compose, Nginx/Caddy, HTTPS, backups, monitoreo y despliegue.",
-      "mode": "all",
-      "prompt": "{file:./agentes/perfiles/07_ingeniero_devops.md}",
-      "permission": {
-        "read": "allow", "grep": "allow", "glob": "allow", "list": "allow",
-        "edit": "ask", "bash": "ask", "websearch": "ask", "webfetch": "ask", "skill": "allow"
-      }
-    },
-    "armora-frontend-web": {
-      "description": "Frontend Next.js para admin web: React, TypeScript, Tailwind, TanStack Query, formularios y tablas.",
-      "mode": "all",
-      "prompt": "{file:./agentes/perfiles/08_especialista_frontend_web.md}",
-      "permission": {
-        "read": "allow", "grep": "allow", "glob": "allow", "list": "allow",
-        "edit": "ask", "bash": "ask", "websearch": "ask", "webfetch": "ask", "skill": "allow"
-      }
-    },
-    "armora-mobile-flutter": {
-      "description": "Mobile Flutter/Dart para apps cliente (catalogo/carrito/pedidos) y proveedor (stock/lector cÃ³digo de barras/reportes).",
-      "mode": "all",
-      "prompt": "{file:./agentes/perfiles/09_especialista_mobile_flutter.md}",
-      "permission": {
-        "read": "allow", "grep": "allow", "glob": "allow", "list": "allow",
-        "edit": "ask", "bash": "ask", "websearch": "ask", "webfetch": "ask", "skill": "allow"
-      }
-    },
-    "armora-security": {
-      "description": "Security Engineer para RBAC/scopes, secretos, hardening, OWASP, webhooks, CORS y revision de seguridad.",
-      "mode": "all",
-      "prompt": "{file:./agentes/perfiles/10_ingeniero_seguridad.md}",
-      "permission": {
-        "read": "allow", "grep": "allow", "glob": "allow", "list": "allow",
-        "edit": "ask", "bash": "ask", "websearch": "ask", "webfetch": "ask", "skill": "allow"
-      }
-    },
-    "armora-integrations": {
-      "description": "Integration Engineer para SUNAT, pasarelas de pago (Yape/Plin, Culqi/Niubiz), webhooks, facturadores y ERP futuro.",
-      "mode": "all",
-      "prompt": "{file:./agentes/perfiles/11_ingeniero_integraciones.md}",
-      "permission": {
-        "read": "allow", "grep": "allow", "glob": "allow", "list": "allow",
-        "edit": "ask", "bash": "ask", "websearch": "ask", "webfetch": "ask", "skill": "allow"
-      }
-    },
-    "armora-sdd-manager": {
-      "description": "Documentation/SDD Manager para mantener specs, ADRs, glosario, changelog y alinear documentacion de agentes con SDD.",
-      "mode": "all",
-      "prompt": "{file:./agentes/perfiles/12_gestor_documentacion_sdd.md}",
-      "permission": {
-        "read": "allow", "grep": "allow", "glob": "allow", "list": "allow",
-        "edit": "ask", "bash": "deny", "websearch": "ask", "webfetch": "ask", "skill": "allow"
-      }
-    },
-    "armora-delivery": {
-      "description": "Project/Delivery Manager para cronograma, dependencias, riesgos, RACI, entregables, releases y coordinacion entre agentes.",
-      "mode": "all",
-      "prompt": "{file:./agentes/perfiles/13_gestor_entrega_proyecto.md}",
-      "permission": {
-        "read": "allow", "grep": "allow", "glob": "allow", "list": "allow",
-        "edit": "ask", "bash": "deny", "websearch": "ask", "webfetch": "ask", "skill": "allow"
-      }
-    }
-  }
+    "$schema":  "https://opencode.ai/config.json",
+    "instructions":  [
+                         "AGENTS.md",
+                         "agentes/README.md",
+                         "docs/sdd/00_indice.md",
+                         "docs/sdd/02_stack_recomendado.md",
+                         "docs/sdd/03_sdd_contexto_glosario.md",
+                         "docs/sdd/04_sdd_requerimientos.md",
+                         "docs/sdd/05_sdd_arquitectura.md",
+                         "docs/sdd/06_sdd_modelo_datos_inicial.md",
+                         "docs/sdd/07_sdd_api_contratos.md",
+                         "docs/sdd/08_sdd_roadmap_mvp.md",
+                         "docs/sdd/10_despliegue_conexion_servidor.md",
+                         "docs/sdd/11_stack_alternativo_backend_quarkus.md",
+                         "docs/sdd/12_revision_respuestas_validacion.md",
+                         "docs/sdd/13_cronograma_quarkus_gantt.md",
+                         "docs/sdd/15_stack_mobile_flutter_dart.md",
+                         "docs/sdd/16_plan_ejecucion_fase_1_fundacion_tecnica.md",
+                         "docs/sdd/17_convencion_nombres_tecnicos.md",
+                         "docs/adr/ADR-001-inicial-arquitectura.md",
+                         "docs/ai_workflow/00_tablero_agentes.md",
+                         "agentes/docs/ai/00_agent_orchestration.md",
+                         "agentes/docs/ai/01_context_map.md",
+                         "agentes/docs/ai/02_handoff_protocol.md",
+                         "agentes/docs/ai/03_workflow_automatico_sincrono.md"
+                     ],
+    "agent":  {
+                  "armora-architect":  {
+                                           "description":  "Arquitecto senior - orquestador por defecto. Coordina arquitectura ARMORA, rutea tareas a otros agentes segun su perfil y supervisa coherencia SDD.",
+                                           "mode":  "all",
+                                           "prompt":  "{file:.opencode/skills/armora-architect/SKILL.md}",
+                                           "permission":  {
+                                                              "read":  "allow",
+                                                              "grep":  "allow",
+                                                              "glob":  "allow",
+                                                              "list":  "allow",
+                                                              "edit":  "allow",
+                                                              "bash":  "ask",
+                                                              "websearch":  "ask",
+                                                              "webfetch":  "ask",
+                                                              "task":  "allow",
+                                                              "skill":  "allow"
+                                                          }
+                                       },
+                  "armora-product-owner":  {
+                                               "description":  "Analista funcional/Product Owner para reglas de negocio, alcance, historias y criterios de aceptacion.",
+                                               "mode":  "all",
+                                               "prompt":  "{file:.opencode/skills/armora-product-owner/SKILL.md}",
+                                               "permission":  {
+                                                                  "read":  "allow",
+                                                                  "grep":  "allow",
+                                                                  "glob":  "allow",
+                                                                  "list":  "allow",
+                                                                  "edit":  "ask",
+                                                                  "bash":  "deny",
+                                                                  "websearch":  "ask",
+                                                                  "webfetch":  "ask",
+                                                                  "skill":  "allow"
+                                                              }
+                                           },
+                  "armora-ui-ux":  {
+                                       "description":  "Disenador UI/UX para admin Next.js y apps Flutter cliente/proveedor. Material Design 3, Tailwind, sistema de componentes.",
+                                       "mode":  "all",
+                                       "prompt":  "{file:.opencode/skills/armora-ui-ux/SKILL.md}",
+                                       "permission":  {
+                                                          "read":  "allow",
+                                                          "grep":  "allow",
+                                                          "glob":  "allow",
+                                                          "list":  "allow",
+                                                          "edit":  "ask",
+                                                          "bash":  "deny",
+                                                          "websearch":  "ask",
+                                                          "webfetch":  "ask",
+                                                          "skill":  "allow"
+                                                      }
+                                   },
+                  "armora-backend-quarkus":  {
+                                                 "description":  "Especialista backend Quarkus para APIs REST, transacciones, seguridad, OpenAPI y reglas de negocio del lado servidor.",
+                                                 "mode":  "all",
+                                                 "prompt":  "{file:.opencode/skills/armora-backend-quarkus/SKILL.md}",
+                                                 "permission":  {
+                                                                    "read":  "allow",
+                                                                    "grep":  "allow",
+                                                                    "glob":  "allow",
+                                                                    "list":  "allow",
+                                                                    "edit":  "ask",
+                                                                    "bash":  "ask",
+                                                                    "websearch":  "ask",
+                                                                    "webfetch":  "ask",
+                                                                    "skill":  "allow"
+                                                                }
+                                             },
+                  "armora-database":  {
+                                          "description":  "Arquitecto de datos PostgreSQL para modelo, migraciones Flyway, integridad referencial, indices y backups.",
+                                          "mode":  "all",
+                                          "prompt":  "{file:.opencode/skills/armora-database/SKILL.md}",
+                                          "permission":  {
+                                                             "read":  "allow",
+                                                             "grep":  "allow",
+                                                             "glob":  "allow",
+                                                             "list":  "allow",
+                                                             "edit":  "ask",
+                                                             "bash":  "ask",
+                                                             "websearch":  "ask",
+                                                             "webfetch":  "ask",
+                                                             "skill":  "allow"
+                                                         }
+                                      },
+                  "armora-qa":  {
+                                    "description":  "QA/Test Engineer para unitarias, integracion, contrato OpenAPI, E2E web/mobile, regresion y release.",
+                                    "mode":  "all",
+                                    "prompt":  "{file:.opencode/skills/armora-qa/SKILL.md}",
+                                    "permission":  {
+                                                       "read":  "allow",
+                                                       "grep":  "allow",
+                                                       "glob":  "allow",
+                                                       "list":  "allow",
+                                                       "edit":  "ask",
+                                                       "bash":  "ask",
+                                                       "websearch":  "ask",
+                                                       "webfetch":  "ask",
+                                                       "skill":  "allow"
+                                                   }
+                                },
+                  "armora-devops":  {
+                                        "description":  "DevOps/Infra para servidor fisico, Docker Compose, Nginx/Caddy, HTTPS, backups, monitoreo y despliegue.",
+                                        "mode":  "all",
+                                        "prompt":  "{file:.opencode/skills/armora-devops/SKILL.md}",
+                                        "permission":  {
+                                                           "read":  "allow",
+                                                           "grep":  "allow",
+                                                           "glob":  "allow",
+                                                           "list":  "allow",
+                                                           "edit":  "ask",
+                                                           "bash":  "ask",
+                                                           "websearch":  "ask",
+                                                           "webfetch":  "ask",
+                                                           "skill":  "allow"
+                                                       }
+                                    },
+                  "armora-frontend-web":  {
+                                              "description":  "Frontend Next.js para admin web: React, TypeScript, Tailwind, TanStack Query, formularios y tablas.",
+                                              "mode":  "all",
+                                              "prompt":  "{file:.opencode/skills/armora-frontend-web/SKILL.md}",
+                                              "permission":  {
+                                                                 "read":  "allow",
+                                                                 "grep":  "allow",
+                                                                 "glob":  "allow",
+                                                                 "list":  "allow",
+                                                                 "edit":  "ask",
+                                                                 "bash":  "ask",
+                                                                 "websearch":  "ask",
+                                                                 "webfetch":  "ask",
+                                                                 "skill":  "allow"
+                                                             }
+                                          },
+                  "armora-mobile-flutter":  {
+                                                "description":  "Mobile Flutter/Dart para apps cliente (catalogo/carrito/pedidos) y proveedor (stock/lector cÃƒÂ³digo de barras/reportes).",
+                                                "mode":  "all",
+                                                "prompt":  "{file:.opencode/skills/armora-mobile-flutter/SKILL.md}",
+                                                "permission":  {
+                                                                   "read":  "allow",
+                                                                   "grep":  "allow",
+                                                                   "glob":  "allow",
+                                                                   "list":  "allow",
+                                                                   "edit":  "ask",
+                                                                   "bash":  "ask",
+                                                                   "websearch":  "ask",
+                                                                   "webfetch":  "ask",
+                                                                   "skill":  "allow"
+                                                               }
+                                            },
+                  "armora-security":  {
+                                          "description":  "Security Engineer para RBAC/scopes, secretos, hardening, OWASP, webhooks, CORS y revision de seguridad.",
+                                          "mode":  "all",
+                                          "prompt":  "{file:.opencode/skills/armora-security/SKILL.md}",
+                                          "permission":  {
+                                                             "read":  "allow",
+                                                             "grep":  "allow",
+                                                             "glob":  "allow",
+                                                             "list":  "allow",
+                                                             "edit":  "ask",
+                                                             "bash":  "ask",
+                                                             "websearch":  "ask",
+                                                             "webfetch":  "ask",
+                                                             "skill":  "allow"
+                                                         }
+                                      },
+                  "armora-integrations":  {
+                                              "description":  "Integration Engineer para SUNAT, pasarelas de pago (Yape/Plin, Culqi/Niubiz), webhooks, facturadores y ERP futuro.",
+                                              "mode":  "all",
+                                              "prompt":  "{file:.opencode/skills/armora-integrations/SKILL.md}",
+                                              "permission":  {
+                                                                 "read":  "allow",
+                                                                 "grep":  "allow",
+                                                                 "glob":  "allow",
+                                                                 "list":  "allow",
+                                                                 "edit":  "ask",
+                                                                 "bash":  "ask",
+                                                                 "websearch":  "ask",
+                                                                 "webfetch":  "ask",
+                                                                 "skill":  "allow"
+                                                             }
+                                          },
+                  "armora-sdd-manager":  {
+                                             "description":  "Documentation/SDD Manager para mantener specs, ADRs, glosario, changelog y alinear documentacion de agentes con SDD.",
+                                             "mode":  "all",
+                                             "prompt":  "{file:.opencode/skills/armora-sdd-manager/SKILL.md}",
+                                             "permission":  {
+                                                                "read":  "allow",
+                                                                "grep":  "allow",
+                                                                "glob":  "allow",
+                                                                "list":  "allow",
+                                                                "edit":  "ask",
+                                                                "bash":  "deny",
+                                                                "websearch":  "ask",
+                                                                "webfetch":  "ask",
+                                                                "skill":  "allow"
+                                                            }
+                                         },
+                  "armora-delivery":  {
+                                          "description":  "Project/Delivery Manager para cronograma, dependencias, riesgos, RACI, entregables, releases y coordinacion entre agentes.",
+                                          "mode":  "all",
+                                          "prompt":  "{file:.opencode/skills/armora-delivery/SKILL.md}",
+                                          "permission":  {
+                                                             "read":  "allow",
+                                                             "grep":  "allow",
+                                                             "glob":  "allow",
+                                                             "list":  "allow",
+                                                             "edit":  "ask",
+                                                             "bash":  "deny",
+                                                             "websearch":  "ask",
+                                                             "webfetch":  "ask",
+                                                             "skill":  "allow"
+                                                         }
+                                      }
+              }
 }
-
-
