@@ -122,20 +122,23 @@ public class PersonalResource {
     public ResponseWrapper<List<PersonalListResponse>> listar() {
         try (Connection conn = dataSource.getConnection();
                 PreparedStatement ps = conn.prepareStatement(
-                        "SELECT p.id, p.nombres_completos, p.tipo_documento, p.numero_documento, p.telefono_celular, p.es_vendedor, p.es_transportista, u.usuario, u.estado FROM personal p JOIN usuarios u ON u.id = p.usuario_id ORDER BY p.nombres_completos")) {
+                        "SELECT p.id, p.nombres_completos, p.tipo_documento, p.numero_documento, p.telefono_celular, p.email_contacto, p.es_vendedor, p.es_transportista, u.usuario, u.estado, u.ultimo_acceso_en FROM personal p JOIN usuarios u ON u.id = p.usuario_id ORDER BY p.nombres_completos")) {
             try (ResultSet rs = ps.executeQuery()) {
                 List<PersonalListResponse> list = new ArrayList<>();
                 while (rs.next()) {
+                    java.sql.Timestamp ultimoAcceso = rs.getTimestamp("ultimo_acceso_en");
                     list.add(new PersonalListResponse(
                         rs.getString("id"),
                         rs.getString("nombres_completos"),
                         rs.getString("tipo_documento"),
                         rs.getString("numero_documento"),
                         rs.getString("telefono_celular"),
+                        rs.getString("email_contacto"),
                         rs.getBoolean("es_vendedor"),
                         rs.getBoolean("es_transportista"),
                         rs.getString("usuario"),
-                        rs.getString("estado")
+                        rs.getString("estado"),
+                        ultimoAcceso != null ? ultimoAcceso.toString() : null
                     ));
                 }
                 return ResponseWrapper.ok(list);
@@ -151,12 +154,13 @@ public class PersonalResource {
     public ResponseWrapper<PersonalDetalleResponse> obtener(@PathParam("id") String id) {
         try (Connection conn = dataSource.getConnection();
                 PreparedStatement ps = conn.prepareStatement(
-                        "SELECT p.*, u.usuario, u.correo, u.estado FROM personal p JOIN usuarios u ON u.id = p.usuario_id WHERE p.id = ?::uuid")) {
+                        "SELECT p.*, u.usuario, u.correo, u.estado, u.ultimo_acceso_en FROM personal p JOIN usuarios u ON u.id = p.usuario_id WHERE p.id = ?::uuid")) {
             ps.setString(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (!rs.next()) {
                     throw new WebApplicationException("Personal no encontrado", Response.Status.NOT_FOUND);
                 }
+                java.sql.Timestamp ultimoAcceso = rs.getTimestamp("ultimo_acceso_en");
                 return ResponseWrapper.ok(new PersonalDetalleResponse(
                     rs.getString("id"),
                     rs.getString("usuario_id"),
@@ -174,7 +178,8 @@ public class PersonalResource {
                     rs.getString("usuario"),
                     rs.getString("estado"),
                     rs.getBoolean("es_vendedor"),
-                    rs.getBoolean("es_transportista")
+                    rs.getBoolean("es_transportista"),
+                    ultimoAcceso != null ? ultimoAcceso.toString() : null
                 ));
             }
         } catch (WebApplicationException e) {
@@ -278,10 +283,12 @@ public class PersonalResource {
         String tipoDocumento,
         String numeroDocumento,
         String telefonoCelular,
+        String emailContacto,
         boolean esVendedor,
         boolean esTransportista,
         String usuario,
-        String estado
+        String estado,
+        String ultimoAcceso
     ) {}
 
     public record PersonalDetalleResponse(
@@ -301,7 +308,8 @@ public class PersonalResource {
         String usuario,
         String estado,
         boolean esVendedor,
-        boolean esTransportista
+        boolean esTransportista,
+        String ultimoAcceso
     ) {}
 }
 

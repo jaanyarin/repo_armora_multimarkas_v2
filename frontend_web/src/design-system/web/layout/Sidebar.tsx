@@ -207,7 +207,7 @@ const sidebarCategories: NavCategory[] = [
     icon: <GroupIcon sx={ICON_SIZE} />,
     children: [
       { label: 'Crear Personal', path: '/personal/crear-personal' },
-      { label: 'Gestion Personal', path: '#' },
+      { label: 'Gestion Personal', path: '/personal/gestion-personal' },
     ],
   },
   {
