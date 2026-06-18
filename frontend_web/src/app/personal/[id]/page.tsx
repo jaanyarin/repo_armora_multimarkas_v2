@@ -148,7 +148,7 @@ export default function DetallePersonalPage() {
 
   if (loading) {
     return (
-      <AppLayout activePath="/personal" username="ALEJANDRO ANYARIN" role="admin">
+      <AppLayout activePath="/personal/gestion-personal" username="ALEJANDRO ANYARIN" role="admin">
         <Box sx={{ display: 'flex', justifyContent: 'center', py: 8 }}>
           <CircularProgress />
         </Box>
@@ -158,10 +158,10 @@ export default function DetallePersonalPage() {
 
   if (!detalle) {
     return (
-      <AppLayout activePath="/personal" username="ALEJANDRO ANYARIN" role="admin">
+      <AppLayout activePath="/personal/gestion-personal" username="ALEJANDRO ANYARIN" role="admin">
         <Box sx={{ p: 3 }}>
           <Alert severity="error">{error || 'Personal no encontrado'}</Alert>
-          <Button sx={{ mt: 2 }} startIcon={<ArrowBackIcon />} onClick={() => router.push('/personal')}>
+          <Button sx={{ mt: 2 }} startIcon={<ArrowBackIcon />} onClick={() => router.push('/personal/gestion-personal')}>
             Volver a listado
           </Button>
         </Box>
@@ -170,10 +170,10 @@ export default function DetallePersonalPage() {
   }
 
   return (
-    <AppLayout activePath="/personal" username="ALEJANDRO ANYARIN" role="admin">
+    <AppLayout activePath="/personal/gestion-personal" username="ALEJANDRO ANYARIN" role="admin">
       <Box sx={{ p: 3 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', mb: 3, gap: 2 }}>
-          <Button startIcon={<ArrowBackIcon />} onClick={() => router.push('/personal')}>
+          <Button startIcon={<ArrowBackIcon />} onClick={() => router.push('/personal/gestion-personal')}>
             Volver
           </Button>
           <Typography variant="h5" fontWeight={700} color={colors.primary[800]}>
