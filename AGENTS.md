@@ -1,4 +1,4 @@
-# AGENTS.md - ARMORA Multimarkas v2
+﻿# AGENTS.md - ARMORA Multimarkas v2
 
 ## Estado del repositorio
 
@@ -9,7 +9,7 @@ Estructura principal esperada:
 - `docs/sdd/`: especificaciones SDD, arquitectura, contratos, cronograma y plan de Fase 1.
 - `docs/scrapping/`: evidencia y documentacion extraida del sistema heredado.
 - `docs/ai_workflow/`: tablero operativo para coordinacion automatica de agentes.
-- `agentes/perfiles/`: perfiles especializados de agentes (DEPRECATED — migrados a `.opencode/skills/armora-*/`).
+- `agentes/perfiles/`: perfiles especializados de agentes (DEPRECATED â€” migrados a `.opencode/skills/armora-*/`).
 - `agentes/docs/ai/`: reglas de orquestacion, contexto, handoff y workflow sincronico.
 - `backend/`: backend Quarkus con migracion Flyway V1.
 - `frontend_web/`: admin web Next.js con login y dashboard.
@@ -78,6 +78,28 @@ Usar `armora-architect` para tareas ambiguas, multidominio o cuando no sea evide
 - No usar datos hardcodeados como si fueran datos reales de negocio.
 - Si se detecta un secreto en codigo: remover, rotar y documentar como incidente.
 
+
+## Orquestador automatico por cadena de agentes
+
+Cuando el usuario solicite implementar, corregir, migrar, crear o continuar una funcionalidad, el flujo por defecto es automatico y dirigido por `armora-architect`.
+
+La secuencia base es:
+
+1. `armora-architect`: entiende la solicitud, revisa SDD, define alcance, riesgos, archivos permitidos y criterios de aceptacion.
+2. `armora-product-owner`: valida reglas de negocio cuando hay comportamiento funcional, usuarios, permisos o flujo operativo.
+3. `armora-ui-ux`: define o revisa experiencia de usuario para toda pantalla web/mobile.
+4. `armora-database`: valida persistencia, migraciones, constraints, indices y nomenclatura en espanol `snake_case`.
+5. `armora-backend-quarkus`: implementa o valida API, reglas servidor, transacciones y errores.
+6. `armora-frontend-web` / `armora-mobile-flutter`: implementa consumo real, formularios, estados y navegacion.
+7. `armora-security`: audita secretos, hardcoding, RBAC, JWT, CORS y datos sensibles.
+8. `armora-qa`: valida build, tests, criterios de aceptacion, contrato y regresion.
+9. `armora-sdd-manager`: actualiza SDD, ADR, tablero o handoff cuando cambia contrato, modelo, alcance o comportamiento.
+10. `armora-architect`: integra hallazgos y cierra como listo o bloqueado.
+
+Si OpenCode permite `task()`/subagentes, el arquitecto debe delegar cada paso al `subagent_type` correspondiente. Si no esta disponible, debe aplicar la misma cadena manualmente y reportar el resultado de cada rol.
+
+Para pantallas como `crear personal`, UI/UX, Backend, Frontend, Security y QA son obligatorios; Database tambien si se toca tabla, enum, constraint o migracion.
+
 ## Coordinacion automatica entre agentes
 
 Todo agente debe seguir:
@@ -132,7 +154,7 @@ Bloquear o pedir validacion si:
 
 ## Donde profundizar
 
-- `agentes/perfiles/`: perfiles de agentes con roles, responsabilidades y reglas tecnicas (DEPRECATED — migrados a `.opencode/skills/armora-*/`).
+- `agentes/perfiles/`: perfiles de agentes con roles, responsabilidades y reglas tecnicas (DEPRECATED â€” migrados a `.opencode/skills/armora-*/`).
 - `agentes/docs/ai/00_agent_orchestration.md`: matriz de coordinacion.
 - `agentes/docs/ai/01_context_map.md`: mapa de documentos por agente.
 - `agentes/docs/ai/02_handoff_protocol.md`: protocolo de handoff.
@@ -140,3 +162,4 @@ Bloquear o pedir validacion si:
 - `docs/ai_workflow/00_tablero_agentes.md`: tablero operativo de tareas.
 - `.opencode/skills/armora-agent-routing/SKILL.md`: ruteo por palabras clave.
 - `.opencode/skills/armora-sdd/SKILL.md`: coherencia SDD.
+

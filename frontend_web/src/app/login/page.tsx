@@ -1,7 +1,8 @@
 ﻿'use client';
 
 import { useState } from 'react';
-import { Box, Card, CardContent, TextField, Typography, Button, Alert, CircularProgress } from '@mui/material';
+import { Box, Card, CardContent, TextField, Typography, Button, Alert, CircularProgress, IconButton, InputAdornment } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { api } from '@/lib/api-client';
 import { colors } from '@/design-system/tokens/colors';
 
@@ -22,6 +23,7 @@ function getErrorMessage(err: unknown) {
 export default function LoginPage() {
   const [identificador, setIdentificador] = useState('');
   const [clave, setClave] = useState('');
+  const [mostrarClave, setMostrarClave] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -107,12 +109,26 @@ export default function LoginPage() {
             <TextField
               fullWidth
               label="Contrasena"
-              type="password"
+              type={mostrarClave ? 'text' : 'password'}
               value={clave}
               onChange={(e) => setClave(e.target.value)}
               margin="normal"
               required
               autoComplete="current-password"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setMostrarClave(!mostrarClave)}
+                      edge="end"
+                      tabIndex={-1}
+                      sx={{ color: 'grey.400', '&:hover': { color: 'primary.main' } }}
+                    >
+                      {mostrarClave ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
             <Button fullWidth type="submit" variant="contained" size="large" disabled={loading} sx={{ mt: 2 }}>
               {loading ? <CircularProgress size={24} color="inherit" /> : 'Ingresar'}

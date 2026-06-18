@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Drawer from '@mui/material/Drawer';
@@ -72,9 +72,9 @@ const sidebarCategories: NavCategory[] = [
     icon: <LocalShippingIcon sx={ICON_SIZE} />,
     children: [
       { label: 'Crear Compra', path: '#' },
-      { label: 'Gestión de Compras', path: '#' },
+      { label: 'Gestion de Compras', path: '#' },
       { label: 'Crear Proveedor', path: '#' },
-      { label: 'Gestión de Proveedores', path: '#' },
+      { label: 'Gestion de Proveedores', path: '#' },
     ],
   },
   {
@@ -96,7 +96,7 @@ const sidebarCategories: NavCategory[] = [
       { label: 'Crear Cliente', path: '#' },
       { label: 'Gestion Clientes', path: '#' },
       { label: 'Habilitar Ventas Clientes', path: '#' },
-      { label: 'Gestión Preventas', path: '#' },
+      { label: 'Gestion Preventas', path: '#' },
       { label: 'Reportes Preventas', path: '#' },
     ],
   },
@@ -106,10 +106,10 @@ const sidebarCategories: NavCategory[] = [
     children: [
       { label: 'Crear Venta Productos', path: '#' },
       { label: 'Crear Venta Servicios', path: '#' },
-      { label: 'Gestión de Ventas', path: '#' },
+      { label: 'Gestion de Ventas', path: '#' },
       { label: 'Puntos de Ventas', path: '#' },
-      { label: 'Gestión Notas Pedido', path: '#' },
-      { label: 'Impresión de Ventas', path: '#' },
+      { label: 'Gestion Notas Pedido', path: '#' },
+      { label: 'Impresion de Ventas', path: '#' },
       { label: 'Entregas Parciales', path: '#' },
       { label: 'Fileteo Automatico', path: '#' },
       { label: 'Reportes de Ventas', path: '#' },
@@ -119,9 +119,9 @@ const sidebarCategories: NavCategory[] = [
     label: 'Postventa y Ajustes',
     icon: <AssignmentReturnIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Gestión Notas Credito', path: '#' },
+      { label: 'Gestion Notas Credito', path: '#' },
       { label: 'Devolucion Transportista', path: '#' },
-      { label: 'Impresión Notas Credito', path: '#' },
+      { label: 'Impresion Notas Credito', path: '#' },
       { label: 'Crear Cambio Productos', path: '#' },
       { label: 'Gestion Cambio Productos', path: '#' },
       { label: 'Crear Canje', path: '#' },
@@ -141,7 +141,7 @@ const sidebarCategories: NavCategory[] = [
     ],
   },
   {
-    label: 'Distribución, Zonas y Rutas',
+    label: 'Distribucion, Zonas y Rutas',
     icon: <MapIcon sx={ICON_SIZE} />,
     children: [
       { label: 'Gestion Zonas y Rutas', path: '#' },
@@ -152,7 +152,7 @@ const sidebarCategories: NavCategory[] = [
     ],
   },
   {
-    label: 'SUNAT y Documentos Electrónicos',
+    label: 'SUNAT y Documentos Electronicos',
     icon: <DescriptionIcon sx={ICON_SIZE} />,
     children: [
       { label: 'Envios Pendientes Sunat', path: '#' },
@@ -207,16 +207,16 @@ const sidebarCategories: NavCategory[] = [
     label: 'Personal',
     icon: <GroupIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Crear Personal', path: '/personal/crear' },
+      { label: 'Crear Personal', path: '/personal/crear-personal' },
       { label: 'Gestion Personal', path: '/personal' },
     ],
   },
   {
-    label: 'Configuración',
+    label: 'Configuracion',
     icon: <SettingsIcon sx={ICON_SIZE} />,
     children: [
       { label: 'Configuracion Empresa', path: '#' },
-      { label: 'Configuracion Impresión', path: '#' },
+      { label: 'Configuracion Impresion', path: '#' },
       { label: 'Configuracion Sunat', path: '#' },
       { label: 'Configuracion Alertas', path: '#' },
       { label: 'Perfil Personal', path: '#' },
@@ -290,7 +290,7 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
       <Box sx={{ px: 1.5, pb: 1 }}>
         <TextField
           size="small"
-          placeholder="Búsqueda"
+          placeholder="Busqueda"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           InputProps={{
@@ -303,7 +303,7 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
               <InputAdornment position="end">
                 <IconButton size="small" onClick={handleClear} sx={{ p: 0.3 }}>
                   <Typography sx={{ fontSize: 16, lineHeight: 1, color: colors.neutral.textMuted }}>
-                    ✕
+                    x
                   </Typography>
                 </IconButton>
               </InputAdornment>
@@ -427,3 +427,6 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
 }
 
 export { DRAWER_WIDTH };
+
+
+

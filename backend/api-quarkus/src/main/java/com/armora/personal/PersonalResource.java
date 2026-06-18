@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -56,7 +57,7 @@ public class PersonalResource {
                 try (PreparedStatement ps = conn.prepareStatement(
                         "SELECT id FROM usuarios WHERE usuario = ? OR correo = ?")) {
                     ps.setString(1, request.usuario());
-                    ps.setString(2, request.usuario() + "@armora.local");
+                    ps.setString(2, request.correo());
                     try (ResultSet rs = ps.executeQuery()) {
                         if (rs.next()) {
                             throw new WebApplicationException("El usuario o correo ya existe", Response.Status.CONFLICT);
@@ -70,7 +71,7 @@ public class PersonalResource {
                 try (PreparedStatement ps = conn.prepareStatement(
                         "INSERT INTO usuarios (usuario, correo, clave_hash, tipo, estado) VALUES (?, ?, ?, 'OPERADOR', 'ACTIVO') RETURNING id")) {
                     ps.setString(1, request.usuario());
-                    ps.setString(2, request.usuario() + "@armora.local");
+                    ps.setString(2, request.correo());
                     ps.setString(3, hash);
                     try (ResultSet rs = ps.executeQuery()) {
                         rs.next();
@@ -81,7 +82,7 @@ public class PersonalResource {
                 // Insertar personal
                 UUID personalId;
                 try (PreparedStatement ps = conn.prepareStatement(
-                        "INSERT INTO personal (usuario_id, nombres_completos, tipo_documento, numero_documento, sexo, estado_civil, fecha_nacimiento, email_contacto, telefono_fijo, telefono_celular, direccion, referencia, es_vendedor, es_transportista) VALUES (?, ?, ?::tipo_documento_personal, ?, ?::sexo_personal, ?::estado_civil_personal, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id")) {
+                        "INSERT INTO personal (usuario_id, nombres_completos, tipo_documento, numero_documento, sexo, estado_civil, fecha_nacimiento, email_contacto, telefono_fijo, telefono_celular, direccion, referencia, es_vendedor, es_transportista, foto_url) VALUES (?, ?, ?::tipo_documento_personal, ?, ?::sexo_personal, ?::estado_civil_personal, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id")) {
                     ps.setObject(1, usuarioId);
                     ps.setString(2, request.nombresCompletos());
                     ps.setString(3, request.tipoDocumento() != null ? request.tipoDocumento() : "DNI");
@@ -96,6 +97,7 @@ public class PersonalResource {
                     ps.setString(12, request.referencia());
                     ps.setBoolean(13, request.esVendedor() != null && request.esVendedor());
                     ps.setBoolean(14, request.esTransportista() != null && request.esTransportista());
+                    ps.setString(15, request.fotoUrl());
                     try (ResultSet rs = ps.executeQuery()) {
                         rs.next();
                         personalId = UUID.fromString(rs.getString("id"));
@@ -239,6 +241,7 @@ public class PersonalResource {
     public record CrearPersonalRequest(
         @NotBlank String nombresCompletos,
         @NotBlank String usuario,
+        @NotBlank @Email String correo,
         @NotBlank String clave,
         String tipoDocumento,
         @NotBlank String numeroDocumento,
@@ -251,7 +254,8 @@ public class PersonalResource {
         String direccion,
         String referencia,
         Boolean esVendedor,
-        Boolean esTransportista
+        Boolean esTransportista,
+        String fotoUrl
     ) {}
 
     public record ActualizarPersonalRequest(
@@ -300,3 +304,5 @@ public class PersonalResource {
         boolean esTransportista
     ) {}
 }
+
+

@@ -53,3 +53,6 @@ secrets/
 *.pfx
 *.pem
 !publickey.pem
+
+#consultas chatGPT
+_para_chatgpt/

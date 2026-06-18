@@ -1,4 +1,4 @@
-# Workflow automatico y sincrono de agentes - ARMORA
+﻿# Workflow automatico y sincrono de agentes - ARMORA
 
 ## Objetivo
 
@@ -71,6 +71,51 @@ Si faltan `Objetivo`, `Agente lider`, `Documentos obligatorios` o `Criterios de 
 | Pruebas, regresion, contrato | `armora-qa` | Agente dueno del cambio |
 | Documentacion SDD, ADR, changelog | `armora-sdd-manager` | Agente dueno del cambio |
 | Cronograma, riesgos, dependencias | `armora-delivery` | Arquitecto, Product Owner |
+
+
+## Cadena automatica obligatoria por feature
+
+Cuando el usuario solicite construir, corregir o migrar una funcionalidad, el flujo por defecto debe ser una cadena automatica dirigida por `armora-architect`. No se debe ejecutar como trabajo aislado de un solo agente salvo que la tarea sea puramente documental o una consulta.
+
+### Secuencia base
+
+| Orden | Rol | Agente | Responsabilidad | Salida obligatoria |
+|---|---|---|---|---|
+| 1 | Orquestador | `armora-architect` | Entender solicitud, leer SDD, definir alcance, detectar dominios afectados, crear subtareas y seleccionar agentes | Plan de ejecucion, archivos permitidos, criterios de aceptacion, riesgos |
+| 2 | Funcional | `armora-product-owner` cuando aplique | Confirmar regla de negocio, datos requeridos, estados, validaciones y comportamiento esperado | Criterios funcionales y bloqueos de negocio |
+| 3 | Diseno UI/UX | `armora-ui-ux` cuando hay pantalla o flujo visual | Definir estructura visual, UX, estados, errores, accesibilidad y componentes | Especificacion UI/UX para web/mobile |
+| 4 | Datos | `armora-database` cuando hay persistencia | Revisar tablas, columnas, enums, indices, constraints y migraciones en espanol `snake_case` | Modelo/migracion validada |
+| 5 | Backend | `armora-backend-quarkus` cuando hay API o regla servidor | Implementar contrato, validaciones, transacciones, errores y seguridad del lado servidor | Endpoint/servicio implementado y documentado |
+| 6 | Frontend/Mobile | `armora-frontend-web` o `armora-mobile-flutter` | Implementar pantalla, consumo API, formularios, estados, errores y navegacion | UI integrada al contrato real |
+| 7 | Seguridad | `armora-security` | Auditar secretos, RBAC, JWT, CORS, exposicion de datos, hardcoding y permisos | Revision de seguridad con hallazgos o aprobacion |
+| 8 | Auditor QA | `armora-qa` | Validar criterios, pruebas unitarias/integracion/build/E2E segun alcance, regresion | Resultado de pruebas y riesgos residuales |
+| 9 | Documentacion | `armora-sdd-manager` cuando cambia contrato, modelo o alcance | Actualizar SDD, ADR, tablero y handoff final | Documentacion sincronizada |
+| 10 | Cierre | `armora-architect` | Integrar resultados, resolver conflictos, decidir si esta lista o bloqueada | Resumen final, estado y siguiente paso |
+
+### Reglas de automatizacion
+
+1. El orquestador debe delegar subtareas con `task()` cuando OpenCode lo permita, usando el `subagent_type` correspondiente.
+2. Si la herramienta no permite ejecucion real de subagentes en ese contexto, el orquestador debe simular la cadena de revision usando los perfiles cargados y dejar evidencia en el handoff.
+3. El desarrollador no debe implementar antes de que UI/UX, Datos o Backend definan contrato cuando la tarea los afecte.
+4. QA y Security no deben ser omitidos en funcionalidades con login, permisos, datos personales, ventas, stock, pagos, pedidos o integraciones.
+5. Una feature con pantalla debe pasar por UI/UX antes de cierre, aunque el cambio tecnico sea backend o API.
+6. Ningun agente puede introducir credenciales, tokens, passwords, API keys, certificados, claves privadas, URLs secretas ni datos reales hardcodeados.
+7. Ningun agente puede consumir datos hardcodeados como si fueran datos reales del sistema.
+8. El cierre debe indicar que agentes participaron, que validaron y que quedo pendiente.
+
+### Aplicacion al modulo Crear Personal
+
+Para migrar `https://armorasac.com/app/personal/crear-personal` al panel ARMORA v2, la cadena minima es:
+
+1. `armora-architect`: delimita alcance de la pantalla Crear Personal dentro del admin web.
+2. `armora-product-owner`: define campos obligatorios, reglas de documento, roles, vendedor/transportista y estados.
+3. `armora-ui-ux`: replica/mejora UX del sistema heredado usando el design system actual.
+4. `armora-database`: valida tabla `personal`, `usuarios` y enums en espanol.
+5. `armora-backend-quarkus`: valida/ajusta `/api/v1/personal`.
+6. `armora-frontend-web`: implementa ruta, formulario, validaciones y consumo real de API.
+7. `armora-security`: revisa datos personales, credenciales temporales y permisos.
+8. `armora-qa`: ejecuta build, tests y casos de formulario.
+9. `armora-sdd-manager`: actualiza tablero/handoff si cambia contrato o alcance.
 
 ## Flujo sincronico obligatorio
 
@@ -220,3 +265,4 @@ Si no existe contrato:
 ## Regla final
 
 Si hay duda entre avanzar rapido o mantener coherencia de contrato, datos, seguridad y SDD, se debe priorizar coherencia. El objetivo de los agentes no es producir cambios aislados, sino construir el sistema ARMORA de forma trazable, segura y coordinada.
+

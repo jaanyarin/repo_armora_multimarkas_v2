@@ -14,22 +14,25 @@ function hasApiEnvelope<T>(body: unknown): body is ApiEnvelope<T> {
   );
 }
 
-function getAuthHeaders(): Record<string, string> {
-  if (typeof window === 'undefined') return {};
-  const token = localStorage.getItem('armora_token');
-  if (!token) return {};
-  return { Authorization: `Bearer ${token}` };
+function buildHeaders(headers?: HeadersInit) {
+  const nextHeaders = new Headers(headers);
+  nextHeaders.set('Content-Type', 'application/json');
+
+  if (typeof window !== 'undefined') {
+    const token = window.localStorage.getItem('armora_token');
+    if (token) {
+      nextHeaders.set('Authorization', `Bearer ${token}`);
+    }
+  }
+
+  return nextHeaders;
 }
 
 async function request<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const url = `${API_BASE}${endpoint}`;
   const res = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...getAuthHeaders(),
-      ...options?.headers,
-    },
     ...options,
+    headers: buildHeaders(options?.headers),
   });
 
   let body: unknown;
