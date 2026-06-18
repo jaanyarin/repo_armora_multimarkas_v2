@@ -1,4 +1,4 @@
----
+﻿---
 name: armora-agent-routing
 description: "Rutea tareas al agente ARMORA adecuado segun el tipo de trabajo: backend, frontend, mobile, datos, seguridad, etc. Cargar al inicio de cada tarea."
 ---
@@ -27,6 +27,26 @@ Detectar automaticamente el tipo de tarea y seleccionar el agente optimo, o suge
 | documentacion, sdd, spec, adr, glossary, changelog, contrato api, modelo de datos documentado | `armora-sdd-manager` |
 | cronograma, plan, release, entrega, riesgo, dependencia, raci, hito, deadline, coordinacion de equipo | `armora-delivery` |
 
+
+## Cadena automatica por tipo de trabajo
+
+El ruteo no debe seleccionar solo un agente aislado. Para tareas de implementacion debe activar una cadena de agentes coordinada por `armora-architect`.
+
+| Tipo de solicitud | Cadena minima |
+|---|---|
+| Crear pantalla admin web | `armora-architect` -> `armora-product-owner` -> `armora-ui-ux` -> `armora-backend-quarkus` si hay API -> `armora-frontend-web` -> `armora-security` -> `armora-qa` -> `armora-sdd-manager` si cambia contrato/alcance |
+| Crear endpoint/API | `armora-architect` -> `armora-product-owner` -> `armora-database` si persiste -> `armora-backend-quarkus` -> consumidor web/mobile si aplica -> `armora-security` -> `armora-qa` -> `armora-sdd-manager` |
+| Crear migracion/modelo | `armora-architect` -> `armora-database` -> `armora-backend-quarkus` -> `armora-security` si hay datos sensibles -> `armora-qa` -> `armora-sdd-manager` |
+| Crear pantalla Flutter | `armora-architect` -> `armora-product-owner` -> `armora-ui-ux` -> `armora-backend-quarkus` si hay API -> `armora-mobile-flutter` -> `armora-security` -> `armora-qa` |
+| Corregir login/auth/permisos | `armora-architect` -> `armora-backend-quarkus` -> `armora-frontend-web`/`armora-mobile-flutter` consumidor -> `armora-security` -> `armora-qa` |
+| Integracion pagos/SUNAT | `armora-architect` -> `armora-product-owner` -> `armora-integrations` -> `armora-backend-quarkus` -> `armora-database` si persiste -> `armora-security` -> `armora-qa` -> `armora-sdd-manager` |
+| Documentacion o cronograma | `armora-architect` -> `armora-sdd-manager` o `armora-delivery` -> agente dueno del dominio si requiere validacion tecnica |
+
+Regla de ejecucion:
+- Si el usuario pide “implementa”, “corrige”, “migra”, “crea” o “continua”, usar la cadena minima aplicable.
+- Si el usuario solo pregunta, responder con analisis y no modificar archivos salvo que lo solicite.
+- Si existe conflicto entre rapidez y revision cruzada, priorizar revision cruzada.
+
 ## Reglas de ruteo
 
 1. Si la tarea es **multidominio** (ej: "crear modulo de ventas" afecta backend + frontend + mobile) -> usar `armora-architect` como orquestador y derivar sub-tareas.
@@ -44,3 +64,4 @@ Al transferir a otro agente, incluir:
 - Contratos o tablas afectadas
 - Pruebas necesarias
 - Riesgos abiertos
+

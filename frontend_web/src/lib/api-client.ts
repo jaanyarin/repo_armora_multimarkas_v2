@@ -14,14 +14,25 @@ function hasApiEnvelope<T>(body: unknown): body is ApiEnvelope<T> {
   );
 }
 
+function buildHeaders(headers?: HeadersInit) {
+  const nextHeaders = new Headers(headers);
+  nextHeaders.set('Content-Type', 'application/json');
+
+  if (typeof window !== 'undefined') {
+    const token = window.localStorage.getItem('armora_token');
+    if (token) {
+      nextHeaders.set('Authorization', `Bearer ${token}`);
+    }
+  }
+
+  return nextHeaders;
+}
+
 async function request<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const url = `${API_BASE}${endpoint}`;
   const res = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...options?.headers,
-    },
     ...options,
+    headers: buildHeaders(options?.headers),
   });
 
   let body: unknown;
@@ -53,6 +64,11 @@ export const api = {
   post: <T>(endpoint: string, body: unknown) =>
     request<T>(endpoint, {
       method: 'POST',
+      body: JSON.stringify(body),
+    }),
+  put: <T>(endpoint: string, body: unknown) =>
+    request<T>(endpoint, {
+      method: 'PUT',
       body: JSON.stringify(body),
     }),
   health: () => api.get<{ status: string }>('/health'),

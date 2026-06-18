@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crear Personal - Muestra UX</title>
+  <style>
+    :root{
+      --bg:#f4f6fb;
+      --surface:#ffffff;
+      --surface-2:#f8fafc;
+      --primary:#335296;
+      --primary-2:#456ab2;
+      --border:#d8deea;
+      --text:#172033;
+      --muted:#667085;
+      --success:#188038;
+      --danger:#b3261e;
+      --shadow:0 10px 25px rgba(15, 23, 42, .08);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);font-family:Calibri, Arial, sans-serif;color:var(--text)}
+    .page{max-width:1440px;margin:0 auto;padding:24px}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(244,246,251,.92);backdrop-filter:blur(8px);padding:12px 0 18px;border-bottom:1px solid rgba(216,222,234,.7)}
+    .title-row{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+    h1{margin:0;font-size:28px;color:var(--primary)}
+    .subtitle{margin:4px 0 0;color:var(--muted);font-size:15px}
+    .step-pills{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{border:1px solid var(--border);background:white;border-radius:999px;padding:8px 12px;font-size:13px;color:var(--muted)}
+    .pill.active{background:var(--primary);color:white;border-color:var(--primary)}
+    .layout{display:flex;flex-direction:column;gap:18px;margin-top:20px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .card-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,#fff,#f9fbff)}
+    .card-title{display:flex;align-items:center;gap:10px;margin:0;font-size:20px;color:var(--primary)}
+    .badge{border-radius:999px;background:#eef3ff;color:var(--primary);padding:5px 10px;font-size:12px;font-weight:bold}
+    .card-body{padding:20px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .full{grid-column:1/-1}
+    .field label{display:block;font-weight:bold;font-size:13px;margin-bottom:6px;color:#344054}
+    input,select,textarea{width:100%;min-height:42px;border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-family:Calibri, Arial, sans-serif;font-size:15px;background:white;color:var(--text);outline:none}
+    input:focus,select:focus,textarea:focus{border-color:var(--primary-2);box-shadow:0 0 0 3px rgba(69,106,178,.15)}
+    input[disabled]{background:#eef1f6;color:#667085}
+    textarea{resize:vertical;min-height:84px}
+    .help{font-size:12px;color:var(--muted);margin-top:5px}
+    .password-wrap{display:flex;gap:8px}.password-wrap input{flex:1}.icon-btn{min-height:42px;border:1px solid var(--border);background:#fff;border-radius:10px;padding:0 12px;cursor:pointer}
+    .photo-zone{display:grid;grid-template-columns:220px 1fr;gap:18px;align-items:start}
+    .photo-box{width:220px;height:220px;border:2px dashed #aeb8c9;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    button{border:0;border-radius:10px;min-height:42px;padding:0 16px;font-family:Calibri, Arial, sans-serif;font-size:15px;cursor:pointer;font-weight:bold}
+    .btn-primary{background:var(--primary);color:white}.btn-secondary{background:#e6ebf5;color:#24324f}.btn-danger{background:#fde7e9;color:var(--danger)}.btn-outline{background:white;color:var(--primary);border:1px solid var(--primary)}
+    .permission-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#f8fafc;border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:16px}
+    .permission-summary{font-weight:bold;color:var(--primary)}
+    .perm-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .perm-group{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff}
+    .perm-group-head{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#f8fafc;border-bottom:1px solid var(--border);padding:12px 14px}
+    .perm-group-title{font-weight:bold;color:#263957}.perm-count{font-size:12px;color:var(--muted)}
+    .perm-list{padding:12px 14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .check-row{display:flex;align-items:flex-start;gap:8px;font-size:14px;line-height:1.25;color:#344054}.check-row input{width:auto;min-height:auto;margin-top:2px}
+    .group-actions{display:flex;gap:8px;flex-wrap:wrap}.small-btn{min-height:32px;padding:0 10px;font-size:12px;border-radius:8px}
+    .resource-section{border-top:1px solid var(--border);padding-top:16px;margin-top:16px}.resource-section:first-child{border-top:0;padding-top:0;margin-top:0}.section-title{font-size:16px;color:var(--primary);margin:0 0 12px;border-bottom:1px solid #e7ebf3;padding-bottom:8px}
+    .message{border:1px solid #cbd5e1;background:#f8fafc;border-radius:14px;padding:16px}.message .header{font-weight:bold;color:var(--primary);margin-bottom:8px}.message ul{margin:0;padding-left:20px}.message li{margin:6px 0}
+    .footer{position:sticky;bottom:0;background:rgba(244,246,251,.92);backdrop-filter:blur(8px);border-top:1px solid var(--border);padding:14px 0;margin-top:18px;display:flex;justify-content:flex-end;gap:10px}
+    @media(max-width:1100px){.grid-4,.grid-3{grid-template-columns:repeat(2,1fr)}.perm-groups{grid-template-columns:1fr}.perm-list{grid-template-columns:1fr}}
+    @media(max-width:700px){.page{padding:14px}.grid-4,.grid-3,.grid-2{grid-template-columns:1fr}.photo-zone{grid-template-columns:1fr}.photo-box{width:100%;height:180px}.footer{justify-content:stretch}.footer button{flex:1}.card-header{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <div class="title-row">
+        <div>
+          <h1>Crear Personal</h1>
+          <p class="subtitle">Muestra HTML organizada en div verticales para web y mobile.</p>
+        </div>
+        <div class="step-pills">
+          <span class="pill active">1 Datos</span><span class="pill">2 Contactos</span><span class="pill">3 Permisos</span><span class="pill">4 Fotografía</span><span class="pill">5 Recursos</span><span class="pill">6 Confirmación</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="layout">
+      <div class="card" id="div-datos-personales">
+        <div class="card-header"><h2 class="card-title">DIV 1 - Datos Personales</h2><span class="badge">Código automático</span></div>
+        <div class="card-body">
+          <div class="grid-4">
+            <div class="field"><label>Código</label><input id="codigo" value="PER-000001" disabled><div class="help">Generado por sistema.</div></div>
+            <div class="field"><label>Usuario / Login</label><input id="login" placeholder="ej. aanyarin"></div>
+            <div class="field"><label>Password</label><div class="password-wrap"><input id="password" type="password" placeholder="Clave de acceso"><button class="icon-btn" type="button" onclick="togglePassword('password')">Ver</button></div></div>
+            <div class="field"><label>Tipo Documento</label><select><option>DNI</option><option>Carnet de Extranjería</option><option>Pasaporte</option></select></div>
+            <div class="field"><label>N° Documento</label><input id="documento" placeholder="00000000"></div>
+            <div class="field"><label>Nombres</label><input id="nombres" placeholder="Nombres"></div>
+            <div class="field"><label>Apellidos</label><input id="apellidos" placeholder="Apellidos"></div>
+            <div class="field"><label>Fecha Nacimiento</label><input type="date"></div>
+            <div class="field"><label>Sexo</label><select><option>Seleccione</option><option>Masculino</option><option>Femenino</option></select></div>
+            <div class="field"><label>Estado Civil</label><select><option>Seleccione</option><option>Soltero(a)</option><option>Casado(a)</option></select></div>
+            <div class="field"><label>Cargo</label><input placeholder="Cargo"></div>
+            <div class="field"><label>Área</label><input placeholder="Área"></div>
+            <div class="field"><label>Sede</label><select><option>Seleccione</option><option>BROCKER MESA 1</option><option>ALMACÉN CENTRAL</option></select></div>
+            <div class="field"><label>Estado</label><select><option>Activo</option><option>Inactivo</option></select></div>
+            <div class="field full"><label>Observaciones</label><textarea placeholder="Observaciones internas"></textarea></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="div-contactos">
+        <div class="card-header"><h2 class="card-title">DIV 2 - Contactos</h2></div>
+        <div class="card-body">
+          <div class="grid-4">
+            <div class="field"><label>Email Corporativo</label><input placeholder="correo@empresa.com"></div>
+            <div class="field"><label>Email Personal</label><input placeholder="correo personal"></div>
+            <div class="field"><label>Celular</label><input placeholder="999 999 999"></div>
+            <div class="field"><label>Teléfono</label><input placeholder="056 000000"></div>
+            <div class="field"><label>Departamento</label><select><option>Seleccione departamento</option><option>Ica</option><option>Lima</option><option>Arequipa</option></select></div>
+            <div class="field"><label>Provincia</label><select><option>Seleccione provincia</option><option>Ica</option><option>Chincha</option><option>Pisco</option></select></div>
+            <div class="field"><label>Distrito</label><select><option>Seleccione distrito</option><option>Ica</option><option>La Tinguiña</option><option>Subtanjalla</option></select></div>
+            <div class="field"><label>Contacto Emergencia</label><input placeholder="Nombre / Celular"></div>
+            <div class="field full"><label>Dirección</label><input id="direccion" placeholder="Dirección completa"></div>
+            <div class="field full"><label>Referencia</label><input placeholder="Referencia de ubicación"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="div-permisos">
+        <div class="card-header"><h2 class="card-title">DIV 3 - Permisos</h2><span class="badge" id="global-status">0 seleccionados</span></div>
+        <div class="card-body">
+          <div class="permission-toolbar">
+            <div>
+              <div class="permission-summary">Permisos por módulos</div>
+              <div class="help">Usa “Seleccionar todo” general o por grupo para evitar marcar 1 x 1.</div>
+            </div>
+            <div class="group-actions">
+              <button class="btn-primary small-btn" id="select-all-main" onclick="setAllPermissions(true)">Seleccionar todo</button>
+              <button class="btn-danger small-btn" id="clear-all-main" onclick="setAllPermissions(false)" disabled>Deseleccionar todo</button>
+            </div>
+          </div>
+          <div class="perm-groups" id="permissionGroups"></div>
+        </div>
+      </div>
+
+      <div class="card" id="div-fotografia">
+        <div class="card-header"><h2 class="card-title">DIV 4 - Fotografía</h2></div>
+        <div class="card-body">
+          <div class="photo-zone">
+            <div class="photo-box">Vista previa<br>Sin fotografía</div>
+            <div>
+              <div class="field"><label>Subir Fotografía</label><input type="file" accept="image/*"></div>
+              <div class="actions"><button class="btn-secondary">Tomar Foto</button><button class="btn-outline">Quitar Foto</button></div>
+              <p class="help">Recomendado: imagen frontal, fondo claro, formato JPG/PNG.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="div-recursos">
+        <div class="card-header"><h2 class="card-title">DIV 5 - Recursos Asignados</h2></div>
+        <div class="card-body">
+          <div class="resource-section">
+            <h4 class="section-title">Rutas de Ventas</h4>
+            <div class="field"><label>Mapa de Rutas</label><select id="dropdown-mapa-rutas"><option>Seleccione mapa de rutas</option><option>Ruta Ica Centro</option><option>Ruta Norte</option><option>Ruta Sur</option></select></div>
+          </div>
+          <div class="resource-section">
+            <h4 class="section-title">Tipo de Personal</h4>
+            <div class="grid-2">
+              <label class="check-row"><input type="checkbox" name="vendedor" checked onchange="updateConfirm()"> Vendedor</label>
+              <label class="check-row"><input type="checkbox" name="transportista" onchange="updateConfirm()"> Transportista</label>
+            </div>
+          </div>
+          <div class="resource-section">
+            <h4 class="section-title">Recursos</h4>
+            <div class="grid-2">
+              <div class="field"><label>Listas de Precios</label><select id="selectmultiple-listas-precios" multiple size="6" onchange="updateConfirm()"><option>LISTA DE PRECIO M1P</option><option>LISTA MAYORISTA</option><option>LISTA MINORISTA</option><option>LISTA PROMOCIONAL</option></select></div>
+              <div class="field"><label>Almacenes</label><select id="selectmultiple-almacenes" multiple size="6" onchange="updateConfirm()"><option>BROCKER MESA 1</option><option>ALMACÉN CENTRAL</option><option>ALMACÉN PRODUCTOS</option><option>ALMACÉN SERVICIOS</option></select></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="div-confirmacion">
+        <div class="card-header"><h2 class="card-title">DIV 6 - Confirmación</h2></div>
+        <div class="card-body">
+          <div class="grid-1">
+            <div class="field"><label>Nombre Completo</label><input type="text" id="input-confirm-nombres" disabled></div>
+          </div>
+          <div class="grid-3" style="margin-top:14px">
+            <div class="field"><label>Login</label><input type="text" id="input-confirm-login" disabled></div>
+            <div class="field"><label>Password</label><div class="password-wrap"><input type="password" id="input-confirm-password" disabled><button class="icon-btn" type="button" onclick="togglePassword('input-confirm-password')">Ver</button></div></div>
+            <div class="field"><label>Documento</label><input type="text" id="input-confirm-documento" disabled></div>
+          </div>
+          <div class="field" style="margin-top:14px"><label>Dirección</label><input type="text" id="input-confirm-direccion" disabled></div>
+          <div class="message" style="margin-top:16px">
+            <div class="header">Recursos Disponibles:</div>
+            <ul class="list">
+              <li id="size-tipos">El personal tiene <strong>1</strong> tipo seleccionado</li>
+              <li>El personal tiene <strong id="size-permisos">0</strong> permisos en la aplicación</li>
+              <li>El personal tiene <strong id="size-tipo-personal">1</strong> tipos en la aplicación</li>
+              <li>El personal tiene <strong id="size-lista-precios">0</strong> listas de precios accesibles</li>
+              <li>El personal tiene <strong id="size-almacenes">0</strong> almacenes accesibles</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <button class="btn-secondary">Cancelar</button>
+      <button class="btn-outline" onclick="updateConfirm()">Actualizar Confirmación</button>
+      <button class="btn-primary" onclick="updateConfirm()">Crear Personal</button>
+    </div>
+  </main>
+
+<script>
+const permissions = {
+  "Almacenes":["Crear Inventario de Stocks","Gestion Almacenes","Gestion de Inventarios","Reportes Almacenes"],
+  "Cambios":["Asignar Fecha Entrega Cambios","Crear Cambio Producto","Crear Reporte Cambios de Productos","Gestion de Cambios de Producto","Gestion de Reportes Cambios de Productos","Impresión de Cambios de Productos","Reportes de Cambios"],
+  "Canjes":["Asignar Fecha Entrega Canjes","Crear Canje","Crear Reporte Canjes","Gestion de Canjes","Gestion de Reportes Canjes","Impresión de Canjes","Reportes de Canjes"],
+  "Clientes":["Cambio dia Atencion Lotes","Crear Cliente","Gestion Clientes","Habilitar Ventas Clientes","Reportes Clientes"],
+  "Cobertura":["Crear Reporte de Cobertura","Gestion de Coberturas"],
+  "Combos":["Crear Combo","Gestion de Combos","Reportes de Combos"],
+  "Comisiones":["Ajuste de Comisiones","Crear Reporte de Comision","Gestion de Comisiones"],
+  "Compras":["Crear Compra","Gestion Compras"],
+  "Comunicación de Baja":["Crear Comunicación de Baja","Gestion Comunicaciones de Baja","Reportes Comunicaciones de Baja"],
+  "Concursos":["Crear Concurso","Gestion de Concursos","Reportes de Concursos"],
+  "Configuracion":["Configuracion Alertas","Configuracion Empresa","Configuracion Impresión","Configuracion Sunat"],
+  "Informes":["Informes de Almacenes","Informes de Entregas Parciales","Informes de Liquidaciones","Informes de Requerimientos"],
+  "Liquidaciones":["Crear Liquidacion","Gestion de Liquidaciones","Reportes de Liquidaciones"],
+  "Listas de Precios":["Copiar Listas de Precios","Crear Lista de Precios","Gestion de Listas de Precios","Reportes Listas de Precios"],
+  "Mapas de Rutas":["Crear Mapa de Rutas","Gestion de Mapas de Rutas","Reportes de Mapas de Rutas"],
+  "Notas de Credito":["Devoluciones Transportistas","Gestion de Notas de Credito","Impresión de Notas de Credito","Reportes de Notas de Credito"],
+  "Personal":["Crear Personal","Gestion del Personal","Reportes del Personal"],
+  "Premios de Canjes":["Crear Premio de Canje","Gestion de Premio de Canje","Gestion de Requisitos de Canje","Reporte de Premios de Canjes"],
+  "Preventas":["Gestion Preventas","Reportes Preventas"],
+  "Productos":["Crear Producto","Gestion de Clases y Subclases","Gestion de Productos","Reportes de Productos"],
+  "Proveedores":["Crear Proveedor","Gestion Proveedores"],
+  "Requerimientos":["Crear Requerimiento","Gestion de Requerimientos","Reportes de Requerimientos"],
+  "Resumen Diario":["Crear Resumen Diario","Gestion de Resumenes Diarios","Reportes de Resumenes Diarios"],
+  "Servicios":["Crear Servicio","Gestion de Servicios"],
+  "Sunat":["Envios Pendientes Sunat","Gestion Envios Sunat","Reportes Envios Sunat"],
+  "Transferencias":["Crear Transferencia","Gestion de Transferencias","Reportes de Transferencias"],
+  "Transportista":["Mis Devoluciones","Mis Liquidaciones","Mis Requerimientos"],
+  "Unidades de Transporte":["Crear Unidad de Transporte","Gestion de Unidades de Transporte","Reportes de Unidades de Transporte"],
+  "Vendedor":["Crear Cambio Producto","Crear Canje","Crear Cliente","Crear Preventa","Gestion de Cambios de Producto","Gestion de Canjes","Gestion de Clientes","Gestion de Comisiones","Gestion de Concursos","Gestion de Preventas","Gestion de Ventas","Stock Productos"],
+  "Ventas":["Crear Venta","Crear Venta de Servicios","Entregas Parciales","Fileteo Automatico","Gestion de Notas de Pedido","Gestion Ventas","Impresión Ventas","Puntos de Ventas","Reportes de Ventas"],
+  "Zonas y Rutas":["Gestion Zonas y Rutas","Habilitar Ventas","Reportes de Zonas y Rutas"]
+};
+function slug(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]+/g,'-').replace(/^-|-$/g,'').toLowerCase();}
+function renderPermissions(){
+  const wrap=document.getElementById('permissionGroups');
+  wrap.innerHTML='';
+  Object.entries(permissions).forEach(([group,items])=>{
+    const id=slug(group);
+    const div=document.createElement('div');
+    div.className='perm-group';
+    div.dataset.group=id;
+    div.innerHTML=`
+      <div class="perm-group-head">
+        <div><div class="perm-group-title">${group}</div><div class="perm-count" id="count-${id}">0/${items.length} seleccionados</div></div>
+        <div class="group-actions">
+          <button class="btn-outline small-btn" id="sel-${id}" onclick="setGroup('${id}', true)">Seleccionar todo</button>
+          <button class="btn-danger small-btn" id="clear-${id}" onclick="setGroup('${id}', false)" disabled>Deseleccionar</button>
+        </div>
+      </div>
+      <div class="perm-list">
+        ${items.map((item,i)=>`<label class="check-row"><input type="checkbox" class="permission-check" data-group="${id}" onchange="refreshCounts()" value="${group} > ${item}"> ${item}</label>`).join('')}
+      </div>`;
+    wrap.appendChild(div);
+  });
+  refreshCounts();
+}
+function setGroup(groupId, checked){document.querySelectorAll(`.permission-check[data-group="${groupId}"]`).forEach(cb=>cb.checked=checked);refreshCounts();}
+function setAllPermissions(checked){document.querySelectorAll('.permission-check').forEach(cb=>cb.checked=checked);refreshCounts();}
+function refreshCounts(){
+  let total=0, selected=0;
+  Object.keys(permissions).forEach(group=>{
+    const id=slug(group); const checks=[...document.querySelectorAll(`.permission-check[data-group="${id}"]`)];
+    const count=checks.filter(c=>c.checked).length; total+=checks.length; selected+=count;
+    document.getElementById(`count-${id}`).textContent=`${count}/${checks.length} seleccionados`;
+    document.getElementById(`sel-${id}`).disabled=count===checks.length;
+    document.getElementById(`clear-${id}`).disabled=count===0;
+  });
+  document.getElementById('global-status').textContent=`${selected} seleccionados`;
+  document.getElementById('select-all-main').disabled=selected===total;
+  document.getElementById('clear-all-main').disabled=selected===0;
+  document.getElementById('size-permisos').textContent=selected;
+}
+function selectedCount(id){return [...document.getElementById(id).selectedOptions].length;}
+function updateConfirm(){
+  const nombres=document.getElementById('nombres').value.trim();
+  const apellidos=document.getElementById('apellidos').value.trim();
+  document.getElementById('input-confirm-nombres').value=(nombres+' '+apellidos).trim();
+  document.getElementById('input-confirm-login').value=document.getElementById('login').value;
+  document.getElementById('input-confirm-password').value=document.getElementById('password').value;
+  document.getElementById('input-confirm-documento').value=document.getElementById('documento').value;
+  document.getElementById('input-confirm-direccion').value=document.getElementById('direccion').value;
+  const tipo=[...document.querySelectorAll('input[name="vendedor"],input[name="transportista"]')].filter(x=>x.checked).length;
+  document.getElementById('size-tipo-personal').textContent=tipo;
+  document.getElementById('size-tipos').innerHTML=`El personal tiene <strong>${tipo}</strong> tipo(s) seleccionado(s)`;
+  document.getElementById('size-lista-precios').textContent=selectedCount('selectmultiple-listas-precios');
+  document.getElementById('size-almacenes').textContent=selectedCount('selectmultiple-almacenes');
+  refreshCounts();
+}
+function togglePassword(id){const el=document.getElementById(id);el.type=el.type==='password'?'text':'password';}
+['login','password','documento','nombres','apellidos','direccion'].forEach(id=>document.addEventListener('input',e=>{if(e.target.id===id)updateConfirm()}));
+renderPermissions();updateConfirm();
+</script>
+</body>
+</html>

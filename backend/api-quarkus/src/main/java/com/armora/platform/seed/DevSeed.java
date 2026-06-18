@@ -24,20 +24,25 @@ public class DevSeed {
     @ConfigProperty(name = "app.environment", defaultValue = "local")
     String environment;
 
-    @ConfigProperty(name = "seed.admin.username", defaultValue = "aanyarin")
+    @ConfigProperty(name = "seed.admin.username", defaultValue = "admin")
     String adminUsername;
 
-    @ConfigProperty(name = "seed.admin.password", defaultValue = "aanyarin")
+    @ConfigProperty(name = "seed.admin.email", defaultValue = "__disabled__")
+    String adminEmail;
+
+    @ConfigProperty(name = "seed.admin.password", defaultValue = "__disabled__")
     String adminPassword;
 
     void onStart(@Observes StartupEvent ev) {
         if (!"local".equals(environment) && !"dev".equals(environment) && !"test".equals(environment)) {
             return;
         }
+        if (adminEmail == null || adminEmail.isBlank() || "__disabled__".equals(adminEmail)) {
+            return;
+        }
         if (adminPassword == null || adminPassword.isBlank() || "__disabled__".equals(adminPassword)) {
             return;
         }
-        String adminEmail = adminUsername + "@armora.local";
         try (Connection conn = dataSource.getConnection()) {
             try (PreparedStatement ps = conn.prepareStatement(
                     "SELECT id FROM usuarios WHERE correo = ? OR usuario = ?")) {
@@ -62,3 +67,4 @@ public class DevSeed {
         }
     }
 }
+
