@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Alert,
   Box,
@@ -34,10 +35,9 @@ type UbicacionItem = {
   nombre: string;
 };
 
-type CrearPersonalForm = {
+type EditarPersonalForm = {
   codigo: string;
   usuario: string;
-  clave: string;
   tipoDocumento: string;
   numeroDocumento: string;
   nombres: string;
@@ -71,11 +71,10 @@ type CrearPersonalForm = {
   esTransportista: boolean;
 };
 
-type CrearPersonalPayload = {
+type PersonalResponse = {
+  id: string;
+  usuarioId: string;
   nombresCompletos: string;
-  usuario: string;
-  correo: string;
-  clave: string;
   tipoDocumento: string;
   numeroDocumento: string;
   sexo?: string | null;
@@ -97,13 +96,34 @@ type CrearPersonalPayload = {
   fotoUrl?: string | null;
   esVendedor: boolean;
   esTransportista: boolean;
+  usuario: string;
+  ultimoAcceso: string | null;
 };
 
-type CrearPersonalResponse = {
-  id: string;
-  usuarioId: string;
+type EditarPersonalPayload = {
   nombresCompletos: string;
   usuario: string;
+  tipoDocumento: string;
+  numeroDocumento: string;
+  sexo?: string | null;
+  estadoCivil?: string | null;
+  fechaNacimiento?: string | null;
+  cargo?: string | null;
+  area?: string | null;
+  sede?: string | null;
+  estado?: string | null;
+  observaciones?: string | null;
+  emailContacto?: string | null;
+  emailPersonal?: string | null;
+  telefonoCelular?: string | null;
+  telefonoFijo?: string | null;
+  ubigeoCodigo?: string | null;
+  direccion?: string | null;
+  referencia?: string | null;
+  contactoEmergencia?: string | null;
+  fotoUrl?: string | null;
+  esVendedor: boolean;
+  esTransportista: boolean;
 };
 
 // ─── Constants ──────────────────────────────────────────────────────────────
@@ -264,10 +284,9 @@ const allPermissionValues = Object.entries(PERMISSION_GROUPS).flatMap(
   ([group, items]) => items.map((item) => `${group} > ${item}`),
 );
 
-const initialForm: CrearPersonalForm = {
-  codigo: 'PER-000001',
+const initialForm: EditarPersonalForm = {
+  codigo: '',
   usuario: '',
-  clave: '',
   tipoDocumento: 'DNI',
   numeroDocumento: '',
   nombres: '',
@@ -312,21 +331,15 @@ function normalize(s: string) {
     .toLowerCase();
 }
 
-function isEmail(value: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-}
-
 function cleanOptional(value?: string | null) {
   const trimmed = value?.trim();
   return trimmed || null;
 }
 
-function toPayload(form: CrearPersonalForm): CrearPersonalPayload {
+function toEditPayload(form: EditarPersonalForm): EditarPersonalPayload {
   return {
     nombresCompletos: `${form.nombres.trim()} ${form.apellidos.trim()}`.trim(),
     usuario: form.usuario.trim(),
-    correo: form.emailCorporativo.trim().toLowerCase() || `${form.usuario.trim()}@armora.local`,
-    clave: form.clave,
     tipoDocumento: form.tipoDocumento,
     numeroDocumento: form.numeroDocumento.trim(),
     sexo: cleanOptional(form.sexo),
@@ -351,14 +364,68 @@ function toPayload(form: CrearPersonalForm): CrearPersonalPayload {
   };
 }
 
-// ─── Component ──────────────────────────────────────────────────────────────
+function mapPersonalToForm(response: PersonalResponse): Partial<EditarPersonalForm> {
+  const nameParts = (response.nombresCompletos ?? '').split(/\s+/).filter(Boolean);
+  const nombres = nameParts[0] ?? '';
+  const apellidos = nameParts.slice(1).join(' ') ?? '';
 
-export default function CrearPersonalPage() {
-  const [form, setForm] = useState<CrearPersonalForm>(initialForm);
+  // Parse fechaNacimiento to yyyy-MM-dd
+  let fechaNacimiento = '';
+  if (response.fechaNacimiento) {
+    try {
+      const d = new Date(response.fechaNacimiento);
+      if (!isNaN(d.getTime())) {
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth() + 1).padStart(2, '0');
+        const dd = String(d.getDate()).padStart(2, '0');
+        fechaNacimiento = `${yyyy}-${mm}-${dd}`;
+      }
+    } catch {
+      fechaNacimiento = response.fechaNacimiento;
+    }
+  }
+
+  return {
+    codigo: response.id,
+    usuario: response.usuario ?? '',
+    tipoDocumento: response.tipoDocumento ?? 'DNI',
+    numeroDocumento: response.numeroDocumento ?? '',
+    nombres,
+    apellidos,
+    fechaNacimiento,
+    sexo: response.sexo ?? '',
+    estadoCivil: response.estadoCivil ?? '',
+    cargo: response.cargo ?? '',
+    area: response.area ?? '',
+    sede: response.sede ?? '',
+    estado: response.estado ?? 'Activo',
+    observaciones: response.observaciones ?? '',
+    emailCorporativo: response.emailContacto ?? '',
+    emailPersonal: response.emailPersonal ?? '',
+    celular: response.telefonoCelular ?? '',
+    telefono: response.telefonoFijo ?? '',
+    ubigeoCodigo: response.ubigeoCodigo ?? '',
+    direccion: response.direccion ?? '',
+    referencia: response.referencia ?? '',
+    contactoEmergencia: response.contactoEmergencia ?? '',
+    fotografiaPreview: response.fotoUrl ?? '',
+    esVendedor: response.esVendedor,
+    esTransportista: response.esTransportista,
+  };
+}
+
+// ─── Inner component (uses useSearchParams, needs Suspense wrapper) ─────────
+
+function EditarPersonalForm() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const id = searchParams.get('id');
+
+  const [form, setForm] = useState<EditarPersonalForm>(initialForm);
   const [loading, setLoading] = useState(false);
+  const [loadingData, setLoadingData] = useState(true);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
 
   // Scroll spy: qué sección está visible
   const [activeSection, setActiveSection] = useState(0);
@@ -372,9 +439,40 @@ export default function CrearPersonalPage() {
   const [loadingProv, setLoadingProv] = useState(false);
   const [loadingDist, setLoadingDist] = useState(false);
 
+  // ── Load personal data ─────────────────────────────────────────────────
+
+  useEffect(() => {
+    if (!id) {
+      setError('No se especificó un ID de personal.');
+      setLoadingData(false);
+      return;
+    }
+
+    setLoadingData(true);
+    setError('');
+
+    api
+      .get<PersonalResponse>(`/personal/${id}`)
+      .then((response) => {
+        if (!response) {
+          setError('No se encontraron datos del personal.');
+          return;
+        }
+        const mapped = mapPersonalToForm(response);
+        setForm((prev) => ({ ...prev, ...mapped }));
+      })
+      .catch((err) => {
+        setError(err instanceof Error ? err.message : 'Error al cargar datos del personal.');
+      })
+      .finally(() => {
+        setLoadingData(false);
+      });
+  }, [id]);
+
   // ── Scroll spy ──────────────────────────────────────────────────────────
 
   useEffect(() => {
+    if (loadingData) return;
     const observers: IntersectionObserver[] = [];
     const handleIntersect = (index: number) => (entries: IntersectionObserverEntry[]) => {
       for (const entry of entries) {
@@ -399,7 +497,8 @@ export default function CrearPersonalPage() {
     return () => {
       observers.forEach((o) => o.disconnect());
     };
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadingData]);
 
   // ── Cargar UBIGEO ───────────────────────────────────────────────────────
 
@@ -418,7 +517,6 @@ export default function CrearPersonalPage() {
     load();
   }, []);
 
-  // useEffect: al cambiar departamentoId, reset provincias y distritos
   useEffect(() => {
     if (!form.departamentoId) {
       setProvincias([]);
@@ -450,7 +548,6 @@ export default function CrearPersonalPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form.departamentoId]);
 
-  // useEffect: al cambiar provinciaId, reset distritos
   useEffect(() => {
     if (!form.provinciaId) {
       setDistritos([]);
@@ -478,7 +575,6 @@ export default function CrearPersonalPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form.provinciaId]);
 
-  // useEffect: capturar codigo distrito
   useEffect(() => {
     if (form.distritoId && distritos.length > 0) {
       const distrito = distritos.find((d) => d.id === form.distritoId);
@@ -507,9 +603,9 @@ export default function CrearPersonalPage() {
 
   // ── Handlers ────────────────────────────────────────────────────────────
 
-  const updateField = <K extends keyof CrearPersonalForm>(
+  const updateField = <K extends keyof EditarPersonalForm>(
     field: K,
-    value: CrearPersonalForm[K],
+    value: EditarPersonalForm[K],
   ) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
@@ -522,7 +618,6 @@ export default function CrearPersonalPage() {
     }
   };
 
-  // NOTE: In the HTML, permissions are stored as "group > item" values for uniqueness
   const handleGroupSelectAll = (group: string, select: boolean) => {
     const items = PERMISSION_GROUPS[group] ?? [];
     const groupPermissions = items.map((item) => `${group} > ${item}`);
@@ -557,7 +652,6 @@ export default function CrearPersonalPage() {
         form.nombres.trim() &&
           form.apellidos.trim() &&
           form.usuario.trim() &&
-          form.clave.trim() &&
           form.numeroDocumento.trim(),
       ),
     [form],
@@ -574,8 +668,6 @@ export default function CrearPersonalPage() {
     if (!form.nombres.trim()) return 'Ingresa los nombres.';
     if (!form.apellidos.trim()) return 'Ingresa los apellidos.';
     if (!form.usuario.trim()) return 'Ingresa el login de usuario.';
-    if (form.clave.trim().length < 6)
-      return 'La contraseña debe tener al menos 6 caracteres.';
     if (!form.numeroDocumento.trim()) return 'Ingresa el número de documento.';
     return '';
   };
@@ -585,6 +677,11 @@ export default function CrearPersonalPage() {
     setError('');
     setSuccess('');
 
+    if (!id) {
+      setError('No se especificó un ID de personal.');
+      return;
+    }
+
     const validationError = validate();
     if (validationError) {
       setError(validationError);
@@ -593,15 +690,14 @@ export default function CrearPersonalPage() {
 
     setLoading(true);
     try {
-      const created = await api.post<CrearPersonalResponse>(
-        '/personal',
-        toPayload(form),
-      );
-      setSuccess(`Personal creado correctamente: ${created.nombresCompletos}`);
-      setForm(initialForm);
+      await api.put(`/personal/${id}`, toEditPayload(form));
+      setSuccess('Cambios guardados correctamente.');
+      setTimeout(() => {
+        router.push('/personal/gestion-personal');
+      }, 1500);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : 'No se pudo crear el personal.',
+        err instanceof Error ? err.message : 'No se pudieron guardar los cambios.',
       );
     } finally {
       setLoading(false);
@@ -609,7 +705,6 @@ export default function CrearPersonalPage() {
   };
 
   const handleLimpiar = () => {
-    setForm(initialForm);
     setError('');
     setSuccess('');
   };
@@ -720,10 +815,37 @@ export default function CrearPersonalPage() {
     );
   }
 
+  // ── Loading state ──────────────────────────────────────────────────────
+
+  if (loadingData) {
+    return (
+      <AppLayout activePath="/personal/editar-personal" username="ALEJANDRO ANYARIN" role="admin">
+        <Box sx={{ textAlign: 'center', py: 8 }}>
+          <Typography color="text.secondary">Cargando datos del personal...</Typography>
+        </Box>
+      </AppLayout>
+    );
+  }
+
+  if (error && !form.usuario && !loadingData) {
+    return (
+      <AppLayout activePath="/personal/editar-personal" username="ALEJANDRO ANYARIN" role="admin">
+        <Box sx={{ maxWidth: 640, mx: 'auto', textAlign: 'center', py: 8 }}>
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {error}
+          </Alert>
+          <Button variant="outlined" onClick={() => router.push('/personal/gestion-personal')}>
+            Volver a gestión de personal
+          </Button>
+        </Box>
+      </AppLayout>
+    );
+  }
+
   // ── JSX ─────────────────────────────────────────────────────────────────
 
   return (
-    <AppLayout activePath="/personal/crear-personal" username="ALEJANDRO ANYARIN" role="admin">
+    <AppLayout activePath="/personal/editar-personal" username="ALEJANDRO ANYARIN" role="admin">
       <Box sx={{ maxWidth: 1280 }}>
         {/* Header with Title + Pills */}
         <Box
@@ -749,13 +871,13 @@ export default function CrearPersonalPage() {
           >
             <Box>
               <Typography variant="h2" sx={{ color: colors.primary[600], m: 0 }}>
-                Crear Personal
+                Editar Personal
               </Typography>
               <Typography
                 variant="body2"
                 sx={{ color: colors.neutral.textMuted, mt: 0.25 }}
               >
-                Formulario completo de registro de personal.
+                Modifica los datos del personal seleccionado.
               </Typography>
             </Box>
             <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
@@ -792,7 +914,7 @@ export default function CrearPersonalPage() {
             SECTION_IDS[0],
             0,
             'DIV 1 - Datos Personales',
-            'Código automático',
+            'Edición de datos',
             <Box
               sx={{
                 display: 'grid',
@@ -806,44 +928,19 @@ export default function CrearPersonalPage() {
                   disabled
                   value={form.codigo}
                   onChange={(e) => updateField('codigo', e.target.value)}
-                  helperText="Generado por sistema."
+                  helperText="Registro existente."
                 />
               ))}
               {renderField('Usuario / Login', (
                 <TextField
                   fullWidth
                   required
+                  disabled
                   placeholder="ej. aanyarin"
                   value={form.usuario}
                   onChange={(e) => updateField('usuario', e.target.value)}
                   inputProps={{ minLength: 5, maxLength: 32 }}
                 />
-              ))}
-              {renderField('Password', (
-                <Box sx={{ display: 'flex', gap: 1 }}>
-                  <TextField
-                    fullWidth
-                    required
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder="Clave de acceso"
-                    value={form.clave}
-                    onChange={(e) => updateField('clave', e.target.value)}
-                    inputProps={{ minLength: 6, maxLength: 32 }}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            size="small"
-                            onClick={() => setShowPassword(!showPassword)}
-                            edge="end"
-                          >
-                            {showPassword ? <VisibilityOff /> : <Visibility />}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </Box>
               ))}
               {renderField('Tipo Documento', (
                 <FormControl fullWidth size="small">
@@ -999,6 +1096,7 @@ export default function CrearPersonalPage() {
               {renderField('Email Corporativo', (
                 <TextField
                   fullWidth
+                  disabled
                   placeholder="correo@empresa.com"
                   value={form.emailCorporativo}
                   onChange={(e) => updateField('emailCorporativo', e.target.value)}
@@ -1597,27 +1695,6 @@ export default function CrearPersonalPage() {
                   fullWidth
                   disabled
                   size="small"
-                  label="Password"
-                  type={showPassword ? 'text' : 'password'}
-                  value={form.clave || '-'}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          size="small"
-                          onClick={() => setShowPassword(!showPassword)}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <TextField
-                  fullWidth
-                  disabled
-                  size="small"
                   label="Documento"
                   value={
                     form.numeroDocumento
@@ -1726,11 +1803,29 @@ export default function CrearPersonalPage() {
               disabled={loading || !canSubmit}
               sx={{ borderRadius: '10px' }}
             >
-              {loading ? 'Guardando...' : 'Crear Personal'}
+              {loading ? 'Guardando...' : 'Guardar cambios'}
             </Button>
           </Box>
         </Box>
       </Box>
     </AppLayout>
+  );
+}
+
+// ─── Exported wrapper with Suspense boundary for useSearchParams ──────────
+
+import { Suspense } from 'react';
+
+export default function EditarPersonalPage() {
+  return (
+    <Suspense fallback={
+      <AppLayout activePath="/personal/editar-personal" username="ALEJANDRO ANYARIN" role="admin">
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 400 }}>
+          <Typography color="text.secondary">Cargando...</Typography>
+        </Box>
+      </AppLayout>
+    }>
+      <EditarPersonalForm />
+    </Suspense>
   );
 }

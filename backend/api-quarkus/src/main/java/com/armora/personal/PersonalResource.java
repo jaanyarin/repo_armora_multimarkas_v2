@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.sql.DataSource;
@@ -16,6 +17,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
@@ -196,7 +198,7 @@ public class PersonalResource {
         try (Connection conn = dataSource.getConnection()) {
             conn.setAutoCommit(false);
             try {
-                // Verificar que el personal existe
+                // Verificar que el personal existe (con FOR UPDATE para bloquear fila)
                 String usuarioIdStr;
                 try (PreparedStatement ps = conn.prepareStatement(
                         "SELECT p.id, p.usuario_id FROM personal p WHERE p.id = ?::uuid FOR UPDATE")) {
@@ -209,19 +211,42 @@ public class PersonalResource {
                     }
                 }
 
-                // Actualizar datos del personal
+                // Validar que el numeroDocumento no pertenezca a otro registro
                 try (PreparedStatement ps = conn.prepareStatement(
-                        "UPDATE personal SET nombres_completos = ?, numero_documento = ?, email_contacto = ?, telefono_fijo = ?, telefono_celular = ?, direccion = ?, referencia = ?, es_vendedor = ?, es_transportista = ? WHERE id = ?::uuid")) {
+                        "SELECT COUNT(id) FROM personal WHERE numero_documento = ? AND id != ?::uuid")) {
+                    ps.setString(1, request.numeroDocumento());
+                    ps.setString(2, id);
+                    try (ResultSet rs = ps.executeQuery()) {
+                        rs.next();
+                        if (rs.getInt(1) > 0) {
+                            throw new WebApplicationException("El número de documento ya pertenece a otro registro",
+                                    Response.Status.CONFLICT);
+                        }
+                    }
+                }
+
+                // Actualizar datos del personal con todos los campos editables
+                try (PreparedStatement ps = conn.prepareStatement(
+                        "UPDATE personal SET nombres_completos = ?, tipo_documento = ?::tipo_documento_personal, " +
+                        "numero_documento = ?, sexo = ?::sexo_personal, estado_civil = ?::estado_civil_personal, " +
+                        "fecha_nacimiento = ?, email_contacto = ?, telefono_fijo = ?, telefono_celular = ?, " +
+                        "direccion = ?, referencia = ?, foto_url = ?, " +
+                        "es_vendedor = ?, es_transportista = ? WHERE id = ?::uuid")) {
                     ps.setString(1, request.nombresCompletos());
-                    ps.setString(2, request.numeroDocumento());
-                    ps.setString(3, request.emailContacto());
-                    ps.setString(4, request.telefonoFijo());
-                    ps.setString(5, request.telefonoCelular());
-                    ps.setString(6, request.direccion());
-                    ps.setString(7, request.referencia());
-                    ps.setBoolean(8, request.esVendedor() != null && request.esVendedor());
-                    ps.setBoolean(9, request.esTransportista() != null && request.esTransportista());
-                    ps.setString(10, id);
+                    ps.setString(2, request.tipoDocumento() != null ? request.tipoDocumento() : "DNI");
+                    ps.setString(3, request.numeroDocumento());
+                    ps.setString(4, request.sexo());
+                    ps.setString(5, request.estadoCivil());
+                    ps.setDate(6, request.fechaNacimiento() != null ? java.sql.Date.valueOf(request.fechaNacimiento()) : null);
+                    ps.setString(7, request.emailContacto());
+                    ps.setString(8, request.telefonoFijo());
+                    ps.setString(9, request.telefonoCelular());
+                    ps.setString(10, request.direccion());
+                    ps.setString(11, request.referencia());
+                    ps.setString(12, request.fotoUrl());
+                    ps.setBoolean(13, request.esVendedor() != null && request.esVendedor());
+                    ps.setBoolean(14, request.esTransportista() != null && request.esTransportista());
+                    ps.setString(15, id);
                     int updated = ps.executeUpdate();
                     if (updated == 0) {
                         throw new WebApplicationException("Personal no encontrado", Response.Status.NOT_FOUND);
@@ -238,6 +263,72 @@ public class PersonalResource {
             throw e;
         } catch (Exception e) {
             throw new WebApplicationException("Error al actualizar personal: " + e.getMessage(), Response.Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PATCH
+    @Path("/{id}/cambiar-clave")
+    @Operation(summary = "Cambiar contraseña del personal")
+    @RolesAllowed({"ADMINISTRADOR"})
+    public ResponseWrapper<Map<String, Object>> cambiarClave(@PathParam("id") String id, @Valid CambiarClaveRequest request) {
+        // Validar que nuevaClave tenga al menos 6 caracteres
+        if (request.nuevaClave() == null || request.nuevaClave().length() < 6) {
+            throw new WebApplicationException("La nueva contraseña debe tener al menos 6 caracteres",
+                    Response.Status.BAD_REQUEST);
+        }
+
+        // Validar que nuevaClave y confirmarClave coincidan
+        if (!request.nuevaClave().equals(request.confirmarClave())) {
+            throw new WebApplicationException("Las contraseñas no coinciden",
+                    Response.Status.BAD_REQUEST);
+        }
+
+        try (Connection conn = dataSource.getConnection()) {
+            conn.setAutoCommit(false);
+            try {
+                // Validar que el personal existe y obtener su usuario_id (con FOR UPDATE)
+                String usuarioId;
+                try (PreparedStatement ps = conn.prepareStatement(
+                        "SELECT p.id, u.id AS usuario_id FROM personal p " +
+                        "JOIN usuarios u ON u.id = p.usuario_id " +
+                        "WHERE p.id = ?::uuid FOR UPDATE")) {
+                    ps.setString(1, id);
+                    try (ResultSet rs = ps.executeQuery()) {
+                        if (!rs.next()) {
+                            throw new WebApplicationException("Personal no encontrado", Response.Status.NOT_FOUND);
+                        }
+                        usuarioId = rs.getString("usuario_id");
+                    }
+                }
+
+                // Hashear la nueva contraseña
+                String hash = BCrypt.hashpw(request.nuevaClave(), BCrypt.gensalt());
+
+                // Actualizar la contraseña en la tabla usuarios
+                try (PreparedStatement ps = conn.prepareStatement(
+                        "UPDATE usuarios SET clave_hash = ? WHERE id = ?::uuid")) {
+                    ps.setString(1, hash);
+                    ps.setString(2, usuarioId);
+                    int updated = ps.executeUpdate();
+                    if (updated == 0) {
+                        throw new WebApplicationException("Usuario no encontrado", Response.Status.NOT_FOUND);
+                    }
+                }
+
+                conn.commit();
+                return ResponseWrapper.ok(Map.of(
+                        "success", true,
+                        "message", "Contraseña actualizada correctamente"
+                ));
+            } catch (Exception e) {
+                conn.rollback();
+                throw e;
+            }
+        } catch (WebApplicationException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new WebApplicationException("Error al cambiar contraseña: " + e.getMessage(),
+                    Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -263,14 +354,24 @@ public class PersonalResource {
         String fotoUrl
     ) {}
 
+    public record CambiarClaveRequest(
+        @NotBlank String nuevaClave,
+        @NotBlank String confirmarClave
+    ) {}
+
     public record ActualizarPersonalRequest(
         @NotBlank String nombresCompletos,
+        String tipoDocumento,
         @NotBlank String numeroDocumento,
+        String sexo,
+        String estadoCivil,
+        String fechaNacimiento,
         String emailContacto,
         String telefonoFijo,
         String telefonoCelular,
         String direccion,
         String referencia,
+        String fotoUrl,
         Boolean esVendedor,
         Boolean esTransportista
     ) {}

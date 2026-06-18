@@ -71,6 +71,11 @@ export const api = {
       method: 'PUT',
       body: JSON.stringify(body),
     }),
+  patch: <T>(endpoint: string, body: unknown) =>
+    request<T>(endpoint, {
+      method: 'PATCH',
+      body: JSON.stringify(body),
+    }),
   health: () => api.get<{ status: string }>('/health'),
   version: () => api.get<{ version: string }>('/version'),
 };
