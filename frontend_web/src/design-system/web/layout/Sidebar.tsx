@@ -144,7 +144,7 @@ const sidebarCategories: NavCategory[] = [
     children: [
       { label: 'Gestion Zonas y Rutas', path: '/zonas-rutas/gestion-zonas-rutas' },
       { label: 'Habilitar Ventas en Rutas', path: '/zonas-rutas/habilitar-ventas-rutas' },
-      { label: 'Crear Mapa de Rutas', path: '#' },
+      { label: 'Crear Mapa de Rutas', path: '/mapas-rutas/crear-mapa-rutas' },
       { label: 'Gestion de Mapas de Rutas', path: '#' },
       { label: 'Cambio dia Atencion', path: '#' },
     ],
