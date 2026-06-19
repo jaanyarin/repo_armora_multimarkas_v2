@@ -76,6 +76,41 @@ export const api = {
       method: 'PATCH',
       body: JSON.stringify(body),
     }),
+  upload: async (endpoint: string, formData: FormData): Promise<unknown> => {
+    const url = `${API_BASE}${endpoint}`;
+    const headers = new Headers();
+    if (typeof window !== 'undefined') {
+      const token = window.localStorage.getItem('armora_token');
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+    }
+    // NO set Content-Type; browser sets multipart boundary
+    const res = await fetch(url, {
+      method: 'POST',
+      headers,
+      body: formData,
+    });
+    let body: unknown;
+    try {
+      body = await res.json();
+    } catch {
+      if (!res.ok) {
+        throw new Error(`Error ${res.status}: el servidor no devolvio JSON`);
+      }
+      throw new Error('Respuesta inesperada del servidor');
+    }
+    if (!res.ok) {
+      if (hasApiEnvelope<unknown>(body) && body.errors && body.errors.length > 0) {
+        throw new Error(body.errors[0].message);
+      }
+      throw new Error(`Error ${res.status}`);
+    }
+    if (hasApiEnvelope<unknown>(body) && 'data' in body) {
+      return body.data;
+    }
+    return body;
+  },
   health: () => api.get<{ status: string }>('/health'),
   version: () => api.get<{ version: string }>('/version'),
 };

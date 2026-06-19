@@ -43,15 +43,13 @@ public class PersonalResource {
     @Inject
     DataSource dataSource;
 
+    // =========================================================================
+    // CREATE
+    // =========================================================================
+
     @POST
     @Operation(summary = "Crear personal")
     public ResponseWrapper<PersonalResponse> crear(@Valid CrearPersonalRequest request) {
-        // 1. Crear usuario en tabla usuarios
-        // 2. Crear registro en tabla personal
-        // Usar transaccion con conn.setAutoCommit(false)
-        // Hash de password con BCrypt
-        // tipo_usuario = 'OPERADOR'
-        // estado = 'ACTIVO'
         try (Connection conn = dataSource.getConnection()) {
             conn.setAutoCommit(false);
             try {
@@ -81,10 +79,34 @@ public class PersonalResource {
                     }
                 }
 
-                // Insertar personal
+                // Insertar personal con TODOS los campos
                 UUID personalId;
                 try (PreparedStatement ps = conn.prepareStatement(
-                        "INSERT INTO personal (usuario_id, nombres_completos, tipo_documento, numero_documento, sexo, estado_civil, fecha_nacimiento, email_contacto, telefono_fijo, telefono_celular, direccion, referencia, es_vendedor, es_transportista, foto_url) VALUES (?, ?, ?::tipo_documento_personal, ?, ?::sexo_personal, ?::estado_civil_personal, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id")) {
+                        "INSERT INTO personal "
+                        + "(usuario_id, nombres_completos, tipo_documento, numero_documento, "
+                        + "sexo, estado_civil, fecha_nacimiento, "
+                        + "cargo, area, sede, "
+                        + "email_contacto, email_personal, "
+                        + "telefono_fijo, telefono_celular, "
+                        + "direccion, referencia, "
+                        + "contacto_emergencia, "
+                        + "departamento_nombre, provincia_nombre, distrito_nombre, "
+                        + "ubigeo_codigo, "
+                        + "observaciones, "
+                        + "foto_url, "
+                        + "es_vendedor, es_transportista) "
+                        + "VALUES (?, ?, ?::tipo_documento_personal, ?, "
+                        + "?::sexo_personal, ?::estado_civil_personal, ?, "
+                        + "?, ?, ?, "
+                        + "?, ?, "
+                        + "?, ?, "
+                        + "?, ?, "
+                        + "?, "
+                        + "?, ?, ?, "
+                        + "?, "
+                        + "?, "
+                        + "?, "
+                        + "?, ?) RETURNING id")) {
                     ps.setObject(1, usuarioId);
                     ps.setString(2, request.nombresCompletos());
                     ps.setString(3, request.tipoDocumento() != null ? request.tipoDocumento() : "DNI");
@@ -92,14 +114,24 @@ public class PersonalResource {
                     ps.setString(5, request.sexo());
                     ps.setString(6, request.estadoCivil());
                     ps.setDate(7, request.fechaNacimiento() != null ? java.sql.Date.valueOf(request.fechaNacimiento()) : null);
-                    ps.setString(8, request.emailContacto());
-                    ps.setString(9, request.telefonoFijo());
-                    ps.setString(10, request.telefonoCelular());
-                    ps.setString(11, request.direccion());
-                    ps.setString(12, request.referencia());
-                    ps.setBoolean(13, request.esVendedor() != null && request.esVendedor());
-                    ps.setBoolean(14, request.esTransportista() != null && request.esTransportista());
-                    ps.setString(15, request.fotoUrl());
+                    ps.setString(8, request.cargo());
+                    ps.setString(9, request.area());
+                    ps.setString(10, request.sede());
+                    ps.setString(11, request.emailContacto());
+                    ps.setString(12, request.emailPersonal());
+                    ps.setString(13, request.telefonoFijo());
+                    ps.setString(14, request.telefonoCelular());
+                    ps.setString(15, request.direccion());
+                    ps.setString(16, request.referencia());
+                    ps.setString(17, request.contactoEmergencia());
+                    ps.setString(18, request.departamentoNombre());
+                    ps.setString(19, request.provinciaNombre());
+                    ps.setString(20, request.distritoNombre());
+                    ps.setString(21, request.ubigeoCodigo());
+                    ps.setString(22, request.observaciones());
+                    ps.setString(23, request.fotoUrl());
+                    ps.setBoolean(24, request.esVendedor() != null && request.esVendedor());
+                    ps.setBoolean(25, request.esTransportista() != null && request.esTransportista());
                     try (ResultSet rs = ps.executeQuery()) {
                         rs.next();
                         personalId = UUID.fromString(rs.getString("id"));
@@ -107,7 +139,8 @@ public class PersonalResource {
                 }
 
                 conn.commit();
-                return ResponseWrapper.ok(new PersonalResponse(personalId.toString(), usuarioId.toString(), request.nombresCompletos(), request.usuario()));
+                return ResponseWrapper.ok(new PersonalResponse(personalId.toString(), usuarioId.toString(),
+                        request.nombresCompletos(), request.usuario()));
             } catch (Exception e) {
                 conn.rollback();
                 throw e;
@@ -119,12 +152,23 @@ public class PersonalResource {
         }
     }
 
+    // =========================================================================
+    // LIST
+    // =========================================================================
+
     @GET
     @Operation(summary = "Listar personal")
     public ResponseWrapper<List<PersonalListResponse>> listar() {
         try (Connection conn = dataSource.getConnection();
                 PreparedStatement ps = conn.prepareStatement(
-                        "SELECT p.id, p.nombres_completos, p.tipo_documento, p.numero_documento, p.telefono_celular, p.email_contacto, p.es_vendedor, p.es_transportista, u.usuario, u.estado, u.ultimo_acceso_en FROM personal p JOIN usuarios u ON u.id = p.usuario_id ORDER BY p.nombres_completos")) {
+                        "SELECT p.id, p.nombres_completos, p.tipo_documento, p.numero_documento, "
+                        + "p.telefono_celular, p.email_contacto, "
+                        + "p.es_vendedor, p.es_transportista, "
+                        + "p.cargo, p.area, p.sede, "
+                        + "u.usuario, u.estado, u.ultimo_acceso_en "
+                        + "FROM personal p "
+                        + "JOIN usuarios u ON u.id = p.usuario_id "
+                        + "ORDER BY p.nombres_completos")) {
             try (ResultSet rs = ps.executeQuery()) {
                 List<PersonalListResponse> list = new ArrayList<>();
                 while (rs.next()) {
@@ -140,6 +184,9 @@ public class PersonalResource {
                         rs.getBoolean("es_transportista"),
                         rs.getString("usuario"),
                         rs.getString("estado"),
+                        rs.getString("cargo"),
+                        rs.getString("area"),
+                        rs.getString("sede"),
                         ultimoAcceso != null ? ultimoAcceso.toString() : null
                     ));
                 }
@@ -150,13 +197,20 @@ public class PersonalResource {
         }
     }
 
+    // =========================================================================
+    // GET BY ID (con TODOS los campos)
+    // =========================================================================
+
     @GET
     @Path("/{id}")
-    @Operation(summary = "Obtener personal por ID")
+    @Operation(summary = "Obtener personal por ID (todos los campos)")
     public ResponseWrapper<PersonalDetalleResponse> obtener(@PathParam("id") String id) {
         try (Connection conn = dataSource.getConnection();
                 PreparedStatement ps = conn.prepareStatement(
-                        "SELECT p.*, u.usuario, u.correo, u.estado, u.ultimo_acceso_en FROM personal p JOIN usuarios u ON u.id = p.usuario_id WHERE p.id = ?::uuid")) {
+                        "SELECT p.*, u.usuario, u.correo, u.estado, u.ultimo_acceso_en "
+                        + "FROM personal p "
+                        + "JOIN usuarios u ON u.id = p.usuario_id "
+                        + "WHERE p.id = ?::uuid")) {
             ps.setString(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (!rs.next()) {
@@ -172,15 +226,26 @@ public class PersonalResource {
                     rs.getString("sexo"),
                     rs.getString("estado_civil"),
                     rs.getDate("fecha_nacimiento") != null ? rs.getDate("fecha_nacimiento").toString() : null,
+                    rs.getString("cargo"),
+                    rs.getString("area"),
+                    rs.getString("sede"),
                     rs.getString("email_contacto"),
+                    rs.getString("email_personal"),
                     rs.getString("telefono_fijo"),
                     rs.getString("telefono_celular"),
                     rs.getString("direccion"),
                     rs.getString("referencia"),
-                    rs.getString("usuario"),
-                    rs.getString("estado"),
+                    rs.getString("contacto_emergencia"),
+                    rs.getString("departamento_nombre"),
+                    rs.getString("provincia_nombre"),
+                    rs.getString("distrito_nombre"),
+                    rs.getString("ubigeo_codigo"),
+                    rs.getString("observaciones"),
+                    rs.getString("foto_url"),
                     rs.getBoolean("es_vendedor"),
                     rs.getBoolean("es_transportista"),
+                    rs.getString("usuario"),
+                    rs.getString("estado"),
                     ultimoAcceso != null ? ultimoAcceso.toString() : null
                 ));
             }
@@ -191,14 +256,18 @@ public class PersonalResource {
         }
     }
 
+    // =========================================================================
+    // UPDATE (con TODOS los campos)
+    // =========================================================================
+
     @PUT
     @Path("/{id}")
-    @Operation(summary = "Actualizar personal")
+    @Operation(summary = "Actualizar personal (todos los campos)")
     public ResponseWrapper<PersonalResponse> actualizar(@PathParam("id") String id, @Valid ActualizarPersonalRequest request) {
         try (Connection conn = dataSource.getConnection()) {
             conn.setAutoCommit(false);
             try {
-                // Verificar que el personal existe (con FOR UPDATE para bloquear fila)
+                // Verificar que el personal existe (con FOR UPDATE)
                 String usuarioIdStr;
                 try (PreparedStatement ps = conn.prepareStatement(
                         "SELECT p.id, p.usuario_id FROM personal p WHERE p.id = ?::uuid FOR UPDATE")) {
@@ -225,28 +294,59 @@ public class PersonalResource {
                     }
                 }
 
-                // Actualizar datos del personal con todos los campos editables
+                // Actualizar datos del personal con TODOS los campos editables
                 try (PreparedStatement ps = conn.prepareStatement(
-                        "UPDATE personal SET nombres_completos = ?, tipo_documento = ?::tipo_documento_personal, " +
-                        "numero_documento = ?, sexo = ?::sexo_personal, estado_civil = ?::estado_civil_personal, " +
-                        "fecha_nacimiento = ?, email_contacto = ?, telefono_fijo = ?, telefono_celular = ?, " +
-                        "direccion = ?, referencia = ?, foto_url = ?, " +
-                        "es_vendedor = ?, es_transportista = ? WHERE id = ?::uuid")) {
+                        "UPDATE personal SET "
+                        + "nombres_completos = ?, "
+                        + "tipo_documento = ?::tipo_documento_personal, "
+                        + "numero_documento = ?, "
+                        + "sexo = ?::sexo_personal, "
+                        + "estado_civil = ?::estado_civil_personal, "
+                        + "fecha_nacimiento = ?, "
+                        + "cargo = ?, "
+                        + "area = ?, "
+                        + "sede = ?, "
+                        + "email_contacto = ?, "
+                        + "email_personal = ?, "
+                        + "telefono_fijo = ?, "
+                        + "telefono_celular = ?, "
+                        + "direccion = ?, "
+                        + "referencia = ?, "
+                        + "contacto_emergencia = ?, "
+                        + "departamento_nombre = ?, "
+                        + "provincia_nombre = ?, "
+                        + "distrito_nombre = ?, "
+                        + "ubigeo_codigo = ?, "
+                        + "observaciones = ?, "
+                        + "foto_url = ?, "
+                        + "es_vendedor = ?, "
+                        + "es_transportista = ? "
+                        + "WHERE id = ?::uuid")) {
                     ps.setString(1, request.nombresCompletos());
                     ps.setString(2, request.tipoDocumento() != null ? request.tipoDocumento() : "DNI");
                     ps.setString(3, request.numeroDocumento());
                     ps.setString(4, request.sexo());
                     ps.setString(5, request.estadoCivil());
                     ps.setDate(6, request.fechaNacimiento() != null ? java.sql.Date.valueOf(request.fechaNacimiento()) : null);
-                    ps.setString(7, request.emailContacto());
-                    ps.setString(8, request.telefonoFijo());
-                    ps.setString(9, request.telefonoCelular());
-                    ps.setString(10, request.direccion());
-                    ps.setString(11, request.referencia());
-                    ps.setString(12, request.fotoUrl());
-                    ps.setBoolean(13, request.esVendedor() != null && request.esVendedor());
-                    ps.setBoolean(14, request.esTransportista() != null && request.esTransportista());
-                    ps.setString(15, id);
+                    ps.setString(7, request.cargo());
+                    ps.setString(8, request.area());
+                    ps.setString(9, request.sede());
+                    ps.setString(10, request.emailContacto());
+                    ps.setString(11, request.emailPersonal());
+                    ps.setString(12, request.telefonoFijo());
+                    ps.setString(13, request.telefonoCelular());
+                    ps.setString(14, request.direccion());
+                    ps.setString(15, request.referencia());
+                    ps.setString(16, request.contactoEmergencia());
+                    ps.setString(17, request.departamentoNombre());
+                    ps.setString(18, request.provinciaNombre());
+                    ps.setString(19, request.distritoNombre());
+                    ps.setString(20, request.ubigeoCodigo());
+                    ps.setString(21, request.observaciones());
+                    ps.setString(22, request.fotoUrl());
+                    ps.setBoolean(23, request.esVendedor() != null && request.esVendedor());
+                    ps.setBoolean(24, request.esTransportista() != null && request.esTransportista());
+                    ps.setString(25, id);
                     int updated = ps.executeUpdate();
                     if (updated == 0) {
                         throw new WebApplicationException("Personal no encontrado", Response.Status.NOT_FOUND);
@@ -266,32 +366,31 @@ public class PersonalResource {
         }
     }
 
+    // =========================================================================
+    // CHANGE PASSWORD
+    // =========================================================================
+
     @PATCH
     @Path("/{id}/cambiar-clave")
     @Operation(summary = "Cambiar contraseña del personal")
     @RolesAllowed({"ADMINISTRADOR"})
     public ResponseWrapper<Map<String, Object>> cambiarClave(@PathParam("id") String id, @Valid CambiarClaveRequest request) {
-        // Validar que nuevaClave tenga al menos 6 caracteres
         if (request.nuevaClave() == null || request.nuevaClave().length() < 6) {
             throw new WebApplicationException("La nueva contraseña debe tener al menos 6 caracteres",
                     Response.Status.BAD_REQUEST);
         }
-
-        // Validar que nuevaClave y confirmarClave coincidan
         if (!request.nuevaClave().equals(request.confirmarClave())) {
             throw new WebApplicationException("Las contraseñas no coinciden",
                     Response.Status.BAD_REQUEST);
         }
-
         try (Connection conn = dataSource.getConnection()) {
             conn.setAutoCommit(false);
             try {
-                // Validar que el personal existe y obtener su usuario_id (con FOR UPDATE)
                 String usuarioId;
                 try (PreparedStatement ps = conn.prepareStatement(
-                        "SELECT p.id, u.id AS usuario_id FROM personal p " +
-                        "JOIN usuarios u ON u.id = p.usuario_id " +
-                        "WHERE p.id = ?::uuid FOR UPDATE")) {
+                        "SELECT p.id, u.id AS usuario_id FROM personal p "
+                        + "JOIN usuarios u ON u.id = p.usuario_id "
+                        + "WHERE p.id = ?::uuid FOR UPDATE")) {
                     ps.setString(1, id);
                     try (ResultSet rs = ps.executeQuery()) {
                         if (!rs.next()) {
@@ -300,11 +399,7 @@ public class PersonalResource {
                         usuarioId = rs.getString("usuario_id");
                     }
                 }
-
-                // Hashear la nueva contraseña
                 String hash = BCrypt.hashpw(request.nuevaClave(), BCrypt.gensalt());
-
-                // Actualizar la contraseña en la tabla usuarios
                 try (PreparedStatement ps = conn.prepareStatement(
                         "UPDATE usuarios SET clave_hash = ? WHERE id = ?::uuid")) {
                     ps.setString(1, hash);
@@ -314,7 +409,6 @@ public class PersonalResource {
                         throw new WebApplicationException("Usuario no encontrado", Response.Status.NOT_FOUND);
                     }
                 }
-
                 conn.commit();
                 return ResponseWrapper.ok(Map.of(
                         "success", true,
@@ -332,7 +426,256 @@ public class PersonalResource {
         }
     }
 
-    // --- Records ---
+    // =========================================================================
+    // PERMISOS endpoints
+    // =========================================================================
+
+    @GET
+    @Path("/{id}/permisos")
+    @Operation(summary = "Obtener permisos del personal")
+    public ResponseWrapper<List<PersonalPermisoResponse>> listarPermisos(@PathParam("id") String id) {
+        try (Connection conn = dataSource.getConnection();
+                PreparedStatement ps = conn.prepareStatement(
+                        "SELECT codigo_permiso, grupo FROM personal_permisos WHERE personal_id = ?::uuid ORDER BY grupo, codigo_permiso")) {
+            ps.setString(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                List<PersonalPermisoResponse> list = new ArrayList<>();
+                while (rs.next()) {
+                    list.add(new PersonalPermisoResponse(
+                        rs.getString("codigo_permiso"),
+                        rs.getString("grupo")
+                    ));
+                }
+                return ResponseWrapper.ok(list);
+            }
+        } catch (Exception e) {
+            throw new WebApplicationException("Error al listar permisos del personal", Response.Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PUT
+    @Path("/{id}/permisos")
+    @Operation(summary = "Reemplazar todos los permisos del personal")
+    @RolesAllowed({"ADMINISTRADOR"})
+    public ResponseWrapper<Map<String, Object>> reemplazarPermisos(
+            @PathParam("id") String id, List<PersonalPermisoRequest> permisos) {
+        try (Connection conn = dataSource.getConnection()) {
+            conn.setAutoCommit(false);
+            try {
+                // Verificar que el personal existe
+                try (PreparedStatement ps = conn.prepareStatement(
+                        "SELECT id FROM personal WHERE id = ?::uuid FOR UPDATE")) {
+                    ps.setString(1, id);
+                    try (ResultSet rs = ps.executeQuery()) {
+                        if (!rs.next()) {
+                            throw new WebApplicationException("Personal no encontrado", Response.Status.NOT_FOUND);
+                        }
+                    }
+                }
+
+                // Eliminar permisos existentes
+                try (PreparedStatement ps = conn.prepareStatement(
+                        "DELETE FROM personal_permisos WHERE personal_id = ?::uuid")) {
+                    ps.setString(1, id);
+                    ps.executeUpdate();
+                }
+
+                // Insertar nuevos permisos
+                if (permisos != null && !permisos.isEmpty()) {
+                    try (PreparedStatement ps = conn.prepareStatement(
+                            "INSERT INTO personal_permisos (personal_id, codigo_permiso, grupo) VALUES (?::uuid, ?, ?)")) {
+                        for (PersonalPermisoRequest p : permisos) {
+                            ps.setString(1, id);
+                            ps.setString(2, p.codigoPermiso());
+                            ps.setString(3, p.grupo());
+                            ps.addBatch();
+                        }
+                        ps.executeBatch();
+                    }
+                }
+
+                conn.commit();
+                return ResponseWrapper.ok(Map.of(
+                        "success", true,
+                        "count", permisos != null ? permisos.size() : 0
+                ));
+            } catch (Exception e) {
+                conn.rollback();
+                throw e;
+            }
+        } catch (WebApplicationException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new WebApplicationException("Error al actualizar permisos del personal: " + e.getMessage(),
+                    Response.Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // =========================================================================
+    // RECURSOS endpoints (rutas, almacenes, listas_precios)
+    // =========================================================================
+
+    @GET
+    @Path("/{id}/recursos")
+    @Operation(summary = "Obtener recursos asignados del personal")
+    public ResponseWrapper<PersonalRecursosResponse> obtenerRecursos(@PathParam("id") String id) {
+        try (Connection conn = dataSource.getConnection()) {
+            // Verificar personal existe
+            try (PreparedStatement ps = conn.prepareStatement("SELECT id FROM personal WHERE id = ?::uuid")) {
+                ps.setString(1, id);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (!rs.next()) {
+                        throw new WebApplicationException("Personal no encontrado", Response.Status.NOT_FOUND);
+                    }
+                }
+            }
+
+            // Rutas
+            List<String> rutasIds = new ArrayList<>();
+            List<String> rutasNombres = new ArrayList<>();
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "SELECT pmr.mapa_ruta_id, mr.nombre "
+                    + "FROM personal_mapas_rutas pmr "
+                    + "JOIN mapas_rutas mr ON mr.id = pmr.mapa_ruta_id "
+                    + "WHERE pmr.personal_id = ?::uuid")) {
+                ps.setString(1, id);
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        rutasIds.add(rs.getString("mapa_ruta_id"));
+                        rutasNombres.add(rs.getString("nombre"));
+                    }
+                }
+            }
+
+            // Almacenes
+            List<String> almacenesIds = new ArrayList<>();
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "SELECT almacen_id FROM personal_almacenes WHERE personal_id = ?::uuid")) {
+                ps.setString(1, id);
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        almacenesIds.add(rs.getString("almacen_id"));
+                    }
+                }
+            }
+
+            // Listas de Precios
+            List<String> listasIds = new ArrayList<>();
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "SELECT lista_precio_id FROM personal_listas_precios WHERE personal_id = ?::uuid")) {
+                ps.setString(1, id);
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        listasIds.add(rs.getString("lista_precio_id"));
+                    }
+                }
+            }
+
+            return ResponseWrapper.ok(new PersonalRecursosResponse(
+                rutasIds, rutasNombres, almacenesIds, listasIds
+            ));
+        } catch (WebApplicationException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new WebApplicationException("Error al obtener recursos del personal", Response.Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PUT
+    @Path("/{id}/recursos")
+    @Operation(summary = "Reemplazar recursos asignados del personal")
+    @RolesAllowed({"ADMINISTRADOR"})
+    public ResponseWrapper<Map<String, Object>> reemplazarRecursos(
+            @PathParam("id") String id, PersonalRecursosRequest request) {
+        try (Connection conn = dataSource.getConnection()) {
+            conn.setAutoCommit(false);
+            try {
+                // Verificar personal existe
+                try (PreparedStatement ps = conn.prepareStatement(
+                        "SELECT id FROM personal WHERE id = ?::uuid FOR UPDATE")) {
+                    ps.setString(1, id);
+                    try (ResultSet rs = ps.executeQuery()) {
+                        if (!rs.next()) {
+                            throw new WebApplicationException("Personal no encontrado", Response.Status.NOT_FOUND);
+                        }
+                    }
+                }
+
+                // Limpiar recursos existentes
+                try (PreparedStatement ps = conn.prepareStatement(
+                        "DELETE FROM personal_mapas_rutas WHERE personal_id = ?::uuid")) {
+                    ps.setString(1, id);
+                    ps.executeUpdate();
+                }
+                try (PreparedStatement ps = conn.prepareStatement(
+                        "DELETE FROM personal_almacenes WHERE personal_id = ?::uuid")) {
+                    ps.setString(1, id);
+                    ps.executeUpdate();
+                }
+                try (PreparedStatement ps = conn.prepareStatement(
+                        "DELETE FROM personal_listas_precios WHERE personal_id = ?::uuid")) {
+                    ps.setString(1, id);
+                    ps.executeUpdate();
+                }
+
+                // Insertar rutas
+                if (request.rutasIds() != null) {
+                    try (PreparedStatement ps = conn.prepareStatement(
+                            "INSERT INTO personal_mapas_rutas (personal_id, mapa_ruta_id) VALUES (?::uuid, ?::uuid)")) {
+                        for (String rutaId : request.rutasIds()) {
+                            ps.setString(1, id);
+                            ps.setString(2, rutaId);
+                            ps.addBatch();
+                        }
+                        ps.executeBatch();
+                    }
+                }
+
+                // Insertar almacenes
+                if (request.almacenesIds() != null) {
+                    try (PreparedStatement ps = conn.prepareStatement(
+                            "INSERT INTO personal_almacenes (personal_id, almacen_id) VALUES (?::uuid, ?::uuid)")) {
+                        for (String almId : request.almacenesIds()) {
+                            ps.setString(1, id);
+                            ps.setString(2, almId);
+                            ps.addBatch();
+                        }
+                        ps.executeBatch();
+                    }
+                }
+
+                // Insertar listas de precios
+                if (request.listasPreciosIds() != null) {
+                    try (PreparedStatement ps = conn.prepareStatement(
+                            "INSERT INTO personal_listas_precios (personal_id, lista_precio_id) VALUES (?::uuid, ?::uuid)")) {
+                        for (String lpId : request.listasPreciosIds()) {
+                            ps.setString(1, id);
+                            ps.setString(2, lpId);
+                            ps.addBatch();
+                        }
+                        ps.executeBatch();
+                    }
+                }
+
+                conn.commit();
+                return ResponseWrapper.ok(Map.of("success", true));
+            } catch (Exception e) {
+                conn.rollback();
+                throw e;
+            }
+        } catch (WebApplicationException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new WebApplicationException("Error al actualizar recursos del personal: " + e.getMessage(),
+                    Response.Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // =========================================================================
+    // DTOs / RECORDS
+    // =========================================================================
+
+    // --- CREATE REQUEST ---
 
     public record CrearPersonalRequest(
         @NotBlank String nombresCompletos,
@@ -344,20 +687,27 @@ public class PersonalResource {
         String sexo,
         String estadoCivil,
         String fechaNacimiento,
+        String cargo,
+        String area,
+        String sede,
         String emailContacto,
+        String emailPersonal,
         String telefonoFijo,
         String telefonoCelular,
         String direccion,
         String referencia,
+        String contactoEmergencia,
+        String departamentoNombre,
+        String provinciaNombre,
+        String distritoNombre,
+        String ubigeoCodigo,
+        String observaciones,
+        String fotoUrl,
         Boolean esVendedor,
-        Boolean esTransportista,
-        String fotoUrl
+        Boolean esTransportista
     ) {}
 
-    public record CambiarClaveRequest(
-        @NotBlank String nuevaClave,
-        @NotBlank String confirmarClave
-    ) {}
+    // --- UPDATE REQUEST ---
 
     public record ActualizarPersonalRequest(
         @NotBlank String nombresCompletos,
@@ -366,17 +716,69 @@ public class PersonalResource {
         String sexo,
         String estadoCivil,
         String fechaNacimiento,
+        String cargo,
+        String area,
+        String sede,
         String emailContacto,
+        String emailPersonal,
         String telefonoFijo,
         String telefonoCelular,
         String direccion,
         String referencia,
+        String contactoEmergencia,
+        String departamentoNombre,
+        String provinciaNombre,
+        String distritoNombre,
+        String ubigeoCodigo,
+        String observaciones,
         String fotoUrl,
         Boolean esVendedor,
         Boolean esTransportista
     ) {}
 
+    // --- CHANGE PASSWORD REQUEST ---
+
+    public record CambiarClaveRequest(
+        @NotBlank String nuevaClave,
+        @NotBlank String confirmarClave
+    ) {}
+
+    // --- PERMISO REQUEST ---
+
+    public record PersonalPermisoRequest(
+        String codigoPermiso,
+        String grupo
+    ) {}
+
+    // --- PERMISO RESPONSE ---
+
+    public record PersonalPermisoResponse(
+        String codigoPermiso,
+        String grupo
+    ) {}
+
+    // --- RECURSOS REQUEST ---
+
+    public record PersonalRecursosRequest(
+        List<String> rutasIds,
+        List<String> almacenesIds,
+        List<String> listasPreciosIds
+    ) {}
+
+    // --- RECURSOS RESPONSE ---
+
+    public record PersonalRecursosResponse(
+        List<String> rutasIds,
+        List<String> rutasNombres,
+        List<String> almacenesIds,
+        List<String> listasPreciosIds
+    ) {}
+
+    // --- SIMPLE RESPONSE ---
+
     public record PersonalResponse(String id, String usuarioId, String nombresCompletos, String usuario) {}
+
+    // --- LIST RESPONSE ---
 
     public record PersonalListResponse(
         String id,
@@ -389,8 +791,13 @@ public class PersonalResource {
         boolean esTransportista,
         String usuario,
         String estado,
+        String cargo,
+        String area,
+        String sede,
         String ultimoAcceso
     ) {}
+
+    // --- DETALLE RESPONSE (TODOS los campos) ---
 
     public record PersonalDetalleResponse(
         String id,
@@ -401,17 +808,26 @@ public class PersonalResource {
         String sexo,
         String estadoCivil,
         String fechaNacimiento,
+        String cargo,
+        String area,
+        String sede,
         String emailContacto,
+        String emailPersonal,
         String telefonoFijo,
         String telefonoCelular,
         String direccion,
         String referencia,
-        String usuario,
-        String estado,
+        String contactoEmergencia,
+        String departamentoNombre,
+        String provinciaNombre,
+        String distritoNombre,
+        String ubigeoCodigo,
+        String observaciones,
+        String fotoUrl,
         boolean esVendedor,
         boolean esTransportista,
+        String usuario,
+        String estado,
         String ultimoAcceso
     ) {}
 }
-
-

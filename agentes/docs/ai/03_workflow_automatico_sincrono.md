@@ -16,6 +16,7 @@ Este protocolo aplica a todos los agentes definidos en `opencode.json` y a todos
 6. Sin mocks productivos: mocks, stubs, seeds o datos fake solo pueden existir en contexto `dev`, `test` o documentacion, nunca conectados a produccion.
 7. Cambios criticos requieren revision cruzada: stock, pedidos, pagos, SUNAT, permisos, precios, auditoria y datos financieros siempre pasan por Security y QA.
 8. No operar por prueba y error: antes de editar, cada agente debe leer el contexto minimo y justificar el cambio con base en SDD, contrato o arquitectura.
+9. Matching DTO ↔ BD obligatorio: antes de dar por terminado un endpoint CRUD, `armora-database` y `armora-backend-quarkus` deben verificar explicitamente que cada campo del DTO de request tenga una columna en la BD y que cada columna de la BD tenga un campo en el DTO de response. Sin esta verificacion, el handoff no puede cerrarse.
 
 ## Entrada estandar de una tarea
 

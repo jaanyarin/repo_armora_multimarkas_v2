@@ -84,7 +84,6 @@ type CrearPersonalPayload = {
   cargo?: string | null;
   area?: string | null;
   sede?: string | null;
-  estado?: string | null;
   observaciones?: string | null;
   emailContacto?: string | null;
   emailPersonal?: string | null;
@@ -94,6 +93,9 @@ type CrearPersonalPayload = {
   direccion?: string | null;
   referencia?: string | null;
   contactoEmergencia?: string | null;
+  departamentoNombre?: string | null;
+  provinciaNombre?: string | null;
+  distritoNombre?: string | null;
   fotoUrl?: string | null;
   esVendedor: boolean;
   esTransportista: boolean;
@@ -104,6 +106,13 @@ type CrearPersonalResponse = {
   usuarioId: string;
   nombresCompletos: string;
   usuario: string;
+};
+
+type UploadResponse = {
+  url: string;
+  fileName: string;
+  originalName: string;
+  size: number;
 };
 
 // ─── Constants ──────────────────────────────────────────────────────────────
@@ -335,17 +344,19 @@ function toPayload(form: CrearPersonalForm): CrearPersonalPayload {
     cargo: cleanOptional(form.cargo),
     area: cleanOptional(form.area),
     sede: cleanOptional(form.sede),
-    estado: cleanOptional(form.estado),
-    observaciones: cleanOptional(form.observaciones),
     emailContacto: cleanOptional(form.emailCorporativo)?.toLowerCase() || null,
     emailPersonal: cleanOptional(form.emailPersonal)?.toLowerCase() || null,
     telefonoCelular: cleanOptional(form.celular),
     telefonoFijo: cleanOptional(form.telefono),
-    ubigeoCodigo: cleanOptional(form.ubigeoCodigo),
     direccion: cleanOptional(form.direccion),
     referencia: cleanOptional(form.referencia),
     contactoEmergencia: cleanOptional(form.contactoEmergencia),
-    fotoUrl: form.fotografiaPreview || null,
+    departamentoNombre: null, // Will be populated after ubigeo resolve
+    provinciaNombre: null,
+    distritoNombre: null,
+    ubigeoCodigo: cleanOptional(form.ubigeoCodigo),
+    observaciones: cleanOptional(form.observaciones),
+    fotoUrl: null, // Will upload separately
     esVendedor: form.esVendedor,
     esTransportista: form.esTransportista,
   };
@@ -593,10 +604,48 @@ export default function CrearPersonalPage() {
 
     setLoading(true);
     try {
+      // 1. Upload photo first if present
+      let fotoUrl: string | null = null;
+      if (form.fotografiaPreview && form.fotografiaPreview.startsWith('data:')) {
+        const blob = await (await fetch(form.fotografiaPreview)).blob();
+        const formData = new FormData();
+        formData.append('file', blob, form.fotografiaNombre || 'photo.jpg');
+        const uploadResult = await api.upload('/files/upload', formData) as UploadResponse;
+        fotoUrl = uploadResult.url;
+      }
+
+      // 2. Create personal
+      const payload = toPayload(form);
+      payload.fotoUrl = fotoUrl;
       const created = await api.post<CrearPersonalResponse>(
         '/personal',
-        toPayload(form),
+        payload,
       );
+
+      // 3. Save permissions if any selected
+      if (form.permisos.length > 0) {
+        const permisosPayload = form.permisos.map((p: string) => {
+          const [grupo, ...rest] = p.split(' > ');
+          return { codigoPermiso: p, grupo };
+        });
+        await api.put(`/personal/${created.id}/permisos`, permisosPayload);
+      }
+
+      // 4. Save recursos
+      const recursosPayload: Record<string, unknown> = {};
+      if (form.mapaRuta) {
+        recursosPayload.rutasIds = [form.mapaRuta];
+      }
+      if (form.almacenes.length > 0) {
+        recursosPayload.almacenesIds = form.almacenes;
+      }
+      if (form.listasPrecios.length > 0) {
+        recursosPayload.listasPreciosIds = form.listasPrecios;
+      }
+      if (Object.keys(recursosPayload).length > 0) {
+        await api.put(`/personal/${created.id}/recursos`, recursosPayload);
+      }
+
       setSuccess(`Personal creado correctamente: ${created.nombresCompletos}`);
       setForm(initialForm);
     } catch (err) {

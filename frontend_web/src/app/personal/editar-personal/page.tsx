@@ -83,26 +83,28 @@ type PersonalResponse = {
   cargo?: string | null;
   area?: string | null;
   sede?: string | null;
-  estado?: string | null;
-  observaciones?: string | null;
   emailContacto?: string | null;
   emailPersonal?: string | null;
   telefonoCelular?: string | null;
   telefonoFijo?: string | null;
-  ubigeoCodigo?: string | null;
   direccion?: string | null;
   referencia?: string | null;
   contactoEmergencia?: string | null;
+  departamentoNombre?: string | null;
+  provinciaNombre?: string | null;
+  distritoNombre?: string | null;
+  ubigeoCodigo?: string | null;
+  observaciones?: string | null;
   fotoUrl?: string | null;
   esVendedor: boolean;
   esTransportista: boolean;
   usuario: string;
+  estado: string;
   ultimoAcceso: string | null;
 };
 
 type EditarPersonalPayload = {
   nombresCompletos: string;
-  usuario: string;
   tipoDocumento: string;
   numeroDocumento: string;
   sexo?: string | null;
@@ -111,19 +113,40 @@ type EditarPersonalPayload = {
   cargo?: string | null;
   area?: string | null;
   sede?: string | null;
-  estado?: string | null;
   observaciones?: string | null;
   emailContacto?: string | null;
   emailPersonal?: string | null;
   telefonoCelular?: string | null;
   telefonoFijo?: string | null;
   ubigeoCodigo?: string | null;
+  departamentoNombre?: string | null;
+  provinciaNombre?: string | null;
+  distritoNombre?: string | null;
   direccion?: string | null;
   referencia?: string | null;
   contactoEmergencia?: string | null;
   fotoUrl?: string | null;
   esVendedor: boolean;
   esTransportista: boolean;
+};
+
+type PermisoResponse = {
+  codigoPermiso: string;
+  grupo: string;
+};
+
+type RecursosResponse = {
+  rutasIds: string[];
+  rutasNombres: string[];
+  almacenesIds: string[];
+  listasPreciosIds: string[];
+};
+
+type UploadResponse = {
+  url: string;
+  fileName: string;
+  originalName: string;
+  size: number;
 };
 
 // ─── Constants ──────────────────────────────────────────────────────────────
@@ -339,7 +362,6 @@ function cleanOptional(value?: string | null) {
 function toEditPayload(form: EditarPersonalForm): EditarPersonalPayload {
   return {
     nombresCompletos: `${form.nombres.trim()} ${form.apellidos.trim()}`.trim(),
-    usuario: form.usuario.trim(),
     tipoDocumento: form.tipoDocumento,
     numeroDocumento: form.numeroDocumento.trim(),
     sexo: cleanOptional(form.sexo),
@@ -348,13 +370,15 @@ function toEditPayload(form: EditarPersonalForm): EditarPersonalPayload {
     cargo: cleanOptional(form.cargo),
     area: cleanOptional(form.area),
     sede: cleanOptional(form.sede),
-    estado: cleanOptional(form.estado),
     observaciones: cleanOptional(form.observaciones),
     emailContacto: cleanOptional(form.emailCorporativo)?.toLowerCase() || null,
     emailPersonal: cleanOptional(form.emailPersonal)?.toLowerCase() || null,
     telefonoCelular: cleanOptional(form.celular),
     telefonoFijo: cleanOptional(form.telefono),
     ubigeoCodigo: cleanOptional(form.ubigeoCodigo),
+    departamentoNombre: null,
+    provinciaNombre: null,
+    distritoNombre: null,
     direccion: cleanOptional(form.direccion),
     referencia: cleanOptional(form.referencia),
     contactoEmergencia: cleanOptional(form.contactoEmergencia),
@@ -453,12 +477,41 @@ function EditarPersonalForm() {
 
     api
       .get<PersonalResponse>(`/personal/${id}`)
-      .then((response) => {
+      .then(async (response) => {
         if (!response) {
           setError('No se encontraron datos del personal.');
           return;
         }
         const mapped = mapPersonalToForm(response);
+
+        // Load permisos
+        try {
+          const permisos = await api.get<PermisoResponse[]>(`/personal/${id}/permisos`);
+          if (permisos && permisos.length > 0) {
+            mapped.permisos = permisos.map((p: PermisoResponse) => p.codigoPermiso);
+          }
+        } catch {
+          // permisos may not exist yet, that's ok
+        }
+
+        // Load recursos
+        try {
+          const recursos = await api.get<RecursosResponse>(`/personal/${id}/recursos`);
+          if (recursos) {
+            if (recursos.rutasIds && recursos.rutasIds.length > 0) {
+              mapped.mapaRuta = recursos.rutasIds[0];
+            }
+            if (recursos.almacenesIds) {
+              mapped.almacenes = recursos.almacenesIds;
+            }
+            if (recursos.listasPreciosIds) {
+              mapped.listasPrecios = recursos.listasPreciosIds;
+            }
+          }
+        } catch {
+          // recursos may not exist yet, that's ok
+        }
+
         setForm((prev) => ({ ...prev, ...mapped }));
       })
       .catch((err) => {
@@ -690,7 +743,49 @@ function EditarPersonalForm() {
 
     setLoading(true);
     try {
-      await api.put(`/personal/${id}`, toEditPayload(form));
+      // 1. Upload new photo if changed (base64 only, not URL)
+      let payload = toEditPayload(form);
+      if (form.fotografiaPreview && form.fotografiaPreview.startsWith('data:')) {
+        const blob = await (await fetch(form.fotografiaPreview)).blob();
+        const formData = new FormData();
+        formData.append('file', blob, form.fotografiaNombre || 'photo.jpg');
+        const uploadResult = await api.upload('/files/upload', formData) as UploadResponse;
+        payload.fotoUrl = uploadResult.url;
+      }
+
+      // 2. Save personal data
+      await api.put(`/personal/${id}`, payload);
+
+      // 3. Save permisos
+      if (form.permisos.length > 0) {
+        const permisosPayload = form.permisos.map((p: string) => {
+          const [grupo, ...rest] = p.split(' > ');
+          return { codigoPermiso: p, grupo };
+        });
+        await api.put(`/personal/${id}/permisos`, permisosPayload);
+      } else {
+        await api.put(`/personal/${id}/permisos`, []);
+      }
+
+      // 4. Save recursos
+      const recursosPayload: Record<string, unknown> = {};
+      if (form.mapaRuta) {
+        recursosPayload.rutasIds = [form.mapaRuta];
+      } else {
+        recursosPayload.rutasIds = [];
+      }
+      if (form.almacenes.length > 0) {
+        recursosPayload.almacenesIds = form.almacenes;
+      } else {
+        recursosPayload.almacenesIds = [];
+      }
+      if (form.listasPrecios.length > 0) {
+        recursosPayload.listasPreciosIds = form.listasPrecios;
+      } else {
+        recursosPayload.listasPreciosIds = [];
+      }
+      await api.put(`/personal/${id}/recursos`, recursosPayload);
+
       setSuccess('Cambios guardados correctamente.');
       setTimeout(() => {
         router.push('/personal/gestion-personal');
