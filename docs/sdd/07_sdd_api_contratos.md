@@ -89,6 +89,179 @@ POST `/roles`
 
 PUT `/roles/{id}/permissions`
 
+## Personal (staff)
+
+GET `/personal`
+
+Query params:
+
+- `page` (default 1)
+- `limit` (default 20)
+- `search` (nombre, documento)
+- `esVendedor`
+- `esTransportista`
+
+Respuesta:
+
+```json
+{
+  "data": {
+    "items": [
+      {
+        "id": "uuid",
+        "nombresCompletos": "Juan Perez",
+        "tipoDocumento": "DNI",
+        "numeroDocumento": "12345678",
+        "cargo": "Vendedor",
+        "area": "Ventas",
+        "sede": "Lima Centro",
+        "estado": "ACTIVO"
+      }
+    ],
+    "total": 42,
+    "page": 1,
+    "limit": 20
+  }
+}
+```
+
+POST `/personal`
+
+Crea un nuevo registro de personal. Request:
+
+```json
+{
+  "nombresCompletos": "Juan Perez",
+  "tipoDocumento": "DNI",
+  "numeroDocumento": "12345678",
+  "sexo": "MASCULINO",
+  "estadoCivil": "SOLTERO",
+  "fechaNacimiento": "1990-01-15",
+  "cargo": "Vendedor",
+  "area": "Ventas",
+  "sede": "Lima Centro",
+  "emailContacto": "juan@armora.com",
+  "emailPersonal": "juan@gmail.com",
+  "telefonoFijo": "01-1234567",
+  "telefonoCelular": "987654321",
+  "direccion": "Av. Siempre Viva 123",
+  "referencia": "Cerca del parque",
+  "contactoEmergencia": "Maria Perez / 987654322",
+  "ubigeoCodigo": "150101",
+  "departamentoNombre": "Lima",
+  "provinciaNombre": "Lima",
+  "distritoNombre": "Lima",
+  "fotoUrl": "/files/photos/uuid-foto.jpg",
+  "esVendedor": true,
+  "esTransportista": false,
+  "observaciones": "Vendedor zona norte"
+}
+```
+
+GET `/personal/{id}`
+
+Retorna detalle completo con los 29 campos del personal + usuario asociado.
+
+PUT `/personal/{id}`
+
+Actualiza datos del personal. Mismos campos que POST.
+
+PATCH `/personal/{id}/cambiar-clave`
+
+Solo ADMINISTRADOR. Request:
+
+```json
+{
+  "claveTemporal": "Temp2026!",
+  "exigirCambio": true
+}
+```
+
+### Permisos de personal
+
+GET `/personal/{id}/permisos`
+
+Retorna lista de permisos de modulo asignados:
+
+```json
+{
+  "data": [
+    { "codigoPermiso": "Almacenes > Crear Inventario", "grupo": "Almacenes" },
+    { "codigoPermiso": "Ventas > Ver Ventas", "grupo": "Ventas" }
+  ]
+}
+```
+
+PUT `/personal/{id}/permisos`
+
+Reemplaza todos los permisos del personal (envio batch). Solo ADMINISTRADOR.
+
+```json
+{
+  "permisos": [
+    { "codigoPermiso": "Almacenes > Crear Inventario", "grupo": "Almacenes" }
+  ]
+}
+```
+
+### Recursos asignados
+
+GET `/personal/{id}/recursos`
+
+Retorna rutas, almacenes y listas de precios asignadas:
+
+```json
+{
+  "data": {
+    "rutasIds": ["uuid1", "uuid2"],
+    "rutasNombres": ["Ruta Norte", "Ruta Sur"],
+    "almacenesIds": ["uuid3"],
+    "listasPreciosIds": ["uuid4"]
+  }
+}
+```
+
+PUT `/personal/{id}/recursos`
+
+Reemplaza todos los recursos asignados. Solo ADMINISTRADOR.
+
+```json
+{
+  "rutasIds": ["uuid1", "uuid2"],
+  "almacenesIds": ["uuid3"],
+  "listasPreciosIds": ["uuid4"]
+}
+```
+
+## Files (fotos / archivos)
+
+POST `/files/upload`
+
+Sube un archivo de foto (multipart). Extensiones permitidas: `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`. Tamaño maximo: 5MB.
+
+Request: `Content-Type: multipart/form-data`
+
+| Campo | Tipo | Descripcion |
+|---|---|---|
+| file | FileUpload | Archivo de imagen |
+
+Response:
+
+```json
+{
+  "data": {
+    "url": "/files/photos/uuid-foto.jpg",
+    "fileName": "uuid-foto.jpg",
+    "originalName": "foto_perfil.jpg",
+    "size": 123456
+  }
+}
+```
+
+GET `/files/photos/{fileName}`
+
+Sirve el archivo de foto estatico (dev mode; en produccion lo sirve Nginx/Caddy directamente).
+
 ## Clientes
 
 GET `/customers`

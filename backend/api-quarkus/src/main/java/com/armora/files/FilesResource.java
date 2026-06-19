@@ -10,12 +10,15 @@ import java.util.UUID;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.StreamingOutput;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -26,7 +29,6 @@ import org.jboss.resteasy.reactive.multipart.FileUpload;
 import com.armora.platform.api.ResponseWrapper;
 
 @Path("/files")
-@Produces(MediaType.APPLICATION_JSON)
 @Tag(name = "Files")
 @RolesAllowed({"ADMINISTRADOR", "OPERADOR"})
 public class FilesResource {
@@ -34,9 +36,14 @@ public class FilesResource {
     @ConfigProperty(name = "quarkus.http.body.uploads-directory", defaultValue = "uploads/photos")
     String uploadsDir;
 
+    // =========================================================================
+    // UPLOAD
+    // =========================================================================
+
     @POST
     @Path("/upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Subir archivo (foto)")
     public ResponseWrapper<Map<String, Object>> upload(@RestForm("file") FileUpload file) {
         if (file == null || file.filePath() == null) {
@@ -97,6 +104,58 @@ public class FilesResource {
         } catch (IOException e) {
             throw new WebApplicationException("Error al guardar el archivo: " + e.getMessage(),
                     Response.Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // =========================================================================
+    // SERVE PHOTO (dev mode — en prod lo sirve Nginx)
+    // =========================================================================
+
+    @GET
+    @Path("/photos/{fileName}")
+    @Produces("image/jpeg, image/png, image/gif, image/webp")
+    @Operation(summary = "Servir foto (dev mode)")
+    public Response servePhoto(@PathParam("fileName") String fileName) {
+        if (fileName == null || fileName.isBlank() || fileName.contains("..") || fileName.contains("/") || fileName.contains("\\")) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Nombre de archivo inválido")
+                    .build();
+        }
+
+        java.nio.file.Path filePath = Paths.get(uploadsDir, fileName);
+
+        if (!Files.exists(filePath) || !Files.isReadable(filePath)) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("Archivo no encontrado")
+                    .build();
+        }
+
+        try {
+            String contentType = Files.probeContentType(filePath);
+            if (contentType == null) {
+                contentType = "application/octet-stream";
+            }
+
+            long fileSize = Files.size(filePath);
+            StreamingOutput stream = output -> {
+                try (InputStream in = Files.newInputStream(filePath)) {
+                    byte[] buffer = new byte[8192];
+                    int bytesRead;
+                    while ((bytesRead = in.read(buffer)) != -1) {
+                        output.write(buffer, 0, bytesRead);
+                    }
+                }
+            };
+
+            return Response.ok(stream)
+                    .type(contentType)
+                    .header("Content-Length", fileSize)
+                    .header("Cache-Control", "private, max-age=3600")
+                    .build();
+        } catch (IOException e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Error al leer el archivo")
+                    .build();
         }
     }
 }

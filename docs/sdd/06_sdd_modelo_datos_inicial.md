@@ -27,6 +27,106 @@ Columnas normalizadas: `creado_en`, `actualizado_en`, `clave_hash`.
 
 > Nota: No editar V1 luego de compartida. Nuevas tablas deben entrar por migraciones incrementales (V2, V3, ...).
 
+## Mapeo conceptual a fisico (V2-V5 migrations)
+
+| Concepto (ingles) | Tabla fisica | Migracion | Estado |
+|---|---|---|---|
+| Staff/Employee | `personal` | V2 | Creada |
+| Route | `mapas_rutas` | V2 | Creada |
+| PersonalRoutes | `personal_mapas_rutas` | V2 | Creada |
+| PersonalWarehouses | `personal_almacenes` | V2 | Creada |
+| PersonalPriceLists | `personal_listas_precios` | V2 | Creada |
+| Ubigeo | `ubigeo` | V3 | Creada |
+| SeedUbigeo | `ubigeo` (datos) | V4 | Poblada |
+| PersonalPermissions | `personal_permisos` | V5 | Creada |
+| Cargo | `personal.cargo` | V5 | Columna agregada |
+| Area | `personal.area` | V5 | Columna agregada |
+| Sede | `personal.sede` | V5 | Columna agregada |
+
+## Personal (staff / employees)
+
+### personal
+
+| Columna | Tipo | Descripcion |
+|---|---|---|
+| id | uuid PK | Identificador unico |
+| usuario_id | uuid FK -> usuarios | Cuenta de usuario asociada |
+| nombres_completos | varchar(255) | Nombres y apellidos |
+| tipo_documento | enum(tipo_documento_personal) | DNI, CEXT, CDIP, RUC, PASS, etc. |
+| numero_documento | varchar(20) | Numero de documento |
+| sexo | enum(sexo_personal) | MASCULINO, FEMENINO, etc. |
+| estado_civil | enum(estado_civil_personal) | SOLTERO, CASADO, etc. |
+| fecha_nacimiento | date | Fecha de nacimiento |
+| cargo | varchar(180) | Cargo laboral |
+| area | varchar(180) | Area/departamento |
+| sede | varchar(180) | Sede de trabajo |
+| email_contacto | varchar(180) | Correo de contacto |
+| email_personal | varchar(180) | Correo personal |
+| telefono_fijo | varchar(20) | Telefono fijo |
+| telefono_celular | varchar(20) | Telefono celular |
+| direccion | text | Direccion domicilio |
+| referencia | text | Referencia de direccion |
+| contacto_emergencia | text | Nombre y telefono de emergencia |
+| ubigeo_codigo | varchar(10) | Codigo ubigeo |
+| departamento_nombre | varchar(100) | Departamento (texto legible) |
+| provincia_nombre | varchar(100) | Provincia (texto legible) |
+| distrito_nombre | varchar(100) | Distrito (texto legible) |
+| foto_url | text | URL de foto de perfil |
+| es_vendedor | boolean | Indica si es vendedor |
+| es_transportista | boolean | Indica si es transportista |
+| observaciones | text | Notas adicionales |
+| creado_en | timestamptz | Fecha de creacion |
+| actualizado_en | timestamptz | Fecha de actualizacion |
+
+Constraints:
+- `uq_personal_usuario`: unico por usuario_id
+- `uq_personal_documento`: unico por (tipo_documento, numero_documento)
+- `fk_personal_usuario`: FK a usuarios ON DELETE CASCADE
+
+### personal_permisos
+
+| Columna | Tipo | Descripcion |
+|---|---|---|
+| personal_id | uuid PK, FK -> personal | Personal asociado |
+| codigo_permiso | varchar(255) PK | Codigo del permiso (ej. "Almacenes > Crear Inventario") |
+| grupo | varchar(100) | Grupo de modulo del permiso |
+| creado_en | timestamptz | Fecha de creacion |
+
+### mapas_rutas
+
+| Columna | Tipo | Descripcion |
+|---|---|---|
+| id | uuid PK | Identificador unico |
+| nombre | varchar(140) UNIQUE | Nombre de la ruta |
+| descripcion | text | Descripcion |
+| estado | enum(estado_registro) | ACTIVO, INACTIVO, BLOQUEADO |
+| creado_en | timestamptz | Fecha de creacion |
+| actualizado_en | timestamptz | Fecha de actualizacion |
+
+### personal_mapas_rutas (junction)
+
+| Columna | Tipo | Descripcion |
+|---|---|---|
+| personal_id | uuid PK, FK -> personal | Personal |
+| mapa_ruta_id | uuid PK, FK -> mapas_rutas | Ruta asignada |
+| creado_en | timestamptz | Fecha de asignacion |
+
+### personal_almacenes (junction)
+
+| Columna | Tipo | Descripcion |
+|---|---|---|
+| personal_id | uuid PK, FK -> personal | Personal |
+| almacen_id | uuid PK | Almacen asignado (FK futura a almacenes) |
+| creado_en | timestamptz | Fecha de asignacion |
+
+### personal_listas_precios (junction)
+
+| Columna | Tipo | Descripcion |
+|---|---|---|
+| personal_id | uuid PK, FK -> personal | Personal |
+| lista_precio_id | uuid PK | Lista de precio asignada (FK futura a listas_precios) |
+| creado_en | timestamptz | Fecha de asignacion |
+
 ## Identidad y permisos
 
 User:

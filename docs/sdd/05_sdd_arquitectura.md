@@ -62,6 +62,14 @@ UsersModule:
 
 - Usuarios internos, clientes y proveedores con cuenta.
 
+PersonalModule:
+
+- Staff/empleados: nombres, documento, cargo, area, sede, contacto.
+- Permisos de modulo por personal.
+- Recursos asignados: rutas, almacenes, listas de precios.
+- Foto de perfil via `/files/upload`.
+- Cambio de clave temporal.
+
 CustomersModule:
 
 - Clientes, direcciones, contactos, condiciones comerciales.

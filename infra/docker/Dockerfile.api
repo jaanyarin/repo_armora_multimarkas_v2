@@ -1,0 +1,20 @@
+# =============================================================================
+# Dockerfile — Quarkus API (Producción)
+# =============================================================================
+# Build: mvn package en multi-stage
+# =============================================================================
+
+# ---- Stage 1: Build ----
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /build
+COPY backend/api-quarkus/pom.xml .
+RUN mvn dependency:go-offline -B
+COPY backend/api-quarkus/src ./src
+RUN mvn package -DskipTests -B
+
+# ---- Stage 2: Run ----
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY --from=build /build/target/*-runner.jar app.jar
+EXPOSE 8885
+ENTRYPOINT ["java", "-jar", "app.jar"]
