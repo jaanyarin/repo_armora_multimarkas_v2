@@ -63,6 +63,7 @@ Este tablero debe actualizarse cada vez que una tarea cambie de estado o requier
 | F2-014 | Security Review + workflow rule ARMORA #11 | lista | `armora-security` | `armora-architect`, `armora-sdd-manager` | F2-013 | Revisión de seguridad de endpoints de personal y files. Nueva regla ARMORA #11 agregada al workflow: matching DTO↔BD obligatorio. | `docs/ai_workflow/F2-014_security_review_workflow_rule.md` |
 | F2-015 | Agregar campo estado (ACTIVO/INACTIVO/BLOQUEADO) a personal - BD, backend y frontend | lista | `armora-architect` | `armora-database`, `armora-backend-quarkus`, `armora-frontend-web`, `armora-qa` | F2-011 | Migracion V6 aplicada, DTOs incluyen estado, INSERT/UPDATE persisten estado, GET devuelve estado, QA E2E pasa | Este task (armora-sdd-manager) |
 | F2-016 | Gestion Zonas y Rutas: migraciones, API, UI CRUD y poligono | lista | `armora-architect` | `armora-product-owner`, `armora-ui-ux`, `armora-database`, `armora-backend-quarkus`, `armora-frontend-web`, `armora-security`, `armora-qa`, `armora-sdd-manager` | F2-015 | V7/V8 crean zonas_rutas y zonas_rutas_poligonos; API /zonas-rutas valida UUID/estado/color/GeoJSON; admin web lista, crea, edita, activa/inactiva, elimina y gestiona poligono; builds backend/frontend pasan sin levantar servicios | `docs/ai_workflow/F2-016_gestion_zonas_rutas.md` |
+| F2-017 | Habilitar Ventas en Rutas: UI operativa y accion masiva | documentada | `armora-frontend-web` | `armora-ui-ux`, `armora-architect`, `armora-qa` | F2-016 | Pantalla `/zonas-rutas/habilitar-ventas-rutas` creada; sidebar enlazado; filtros, seleccion masiva y confirmacion implementados; handoff documentado | `docs/ai_workflow/F2-017_habilitar_ventas_rutas.md` |
 
 ## Plantilla de nueva tarea
 
@@ -106,8 +107,5 @@ Riesgos abiertos:
 Validaciones pendientes:
 Siguiente agente recomendado:
 ```
-
-
-
 
 
