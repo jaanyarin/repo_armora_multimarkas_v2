@@ -445,7 +445,9 @@ function mapPersonalToForm(response: PersonalResponse): Partial<EditarPersonalFo
     cargo: response.cargo ?? '',
     area: response.area ?? '',
     sede: response.sede ?? '',
-    estado: response.estado ?? 'Activo',
+    estado: response.estado
+      ? response.estado.charAt(0).toUpperCase() + response.estado.slice(1).toLowerCase()
+      : 'Activo',
     observaciones: response.observaciones ?? '',
     emailCorporativo: response.emailContacto ?? '',
     emailPersonal: response.emailPersonal ?? '',
