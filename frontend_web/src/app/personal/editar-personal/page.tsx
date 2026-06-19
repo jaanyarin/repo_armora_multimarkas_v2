@@ -435,6 +435,9 @@ function mapPersonalToForm(response: PersonalResponse): Partial<EditarPersonalFo
     celular: response.telefonoCelular ?? '',
     telefono: response.telefonoFijo ?? '',
     ubigeoCodigo: response.ubigeoCodigo ?? '',
+    departamentoNombre: response.departamentoNombre ?? '',
+    provinciaNombre: response.provinciaNombre ?? '',
+    distritoNombre: response.distritoNombre ?? '',
     direccion: response.direccion ?? '',
     referencia: response.referencia ?? '',
     contactoEmergencia: response.contactoEmergencia ?? '',
@@ -468,6 +471,7 @@ function EditarPersonalForm() {
   const [loadingDep, setLoadingDep] = useState(false);
   const [loadingProv, setLoadingProv] = useState(false);
   const [loadingDist, setLoadingDist] = useState(false);
+  const [editandoUbicacion, setEditandoUbicacion] = useState(false);
 
   // ── Load personal data ─────────────────────────────────────────────────
 
@@ -1238,62 +1242,87 @@ function EditarPersonalForm() {
                   onChange={(e) => updateField('telefono', e.target.value)}
                 />
               ))}
-              {renderField('Departamento', (
-                <FormControl fullWidth size="small" disabled={loadingDep}>
-                  <Select
-                    value={form.departamentoId}
-                    onChange={(e) => updateField('departamentoId', e.target.value)}
-                    displayEmpty
-                  >
-                    <MenuItem value="">Seleccione departamento</MenuItem>
-                    {departamentos.map((dep) => (
-                      <MenuItem key={dep.id} value={dep.id}>
-                        {dep.nombre}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              ))}
-              {renderField('Provincia', (
-                <FormControl
-                  fullWidth
-                  size="small"
-                  disabled={!form.departamentoId || loadingProv}
-                >
-                  <Select
-                    value={form.provinciaId}
-                    onChange={(e) => updateField('provinciaId', e.target.value)}
-                    displayEmpty
-                  >
-                    <MenuItem value="">Seleccione provincia</MenuItem>
-                    {provincias.map((prov) => (
-                      <MenuItem key={prov.id} value={prov.id}>
-                        {prov.nombre}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              ))}
-              {renderField('Distrito', (
-                <FormControl
-                  fullWidth
-                  size="small"
-                  disabled={!form.provinciaId || loadingDist}
-                >
-                  <Select
-                    value={form.distritoId}
-                    onChange={(e) => updateField('distritoId', e.target.value)}
-                    displayEmpty
-                  >
-                    <MenuItem value="">Seleccione distrito</MenuItem>
-                    {distritos.map((dist) => (
-                      <MenuItem key={dist.id} value={dist.id}>
-                        {dist.nombre}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              ))}
+              {!editandoUbicacion && form.departamentoNombre ? (
+                <Box sx={{ gridColumn: '1 / -1' }}>
+                  <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
+                    <Typography variant="body1" sx={{ fontWeight: 600, color: '#1D2939' }}>
+                      {form.departamentoNombre} / {form.provinciaNombre} / {form.distritoNombre}
+                    </Typography>
+                    <Typography variant="caption" sx={{ color: '#667085' }}>
+                      (Código: {form.ubigeoCodigo || '—'})
+                    </Typography>
+                    <Button size="small" variant="outlined" onClick={() => setEditandoUbicacion(true)}>
+                      Editar ubicación
+                    </Button>
+                  </Box>
+                </Box>
+              ) : (
+                <>
+                  {renderField('Departamento', (
+                    <FormControl fullWidth size="small" disabled={loadingDep}>
+                      <Select
+                        value={form.departamentoId}
+                        onChange={(e) => updateField('departamentoId', e.target.value)}
+                        displayEmpty
+                      >
+                        <MenuItem value="">Seleccione departamento</MenuItem>
+                        {departamentos.map((dep) => (
+                          <MenuItem key={dep.id} value={dep.id}>
+                            {dep.nombre}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  ))}
+                  {renderField('Provincia', (
+                    <FormControl
+                      fullWidth
+                      size="small"
+                      disabled={!form.departamentoId || loadingProv}
+                    >
+                      <Select
+                        value={form.provinciaId}
+                        onChange={(e) => updateField('provinciaId', e.target.value)}
+                        displayEmpty
+                      >
+                        <MenuItem value="">Seleccione provincia</MenuItem>
+                        {provincias.map((prov) => (
+                          <MenuItem key={prov.id} value={prov.id}>
+                            {prov.nombre}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  ))}
+                  {renderField('Distrito', (
+                    <FormControl
+                      fullWidth
+                      size="small"
+                      disabled={!form.provinciaId || loadingDist}
+                    >
+                      <Select
+                        value={form.distritoId}
+                        onChange={(e) => updateField('distritoId', e.target.value)}
+                        displayEmpty
+                      >
+                        <MenuItem value="">Seleccione distrito</MenuItem>
+                        {distritos.map((dist) => (
+                          <MenuItem key={dist.id} value={dist.id}>
+                            {dist.nombre}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  ))}
+                  {form.departamentoNombre && (
+                    <Box sx={{ gridColumn: '1 / -1' }}>
+                      <Button size="small" onClick={() => setEditandoUbicacion(false)}>
+                        Cancelar cambio
+                      </Button>
+                    </Box>
+                  )}
+                </>
+              )}
               {renderField('Contacto Emergencia', (
                 <TextField
                   fullWidth
