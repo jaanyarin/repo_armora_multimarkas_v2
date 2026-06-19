@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gestión de Zonas y Rutas - Polígono</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+  <style>
+    :root{
+      --black:#111827;--black-2:#1f2937;--gray:#6b7280;--border:#e5e7eb;--bg:#f5f7fb;--white:#fff;
+      --primary:#111827;--blue:#2563eb;--green:#16a34a;--red:#dc2626;--amber:#f59e0b;
+    }
+    *{box-sizing:border-box} body{margin:0;font-family:Calibri,Arial,sans-serif;background:var(--bg);color:var(--black)}
+    .topbar{height:58px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 22px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+    .brand{display:flex;gap:12px;align-items:center;font-weight:700}.logo{width:36px;height:36px;border-radius:10px;background:#111827;color:#fff;display:grid;place-items:center}.user{font-size:13px;color:#374151;text-align:right}
+    .layout{display:grid;grid-template-columns:390px 1fr;gap:18px;padding:18px;height:calc(100vh - 58px)}
+    .panel,.map-card{background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:0 12px 30px rgba(15,23,42,.07);overflow:hidden}
+    .panel{display:flex;flex-direction:column}.panel-head{padding:18px;border-bottom:1px solid var(--border)}
+    h1{margin:0;font-size:21px}.subtitle{margin-top:5px;color:var(--gray);font-size:13px;line-height:1.35}.content{padding:16px;overflow:auto}
+    .section-title{font-weight:700;margin:12px 0 8px;display:flex;align-items:center;gap:8px}.dot{width:8px;height:8px;border-radius:50%;background:var(--blue)}
+    label{display:block;font-size:12px;font-weight:700;color:#374151;margin-bottom:5px}.field{margin-bottom:12px}
+    input,select,textarea{width:100%;border:1px solid #d1d5db;border-radius:10px;padding:10px 11px;font-family:Calibri,Arial,sans-serif;font-size:14px;outline:none;background:#fff}textarea{resize:vertical;min-height:82px;font-family:Consolas,monospace;font-size:12px}
+    input:focus,select:focus,textarea:focus{border-color:#111827;box-shadow:0 0 0 3px rgba(17,24,39,.08)}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.btn{border:0;border-radius:10px;padding:10px 12px;font-weight:700;cursor:pointer;font-family:Calibri,Arial,sans-serif}.btn.primary{background:#111827;color:#fff}.btn.blue{background:#2563eb;color:#fff}.btn.green{background:#16a34a;color:#fff}.btn.ghost{background:#f3f4f6;color:#111827}.btn.red{background:#fee2e2;color:#991b1b}
+    .status{padding:10px 12px;border-radius:12px;background:#f9fafb;border:1px dashed #d1d5db;font-size:13px;line-height:1.35;color:#374151;margin-top:10px}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700}.badge.green{background:#dcfce7;color:#166534}.badge.amber{background:#fef3c7;color:#92400e}.badge.blue{background:#dbeafe;color:#1e40af}
+    .map-card{position:relative}.map-head{height:56px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:#fff}.map-title{font-weight:700}.map-tools{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--gray)}
+    #map{height:calc(100vh - 132px);width:100%}.legend{position:absolute;right:18px;bottom:18px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 12px;z-index:500;box-shadow:0 10px 25px rgba(0,0,0,.12);font-size:12px}.legend-row{display:flex;gap:8px;align-items:center;margin:4px 0}.colorbox{width:12px;height:12px;border-radius:3px}.hint{position:absolute;left:18px;top:76px;background:#111827;color:#fff;border-radius:12px;padding:10px 12px;z-index:500;box-shadow:0 10px 25px rgba(0,0,0,.18);font-size:13px;max-width:370px;line-height:1.35}
+    table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}th,td{border-bottom:1px solid #eef0f4;padding:8px;text-align:left}th{color:#6b7280;font-size:12px}tr:hover{background:#f9fafb}
+    @media(max-width:950px){.layout{grid-template-columns:1fr;height:auto}.map-card{height:620px}#map{height:563px}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><div class="logo">ZR</div><div>ARMORA SAC · Gestión Zonas y Rutas</div></div>
+    <div class="user"><strong>Personal:</strong> ALEJANDRO ANYARIN<br><strong>Almacén:</strong> BROCKER MESA 1</div>
+  </header>
+  <main class="layout">
+    <aside class="panel">
+      <div class="panel-head">
+        <h1>Crear / editar zona geográfica</h1>
+        <div class="subtitle">Dibuja el polígono en el mapa para definir los límites de atención de la ruta.</div>
+      </div>
+      <div class="content">
+        <div class="section-title"><span class="dot"></span> Datos de la zona</div>
+        <div class="grid-2">
+          <div class="field"><label>Código zona</label><input value="ZON-ICA-001"></div>
+          <div class="field"><label>Estado</label><select><option>Activo</option><option>Inactivo</option></select></div>
+        </div>
+        <div class="field"><label>Nombre de zona</label><input id="zoneName" value="Ica Centro - Ruta A"></div>
+        <div class="grid-2">
+          <div class="field"><label>Ruta</label><input value="Ruta A"></div>
+          <div class="field"><label>Día de atención</label><select><option>Lunes</option><option>Martes</option><option>Miércoles</option><option>Jueves</option><option>Viernes</option><option>Sábado</option></select></div>
+        </div>
+        <div class="grid-2">
+          <div class="field"><label>Vendedor asignado</label><select><option>Juan Pérez</option><option>María Torres</option><option>Carlos Ramos</option></select></div>
+          <div class="field"><label>Color de zona</label><input id="zoneColor" type="color" value="#2563eb"></div>
+        </div>
+
+        <div class="section-title"><span class="dot"></span> Gestión del polígono</div>
+        <div class="status" id="statusBox">
+          <span class="badge amber">Pendiente</span> Usa el control del mapa para dibujar el límite de la zona.
+        </div>
+        <div class="btn-row">
+          <button class="btn blue" id="btnFit">Centrar mapa</button>
+          <button class="btn green" id="btnSave">Guardar zona</button>
+          <button class="btn red" id="btnClear">Eliminar polígono</button>
+        </div>
+        <div class="field" style="margin-top:14px"><label>Coordenadas del polígono guardado</label><textarea id="coords" readonly placeholder="Aquí aparecerá el JSON del polígono"></textarea></div>
+
+        <div class="section-title"><span class="dot"></span> Validación de clientes</div>
+        <table>
+          <thead><tr><th>Cliente</th><th>Estado</th></tr></thead>
+          <tbody id="clientRows"></tbody>
+        </table>
+      </div>
+    </aside>
+
+    <section class="map-card">
+      <div class="map-head">
+        <div class="map-title">Mapa de zona y ruta</div>
+        <div class="map-tools"><span class="badge blue">Leaflet Draw</span> Dibujar · Editar · Eliminar</div>
+      </div>
+      <div class="hint">Haz clic en el ícono de polígono del mapa, marca los vértices y cierra la figura. Luego podrás editar sus puntos o eliminarla.</div>
+      <div id="map"></div>
+      <div class="legend">
+        <div class="legend-row"><span class="colorbox" style="background:#2563eb"></span> Límite de zona</div>
+        <div class="legend-row"><span class="colorbox" style="background:#16a34a"></span> Cliente dentro</div>
+        <div class="legend-row"><span class="colorbox" style="background:#dc2626"></span> Cliente fuera</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+  <script>
+    const map = L.map('map').setView([-14.0678, -75.7286], 14);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+
+    const drawnItems = new L.FeatureGroup(); map.addLayer(drawnItems);
+    const clientLayer = new L.LayerGroup().addTo(map);
+    const clients = [
+      {name:'Bodega San Martín', lat:-14.0669, lng:-75.7292},
+      {name:'Market El Sol', lat:-14.0708, lng:-75.7242},
+      {name:'Cliente La Palma', lat:-14.0736, lng:-75.7331},
+      {name:'MiniMarket Sur', lat:-14.0812, lng:-75.7235},
+      {name:'Tienda Central', lat:-14.0641, lng:-75.7219}
+    ];
+
+    const drawControl = new L.Control.Draw({
+      draw: { polyline:false, rectangle:false, circle:false, circlemarker:false, marker:false,
+        polygon: { allowIntersection:false, showArea:true, shapeOptions:{ color:'#2563eb', weight:3, fillOpacity:.18 } }
+      },
+      edit: { featureGroup: drawnItems, remove:true }
+    });
+    map.addControl(drawControl);
+
+    function pointInPolygon(point, polygon) {
+      const x = point.lng, y = point.lat; let inside = false;
+      for (let i=0, j=polygon.length-1; i<polygon.length; j=i++) {
+        const xi = polygon[i].lng, yi = polygon[i].lat, xj = polygon[j].lng, yj = polygon[j].lat;
+        const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
+      }
+      return inside;
+    }
+
+    function getPolygonLatLngs(){
+      let poly = null; drawnItems.eachLayer(l => { if(l instanceof L.Polygon) poly = l; });
+      if(!poly) return [];
+      return poly.getLatLngs()[0];
+    }
+
+    function refreshData(){
+      const latlngs = getPolygonLatLngs();
+      const coordsBox = document.getElementById('coords');
+      const statusBox = document.getElementById('statusBox');
+      if(!latlngs.length){
+        coordsBox.value = '';
+        statusBox.innerHTML = '<span class="badge amber">Pendiente</span> Aún no existe polígono para esta zona.';
+      } else {
+        const coords = latlngs.map(p => [Number(p.lat.toFixed(6)), Number(p.lng.toFixed(6))]);
+        coordsBox.value = JSON.stringify({ zona: document.getElementById('zoneName').value, color: document.getElementById('zoneColor').value, poligono: coords }, null, 2);
+        statusBox.innerHTML = '<span class="badge green">Definido</span> Polígono con ' + coords.length + ' vértices listo para guardar.';
+      }
+      renderClients(latlngs);
+    }
+
+    function renderClients(poly){
+      clientLayer.clearLayers();
+      const rows = document.getElementById('clientRows'); rows.innerHTML = '';
+      clients.forEach(c => {
+        const inside = poly.length ? pointInPolygon({lat:c.lat,lng:c.lng}, poly) : false;
+        const color = inside ? '#16a34a' : '#dc2626';
+        L.circleMarker([c.lat,c.lng], {radius:8, color, fillColor:color, fillOpacity:.85}).addTo(clientLayer).bindPopup('<b>'+c.name+'</b><br>'+(inside?'Dentro de la zona':'Fuera de la zona'));
+        rows.innerHTML += `<tr><td>${c.name}</td><td><span class="badge ${inside?'green':'amber'}">${inside?'Dentro':'Fuera'}</span></td></tr>`;
+      });
+    }
+
+    map.on(L.Draw.Event.CREATED, e => {
+      drawnItems.clearLayers();
+      e.layer.setStyle({ color: document.getElementById('zoneColor').value, weight:3, fillOpacity:.18 });
+      drawnItems.addLayer(e.layer); refreshData();
+    });
+    map.on(L.Draw.Event.EDITED, refreshData); map.on(L.Draw.Event.DELETED, refreshData);
+    document.getElementById('zoneColor').addEventListener('input', e => { drawnItems.eachLayer(l => l.setStyle({color:e.target.value})); refreshData(); });
+    document.getElementById('btnClear').onclick = () => { drawnItems.clearLayers(); refreshData(); };
+    document.getElementById('btnFit').onclick = () => { const b = drawnItems.getBounds(); if(b.isValid()) map.fitBounds(b.pad(.25)); else map.setView([-14.0678,-75.7286],14); };
+    document.getElementById('btnSave').onclick = () => { alert(document.getElementById('coords').value ? 'Zona guardada en maqueta. En producción se enviaría este JSON al backend.' : 'Primero dibuja el polígono.'); };
+
+    // Polígono de ejemplo inicial
+    const initial = [[-14.0647,-75.7338],[-14.0637,-75.7244],[-14.0704,-75.7198],[-14.0769,-75.7252],[-14.0751,-75.7356],[-14.0684,-75.7381]];
+    const poly = L.polygon(initial, {color:'#2563eb', weight:3, fillOpacity:.18}).addTo(drawnItems);
+    map.fitBounds(poly.getBounds().pad(.25)); refreshData();
+  </script>
+</body>
+</html>

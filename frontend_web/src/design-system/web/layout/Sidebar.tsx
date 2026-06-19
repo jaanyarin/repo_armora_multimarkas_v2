@@ -143,7 +143,7 @@ const sidebarCategories: NavCategory[] = [
     label: 'Distribucion, Zonas y Rutas',
     icon: <MapIcon sx={ICON_SIZE} />,
     children: [
-      { label: 'Gestion Zonas y Rutas', path: '#' },
+      { label: 'Gestion Zonas y Rutas', path: '/zonas-rutas/gestion-zonas-rutas' },
       { label: 'Habilitar Ventas en Rutas', path: '#' },
       { label: 'Crear Mapa de Rutas', path: '#' },
       { label: 'Gestion de Mapas de Rutas', path: '#' },

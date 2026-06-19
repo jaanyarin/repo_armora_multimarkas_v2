@@ -130,7 +130,7 @@ export default function Topbar({
           <strong>Personal:</strong> {username}
         </Typography>
         <Typography variant="caption">
-          <strong>Lista Precios:</strong> {listaPrecios}
+          <strong>Lista de Precios:</strong> {listaPrecios}
         </Typography>
         <Typography variant="caption">
           <strong>Almacen:</strong> {almacen}
