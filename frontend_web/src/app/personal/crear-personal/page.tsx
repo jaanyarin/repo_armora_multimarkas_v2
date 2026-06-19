@@ -55,8 +55,11 @@ type CrearPersonalForm = {
   celular: string;
   telefono: string;
   departamentoId: string;
+  departamentoNombre: string;
   provinciaId: string;
+  provinciaNombre: string;
   distritoId: string;
+  distritoNombre: string;
   ubigeoCodigo: string;
   contactoEmergencia: string;
   direccion: string;
@@ -294,8 +297,11 @@ const initialForm: CrearPersonalForm = {
   celular: '',
   telefono: '',
   departamentoId: '',
+  departamentoNombre: '',
   provinciaId: '',
+  provinciaNombre: '',
   distritoId: '',
+  distritoNombre: '',
   ubigeoCodigo: '',
   contactoEmergencia: '',
   direccion: '',
@@ -351,9 +357,9 @@ function toPayload(form: CrearPersonalForm): CrearPersonalPayload {
     direccion: cleanOptional(form.direccion),
     referencia: cleanOptional(form.referencia),
     contactoEmergencia: cleanOptional(form.contactoEmergencia),
-    departamentoNombre: null, // Will be populated after ubigeo resolve
-    provinciaNombre: null,
-    distritoNombre: null,
+    departamentoNombre: cleanOptional(form.departamentoNombre) || null,
+    provinciaNombre: cleanOptional(form.provinciaNombre) || null,
+    distritoNombre: cleanOptional(form.distritoNombre) || null,
     ubigeoCodigo: cleanOptional(form.ubigeoCodigo),
     observaciones: cleanOptional(form.observaciones),
     fotoUrl: null, // Will upload separately
@@ -429,13 +435,19 @@ export default function CrearPersonalPage() {
     load();
   }, []);
 
-  // useEffect: al cambiar departamentoId, reset provincias y distritos
+  // useEffect: al cambiar departamentoId, guardar nombre y cargar provincias
   useEffect(() => {
+    // Guardar nombre del departamento seleccionado
+    const dep = departamentos.find((d) => d.id === form.departamentoId);
+    updateField('departamentoNombre', dep?.nombre ?? '');
+    // Reset provincias y distritos si se cambia departamento
     if (!form.departamentoId) {
       setProvincias([]);
       setDistritos([]);
       updateField('provinciaId', '');
+      updateField('provinciaNombre', '');
       updateField('distritoId', '');
+      updateField('distritoNombre', '');
       updateField('ubigeoCodigo', '');
       return;
     }
@@ -444,7 +456,9 @@ export default function CrearPersonalPage() {
       setProvincias([]);
       setDistritos([]);
       updateField('provinciaId', '');
+      updateField('provinciaNombre', '');
       updateField('distritoId', '');
+      updateField('distritoNombre', '');
       updateField('ubigeoCodigo', '');
       try {
         const data = await api.get<UbicacionItem[]>(
@@ -461,11 +475,16 @@ export default function CrearPersonalPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form.departamentoId]);
 
-  // useEffect: al cambiar provinciaId, reset distritos
+  // useEffect: al cambiar provinciaId, guardar nombre y cargar distritos
   useEffect(() => {
+    // Guardar nombre de la provincia seleccionada
+    const prov = provincias.find((p) => p.id === form.provinciaId);
+    updateField('provinciaNombre', prov?.nombre ?? '');
+    // Reset distritos si se cambia provincia
     if (!form.provinciaId) {
       setDistritos([]);
       updateField('distritoId', '');
+      updateField('distritoNombre', '');
       updateField('ubigeoCodigo', '');
       return;
     }
@@ -473,6 +492,7 @@ export default function CrearPersonalPage() {
       setLoadingDist(true);
       setDistritos([]);
       updateField('distritoId', '');
+      updateField('distritoNombre', '');
       updateField('ubigeoCodigo', '');
       try {
         const data = await api.get<UbicacionItem[]>(
@@ -489,12 +509,13 @@ export default function CrearPersonalPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form.provinciaId]);
 
-  // useEffect: capturar codigo distrito
+  // useEffect: capturar codigo y nombre del distrito
   useEffect(() => {
     if (form.distritoId && distritos.length > 0) {
       const distrito = distritos.find((d) => d.id === form.distritoId);
       if (distrito) {
         updateField('ubigeoCodigo', distrito.codigo);
+        updateField('distritoNombre', distrito.nombre);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

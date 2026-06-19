@@ -55,8 +55,11 @@ type EditarPersonalForm = {
   celular: string;
   telefono: string;
   departamentoId: string;
+  departamentoNombre: string;
   provinciaId: string;
+  provinciaNombre: string;
   distritoId: string;
+  distritoNombre: string;
   ubigeoCodigo: string;
   contactoEmergencia: string;
   direccion: string;
@@ -327,8 +330,11 @@ const initialForm: EditarPersonalForm = {
   celular: '',
   telefono: '',
   departamentoId: '',
+  departamentoNombre: '',
   provinciaId: '',
+  provinciaNombre: '',
   distritoId: '',
+  distritoNombre: '',
   ubigeoCodigo: '',
   contactoEmergencia: '',
   direccion: '',
@@ -376,9 +382,9 @@ function toEditPayload(form: EditarPersonalForm): EditarPersonalPayload {
     telefonoCelular: cleanOptional(form.celular),
     telefonoFijo: cleanOptional(form.telefono),
     ubigeoCodigo: cleanOptional(form.ubigeoCodigo),
-    departamentoNombre: null,
-    provinciaNombre: null,
-    distritoNombre: null,
+    departamentoNombre: cleanOptional(form.departamentoNombre) || null,
+    provinciaNombre: cleanOptional(form.provinciaNombre) || null,
+    distritoNombre: cleanOptional(form.distritoNombre) || null,
     direccion: cleanOptional(form.direccion),
     referencia: cleanOptional(form.referencia),
     contactoEmergencia: cleanOptional(form.contactoEmergencia),
@@ -571,11 +577,15 @@ function EditarPersonalForm() {
   }, []);
 
   useEffect(() => {
+    const dep = departamentos.find((d) => d.id === form.departamentoId);
+    updateField('departamentoNombre', dep?.nombre ?? '');
     if (!form.departamentoId) {
       setProvincias([]);
       setDistritos([]);
       updateField('provinciaId', '');
+      updateField('provinciaNombre', '');
       updateField('distritoId', '');
+      updateField('distritoNombre', '');
       updateField('ubigeoCodigo', '');
       return;
     }
@@ -584,7 +594,9 @@ function EditarPersonalForm() {
       setProvincias([]);
       setDistritos([]);
       updateField('provinciaId', '');
+      updateField('provinciaNombre', '');
       updateField('distritoId', '');
+      updateField('distritoNombre', '');
       updateField('ubigeoCodigo', '');
       try {
         const data = await api.get<UbicacionItem[]>(
@@ -602,9 +614,12 @@ function EditarPersonalForm() {
   }, [form.departamentoId]);
 
   useEffect(() => {
+    const prov = provincias.find((p) => p.id === form.provinciaId);
+    updateField('provinciaNombre', prov?.nombre ?? '');
     if (!form.provinciaId) {
       setDistritos([]);
       updateField('distritoId', '');
+      updateField('distritoNombre', '');
       updateField('ubigeoCodigo', '');
       return;
     }
@@ -612,6 +627,7 @@ function EditarPersonalForm() {
       setLoadingDist(true);
       setDistritos([]);
       updateField('distritoId', '');
+      updateField('distritoNombre', '');
       updateField('ubigeoCodigo', '');
       try {
         const data = await api.get<UbicacionItem[]>(
@@ -633,6 +649,7 @@ function EditarPersonalForm() {
       const distrito = distritos.find((d) => d.id === form.distritoId);
       if (distrito) {
         updateField('ubigeoCodigo', distrito.codigo);
+        updateField('distritoNombre', distrito.nombre);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
