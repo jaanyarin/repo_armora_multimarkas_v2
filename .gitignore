@@ -59,3 +59,9 @@ _para_chatgpt/
 
 # Uploads (fotos, archivos de usuarios)
 uploads/
+
+# Archivos temporales de pruebas
+test_*.json
+test_*.ps1
+test_*.mjs
+test_*.txt
