@@ -27,7 +27,7 @@ Columnas normalizadas: `creado_en`, `actualizado_en`, `clave_hash`.
 
 > Nota: No editar V1 luego de compartida. Nuevas tablas deben entrar por migraciones incrementales (V2, V3, ...).
 
-## Mapeo conceptual a fisico (V2-V5 migrations)
+## Mapeo conceptual a fisico (V2-V6 migrations)
 
 | Concepto (ingles) | Tabla fisica | Migracion | Estado |
 |---|---|---|---|
@@ -42,6 +42,7 @@ Columnas normalizadas: `creado_en`, `actualizado_en`, `clave_hash`.
 | Cargo | `personal.cargo` | V5 | Columna agregada |
 | Area | `personal.area` | V5 | Columna agregada |
 | Sede | `personal.sede` | V5 | Columna agregada |
+| Personal.estado | `personal.estado` | V6 | Columna agregada |
 
 ## Personal (staff / employees)
 
@@ -74,6 +75,7 @@ Columnas normalizadas: `creado_en`, `actualizado_en`, `clave_hash`.
 | foto_url | text | URL de foto de perfil |
 | es_vendedor | boolean | Indica si es vendedor |
 | es_transportista | boolean | Indica si es transportista |
+| estado | estado_registro | ACTIVO, INACTIVO, BLOQUEADO. Default ACTIVO |
 | observaciones | text | Notas adicionales |
 | creado_en | timestamptz | Fecha de creacion |
 | actualizado_en | timestamptz | Fecha de actualizacion |

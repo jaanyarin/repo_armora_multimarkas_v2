@@ -61,6 +61,7 @@ Este tablero debe actualizarse cada vez que una tarea cambie de estado o requier
 | F2-012 | Backend: endpoints permisos, recursos, upload foto | lista | `armora-backend-quarkus` | `armora-security`, `armora-qa` | F2-011 | GET/PUT /personal/{id}/permisos, GET/PUT /personal/{id}/recursos, POST /files/upload con validación de extensión y tamaño 5MB | `docs/ai_workflow/F2-012_endpoints_permisos_recursos_upload.md` |
 | F2-013 | Frontend: conectar permisos, recursos, upload foto en crear y editar | lista | `armora-frontend-web` | `armora-backend-quarkus`, `armora-qa` | F2-012 | crear-personal envía foto via POST /files/upload, guarda permisos y recursos via PUT endpoints. editar-personal carga permisos y recursos desde GET, los envía en PUT. Foto se carga y muestra correctamente. | `docs/ai_workflow/F2-013_frontend_permisos_recursos_foto.md` |
 | F2-014 | Security Review + workflow rule ARMORA #11 | lista | `armora-security` | `armora-architect`, `armora-sdd-manager` | F2-013 | Revisión de seguridad de endpoints de personal y files. Nueva regla ARMORA #11 agregada al workflow: matching DTO↔BD obligatorio. | `docs/ai_workflow/F2-014_security_review_workflow_rule.md` |
+| F2-015 | Agregar campo estado (ACTIVO/INACTIVO/BLOQUEADO) a personal - BD, backend y frontend | lista | `armora-architect` | `armora-database`, `armora-backend-quarkus`, `armora-frontend-web`, `armora-qa` | F2-011 | Migracion V6 aplicada, DTOs incluyen estado, INSERT/UPDATE persisten estado, GET devuelve estado, QA E2E pasa | Este task (armora-sdd-manager) |
 
 ## Plantilla de nueva tarea
 

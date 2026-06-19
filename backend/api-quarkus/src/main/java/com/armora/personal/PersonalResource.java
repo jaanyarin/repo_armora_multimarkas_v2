@@ -94,6 +94,7 @@ public class PersonalResource {
                         + "ubigeo_codigo, "
                         + "observaciones, "
                         + "foto_url, "
+                        + "estado, "
                         + "es_vendedor, es_transportista) "
                         + "VALUES (?, ?, ?::tipo_documento_personal, ?, "
                         + "?::sexo_personal, ?::estado_civil_personal, ?, "
@@ -106,6 +107,7 @@ public class PersonalResource {
                         + "?, "
                         + "?, "
                         + "?, "
+                        + "?::estado_registro, "
                         + "?, ?) RETURNING id")) {
                     ps.setObject(1, usuarioId);
                     ps.setString(2, request.nombresCompletos());
@@ -130,8 +132,9 @@ public class PersonalResource {
                     ps.setString(21, request.ubigeoCodigo());
                     ps.setString(22, request.observaciones());
                     ps.setString(23, request.fotoUrl());
-                    ps.setBoolean(24, request.esVendedor() != null && request.esVendedor());
-                    ps.setBoolean(25, request.esTransportista() != null && request.esTransportista());
+                    ps.setString(24, request.estado() != null ? request.estado() : "ACTIVO");
+                    ps.setBoolean(25, request.esVendedor() != null && request.esVendedor());
+                    ps.setBoolean(26, request.esTransportista() != null && request.esTransportista());
                     try (ResultSet rs = ps.executeQuery()) {
                         rs.next();
                         personalId = UUID.fromString(rs.getString("id"));
@@ -165,7 +168,7 @@ public class PersonalResource {
                         + "p.telefono_celular, p.email_contacto, "
                         + "p.es_vendedor, p.es_transportista, "
                         + "p.cargo, p.area, p.sede, "
-                        + "u.usuario, u.estado, u.ultimo_acceso_en "
+                        + "u.usuario, p.estado, u.ultimo_acceso_en "
                         + "FROM personal p "
                         + "JOIN usuarios u ON u.id = p.usuario_id "
                         + "ORDER BY p.nombres_completos")) {
@@ -207,7 +210,7 @@ public class PersonalResource {
     public ResponseWrapper<PersonalDetalleResponse> obtener(@PathParam("id") String id) {
         try (Connection conn = dataSource.getConnection();
                 PreparedStatement ps = conn.prepareStatement(
-                        "SELECT p.*, u.usuario, u.correo, u.estado, u.ultimo_acceso_en "
+                        "SELECT p.*, u.usuario, u.correo, p.estado, u.ultimo_acceso_en "
                         + "FROM personal p "
                         + "JOIN usuarios u ON u.id = p.usuario_id "
                         + "WHERE p.id = ?::uuid")) {
@@ -319,6 +322,7 @@ public class PersonalResource {
                         + "ubigeo_codigo = ?, "
                         + "observaciones = ?, "
                         + "foto_url = ?, "
+                        + "estado = ?::estado_registro, "
                         + "es_vendedor = ?, "
                         + "es_transportista = ? "
                         + "WHERE id = ?::uuid")) {
@@ -344,9 +348,10 @@ public class PersonalResource {
                     ps.setString(20, request.ubigeoCodigo());
                     ps.setString(21, request.observaciones());
                     ps.setString(22, request.fotoUrl());
-                    ps.setBoolean(23, request.esVendedor() != null && request.esVendedor());
-                    ps.setBoolean(24, request.esTransportista() != null && request.esTransportista());
-                    ps.setString(25, id);
+                    ps.setString(23, request.estado());
+                    ps.setBoolean(24, request.esVendedor() != null && request.esVendedor());
+                    ps.setBoolean(25, request.esTransportista() != null && request.esTransportista());
+                    ps.setString(26, id);
                     int updated = ps.executeUpdate();
                     if (updated == 0) {
                         throw new WebApplicationException("Personal no encontrado", Response.Status.NOT_FOUND);
@@ -703,6 +708,7 @@ public class PersonalResource {
         String ubigeoCodigo,
         String observaciones,
         String fotoUrl,
+        String estado,
         Boolean esVendedor,
         Boolean esTransportista
     ) {}
@@ -732,6 +738,7 @@ public class PersonalResource {
         String ubigeoCodigo,
         String observaciones,
         String fotoUrl,
+        String estado,
         Boolean esVendedor,
         Boolean esTransportista
     ) {}

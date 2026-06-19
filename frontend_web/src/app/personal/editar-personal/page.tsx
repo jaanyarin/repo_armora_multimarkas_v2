@@ -144,6 +144,7 @@ type EditarPersonalPayload = {
   referencia?: string | null;
   contactoEmergencia?: string | null;
   fotoUrl?: string | null;
+  estado?: string | null;
   esVendedor: boolean;
   esTransportista: boolean;
 };
@@ -404,6 +405,7 @@ function toEditPayload(form: EditarPersonalForm): EditarPersonalPayload {
     referencia: cleanOptional(form.referencia),
     contactoEmergencia: cleanOptional(form.contactoEmergencia),
     fotoUrl: form.fotografiaPreview || null,
+    estado: form.estado?.toUpperCase() || null,
     esVendedor: form.esVendedor,
     esTransportista: form.esTransportista,
   };

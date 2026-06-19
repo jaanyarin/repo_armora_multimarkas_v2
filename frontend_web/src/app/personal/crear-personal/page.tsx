@@ -100,6 +100,7 @@ type CrearPersonalPayload = {
   provinciaNombre?: string | null;
   distritoNombre?: string | null;
   fotoUrl?: string | null;
+  estado?: string | null;
   esVendedor: boolean;
   esTransportista: boolean;
 };
@@ -363,6 +364,7 @@ function toPayload(form: CrearPersonalForm): CrearPersonalPayload {
     ubigeoCodigo: cleanOptional(form.ubigeoCodigo),
     observaciones: cleanOptional(form.observaciones),
     fotoUrl: null, // Will upload separately
+    estado: form.estado?.toUpperCase() || null,
     esVendedor: form.esVendedor,
     esTransportista: form.esTransportista,
   };
