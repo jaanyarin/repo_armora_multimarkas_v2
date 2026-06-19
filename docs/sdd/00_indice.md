@@ -37,6 +37,7 @@ El avance de las tareas de Fase 1 se controla en `docs/ai_workflow/00_tablero_ag
 ## Registro de decisiones tecnicas (ADR)
 
 - `docs/adr/ADR-001-inicial-arquitectura.md`: stack tecnologico, estructura de monorepo, convencion de nombres y politica de seguridad.
+- `docs/adr/ADR-002-servicio-fotos-y-archivos.md`: servicio de fotos con @PermitAll, endpoint DELETE, URL relativa en BD, validacion anti-path-traversal.
 
 
 ## Decision tecnica vigente

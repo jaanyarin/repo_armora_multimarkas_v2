@@ -239,6 +239,8 @@ POST `/files/upload`
 
 Sube un archivo de foto (multipart). Extensiones permitidas: `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`. Tamaño maximo: 5MB.
 
+El archivo se guarda en el directorio configurado mediante `app.upload.dir` en `application.properties` (por defecto `uploads/photos/`). El nombre se genera como UUID aleatorio.
+
 Request: `Content-Type: multipart/form-data`
 
 | Campo | Tipo | Descripcion |
@@ -258,9 +260,34 @@ Response:
 }
 ```
 
+Authenticacion: Requiere JWT (`@RolesAllowed({"ADMINISTRADOR", "OPERADOR"})`).
+
 GET `/files/photos/{fileName}`
 
-Sirve el archivo de foto estatico (dev mode; en produccion lo sirve Nginx/Caddy directamente).
+Sirve el archivo de foto estatico. El endpoint tiene `@PermitAll` (accesible sin autenticacion) para permitir que las etiquetas `<img>` del frontend carguen la imagen directamente. Incluye validacion anti-path-traversal y retorna `Content-Type` segun extension.
+
+En produccion se recomienda que Nginx/Caddy sirva directamente esta ruta sin pasar por Quarkus.
+
+Authenticacion: `@PermitAll` (no requiere JWT).
+
+DELETE `/files/photos/{fileName}`
+
+Elimina un archivo de foto del servidor. Incluye validacion anti-path-traversal, verificacion de existencia del archivo y registro de auditoria.
+
+Se usa tipicamente al reemplazar la foto de un personal: el frontend invoca DELETE sobre la foto anterior antes de hacer POST de la nueva.
+
+Response:
+
+```json
+{
+  "data": {
+    "deleted": true,
+    "fileName": "uuid-foto.jpg"
+  }
+}
+```
+
+Authenticacion: Requiere JWT (`@RolesAllowed({"ADMINISTRADOR", "OPERADOR"})`).
 
 ## Clientes
 
