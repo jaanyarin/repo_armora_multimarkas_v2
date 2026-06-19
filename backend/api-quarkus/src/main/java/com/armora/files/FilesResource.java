@@ -5,11 +5,16 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -33,8 +38,38 @@ import com.armora.platform.api.ResponseWrapper;
 @RolesAllowed({"ADMINISTRADOR", "OPERADOR"})
 public class FilesResource {
 
-    @ConfigProperty(name = "quarkus.http.body.uploads-directory", defaultValue = "uploads/photos")
+    @ConfigProperty(name = "app.upload.dir", defaultValue = "uploads/photos")
     String uploadsDir;
+
+    // =========================================================================
+    // DEBUG (solo dev)
+    // =========================================================================
+
+    @GET
+    @Path("/debug")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Debug: info del directorio de uploads", hidden = true)
+    public ResponseWrapper<Map<String, Object>> debug() {
+        java.nio.file.Path path = Paths.get(uploadsDir);
+        Map<String, Object> info = new HashMap<>();
+        info.put("uploadsDir", uploadsDir);
+        info.put("absolutePath", path.toAbsolutePath().normalize().toString());
+        info.put("exists", Files.exists(path));
+        if (Files.exists(path)) {
+            java.io.File[] files = path.toFile().listFiles();
+            if (files != null) {
+                List<Map<String, Object>> fileList = new ArrayList<>();
+                for (java.io.File f : files) {
+                    Map<String, Object> fi = new HashMap<>();
+                    fi.put("name", f.getName());
+                    fi.put("size", f.length());
+                    fileList.add(fi);
+                }
+                info.put("files", fileList);
+            }
+        }
+        return ResponseWrapper.ok(info);
+    }
 
     // =========================================================================
     // UPLOAD
@@ -113,8 +148,9 @@ public class FilesResource {
 
     @GET
     @Path("/photos/{fileName}")
-    @Produces("image/jpeg, image/png, image/gif, image/webp")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
     @Operation(summary = "Servir foto (dev mode)")
+    @PermitAll
     public Response servePhoto(@PathParam("fileName") String fileName) {
         if (fileName == null || fileName.isBlank() || fileName.contains("..") || fileName.contains("/") || fileName.contains("\\")) {
             return Response.status(Response.Status.BAD_REQUEST)
@@ -122,7 +158,14 @@ public class FilesResource {
                     .build();
         }
 
-        java.nio.file.Path filePath = Paths.get(uploadsDir, fileName);
+        java.nio.file.Path uploadPath = Paths.get(uploadsDir);
+        java.nio.file.Path filePath = uploadPath.resolve(fileName).normalize();
+
+        if (!filePath.startsWith(uploadPath.normalize())) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Nombre de archivo inválido")
+                    .build();
+        }
 
         if (!Files.exists(filePath) || !Files.isReadable(filePath)) {
             return Response.status(Response.Status.NOT_FOUND)
@@ -156,6 +199,44 @@ public class FilesResource {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity("Error al leer el archivo")
                     .build();
+        }
+    }
+
+    // =========================================================================
+    // DELETE PHOTO
+    // =========================================================================
+
+    @DELETE
+    @Path("/photos/{fileName}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Eliminar archivo de foto")
+    public ResponseWrapper<Map<String, Object>> deletePhoto(@PathParam("fileName") String fileName) {
+        // Validar fileName (no contenga .. / \ )
+        if (fileName == null || fileName.isBlank() || fileName.contains("..") || fileName.contains("/") || fileName.contains("\\")) {
+            throw new WebApplicationException("Nombre de archivo inválido", Response.Status.BAD_REQUEST);
+        }
+
+        // Construir path y verificar que esté dentro del directorio de uploads
+        java.nio.file.Path uploadPath = Paths.get(uploadsDir);
+        java.nio.file.Path filePath = uploadPath.resolve(fileName).normalize();
+
+        if (!filePath.startsWith(uploadPath.normalize())) {
+            throw new WebApplicationException("Nombre de archivo inválido", Response.Status.BAD_REQUEST);
+        }
+
+        if (!Files.exists(filePath) || !Files.isReadable(filePath)) {
+            throw new WebApplicationException("Archivo no encontrado", Response.Status.NOT_FOUND);
+        }
+
+        try {
+            Files.delete(filePath);
+            return ResponseWrapper.ok(Map.of(
+                "deleted", true,
+                "fileName", fileName
+            ));
+        } catch (IOException e) {
+            throw new WebApplicationException("Error al eliminar el archivo: " + e.getMessage(),
+                    Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 }

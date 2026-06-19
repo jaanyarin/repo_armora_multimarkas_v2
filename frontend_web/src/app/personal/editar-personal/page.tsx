@@ -28,8 +28,7 @@ import { colors } from '@/design-system/tokens/colors';
 import { api } from '@/lib/api-client';
 
 // ─── Helper: resolver URL de foto ────────────────────────────────────────────
-const API_ORIGIN = (process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8885/api/v1')
-  .replace(/\/api\/v1\/?$/, '');
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8885/api/v1';
 
 function resolveFotoUrl(url: string | null | undefined): string {
   if (!url) return '';
@@ -37,7 +36,8 @@ function resolveFotoUrl(url: string | null | undefined): string {
     return url;
   }
   if (url.startsWith('/')) {
-    return `${API_ORIGIN}${url}`;
+    // Las fotos se sirven desde el mismo API base (incluye /api/v1)
+    return `${API_BASE_URL}${url}`;
   }
   return url;
 }
@@ -488,6 +488,9 @@ function EditarPersonalForm() {
   const [loadingDist, setLoadingDist] = useState(false);
   const [editandoUbicacion, setEditandoUbicacion] = useState(false);
 
+  // Almacena la fotoUrl original del servidor para eliminarla al reemplazar
+  const originalFotoUrlRef = useRef<string | null>(null);
+
   // ── Load personal data ─────────────────────────────────────────────────
 
   useEffect(() => {
@@ -507,6 +510,8 @@ function EditarPersonalForm() {
           setError('No se encontraron datos del personal.');
           return;
         }
+        // Guardar fotoUrl original del servidor para eliminarla al reemplazar
+        originalFotoUrlRef.current = response.fotoUrl ?? null;
         const mapped = mapPersonalToForm(response);
 
         // Load permisos
@@ -779,9 +784,23 @@ function EditarPersonalForm() {
 
     setLoading(true);
     try {
-      // 1. Upload new photo if changed (base64 only, not URL)
+      // 1. Delete old photo if user is changing or removing it
+      const oldFotoUrl = originalFotoUrlRef.current;
+      const userChangedPhoto = form.fotografiaPreview.startsWith('data:');
+      const userRemovedPhoto = !form.fotografiaPreview && Boolean(oldFotoUrl);
+
+      if (oldFotoUrl && (userChangedPhoto || userRemovedPhoto)) {
+        const fileName = oldFotoUrl.replace('/files/photos/', '');
+        try {
+          await api.del(`/files/photos/${fileName}`);
+        } catch (e) {
+          console.warn('No se pudo eliminar foto anterior (puede no existir):', e);
+        }
+      }
+
+      // 2. Upload new photo if changed (base64 only)
       let payload = toEditPayload(form);
-      if (form.fotografiaPreview && form.fotografiaPreview.startsWith('data:')) {
+      if (userChangedPhoto) {
         const blob = await (await fetch(form.fotografiaPreview)).blob();
         const formData = new FormData();
         formData.append('file', blob, form.fotografiaNombre || 'photo.jpg');
@@ -789,10 +808,10 @@ function EditarPersonalForm() {
         payload.fotoUrl = uploadResult.url;
       }
 
-      // 2. Save personal data
+      // 3. Save personal data
       await api.put(`/personal/${id}`, payload);
 
-      // 3. Save permisos
+      // 4. Save permisos
       if (form.permisos.length > 0) {
         const permisosPayload = form.permisos.map((p: string) => {
           const [grupo, ...rest] = p.split(' > ');
@@ -803,7 +822,7 @@ function EditarPersonalForm() {
         await api.put(`/personal/${id}/permisos`, []);
       }
 
-      // 4. Save recursos
+      // 5. Save recursos
       const recursosPayload: Record<string, unknown> = {};
       if (form.mapaRuta) {
         recursosPayload.rutasIds = [form.mapaRuta];

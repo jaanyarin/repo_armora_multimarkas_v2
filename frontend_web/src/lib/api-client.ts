@@ -76,6 +76,36 @@ export const api = {
       method: 'PATCH',
       body: JSON.stringify(body),
     }),
+  del: async <T>(endpoint: string): Promise<T> => {
+    const url = `${API_BASE}${endpoint}`;
+    const res = await fetch(url, {
+      method: 'DELETE',
+      headers: buildHeaders(),
+    });
+    // Handle 204 No Content
+    if (res.status === 204) {
+      return undefined as T;
+    }
+    let body: unknown;
+    try {
+      body = await res.json();
+    } catch {
+      if (!res.ok) {
+        throw new Error(`Error ${res.status}: el servidor no devolvio JSON`);
+      }
+      throw new Error('Respuesta inesperada del servidor');
+    }
+    if (!res.ok) {
+      if (hasApiEnvelope<unknown>(body) && (body as ApiEnvelope<unknown>).errors?.length) {
+        throw new Error((body as ApiEnvelope<unknown>).errors![0].message);
+      }
+      throw new Error(`Error ${res.status}`);
+    }
+    if (hasApiEnvelope<unknown>(body) && 'data' in body) {
+      return (body as ApiEnvelope<T>).data as T;
+    }
+    return body as T;
+  },
   upload: async (endpoint: string, formData: FormData): Promise<unknown> => {
     const url = `${API_BASE}${endpoint}`;
     const headers = new Headers();
