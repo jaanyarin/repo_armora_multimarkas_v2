@@ -1,38 +1,41 @@
-﻿'use client';
-import { useState, useEffect } from 'react';
+'use client';
+
+import { useEffect, useState } from 'react';
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
+import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Collapse from '@mui/material/Collapse';
-import Divider from '@mui/material/Divider';
-import Toolbar from '@mui/material/Toolbar';
 import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import SearchIcon from '@mui/icons-material/Search';
+import AssignmentReturnIcon from '@mui/icons-material/AssignmentReturn';
+import BadgeIcon from '@mui/icons-material/Badge';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import DescriptionIcon from '@mui/icons-material/Description';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+import GroupIcon from '@mui/icons-material/Group';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import WarehouseIcon from '@mui/icons-material/Warehouse';
+import MapIcon from '@mui/icons-material/Map';
 import PeopleIcon from '@mui/icons-material/People';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
-import AssignmentReturnIcon from '@mui/icons-material/AssignmentReturn';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import MapIcon from '@mui/icons-material/Map';
-import DescriptionIcon from '@mui/icons-material/Description';
-import FactCheckIcon from '@mui/icons-material/FactCheck';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import BadgeIcon from '@mui/icons-material/Badge';
-import GroupIcon from '@mui/icons-material/Group';
+import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
+import WarehouseIcon from '@mui/icons-material/Warehouse';
 import { colors } from '../../tokens/colors';
 
 const DRAWER_WIDTH = 270;
+const ICON_SIZE = { fontSize: 20 };
+const sidebarIconSx = { minWidth: 40, color: colors.primary[500] };
 
 interface NavItem {
   label: string;
@@ -44,10 +47,6 @@ interface NavCategory {
   icon: React.ReactNode;
   children: NavItem[];
 }
-
-const sidebarIconSx = { minWidth: 40, color: colors.primary[500] };
-
-const ICON_SIZE = { fontSize: 20 };
 
 const sidebarCategories: NavCategory[] = [
   {
@@ -144,7 +143,7 @@ const sidebarCategories: NavCategory[] = [
     icon: <MapIcon sx={ICON_SIZE} />,
     children: [
       { label: 'Gestion Zonas y Rutas', path: '/zonas-rutas/gestion-zonas-rutas' },
-      { label: 'Habilitar Ventas en Rutas', path: '#' },
+      { label: 'Habilitar Ventas en Rutas', path: '/zonas-rutas/habilitar-ventas-rutas' },
       { label: 'Crear Mapa de Rutas', path: '#' },
       { label: 'Gestion de Mapas de Rutas', path: '#' },
       { label: 'Cambio dia Atencion', path: '#' },
@@ -231,13 +230,15 @@ interface SidebarProps {
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 899px)');
     setIsMobile(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    const handler = (event: MediaQueryListEvent) => setIsMobile(event.matches);
     mq.addEventListener('change', handler);
     return () => mq.removeEventListener('change', handler);
   }, []);
+
   return isMobile;
 }
 
@@ -247,14 +248,17 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
 
   const isSearching = search.trim().length > 0;
+  const normalizedSearch = search.toLowerCase();
+
+  const filtered = sidebarCategories.filter(
+    (category) =>
+      category.label.toLowerCase().includes(normalizedSearch) ||
+      category.children.some((child) => child.label.toLowerCase().includes(normalizedSearch))
+  );
 
   const toggleCategory = (label: string) => {
     if (isSearching) return;
-    setOpenCategories((prev) => {
-      const isOpen = prev[label];
-      if (isOpen) return {};
-      return { [label]: true };
-    });
+    setOpenCategories((prev) => (prev[label] ? {} : { [label]: true }));
   };
 
   const handleClear = () => {
@@ -262,35 +266,20 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
     setOpenCategories({});
   };
 
-  const filtered = sidebarCategories.filter(
-    (cat) =>
-      cat.label.toLowerCase().includes(search.toLowerCase()) ||
-      cat.children.some((c) => c.label.toLowerCase().includes(search.toLowerCase()))
-  );
-
   const content = (
     <Box>
-      {/* Logo */}
       <Toolbar>
-        <Typography
-          variant="h6"
-          sx={{
-            fontWeight: 800,
-            color: colors.primary[800],
-            letterSpacing: 1,
-          }}
-        >
+        <Typography variant="h6" sx={{ fontWeight: 800, color: colors.primary[800], letterSpacing: 1 }}>
           ARMORA
         </Typography>
       </Toolbar>
 
-      {/* Search */}
       <Box sx={{ px: 1.5, pb: 1 }}>
         <TextField
           size="small"
           placeholder="Busqueda"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(event) => setSearch(event.target.value)}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -300,9 +289,7 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
             endAdornment: search ? (
               <InputAdornment position="end">
                 <IconButton size="small" onClick={handleClear} sx={{ p: 0.3 }}>
-                  <Typography sx={{ fontSize: 16, lineHeight: 1, color: colors.neutral.textMuted }}>
-                    x
-                  </Typography>
+                  <Typography sx={{ fontSize: 16, lineHeight: 1, color: colors.neutral.textMuted }}>x</Typography>
                 </IconButton>
               </InputAdornment>
             ) : null,
@@ -317,66 +304,47 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
         />
       </Box>
 
-      {/* Nav */}
       <List sx={{ px: 1, pb: 4 }} dense>
-        {filtered.map((cat) => {
-          const isOpen = isSearching ? true : (openCategories[cat.label] ?? false);
+        {filtered.map((category) => {
+          const isOpen = isSearching ? true : openCategories[category.label] ?? false;
           return (
-            <Box key={cat.label}>
-              {/* Categoria principal */}
+            <Box key={category.label}>
               <ListItemButton
-                onClick={() => toggleCategory(cat.label)}
+                onClick={() => toggleCategory(category.label)}
                 sx={{
                   borderRadius: 2,
                   py: 0.5,
                   color: colors.neutral.text,
-                  '&:hover': {
-                    backgroundColor: colors.primary[50],
-                  },
+                  '&:hover': { backgroundColor: colors.primary[50] },
                 }}
               >
-                <ListItemIcon sx={sidebarIconSx}>
-                  {cat.icon}
-                </ListItemIcon>
+                <ListItemIcon sx={sidebarIconSx}>{category.icon}</ListItemIcon>
                 <ListItemText
-                  primary={cat.label}
-                  sx={{
-                    '& .MuiListItemText-primary': { fontSize: 13.5, fontWeight: 600, color: colors.neutral.text },
-                  }}
+                  primary={category.label}
+                  sx={{ '& .MuiListItemText-primary': { fontSize: 13.5, fontWeight: 600, color: colors.neutral.text } }}
                 />
-                {isOpen ? (
-                  <ExpandLess fontSize="small" sx={{ color: colors.neutral.textMuted }} />
-                ) : (
-                  <ExpandMore fontSize="small" sx={{ color: colors.neutral.textMuted }} />
-                )}
+                {isOpen ? <ExpandLess fontSize="small" sx={{ color: colors.neutral.textMuted }} /> : <ExpandMore fontSize="small" sx={{ color: colors.neutral.textMuted }} />}
               </ListItemButton>
 
-              {/* Hijos */}
               <Collapse in={isOpen} timeout="auto" unmountOnExit>
                 <List dense disablePadding>
-                  {cat.children.map((child) => (
+                  {category.children.map((child) => (
                     <ListItemButton
                       key={child.label}
                       selected={activePath === child.path}
                       onClick={() => {
-                        if (child.path !== '#') {
-                          window.location.href = child.path;
-                        }
+                        if (child.path !== '#') window.location.href = child.path;
                       }}
                       sx={{
                         pl: 5,
                         py: 0.3,
                         borderRadius: 2,
                         mx: 0.5,
-                        '&:hover': {
-                          backgroundColor: colors.primary[50],
-                        },
+                        '&:hover': { backgroundColor: colors.primary[50] },
                         '&.Mui-selected': {
                           backgroundColor: colors.primary[100],
                           color: colors.primary[700],
-                          '&:hover': {
-                            backgroundColor: colors.primary[200],
-                          },
+                          '&:hover': { backgroundColor: colors.primary[200] },
                         },
                       }}
                     >
@@ -424,6 +392,3 @@ export default function Sidebar({ open = true, onClose, activePath = '/dashboard
 }
 
 export { DRAWER_WIDTH };
-
-
-
