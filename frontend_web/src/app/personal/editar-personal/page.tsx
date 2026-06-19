@@ -27,6 +27,21 @@ import { AppLayout } from '@/design-system/web/layout';
 import { colors } from '@/design-system/tokens/colors';
 import { api } from '@/lib/api-client';
 
+// ─── Helper: resolver URL de foto ────────────────────────────────────────────
+const API_ORIGIN = (process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8885/api/v1')
+  .replace(/\/api\/v1\/?$/, '');
+
+function resolveFotoUrl(url: string | null | undefined): string {
+  if (!url) return '';
+  if (url.startsWith('data:') || url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+  if (url.startsWith('/')) {
+    return `${API_ORIGIN}${url}`;
+  }
+  return url;
+}
+
 // ─── Types ──────────────────────────────────────────────────────────────────
 
 type UbicacionItem = {
@@ -441,7 +456,7 @@ function mapPersonalToForm(response: PersonalResponse): Partial<EditarPersonalFo
     direccion: response.direccion ?? '',
     referencia: response.referencia ?? '',
     contactoEmergencia: response.contactoEmergencia ?? '',
-    fotografiaPreview: response.fotoUrl ?? '',
+    fotografiaPreview: resolveFotoUrl(response.fotoUrl),
     esVendedor: response.esVendedor,
     esTransportista: response.esTransportista,
   };

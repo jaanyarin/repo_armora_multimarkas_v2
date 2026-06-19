@@ -56,3 +56,6 @@ secrets/
 
 #consultas chatGPT
 _para_chatgpt/
+
+# Uploads (fotos, archivos de usuarios)
+uploads/
