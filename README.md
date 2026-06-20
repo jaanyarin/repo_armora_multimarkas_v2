@@ -68,7 +68,6 @@ Ver `docs/sdd/08_sdd_roadmap_mvp.md` para detalle de cada fase.
 ### Fase 1 - Fundación técnica
 - [x] Monorepo con backend Quarkus, frontend Next.js, apps Flutter
 - [x] Docker Compose local (PostgreSQL + Redis)
-- [x] Migraciones Flyway V1-V5
 - [x] OpenAPI inicial (health, version, auth)
 - [x] CI base (lint, typecheck, build)
 
@@ -82,7 +81,8 @@ Ver `docs/sdd/08_sdd_roadmap_mvp.md` para detalle de cada fase.
 - [x] Wizard de 6 pasos para crear/editar personal
 - [x] Carga y visualización de foto de perfil
 - [x] Asignación de permisos, rutas, almacenes y listas de precios al personal
-- [x] Migraciones Flyway V2-V5 (tablas personal, mapas_rutas, ubigeo, permisos)
+- [x] Migraciones Flyway V2-V12 (personal, mapas_rutas, ubigeo, permisos, zonas/rutas)
+- [x] Gestion de Mapas de Rutas: seed real de 26 mapas, columnas `codigo`, `nombre`, `cant_rutas` y endpoint `GET /api/v1/mapas-rutas`
 
 ## Documentación SDD
 
