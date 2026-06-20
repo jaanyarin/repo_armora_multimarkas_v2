@@ -62,12 +62,21 @@ public class MapasRutasResource {
                     List<MapaRutaResponse> list = new ArrayList<>();
                     while (rs.next()) {
                         Timestamp actualizado = rs.getTimestamp("actualizado_en");
+                        String nombre = rs.getString("nombre");
+                        Integer cantRutas = rs.getInt("cant_rutas");
                         list.add(new MapaRutaResponse(
                                 rs.getString("id"),
                                 rs.getString("codigo"),
-                                rs.getString("nombre"),
-                                rs.getInt("cant_rutas"),
+                                nombre,
+                                cantRutas,
                                 rs.getString("estado"),
+                                actualizado != null ? actualizado.toString() : null,
+                                nombre,
+                                cantRutas + " rutas",
+                                "Sin asignar",
+                                "Sin asignar",
+                                cantRutas,
+                                "Sin definir",
                                 actualizado != null ? actualizado.toString() : null
                         ));
                     }
@@ -86,7 +95,14 @@ public class MapasRutasResource {
             String nombre,
             Integer cantRutas,
             String estado,
-            String actualizadoEn
+            String actualizadoEn,
+            String zona,
+            String ruta,
+            String vendedor,
+            String almacen,
+            Integer clientesAsignados,
+            String diaAtencion,
+            String actualizado
     ) {
     }
 }
