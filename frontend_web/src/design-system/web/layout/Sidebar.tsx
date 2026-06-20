@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
@@ -44,7 +45,7 @@ interface NavItem {
 
 interface NavCategory {
   label: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   children: NavItem[];
 }
 
@@ -145,7 +146,7 @@ const sidebarCategories: NavCategory[] = [
       { label: 'Gestion Zonas y Rutas', path: '/zonas-rutas/gestion-zonas-rutas' },
       { label: 'Habilitar Ventas en Rutas', path: '/zonas-rutas/habilitar-ventas-rutas' },
       { label: 'Crear Mapa de Rutas', path: '/mapas-rutas/crear-mapa-rutas' },
-      { label: 'Gestion de Mapas de Rutas', path: '#' },
+      { label: 'Gestion de Mapas de Rutas', path: '/mapas-rutas/gestion-mapas-rutas' },
       { label: 'Cambio dia Atencion', path: '#' },
     ],
   },
