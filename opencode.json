@@ -3,6 +3,20 @@
     "plugin":  [
                    "superpowers@git+https://github.com/obra/superpowers.git"
                ],
+    "mcp":  {
+                "headroom":  {
+                                 "type":  "local",
+                                 "command":  [
+                                                 "python",
+                                                 "-m",
+                                                 "headroom.cli",
+                                                 "mcp",
+                                                 "serve"
+                                             ],
+                                 "enabled":  true,
+                                 "timeout":  30000
+                             }
+            },
     "instructions":  [
                          "AGENTS.md",
                          "agentes/README.md",

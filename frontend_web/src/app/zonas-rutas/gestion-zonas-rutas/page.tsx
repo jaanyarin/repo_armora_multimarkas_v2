@@ -104,7 +104,7 @@ function PoligonoChip({ ok }: { ok: boolean }) {
         borderRadius: '8px',
         fontWeight: 700,
         backgroundColor: ok ? colors.semanticBackground.success : colors.semanticBackground.warning,
-        color: ok ? colors.semantic.success : '#92400e',
+        color: ok ? colors.semantic.success : colors.semantic.warning,
       }}
     />
   );
@@ -123,6 +123,7 @@ export default function GestionZonasRutasPage() {
   const [zonas, setZonas] = useState<Zona[]>([]);
   const [rutas, setRutas] = useState<Ruta[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [tab, setTab] = useState<'zonas' | 'rutas'>('zonas');
   const [search, setSearch] = useState('');
   const [zonaDialog, setZonaDialog] = useState(false);
@@ -139,6 +140,7 @@ export default function GestionZonasRutasPage() {
 
   const fetchData = useCallback(async () => {
     setLoading(true);
+    setError(null);
     try {
       const params = search.trim() ? `?q=${encodeURIComponent(search.trim())}` : '';
       const [zonasData, rutasData] = await Promise.all([
@@ -148,7 +150,9 @@ export default function GestionZonasRutasPage() {
       setZonas(zonasData ?? []);
       setRutas(rutasData ?? []);
     } catch (err) {
-      showMessage(err instanceof Error ? err.message : 'Error al cargar zonas y rutas', 'error');
+      const msg = err instanceof Error ? err.message : 'Error al cargar zonas y rutas';
+      setError(msg);
+      showMessage(msg, 'error');
     } finally {
       setLoading(false);
     }
@@ -335,12 +339,21 @@ export default function GestionZonasRutasPage() {
                 <TableHead>
                   <TableRow>
                     {['Codigo', 'Zona', 'Color', 'Rutas', 'Poligono', 'Estado', 'Observaciones', 'Acciones'].map((h) => (
-                      <TableCell key={h} sx={{ fontWeight: 800, color: '#475569', textTransform: 'uppercase', fontSize: 12 }}>{h}</TableCell>
+                      <TableCell key={h} sx={{ fontWeight: 700, color: colors.primary[900], textTransform: 'uppercase', fontSize: 12 }}>{h}</TableCell>
                     ))}
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {loading ? <TableRow><TableCell colSpan={8}>Cargando...</TableCell></TableRow> : zonas.length === 0 ? (
+                  {error ? (
+                    <TableRow>
+                      <TableCell colSpan={8}>
+                        <Box sx={{ textAlign: 'center', py: 6 }}>
+                          <Typography color="error" gutterBottom>{error}</Typography>
+                          <Button variant="outlined" onClick={fetchData}>Reintentar</Button>
+                        </Box>
+                      </TableCell>
+                    </TableRow>
+                  ) : loading ? <TableRow><TableCell colSpan={8}>Cargando...</TableCell></TableRow> : zonas.length === 0 ? (
                     <TableRow><TableCell colSpan={8}>No hay zonas registradas.</TableCell></TableRow>
                   ) : zonas.map((zona) => (
                     <TableRow key={zona.id} hover>
@@ -368,12 +381,21 @@ export default function GestionZonasRutasPage() {
                 <TableHead>
                   <TableRow>
                     {['Codigo', 'Zona', 'Ruta', 'Dia de atencion', 'Estado', 'Observaciones', 'Acciones'].map((h) => (
-                      <TableCell key={h} sx={{ fontWeight: 800, color: '#475569', textTransform: 'uppercase', fontSize: 12 }}>{h}</TableCell>
+                      <TableCell key={h} sx={{ fontWeight: 700, color: colors.primary[900], textTransform: 'uppercase', fontSize: 12 }}>{h}</TableCell>
                     ))}
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {loading ? <TableRow><TableCell colSpan={7}>Cargando...</TableCell></TableRow> : rutas.length === 0 ? (
+                  {error ? (
+                    <TableRow>
+                      <TableCell colSpan={7}>
+                        <Box sx={{ textAlign: 'center', py: 6 }}>
+                          <Typography color="error" gutterBottom>{error}</Typography>
+                          <Button variant="outlined" onClick={fetchData}>Reintentar</Button>
+                        </Box>
+                      </TableCell>
+                    </TableRow>
+                  ) : loading ? <TableRow><TableCell colSpan={7}>Cargando...</TableCell></TableRow> : rutas.length === 0 ? (
                     <TableRow><TableCell colSpan={7}>No hay rutas registradas.</TableCell></TableRow>
                   ) : rutas.map((ruta) => (
                     <TableRow key={ruta.id} hover>
@@ -462,7 +484,10 @@ export default function GestionZonasRutasPage() {
         </DialogActions>
       </Dialog>
 
-      <Snackbar open={snackbar.open} autoHideDuration={5000} onClose={() => setSnackbar({ ...snackbar, open: false })}>
+      <Snackbar open={snackbar.open} autoHideDuration={5000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        sx={{ mt: 7 }}>
         <Alert severity={snackbar.severity} onClose={() => setSnackbar({ ...snackbar, open: false })}>{snackbar.message}</Alert>
       </Snackbar>
     </AppLayout>

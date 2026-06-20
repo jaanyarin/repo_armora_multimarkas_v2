@@ -71,8 +71,8 @@ function EstadoVentasChip({ estado }: { estado: Estado }) {
       sx={{
         borderRadius: '10px',
         fontWeight: 800,
-        backgroundColor: habilitada ? colors.semanticBackground.success : colors.semanticBackground.error,
-        color: habilitada ? colors.semantic.success : colors.semantic.error,
+        backgroundColor: habilitada ? colors.semanticBackground.success : colors.semanticBackground.danger,
+        color: habilitada ? colors.semantic.success : colors.semantic.danger,
         '& .MuiChip-icon': { color: 'inherit' },
       }}
     />
@@ -210,7 +210,7 @@ export default function HabilitarVentasRutasPage() {
           {[
             ['Total rutas', kpi.total, colors.primary[600], <RouteIcon key="total" />],
             ['Ventas habilitadas', kpi.habilitadas, colors.semantic.success, <CheckCircleIcon key="ok" />],
-            ['Ventas bloqueadas', kpi.bloqueadas, colors.semantic.error, <BlockIcon key="block" />],
+            ['Ventas bloqueadas', kpi.bloqueadas, colors.semantic.danger, <BlockIcon key="block" />],
             ['Zonas comerciales', kpi.zonas, colors.semantic.info, <MapIcon key="zone" />],
           ].map(([label, value, color, icon]) => (
             <Grid item xs={12} sm={6} md={3} key={String(label)}>
@@ -300,7 +300,7 @@ export default function HabilitarVentasRutasPage() {
                     <Checkbox checked={allVisibleSelected} indeterminate={selectedIds.length > 0 && !allVisibleSelected} onChange={toggleSelectAllVisible} />
                   </TableCell>
                   {['Codigo', 'Zona', 'Ruta', 'Dia de atencion', 'Estado venta', 'Ultima actualizacion', 'Observaciones'].map((header) => (
-                    <TableCell key={header} sx={{ fontWeight: 900, color: '#475569', textTransform: 'uppercase', fontSize: 12 }}>{header}</TableCell>
+                    <TableCell key={header} sx={{ fontWeight: 700, color: colors.primary[900], textTransform: 'uppercase', fontSize: 12 }}>{header}</TableCell>
                   ))}
                 </TableRow>
               </TableHead>
@@ -359,7 +359,10 @@ export default function HabilitarVentasRutasPage() {
         </DialogActions>
       </Dialog>
 
-      <Snackbar open={snackbar.open} autoHideDuration={5000} onClose={() => setSnackbar({ ...snackbar, open: false })}>
+      <Snackbar open={snackbar.open} autoHideDuration={5000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        sx={{ mt: 7 }}>
         <Alert severity={snackbar.severity} onClose={() => setSnackbar({ ...snackbar, open: false })}>{snackbar.message}</Alert>
       </Snackbar>
     </AppLayout>

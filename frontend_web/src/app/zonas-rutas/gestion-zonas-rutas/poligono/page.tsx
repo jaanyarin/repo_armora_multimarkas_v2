@@ -223,7 +223,7 @@ function InteractivePolygonEditor({
                 setDragIndex(index);
               }}
             />
-            <text x={x + 12} y={y - 10} fontSize="13" fontWeight="800" fill="#0f172a">{index + 1}</text>
+            <text x={x + 12} y={y - 10} fontSize="13" fontWeight="800" fill={colors.neutral.text}>{index + 1}</text>
           </g>
         );
       })}
@@ -335,7 +335,7 @@ function MapaZona({ points, setPoints, color }: { points: Point[]; setPoints: (p
         overflow: 'hidden',
         border: `1px solid ${colors.neutral.border}`,
         position: 'relative',
-        backgroundColor: '#dbe3ee',
+        backgroundColor: colors.primary[50],
         cursor: mode === 'mover' ? (panStart ? 'grabbing' : 'grab') : 'default',
         userSelect: 'none',
       }}
@@ -530,7 +530,7 @@ function PoligonoContent() {
                         justifySelf: 'start',
                         fontWeight: 700,
                         backgroundColor: polygon ? colors.semanticBackground.success : colors.semanticBackground.warning,
-                        color: polygon ? colors.semantic.success : '#92400e',
+                        color: polygon ? colors.semantic.success : colors.semantic.warning,
                       }}
                     />
                   </Box>
@@ -574,7 +574,10 @@ function PoligonoContent() {
         )}
       </Box>
 
-      <Snackbar open={snackbar.open} autoHideDuration={5000} onClose={() => setSnackbar({ ...snackbar, open: false })}>
+      <Snackbar open={snackbar.open} autoHideDuration={5000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        sx={{ mt: 7 }}>
         <Alert severity={snackbar.severity} onClose={() => setSnackbar({ ...snackbar, open: false })}>{snackbar.message}</Alert>
       </Snackbar>
     </AppLayout>

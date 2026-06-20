@@ -43,6 +43,13 @@ Columnas normalizadas: `creado_en`, `actualizado_en`, `clave_hash`.
 | Area | `personal.area` | V5 | Columna agregada |
 | Sede | `personal.sede` | V5 | Columna agregada |
 | Personal.estado | `personal.estado` | V6 | Columna agregada |
+| Zone (normalizada) | `zonas` | V9 | Creada (normalizada desde V7) |
+| Route | `rutas` | V9 | Creada |
+| ZonePolygon | `zonas_poligonos` | V9 | Creada |
+| SeedZones | `zonas` (datos) | V10 | Poblada (40 zonas) |
+| SeedRoutes | `rutas` (datos) | V11 | Poblada (227 rutas) |
+
+> **Nota sobre V7/V8:** Las migraciones V7 (`zonas_rutas`) y V8 (`zonas_rutas_poligonos`) fueron reemplazadas por la normalizacion V9. Las tablas V7/V8 permanecen en el esquema como huerfanas para preservar trazabilidad. Ver `docs/adr/ADR-003-zonas-rutas-normalizacion.md`.
 
 ## Personal (staff / employees)
 
@@ -128,6 +135,70 @@ Constraints:
 | personal_id | uuid PK, FK -> personal | Personal |
 | lista_precio_id | uuid PK | Lista de precio asignada (FK futura a listas_precios) |
 | creado_en | timestamptz | Fecha de asignacion |
+
+## Zonas y Rutas
+
+Modelo normalizado en V9, reemplazando las tablas unificadas V7/V8.
+
+### zonas
+
+| Columna | Tipo | Descripcion |
+|---|---|---|
+| id | uuid PK | Identificador unico |
+| codigo | varchar(30) UNIQUE | Codigo de zona (ej. ZON-0001) |
+| nombre_zona | varchar(150) | Nombre comercial de la zona |
+| color | varchar(20) | Color hexadecimal para mapas/UI |
+| estado | estado_registro | ACTIVO, INACTIVO. Default ACTIVO |
+| observacion | text | Notas adicionales |
+| creado_en | timestamptz | Fecha de creacion |
+| actualizado_en | timestamptz | Fecha de actualizacion |
+
+Constraints:
+- `uq_zonas_codigo`: unico por codigo
+- Indices en `nombre_zona`, `estado`
+
+### rutas
+
+| Columna | Tipo | Descripcion |
+|---|---|---|
+| id | uuid PK | Identificador unico |
+| codigo | varchar(30) UNIQUE | Codigo de ruta (ej. ZON-0001-R10) |
+| zona_id | uuid FK -> zonas(id) | Zona a la que pertenece |
+| nombre_ruta | varchar(150) | Nombre/número de ruta |
+| dias_atencion | jsonb | Dias de atencion (estructura flexible) |
+| estado | estado_registro | ACTIVO, INACTIVO. Default ACTIVO |
+| observacion | text | Notas adicionales |
+| creado_en | timestamptz | Fecha de creacion |
+| actualizado_en | timestamptz | Fecha de actualizacion |
+
+Constraints:
+- `uq_rutas_codigo`: unico por codigo
+- `fk_rutas_zona`: FK a zonas ON DELETE RESTRICT (no se puede eliminar zona con rutas activas)
+- Indices en `zona_id`, `nombre_ruta`, `estado`
+
+### zonas_poligonos
+
+| Columna | Tipo | Descripcion |
+|---|---|---|
+| id | uuid PK | Identificador unico |
+| zona_id | uuid FK -> zonas(id) | Zona a la que pertenece |
+| coordenadas | jsonb | Poligono en formato GeoJSON Polygon |
+| version | integer | Version del poligono (auto-incremental) |
+| activo | boolean | Indica si es la version activa |
+| creado_en | timestamptz | Fecha de creacion |
+| actualizado_en | timestamptz | Fecha de actualizacion |
+
+Constraints:
+- `fk_zonas_poligonos_zona`: FK a zonas ON DELETE CASCADE
+- `uq_zonas_poligonos_version`: unico por (zona_id, version)
+- Indices en `zona_id`, `(zona_id, activo)`
+
+### Seeds cargados
+
+| Seed | Migracion | Descripcion |
+|---|---|---|
+| 40 zonas | V10 | Zonas comerciales (DISTRIBUIDORES, FILETEO, ICA A-N, etc.) |
+| 227 rutas | V11 | Rutas distribuidas en las 40 zonas (codigos ZON-NNNN-RNN) |
 
 ## Identidad y permisos
 

@@ -1,0 +1,9 @@
+# Plantilla para habilitar Headroom MCP en Codex.
+# Copiar este bloque al config TOML activo de Codex del usuario.
+# Requisito previo:
+#   pip install "headroom-ai[mcp,proxy]"
+
+[mcp_servers.headroom]
+command = "python"
+args = ["-m", "headroom.cli", "mcp", "serve"]
+timeout_ms = 30000

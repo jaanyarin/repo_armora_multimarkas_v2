@@ -233,6 +233,185 @@ Reemplaza todos los recursos asignados. Solo ADMINISTRADOR.
 }
 ```
 
+## Zonas y Rutas
+
+Endpoint base: `/api/v1/zonas-rutas/`
+
+Auth global: `@RolesAllowed({"ADMINISTRADOR", "OPERADOR"})`  
+Mutaciones (POST/PUT/PATCH/DELETE): solo `ADMINISTRADOR`
+
+### Zonas
+
+GET `/zonas-rutas/zonas`
+
+Lista de zonas con indicadores de cantidad de rutas y existencia de poligono activo.
+
+Query params:
+- `q` (busqueda por codigo o nombre)
+- `estado` (ACTIVO, INACTIVO)
+
+Respuesta:
+
+```json
+{
+  "data": [
+    {
+      "id": "uuid",
+      "codigo": "ZON-0001",
+      "nombreZona": "DISTRIBUIDORES",
+      "color": "#2563eb",
+      "estado": "ACTIVO",
+      "observacion": "Carga inicial heredada",
+      "cantidadRutas": 1,
+      "tienePoligono": false,
+      "creadoEn": "2026-06-19T00:00:00.000Z",
+      "actualizadoEn": "2026-06-19T00:00:00.000Z"
+    }
+  ]
+}
+```
+
+POST `/zonas-rutas/zonas`
+
+Crea una nueva zona. Request:
+
+```json
+{
+  "codigo": "ZON-0041",
+  "nombreZona": "NUEVA ZONA",
+  "color": "#ff5733",
+  "estado": "ACTIVO",
+  "observacion": "Zona creada desde admin"
+}
+```
+
+Codigo obligatorio (max 30 chars), nombre obligatorio (max 150 chars), color opcional (hexadecimal #RGB o #RRGGBB).
+
+PUT `/zonas-rutas/zonas/{id}`
+
+Actualiza una zona existente. Mismo body que POST.
+
+PATCH `/zonas-rutas/zonas/{id}/estado`
+
+Cambia el estado de una zona. Request:
+
+```json
+{
+  "estado": "INACTIVO"
+}
+```
+
+DELETE `/zonas-rutas/zonas/{id}`
+
+Elimina una zona. Fallara si tiene rutas activas (ON DELETE RESTRICT).
+
+### Rutas
+
+GET `/zonas-rutas/rutas`
+
+Lista de rutas con datos de zona asociada.
+
+Query params:
+- `q` (busqueda por codigo, nombre de ruta o nombre de zona)
+- `zonaId` (filtrar por zona)
+
+Respuesta:
+
+```json
+{
+  "data": [
+    {
+      "id": "uuid",
+      "codigo": "ZON-0001-R10",
+      "zonaId": "uuid",
+      "nombreZona": "DISTRIBUIDORES",
+      "zonaColor": "#2563eb",
+      "nombreRuta": "10",
+      "diasAtencion": null,
+      "estado": "ACTIVO",
+      "observacion": "Carga inicial heredada",
+      "creadoEn": "2026-06-19T00:00:00.000Z",
+      "actualizadoEn": "2026-06-19T00:00:00.000Z"
+    }
+  ]
+}
+```
+
+POST `/zonas-rutas/rutas`
+
+Crea una nueva ruta vinculada a una zona. Request:
+
+```json
+{
+  "codigo": "ZON-0001-R20",
+  "zonaId": "uuid-de-la-zona",
+  "nombreRuta": "20",
+  "diasAtencion": {"lunes": true, "martes": true},
+  "estado": "ACTIVO",
+  "observacion": "Nueva ruta"
+}
+```
+
+PUT `/zonas-rutas/rutas/{id}`
+
+Actualiza una ruta existente. Mismo body que POST.
+
+PATCH `/zonas-rutas/rutas/{id}/estado`
+
+Cambia el estado de una ruta (ACTIVO/INACTIVO). Se usa actualmente como equivalente de "habilitar/bloquear ventas".
+
+```json
+{
+  "estado": "INACTIVO"
+}
+```
+
+DELETE `/zonas-rutas/rutas/{id}`
+
+Elimina una ruta.
+
+### Poligonos
+
+GET `/zonas-rutas/zonas/{id}/poligono`
+
+Obtiene el poligono activo de una zona.
+
+Respuesta:
+
+```json
+{
+  "data": {
+    "id": "uuid",
+    "coordenadas": {
+      "type": "Polygon",
+      "coordinates": [[[-76.0, -14.0], [-75.5, -14.0], [-75.5, -13.5], [-76.0, -13.5], [-76.0, -14.0]]]
+    },
+    "version": 1,
+    "activo": true,
+    "creadoEn": "2026-06-19T00:00:00.000Z"
+  }
+}
+```
+
+PUT `/zonas-rutas/zonas/{id}/poligono`
+
+Guarda o actualiza el poligono de una zona. Invalida la version anterior (activo=false) y crea una nueva version. Request:
+
+```json
+{
+  "coordenadas": {
+    "type": "Polygon",
+    "coordinates": [[[-76.0, -14.0], [-75.5, -14.0], [-75.5, -13.5], [-76.0, -13.5], [-76.0, -14.0]]]
+  }
+}
+```
+
+Validacion: GeoJSON Polygon cerrado, minimo 3 vertices, primer punto = ultimo punto.
+
+DELETE `/zonas-rutas/zonas/{id}/poligono`
+
+Desactiva el poligono activo (activo=false). No elimina el registro fisicamente.
+
 ## Files (fotos / archivos)
 
 POST `/files/upload`
